@@ -2,8 +2,8 @@
 
 :root {
     /* Primary: Light Grey */
-    --color-primary: #f8fafc;
-    --color-primary-light: #f1f5f9;
+    --color-primary: #ffffff;
+    --color-primary-light: #ffffff;
 
     /* Secondary: Rich blue-purple (Keep or adjust for light mode, keeping for brand consistency) */
     --color-secondary: #5b2e91;
@@ -14,7 +14,7 @@
     --color-accent-light: #00b8a9;
 
     /* Neutrals */
-    --color-bg: #ffffff;
+    --color-bg: #f1f5f9;
     --color-text: #1e293b;
     --color-text-muted: #64748b;
     --color-white: #ffffff;
@@ -133,9 +133,9 @@ p {
 }
 
 .btn-outline:hover {
-    border-color: var(--color-white);
+    border-color: var(--color-text);
     color: var(--color-white);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--color-text);
 }
 
 section {

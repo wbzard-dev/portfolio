@@ -19,6 +19,15 @@ const projects = [
         category: "E-commerce PPC",
         image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800",
         description: "Optimized ad spend reduced CPA by 40%.",
+        link: "#",
+    },
+    {
+        title: "Blokz",
+        category: "Web Development",
+        image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800",
+        description:
+            "A modern, high-performance e-commerce platform built for scale.",
+        link: "https://blokz.store/",
     },
 ];
 
@@ -116,7 +125,10 @@ const Portfolio = () => {
                                 >
                                     {project.description}
                                 </p>
-                                <button
+                                <a
+                                    href={project.link || "#"}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="btn-link"
                                     style={{
                                         color: "var(--color-white)",
@@ -124,10 +136,11 @@ const Portfolio = () => {
                                         display: "inline-flex",
                                         alignItems: "center",
                                         gap: "0.5rem",
+                                        textDecoration: "none",
                                     }}
                                 >
                                     View Case Study <ExternalLink size={16} />
-                                </button>
+                                </a>
                             </div>
                         </div>
                     ))}
