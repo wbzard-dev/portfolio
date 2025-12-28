@@ -36,7 +36,7 @@ const Testimonials = () => {
                     <h2
                         style={{
                             fontSize: "2.5rem",
-                            color: "var(--color-white)",
+                            color: "var(--color-text)",
                         }}
                     >
                         Client Love
@@ -99,7 +99,7 @@ const Testimonials = () => {
                                     fontSize: "1.1rem",
                                     lineHeight: "1.6",
                                     marginBottom: "2rem",
-                                    color: "var(--color-text-light)",
+                                    color: "var(--color-text-muted)",
                                     fontStyle: "italic",
                                 }}
                             >
@@ -128,7 +128,7 @@ const Testimonials = () => {
                                         style={{
                                             margin: 0,
                                             fontSize: "1rem",
-                                            color: "var(--color-white)",
+                                            color: "var(--color-text)",
                                         }}
                                     >
                                         {testimonial.name}

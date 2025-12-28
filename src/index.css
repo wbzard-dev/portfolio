@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-    /* Primary: Deep navy blue */
-    --color-primary: #0b1020;
-    --color-primary-light: #111c30;
+    /* Primary: Light Grey */
+    --color-primary: #f8fafc;
+    --color-primary-light: #f1f5f9;
 
-    /* Secondary: Rich blue-purple */
+    /* Secondary: Rich blue-purple (Keep or adjust for light mode, keeping for brand consistency) */
     --color-secondary: #5b2e91;
     --color-secondary-light: #6a4c93;
 
@@ -14,9 +14,9 @@
     --color-accent-light: #00b8a9;
 
     /* Neutrals */
-    --color-bg: #0b1020;
-    --color-text: #f0f4f8;
-    --color-text-muted: #94a3b8;
+    --color-bg: #ffffff;
+    --color-text: #1e293b;
+    --color-text-muted: #64748b;
     --color-white: #ffffff;
 
     /* Layout */
@@ -30,7 +30,7 @@
     line-height: 1.5;
     font-weight: 400;
 
-    color-scheme: dark;
+    color-scheme: light;
 }
 
 * {
@@ -99,6 +99,7 @@ p {
         var(--color-white) 0%,
         var(--color-accent-light) 100%
     );
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

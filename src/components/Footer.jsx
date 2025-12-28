@@ -7,7 +7,7 @@ const Footer = () => {
             style={{
                 backgroundColor: "var(--color-bg)",
                 padding: "4rem 0 2rem",
-                borderTop: "1px solid rgba(255,255,255,0.05)",
+                borderTop: "1px solid rgba(0,0,0,0.05)",
             }}
         >
             <div className="container">
@@ -29,7 +29,7 @@ const Footer = () => {
                                 gap: "0.5rem",
                                 fontSize: "1.5rem",
                                 fontWeight: "800",
-                                color: "var(--color-white)",
+                                color: "var(--color-text)",
                                 marginBottom: "1.5rem",
                             }}
                         >
@@ -46,7 +46,7 @@ const Footer = () => {
                     <div>
                         <h4
                             style={{
-                                color: "var(--color-white)",
+                                color: "var(--color-text)",
                                 marginBottom: "1.5rem",
                             }}
                         >
@@ -75,7 +75,7 @@ const Footer = () => {
                     <div>
                         <h4
                             style={{
-                                color: "var(--color-white)",
+                                color: "var(--color-text)",
                                 marginBottom: "1.5rem",
                             }}
                         >
@@ -101,7 +101,7 @@ const Footer = () => {
                     <div>
                         <h4
                             style={{
-                                color: "var(--color-white)",
+                                color: "var(--color-text)",
                                 marginBottom: "1.5rem",
                             }}
                         >
@@ -128,7 +128,7 @@ const Footer = () => {
                     style={{
                         textAlign: "center",
                         paddingTop: "2rem",
-                        borderTop: "1px solid rgba(255,255,255,0.05)",
+                        borderTop: "1px solid rgba(0,0,0,0.05)",
                         color: "var(--color-text-muted)",
                         fontSize: "0.9rem",
                     }}
@@ -148,16 +148,17 @@ const Footer = () => {
         .social-link {
           width: 40px;
           height: 40px;
-          background: rgba(255,255,255,0.05);
+          background: rgba(0,0,0,0.05);
           display: flex;
           align-items: center;
           justify-content: center;
           border-radius: 50%;
-          color: var(--color-white);
+          color: var(--color-text);
           transition: all 0.3s ease;
         }
         .social-link:hover {
           background: var(--color-accent);
+          color: var(--color-white);
           transform: translateY(-3px);
         }
       `}</style>

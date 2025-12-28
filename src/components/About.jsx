@@ -20,7 +20,7 @@ const About = () => {
                             alt="Team meeting"
                             style={{
                                 borderRadius: "var(--radius-lg)",
-                                boxShadow: "0 20px 40px rgba(0,0,0,0.3)",
+                                boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                             }}
                         />
                         <div
@@ -62,7 +62,7 @@ const About = () => {
                     <h2
                         style={{
                             fontSize: "2.5rem",
-                            color: "var(--color-white)",
+                            color: "var(--color-text)",
                         }}
                     >
                         We Are Digital Architects
@@ -98,7 +98,7 @@ const About = () => {
                                     style={{
                                         fontSize: "1.25rem",
                                         marginBottom: "0.5rem",
-                                        color: "var(--color-white)",
+                                        color: "var(--color-text)",
                                     }}
                                 >
                                     Mission
@@ -128,7 +128,7 @@ const About = () => {
                                     style={{
                                         fontSize: "1.25rem",
                                         marginBottom: "0.5rem",
-                                        color: "var(--color-white)",
+                                        color: "var(--color-text)",
                                     }}
                                 >
                                     Team

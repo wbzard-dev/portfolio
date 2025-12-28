@@ -30,7 +30,7 @@ const Portfolio = () => {
                     <h2
                         style={{
                             fontSize: "2.5rem",
-                            color: "var(--color-white)",
+                            color: "var(--color-text)",
                         }}
                     >
                         Selected Works
@@ -81,7 +81,7 @@ const Portfolio = () => {
                                     right: 0,
                                     padding: "2rem",
                                     background:
-                                        "linear-gradient(to top, rgba(11, 16, 32, 0.95), transparent)",
+                                        "linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent)",
                                     transform: "translateY(20px)",
                                     opacity: 0.9,
                                     transition: "all 0.3s ease",

@@ -21,7 +21,7 @@ const Hero = () => {
                     width: "600px",
                     height: "600px",
                     background:
-                        "radial-gradient(circle, rgba(91, 46, 145, 0.4) 0%, rgba(11, 16, 32, 0) 70%)",
+                        "radial-gradient(circle, rgba(91, 46, 145, 0.1) 0%, rgba(255, 255, 255, 0) 70%)",
                     borderRadius: "50%",
                     zIndex: -1,
                     filter: "blur(60px)",
@@ -35,7 +35,7 @@ const Hero = () => {
                     width: "500px",
                     height: "500px",
                     background:
-                        "radial-gradient(circle, rgba(0, 155, 119, 0.15) 0%, rgba(11, 16, 32, 0) 70%)",
+                        "radial-gradient(circle, rgba(0, 155, 119, 0.1) 0%, rgba(255, 255, 255, 0) 70%)",
                     borderRadius: "50%",
                     zIndex: -1,
                     filter: "blur(60px)",
@@ -74,7 +74,7 @@ const Hero = () => {
                             fontSize: "3.5rem",
                             marginBottom: "1.5rem",
                             letterSpacing: "-0.02em",
-                            color: "var(--color-white)",
+                            color: "var(--color-text)",
                         }}
                     >
                         We Craft Digital Experiences That{" "}

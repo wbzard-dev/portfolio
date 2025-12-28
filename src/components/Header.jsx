@@ -29,11 +29,11 @@ const Header = () => {
                 right: 0,
                 zIndex: 1000,
                 backgroundColor: isScrolled
-                    ? "rgba(11, 16, 32, 0.95)"
+                    ? "rgba(255, 255, 255, 0.95)"
                     : "transparent",
                 backdropFilter: isScrolled ? "blur(10px)" : "none",
                 borderBottom: isScrolled
-                    ? "1px solid rgba(255, 255, 255, 0.1)"
+                    ? "1px solid rgba(0, 0, 0, 0.1)"
                     : "none",
                 transition: "all 0.3s ease",
                 padding: isScrolled ? "1rem 0" : "1.5rem 0",
@@ -55,7 +55,7 @@ const Header = () => {
                         gap: "0.5rem",
                         fontSize: "1.5rem",
                         fontWeight: "800",
-                        color: "var(--color-white)",
+                        color: "var(--color-text)",
                     }}
                 >
                     <Rocket className="text-accent" size={28} />
@@ -94,7 +94,7 @@ const Header = () => {
                 <button
                     className="mobile-toggle"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    style={{ color: "var(--color-white)", display: "block" }}
+                    style={{ color: "var(--color-text)", display: "block" }}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -107,9 +107,9 @@ const Header = () => {
                             top: "100%",
                             left: 0,
                             right: 0,
-                            backgroundColor: "var(--color-primary)",
+                            backgroundColor: "var(--color-bg)",
                             padding: "2rem",
-                            borderBottom: "1px solid rgba(255,255,255,0.1)",
+                            borderBottom: "1px solid rgba(0,0,0,0.1)",
                             display: "flex",
                             flexDirection: "column",
                             gap: "1.5rem",

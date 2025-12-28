@@ -12,7 +12,7 @@ const Contact = () => {
                     <h2
                         style={{
                             fontSize: "2.5rem",
-                            color: "var(--color-white)",
+                            color: "var(--color-text)",
                         }}
                     >
                         Let's Build Something Great
@@ -37,7 +37,7 @@ const Contact = () => {
                             style={{
                                 fontSize: "1.5rem",
                                 marginBottom: "2rem",
-                                color: "var(--color-white)",
+                                color: "var(--color-text)",
                             }}
                         >
                             Get In Touch
@@ -65,7 +65,7 @@ const Contact = () => {
                                         style={{
                                             margin: "0 0 0.5rem",
                                             fontSize: "1.1rem",
-                                            color: "var(--color-white)",
+                                            color: "var(--color-text)",
                                         }}
                                     >
                                         Email Us
@@ -96,7 +96,7 @@ const Contact = () => {
                                         style={{
                                             margin: "0 0 0.5rem",
                                             fontSize: "1.1rem",
-                                            color: "var(--color-white)",
+                                            color: "var(--color-text)",
                                         }}
                                     >
                                         Call Us
@@ -127,7 +127,7 @@ const Contact = () => {
                                         style={{
                                             margin: "0 0 0.5rem",
                                             fontSize: "1.1rem",
-                                            color: "var(--color-white)",
+                                            color: "var(--color-text)",
                                         }}
                                     >
                                         Visit Us
@@ -146,7 +146,7 @@ const Contact = () => {
                             backgroundColor: "var(--color-bg)",
                             padding: "2.5rem",
                             borderRadius: "var(--radius-lg)",
-                            border: "1px solid rgba(255,255,255,0.05)",
+                            border: "1px solid rgba(0,0,0,0.05)",
                         }}
                         onSubmit={(e) => e.preventDefault()}
                     >
@@ -166,10 +166,10 @@ const Contact = () => {
                                 style={{
                                     width: "100%",
                                     padding: "12px",
-                                    backgroundColor: "rgba(255,255,255,0.03)",
-                                    border: "1px solid rgba(255,255,255,0.1)",
+                                    backgroundColor: "rgba(0,0,0,0.02)",
+                                    border: "1px solid rgba(0,0,0,0.1)",
                                     borderRadius: "var(--radius-md)",
-                                    color: "var(--color-white)",
+                                    color: "var(--color-text)",
                                     fontSize: "1rem",
                                 }}
                             />
@@ -191,10 +191,10 @@ const Contact = () => {
                                 style={{
                                     width: "100%",
                                     padding: "12px",
-                                    backgroundColor: "rgba(255,255,255,0.03)",
-                                    border: "1px solid rgba(255,255,255,0.1)",
+                                    backgroundColor: "rgba(0,0,0,0.02)",
+                                    border: "1px solid rgba(0,0,0,0.1)",
                                     borderRadius: "var(--radius-md)",
-                                    color: "var(--color-white)",
+                                    color: "var(--color-text)",
                                     fontSize: "1rem",
                                 }}
                             />
@@ -216,10 +216,10 @@ const Contact = () => {
                                 style={{
                                     width: "100%",
                                     padding: "12px",
-                                    backgroundColor: "rgba(255,255,255,0.03)",
-                                    border: "1px solid rgba(255,255,255,0.1)",
+                                    backgroundColor: "rgba(0,0,0,0.02)",
+                                    border: "1px solid rgba(0,0,0,0.1)",
                                     borderRadius: "var(--radius-md)",
-                                    color: "var(--color-white)",
+                                    color: "var(--color-text)",
                                     fontSize: "1rem",
                                     resize: "vertical",
                                 }}

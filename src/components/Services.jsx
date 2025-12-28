@@ -58,7 +58,7 @@ const Services = () => {
                     <h2
                         style={{
                             fontSize: "2.5rem",
-                            color: "var(--color-white)",
+                            color: "var(--color-text)",
                         }}
                     >
                         Our Expertise
@@ -85,7 +85,7 @@ const Services = () => {
                                 backgroundColor: "var(--color-bg)",
                                 padding: "2rem",
                                 borderRadius: "var(--radius-lg)",
-                                border: "1px solid rgba(255, 255, 255, 0.05)",
+                                border: "1px solid rgba(0, 0, 0, 0.05)",
                                 transition:
                                     "transform 0.3s ease, box-shadow 0.3s ease",
                                 cursor: "default",
@@ -110,7 +110,7 @@ const Services = () => {
                                 style={{
                                     fontSize: "1.5rem",
                                     marginBottom: "1rem",
-                                    color: "var(--color-white)",
+                                    color: "var(--color-text)",
                                 }}
                             >
                                 {service.title}
