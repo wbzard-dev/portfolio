@@ -24,7 +24,7 @@ const projects = [
     {
         title: "Blokz",
         category: "Web Development",
-        image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800",
+        image: "https://ik.imagekit.io/ugdlmxlzt/logo.svg?updatedAt=1764950686563",
         description:
             "A modern, high-performance e-commerce platform built for scale.",
         link: "https://blokz.store/",
@@ -77,7 +77,7 @@ const Portfolio = () => {
                                 style={{
                                     width: "100%",
                                     height: "100%",
-                                    objectFit: "cover",
+                                    objectFit: "fill",
                                     transition: "transform 0.5s ease",
                                 }}
                             />
@@ -118,7 +118,7 @@ const Portfolio = () => {
                                 </h3>
                                 <p
                                     style={{
-                                        color: "var(--color-text-muted)",
+                                        color: "white",
                                         marginBottom: "1.5rem",
                                         fontSize: "0.95rem",
                                     }}
