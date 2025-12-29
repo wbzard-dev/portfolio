@@ -1,8 +1,9 @@
 :root {
     --blokz-orange: #f38b2a;
     --blokz-orange-light: #fff0e0;
-    --blokz-dark: #2a2a2a;
+    --blokz-dark: #1a1a1a;
     --text-grey: #555;
+    --text-light: #888;
     --border-color: #eee;
 }
 
@@ -13,20 +14,30 @@
     width: 100%;
 }
 
+.section-label {
+    color: var(--blokz-orange);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+}
+
 /* --- Hero Section --- */
 .about-hero {
-    background: linear-gradient(
-        180deg,
-        #fff 0%,
-        var(--blokz-orange-light) 100%
+    background: radial-gradient(
+        circle at top,
+        var(--blokz-orange-light) 0%,
+        #fff 70%
     );
-    padding: 60px 20px 100px; /* Extra padding bottom for overlap effect */
+    padding: 60px 20px 80px;
     text-align: center;
 }
 
 .about-logo {
-    height: 60px; /* Adjust size as needed */
-    margin-bottom: 30px;
+    height: 50px;
+    margin-bottom: 25px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -37,6 +48,7 @@
     font-weight: 800;
     margin-bottom: 20px;
     line-height: 1.1;
+    color: var(--blokz-dark);
 }
 
 .highlight-orange {
@@ -44,24 +56,102 @@
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--text-grey);
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto;
     line-height: 1.6;
 }
 
-/* --- Ecosystem Section (Customer vs Shopkeeper) --- */
+/* --- Reality Section (Dark Theme for Contrast) --- */
+.reality-section {
+    background: var(--blokz-dark);
+    color: #fff;
+    padding: 80px 20px;
+}
+
+.reality-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.reality-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.reality-text p {
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.stat-row {
+    display: flex;
+    gap: 40px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--blokz-orange);
+}
+
+.stat-desc {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.reality-card {
+    background: rgba(255, 255, 255, 0.05); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.warning-icon {
+    font-size: 2rem;
+    color: #ff4d4d; /* Red for warning */
+    margin-bottom: 15px;
+}
+
+.reality-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.reality-card p {
+    font-size: 0.95rem;
+    color: #aaa;
+    margin: 0;
+}
+
+/* --- Ecosystem Section --- */
 .ecosystem-section {
     max-width: 1100px;
-    margin: -60px auto 80px; /* Negative margin pulls it up into hero */
+    margin: 80px auto;
     padding: 0 20px;
 }
 
 .ecosystem-header {
     text-align: center;
-    margin-bottom: 40px;
-    display: none; /* Hidden on desktop to keep design clean, optional */
+    margin-bottom: 50px;
+}
+
+.ecosystem-header h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+.ecosystem-header p {
+    color: var(--text-grey);
+    font-size: 1.1rem;
 }
 
 .ecosystem-grid {
@@ -74,111 +164,150 @@
     background: #fff;
     border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-/* Distinguish the cards slightly */
+.ecosystem-card:hover {
+    transform: translateY(-5px);
+}
+
 .customer-card {
-    border-top: 5px solid #444;
+    border-top: 4px solid #333;
 }
 .merchant-card {
-    border-top: 5px solid var(--blokz-orange);
+    border-top: 4px solid var(--blokz-orange);
 }
 
 .card-badge {
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    background: #f0f0f0;
+    background: #f4f4f4;
     padding: 6px 12px;
     border-radius: 4px;
     margin-bottom: 20px;
-    color: #666;
+    color: #555;
 }
-
 .card-badge.orange {
     background: var(--blokz-orange-light);
     color: var(--blokz-orange);
-}
-
-.ecosystem-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
 }
 
 .benefit-list {
     list-style: none;
     padding: 0;
 }
-
 .benefit-list li {
     display: flex;
     gap: 15px;
     margin-bottom: 25px;
-    align-items: flex-start;
 }
-
 .list-icon {
     font-size: 1.2rem;
     color: var(--blokz-orange);
-    margin-top: 4px;
-    flex-shrink: 0;
+    margin-top: 3px;
 }
-
 .benefit-list strong {
     display: block;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    color: var(--blokz-dark);
+    font-size: 1.05rem;
+    margin-bottom: 4px;
 }
-
 .benefit-list p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-grey);
     margin: 0;
     line-height: 1.5;
 }
 
-/* --- Comparison Table --- */
-.comparison-section {
-    padding: 60px 20px;
+/* --- Steps Section --- */
+.steps-section {
+    padding: 80px 20px;
     background: #fafafa;
     text-align: center;
 }
 
+.steps-wrapper {
+    max-width: 1000px;
+    margin: 50px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+}
+
+.step-card {
+    flex: 1;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--blokz-orange);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 5px 15px rgba(243, 139, 42, 0.4);
+}
+
+.step-card h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+.step-card p {
+    font-size: 0.9rem;
+    color: var(--text-grey);
+}
+
+/* The connecting line */
+.step-line {
+    flex-grow: 1;
+    height: 2px;
+    background: #ddd;
+    margin-top: 30px; /* Aligns with middle of circle */
+}
+
+/* --- Comparison Section --- */
+.comparison-section {
+    padding: 80px 20px;
+    text-align: center;
+}
 .comparison-table-wrapper {
     max-width: 900px;
-    margin: 40px auto 0;
+    margin: 40px auto;
     overflow-x: auto;
     border-radius: 12px;
     background: #fff;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
 }
 
 .comparison-table {
     width: 100%;
     border-collapse: collapse;
 }
-
 .comparison-table th,
 .comparison-table td {
     padding: 20px;
     border-bottom: 1px solid #eee;
     text-align: left;
 }
-
 .comparison-table th {
-    background: #fff;
+    background: #f9f9f9;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     letter-spacing: 1px;
 }
-
 .text-red {
     color: #dc3545;
 }
@@ -190,57 +319,82 @@
 .vision-cta {
     background: var(--blokz-orange);
     color: #fff;
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.vision-content h2 {
-    font-size: 2rem;
+/* Subtle background pattern could go here */
+.vision-content {
+    position: relative;
+    z-index: 2;
     max-width: 800px;
-    margin: 0 auto 20px;
+    margin: 0 auto;
+}
+.vision-label {
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+.vision-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+.vision-quote {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 40px;
 }
 
 .cta-group {
-    margin-top: 40px;
     display: flex;
     justify-content: center;
     gap: 20px;
 }
-
 .cta-button {
-    padding: 15px 35px;
+    padding: 16px 36px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 700;
     border-radius: 50px;
     cursor: pointer;
-    transition: transform 0.2s;
     border: none;
+    transition: transform 0.2s;
 }
-
 .cta-button.primary {
     background: #fff;
     color: var(--blokz-orange);
 }
-
 .cta-button.secondary {
     background: transparent;
     border: 2px solid #fff;
     color: #fff;
 }
-
 .cta-button:hover {
     transform: scale(1.05);
 }
 
-/* Mobile Responsiveness */
+/* Mobile */
 @media (max-width: 768px) {
+    .reality-container {
+        grid-template-columns: 1fr;
+    }
     .ecosystem-grid {
         grid-template-columns: 1fr;
     }
+    .steps-wrapper {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .step-line {
+        display: none;
+    }
     .hero-title {
         font-size: 2.2rem;
-    }
-    .cta-group {
-        flex-direction: column;
     }
 }

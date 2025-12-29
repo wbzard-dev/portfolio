@@ -6,16 +6,18 @@ import {
     FaTags,
     FaUserCheck,
     FaChartLine,
+    FaExclamationTriangle,
+    FaLightbulb,
+    FaRocket,
 } from "react-icons/fa";
-import "../styles/blokz.css"; // Assuming you create a CSS file for styling
+import "../styles/blokz.css";
 
 const Blokz = () => {
     return (
         <div className="about-container">
-            {/* --- HERO SECTION WITH LOGO --- */}
+            {/* --- HERO SECTION --- */}
             <section className="about-hero">
                 <div className="hero-content">
-                    {/* LOGO ADDED HERE */}
                     <img
                         src="https://ik.imagekit.io/ugdlmxlzt/logo.svg?updatedAt=1764950686563"
                         alt="Blokz Logo"
@@ -27,18 +29,61 @@ const Blokz = () => {
                     </h1>
                     <h2 className="hero-subtitle">
                         We don't build dark stores. We empower the 13 million
-                        local shops that built India. [cite: 22, 34]
+                        local shops that built India[cite: 22].
                     </h2>
                 </div>
             </section>
 
-            {/* --- FOR CUSTOMERS & SHOPKEEPERS (NEW SECTION) --- */}
+            {/* --- THE REALITY CHECK (New Section) --- */}
+            <section className="reality-section">
+                <div className="reality-container">
+                    <div className="reality-text">
+                        <h3 className="section-label">The Problem</h3>
+                        <h2>The Crisis of Community Retail</h2>
+                        <p>
+                            The rise of quick commerce has come at a cost.{" "}
+                            <strong>40-45% of consumers</strong> have reduced
+                            spending at local Kiranas[cite: 23]. Traditional
+                            platforms are bleeding cash while neighborhood
+                            stores lose footfall daily[cite: 24].
+                        </p>
+                        <div className="stat-row">
+                            <div className="stat-item">
+                                <span className="stat-number">13M+</span>
+                                <span className="stat-desc">
+                                    Kirana Stores at Risk [cite: 22]
+                                </span>
+                            </div>
+                            <div className="stat-item">
+                                <span className="stat-number">25%</span>
+                                <span className="stat-desc">
+                                    Drop in Footfall [cite: 24]
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="reality-card glass-effect">
+                        <FaExclamationTriangle className="warning-icon" />
+                        <h4>The "Dark Store" Trap</h4>
+                        <p>
+                            Competitors burn investor money on expensive
+                            warehouses ("dark stores") and delivery fleets,
+                            losing <strong>₹80-120 per order</strong>[cite: 18].
+                            This model is unsustainable and bypasses local
+                            businesses entirely[cite: 26].
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* --- THE BLOKZ SOLUTION (Ecosystem) --- */}
             <section className="ecosystem-section">
                 <div className="ecosystem-header">
+                    <h3 className="section-label">The Solution</h3>
                     <h2>Two Sides, One Mission</h2>
                     <p>
-                        Blokz bridges the gap between modern convenience and
-                        community trust.
+                        We are not building a new supply chain. We are
+                        digitizing the one that already exists[cite: 36].
                     </p>
                 </div>
 
@@ -54,8 +99,8 @@ const Blokz = () => {
                                     <strong>Fast Local Delivery</strong>
                                     <p>
                                         Get orders in 30-60 minutes directly
-                                        from your trusted neighborhood store.
-                                        [cite: 106]
+                                        from your trusted neighborhood
+                                        store[cite: 106].
                                     </p>
                                 </div>
                             </li>
@@ -64,20 +109,19 @@ const Blokz = () => {
                                 <div>
                                     <strong>Fair Pricing</strong>
                                     <p>
-                                        No crazy markups or hidden fees. You pay
-                                        honest prices set by real shopkeepers.
-                                        [cite: 107]
+                                        No hidden fees. You pay honest prices
+                                        set by real shopkeepers[cite: 107].
                                     </p>
                                 </div>
                             </li>
                             <li>
                                 <FaHandHoldingHeart className="list-icon" />
                                 <div>
-                                    <strong>Support Local</strong>
+                                    <strong>Community Impact</strong>
                                     <p>
-                                        Your money stays in the community,
-                                        helping local families instead of dark
-                                        stores. [cite: 110]
+                                        Support local families. Your spending
+                                        strengthens your own neighborhood[cite:
+                                        110].
                                     </p>
                                 </div>
                             </li>
@@ -94,30 +138,31 @@ const Blokz = () => {
                                 <div>
                                     <strong>Zero Commissions</strong>
                                     <p>
-                                        We don't take a cut. You pay a small
+                                        Stop losing 20-35%. Pay a fixed
                                         subscription (₹99-₹499) and keep 100% of
-                                        the margin. [cite: 9, 95]
+                                        your margin[cite: 29, 95].
                                     </p>
                                 </div>
                             </li>
                             <li>
-                                <FaStore className="list-icon" />
+                                <FaLightbulb className="list-icon" />
                                 <div>
-                                    <strong>Digital Identity</strong>
+                                    <strong>Convenience Fees</strong>
                                     <p>
-                                        Create your online store in minutes and
-                                        set your own delivery radius. [cite: 6,
-                                        81]
+                                        Unlike other apps, the convenience fee
+                                        goes directly to YOU, not the
+                                        platform[cite: 8].
                                     </p>
                                 </div>
                             </li>
                             <li>
                                 <FaUserCheck className="list-icon" />
                                 <div>
-                                    <strong>Direct Connection</strong>
+                                    <strong>Brand Partnerships</strong>
                                     <p>
-                                        Own your customer relationships and earn
-                                        convenience fees directly. [cite: 8, 96]
+                                        Access exclusive coupons and loyalty
+                                        programs to attract more customers[cite:
+                                        8].
                                     </p>
                                 </div>
                             </li>
@@ -126,12 +171,47 @@ const Blokz = () => {
                 </div>
             </section>
 
-            {/* --- THE BLOKZ DIFFERENCE (COMPARISON) --- */}
+            {/* --- HOW IT WORKS (New Section) --- */}
+            <section className="steps-section">
+                <h2 className="section-heading">Go Online in Minutes</h2>
+                <div className="steps-wrapper">
+                    <div className="step-card">
+                        <div className="step-icon">1</div>
+                        <h4>Create Store</h4>
+                        <p>
+                            Sign up in 5 minutes. Simple account setup and
+                            inventory upload[cite: 6].
+                        </p>
+                    </div>
+                    <div className="step-line"></div>
+                    <div className="step-card">
+                        <div className="step-icon">2</div>
+                        <h4>Set Radius</h4>
+                        <p>
+                            You decide how far you deliver. Complete control
+                            over your logistics[cite: 6].
+                        </p>
+                    </div>
+                    <div className="step-line"></div>
+                    <div className="step-card">
+                        <div className="step-icon">3</div>
+                        <h4>Start Earning</h4>
+                        <p>
+                            Go live instantly. Accept orders and keep the
+                            profits[cite: 7].
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* --- SUSTAINABILITY (Comparison) --- */}
             <section className="comparison-section">
-                <h2 className="section-heading">Why Blokz is Different</h2>
+                <h2 className="section-heading">
+                    The Economics of "Real" Retail
+                </h2>
                 <p className="section-desc">
-                    Traditional quick commerce burns cash. We burn inefficiency.
-                    [cite: 36]
+                    Competitors run on VC money. Blokz runs on sustainable unit
+                    economics[cite: 138].
                 </p>
 
                 <div className="comparison-table-wrapper">
@@ -140,9 +220,11 @@ const Blokz = () => {
                             <tr>
                                 <th>Aspect</th>
                                 <th className="text-red">
-                                    Competitors (Zepto/Blinkit)
+                                    Competitors (Zepto/Blinkit) [cite: 13]
                                 </th>
-                                <th className="text-orange">Blokz</th>
+                                <th className="text-orange">
+                                    Blokz [cite: 29]
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -150,37 +232,38 @@ const Blokz = () => {
                                 <td>
                                     <strong>Merchant Cost</strong>
                                 </td>
-                                <td>20-35% Commission per order </td>
+                                <td>20-35% Commission per order</td>
                                 <td>
-                                    <strong>₹99 - ₹499 Subscription</strong>{" "}
+                                    <strong>₹99 - ₹499 Subscription</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <strong>Infrastructure</strong>
                                 </td>
-                                <td>Expensive Dark Stores </td>
+                                <td>Expensive Dark Stores (~₹5-10Cr)</td>
                                 <td>
-                                    <strong>Existing Kirana Network</strong>{" "}
+                                    <strong>
+                                        Existing Kirana Network (Zero Cost)
+                                    </strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <strong>Pricing</strong>
+                                    <strong>Unit Economics</strong>
                                 </td>
-                                <td>Inflated prices to cover costs</td>
+                                <td>Loss making (burns cash)</td>
                                 <td>
-                                    <strong>Fair Market Prices</strong> [cite:
-                                    107]
+                                    <strong>Profitable from Day 1</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <strong>Sustainability</strong>
+                                    <strong>Goal</strong>
                                 </td>
-                                <td>VC Funded Loss Making </td>
+                                <td>Replace Local Shops</td>
                                 <td>
-                                    <strong>Profitable from Day 1</strong>{" "}
+                                    <strong>Empower Local Shops</strong>
                                 </td>
                             </tr>
                         </tbody>
@@ -188,22 +271,25 @@ const Blokz = () => {
                 </div>
             </section>
 
-            {/* --- FOUNDER VISION / CTA --- */}
+            {/* --- FOUNDER VISION --- */}
             <section className="vision-cta">
                 <div className="vision-content">
+                    <h3 className="vision-label">From the Founder</h3>
                     <h2>
-                        "We're not just building a website. We're saving
-                        community retail."
+                        "We're not just building an app. We're saving 13 million
+                        kirana stores."
                     </h2>
-                    <p>
-                        Whether you are a shopper or a shopkeeper, be part of
-                        the sustainable future.
+                    <p className="vision-quote">
+                        "Blokz proves that doing good and doing well are not
+                        mutually exclusive. We are preserving community retail
+                        while delivering modern convenience." — Vivek[cite:
+                        164].
                     </p>
                     <div className="cta-group">
                         <a
+                            target="blank"
                             href="https://blokz.store/"
                             className="cta-button primary"
-                            target="blank"
                         >
                             Join us now
                         </a>
