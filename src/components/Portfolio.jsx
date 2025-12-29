@@ -1,5 +1,6 @@
 import React from "react";
 import { ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const projects = [
     {
@@ -27,7 +28,7 @@ const projects = [
         image: "https://ik.imagekit.io/ugdlmxlzt/logo.svg?updatedAt=1764950686563",
         description:
             "A modern, high-performance e-commerce platform built for scale.",
-        link: "https://blokz.store/",
+        link: "/blokz",
     },
 ];
 
@@ -125,22 +126,42 @@ const Portfolio = () => {
                                 >
                                     {project.description}
                                 </p>
-                                <a
-                                    href={project.link || "#"}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="btn-link"
-                                    style={{
-                                        color: "var(--color-white)",
-                                        fontWeight: 600,
-                                        display: "inline-flex",
-                                        alignItems: "center",
-                                        gap: "0.5rem",
-                                        textDecoration: "none",
-                                    }}
-                                >
-                                    View Case Study <ExternalLink size={16} />
-                                </a>
+                                {project.link &&
+                                project.link.startsWith("/") ? (
+                                    <Link
+                                        to={project.link}
+                                        className="btn-link"
+                                        style={{
+                                            color: "var(--color-white)",
+                                            fontWeight: 600,
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            gap: "0.5rem",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        View Case Study{" "}
+                                        <ExternalLink size={16} />
+                                    </Link>
+                                ) : (
+                                    <a
+                                        href={project.link || "#"}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn-link"
+                                        style={{
+                                            color: "var(--color-white)",
+                                            fontWeight: 600,
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            gap: "0.5rem",
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        View Case Study{" "}
+                                        <ExternalLink size={16} />
+                                    </a>
+                                )}
                             </div>
                         </div>
                     ))}

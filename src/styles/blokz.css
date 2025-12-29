@@ -1,0 +1,246 @@
+:root {
+    --blokz-orange: #f38b2a;
+    --blokz-orange-light: #fff0e0;
+    --blokz-dark: #2a2a2a;
+    --text-grey: #555;
+    --border-color: #eee;
+}
+
+.about-container {
+    font-family: "Inter", sans-serif;
+    color: var(--blokz-dark);
+    background: #fff;
+    width: 100%;
+}
+
+/* --- Hero Section --- */
+.about-hero {
+    background: linear-gradient(
+        180deg,
+        #fff 0%,
+        var(--blokz-orange-light) 100%
+    );
+    padding: 60px 20px 100px; /* Extra padding bottom for overlap effect */
+    text-align: center;
+}
+
+.about-logo {
+    height: 60px; /* Adjust size as needed */
+    margin-bottom: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.highlight-orange {
+    color: var(--blokz-orange);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-grey);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* --- Ecosystem Section (Customer vs Shopkeeper) --- */
+.ecosystem-section {
+    max-width: 1100px;
+    margin: -60px auto 80px; /* Negative margin pulls it up into hero */
+    padding: 0 20px;
+}
+
+.ecosystem-header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: none; /* Hidden on desktop to keep design clean, optional */
+}
+
+.ecosystem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.ecosystem-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Distinguish the cards slightly */
+.customer-card {
+    border-top: 5px solid #444;
+}
+.merchant-card {
+    border-top: 5px solid var(--blokz-orange);
+}
+
+.card-badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #f0f0f0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.card-badge.orange {
+    background: var(--blokz-orange-light);
+    color: var(--blokz-orange);
+}
+
+.ecosystem-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+}
+
+.benefit-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefit-list li {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: flex-start;
+}
+
+.list-icon {
+    font-size: 1.2rem;
+    color: var(--blokz-orange);
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.benefit-list strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: var(--blokz-dark);
+}
+
+.benefit-list p {
+    font-size: 0.95rem;
+    color: var(--text-grey);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* --- Comparison Table --- */
+.comparison-section {
+    padding: 60px 20px;
+    background: #fafafa;
+    text-align: center;
+}
+
+.comparison-table-wrapper {
+    max-width: 900px;
+    margin: 40px auto 0;
+    overflow-x: auto;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.comparison-table th {
+    background: #fff;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.text-red {
+    color: #dc3545;
+}
+.text-orange {
+    color: var(--blokz-orange);
+}
+
+/* --- Vision CTA --- */
+.vision-cta {
+    background: var(--blokz-orange);
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.vision-content h2 {
+    font-size: 2rem;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+.cta-group {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-button {
+    padding: 15px 35px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: none;
+}
+
+.cta-button.primary {
+    background: #fff;
+    color: var(--blokz-orange);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .ecosystem-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .cta-group {
+        flex-direction: column;
+    }
+}
