@@ -23,12 +23,12 @@ function App() {
 
     return (
         <div className="App">
-            <Header />
             <Routes>
                 <Route
                     path="/"
                     element={
                         <main>
+                            <Header />
                             <Hero />
                             <Services />
                             <Portfolio />
