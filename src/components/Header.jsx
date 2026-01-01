@@ -100,53 +100,67 @@ const Header = () => {
                 </button>
 
                 {/* Mobile Nav */}
-                {isMobileMenuOpen && (
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: "100%",
-                            left: 0,
-                            right: 0,
-                            backgroundColor: "var(--color-bg)",
-                            padding: "2rem",
-                            borderBottom: "1px solid rgba(0,0,0,0.1)",
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "1.5rem",
-                            alignItems: "center",
-                        }}
-                    >
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                style={{
-                                    fontSize: "1.1rem",
-                                    fontWeight: 600,
-                                    color: "var(--color-text)",
-                                }}
-                            >
-                                {link.name}
-                            </a>
-                        ))}
+                {/* Mobile Nav */}
+                <div
+                    className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}
+                    style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: 0,
+                        right: 0,
+                        backgroundColor: "var(--color-bg)",
+                        padding: "2rem",
+                        borderBottom: "1px solid rgba(0,0,0,0.1)",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1.5rem",
+                        alignItems: "center",
+                        zIndex: 999,
+                    }}
+                >
+                    {navLinks.map((link) => (
                         <a
-                            href="#contact"
-                            className="btn btn-primary"
+                            key={link.name}
+                            href={link.href}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            style={{ width: "100%" }}
+                            style={{
+                                fontSize: "1.1rem",
+                                fontWeight: 600,
+                                color: "var(--color-text)",
+                            }}
                         >
-                            Start Project
+                            {link.name}
                         </a>
-                    </div>
-                )}
+                    ))}
+                    <a
+                        href="#contact"
+                        className="btn btn-primary"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        style={{ width: "100%" }}
+                    >
+                        Start Project
+                    </a>
+                </div>
             </div>
             <style>{`
         @media (min-width: 768px) {
           .desktop-nav { display: flex !important; }
           .mobile-toggle { display: none !important; }
+          .mobile-menu { display: none !important; }
         }
         .nav-link:hover { color: var(--color-accent) !important; }
+        
+        .mobile-menu {
+          opacity: 0;
+          transform: translateY(-20px);
+          pointer-events: none;
+          transition: all 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
       `}</style>
         </header>
     );
