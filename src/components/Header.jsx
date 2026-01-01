@@ -4,6 +4,7 @@ import { Menu, X, Rocket } from "lucide-react";
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState("");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -11,6 +12,24 @@ const Header = () => {
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
+            },
+            { threshold: 0.5, rootMargin: "-70px 0px 0px 0px" }
+        );
+
+        const sections = document.querySelectorAll("section[id]");
+        sections.forEach((section) => observer.observe(section));
+
+        return () => observer.disconnect();
     }, []);
 
     const navLinks = [
@@ -77,8 +96,12 @@ const Header = () => {
                             href={link.href}
                             style={{
                                 fontWeight: 500,
-                                color: "var(--color-text)",
+                                color:
+                                    activeSection === link.href.substring(1)
+                                        ? "var(--color-accent)"
+                                        : "var(--color-text)",
                                 fontSize: "0.95rem",
+                                transition: "color 0.3s ease",
                             }}
                             className="nav-link"
                         >
@@ -126,7 +149,11 @@ const Header = () => {
                             style={{
                                 fontSize: "1.1rem",
                                 fontWeight: 600,
-                                color: "var(--color-text)",
+                                color:
+                                    activeSection === link.href.substring(1)
+                                        ? "var(--color-accent)"
+                                        : "var(--color-text)",
+                                transition: "color 0.3s ease",
                             }}
                         >
                             {link.name}
