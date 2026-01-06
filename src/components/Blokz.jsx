@@ -219,9 +219,7 @@ const Blokz = () => {
                         <thead>
                             <tr>
                                 <th>Aspect</th>
-                                <th className="text-red">
-                                    Competitors (Zepto/Blinkit) [cite: 13]
-                                </th>
+                                <th className="text-red">Competitors</th>
                                 <th className="text-orange">
                                     Blokz [cite: 29]
                                 </th>
