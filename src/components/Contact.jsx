@@ -12,7 +12,7 @@ const Contact = () => {
         setStatus("sending");
 
         try {
-            const response = await fetch("https://formspree.io/f/mnqeonqj", {
+            const response = await fetch("https://formspree.io/f/xdaakeed", {
                 method: "POST",
                 body: data,
                 headers: {
@@ -65,7 +65,7 @@ const Contact = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
                         onSubmit={handleSubmit}
-                        action="https://formspree.io/f/mnqeonqj"
+                        action="https://formspree.io/f/xdaakeed"
                         method="POST"
                     >
                         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>

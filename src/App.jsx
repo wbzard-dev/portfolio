@@ -13,6 +13,8 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Blokz from "./components/Blokz";
 import OneHabit from "./components/OneHabit";
+import Blog from "./components/Blog";
+import BlogPost from "./components/BlogPost";
 
 function App() {
     const location = useLocation();
@@ -61,6 +63,8 @@ function App() {
                     />
                     <Route path="/blokz" element={<Blokz />} />
                     <Route path="/one-habit" element={<OneHabit />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:id" element={<BlogPost />} />
                 </Routes>
             </AnimatePresence>
             <Footer />

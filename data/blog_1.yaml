@@ -1,0 +1,22 @@
+id: "futuristic-architecture-2026"
+title: "The Architecture of Tomorrow"
+date: "2026-01-15"
+author: "Vivek"
+excerpt: "Exploring the intersection of brutalist design and organic digital interfaces in the next decade of web development."
+coverImage: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+category: "Design"
+content: |
+  # The Genesis of Digital Legacies
+  
+  In the current era of web development, we are seeing a shift towards **high-contrast minimalism** and smooth, physics-based motion.
+  
+  ## The Brutalist Influence
+  Brutalism in digital design isn't about being "ugly"—it's about being **honest**. Raw layouts, massive typography, and a rejection of unnecessary decoration.
+  
+  ### Key Pointers:
+  - Stark contrast (Monochrome base)
+  - Layouts that break the grid
+  - Intentional voids (White space)
+  
+  ### The Future is Motion
+  With tools like Framer Motion and Lenis, we can now create experiences that feel less like documents and more like cinematic artifacts.
