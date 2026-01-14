@@ -1,138 +1,194 @@
 import React from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
+    const { scrollY } = useScroll();
+    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+    const y2 = useTransform(scrollY, [0, 500], [0, -150]);
+    const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+
+    const containerVariants = {
+        initial: { opacity: 0 },
+        animate: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.3
+            }
+        }
+    };
+
+    const itemVariants = {
+        initial: { opacity: 0, y: 60 },
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1.4,
+                ease: [0.16, 1, 0.3, 1]
+            }
+        }
+    };
+
     return (
         <section
-            id="home"
             style={{
-                paddingTop: "180px",
-                paddingBottom: "100px",
+                minHeight: "100vh",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
                 position: "relative",
                 overflow: "hidden",
+                background: "var(--color-bg)",
+                padding: "clamp(6rem, 15vw, 10rem) 1.5rem 4rem"
             }}
         >
-            {/* Background Glows */}
-            <div
+            <motion.div
+                className="container"
+                variants={containerVariants}
+                initial="initial"
+                animate="animate"
+                style={{ position: "relative", zIndex: 2, opacity }}
+            >
+                <div style={{ overflow: "hidden", textAlign: "center" }} className="mobile-center">
+                    <motion.span
+                        variants={itemVariants}
+                        style={{
+                            fontSize: "clamp(0.7rem, 2vw, 0.85rem)",
+                            letterSpacing: "0.3em",
+                            color: "var(--color-text-muted)",
+                            display: "block",
+                            marginBottom: "clamp(1.5rem, 5vw, 2rem)",
+                            fontWeight: 600
+                        }}
+                    >
+                        STRATEGIC DIGITAL ARCHITECTURE
+                    </motion.span>
+                </div>
+
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "clamp(0.5rem, 2vw, 1rem)",
+                    alignItems: "center"
+                }} className="hero-text-grid">
+                    <div style={{ overflow: "hidden", width: "100%", textAlign: "left" }} className="mobile-center">
+                        <motion.h1
+                            variants={itemVariants}
+                            style={{
+                                fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
+                                marginBottom: "0",
+                                lineHeight: 0.8,
+                                letterSpacing: "-0.05em",
+                                fontWeight: 800,
+                                textTransform: "uppercase"
+                            }}
+                        >
+                            ENGINEERING
+                        </motion.h1>
+                    </div>
+
+                    <div style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                        alignItems: "baseline",
+                        width: "100%",
+                        gap: "clamp(0.5rem, 2vw, 1rem)",
+                        marginTop: "clamp(0.5rem, 2vw, 1rem)"
+                    }} className="hero-second-row">
+                        <div style={{ overflow: "hidden" }}>
+                            <motion.h1
+                                variants={itemVariants}
+                                style={{
+                                    fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
+                                    marginBottom: "0",
+                                    lineHeight: 0.8,
+                                    letterSpacing: "-0.05em",
+                                    fontWeight: 800,
+                                    color: "transparent",
+                                    WebkitTextStroke: "1px var(--color-text)",
+                                    textTransform: "uppercase"
+                                }}
+                            >
+                                DIGITAL
+                            </motion.h1>
+                        </div>
+                        <div style={{ overflow: "hidden" }}>
+                            <motion.h1
+                                variants={itemVariants}
+                                style={{
+                                    fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
+                                    marginBottom: "0",
+                                    lineHeight: 0.8,
+                                    letterSpacing: "-0.05em",
+                                    fontWeight: 800,
+                                    textTransform: "uppercase"
+                                }}
+                            >
+                                LEGACIES.
+                            </motion.h1>
+                        </div>
+                    </div>
+                </div>
+
+                <motion.div
+                    variants={itemVariants}
+                    style={{
+                        maxWidth: "600px",
+                        marginTop: "clamp(3rem, 10vw, 5rem)",
+                        marginLeft: "auto",
+                        textAlign: "right"
+                    }}
+                    className="hero-desc-container"
+                >
+                    <p style={{
+                        fontSize: "clamp(1rem, 3.5vw, 1.35rem)",
+                        color: "var(--color-text-muted)",
+                        fontWeight: 400,
+                        lineHeight: 1.5
+                    }}>
+                        Wbzard is a boutique architecture firm for the digital age. We build high-performance systems for brands that demand absolute excellence.
+                    </p>
+                </motion.div>
+            </motion.div>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .mobile-center { text-align: center !important; }
+                    .hero-second-row { justify-content: center !important; flex-direction: column !important; align-items: center !important; }
+                    .hero-desc-container { text-align: center !important; margin: 3rem auto 0 !important; }
+                    .hero-text-grid { align-items: center !important; }
+                }
+            `}</style>
+
+            {/* Subtle Gradient Backdrops */}
+            <motion.div
                 style={{
                     position: "absolute",
-                    top: "-20%",
-                    right: "-10%",
-                    width: "600px",
-                    height: "600px",
-                    background:
-                        "radial-gradient(circle, rgba(91, 46, 145, 0.1) 0%, rgba(255, 255, 255, 0) 70%)",
+                    top: "10%",
+                    right: "-5%",
+                    width: "50vw",
+                    height: "50vw",
                     borderRadius: "50%",
-                    zIndex: -1,
-                    filter: "blur(60px)",
+                    background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)",
+                    zIndex: 1,
+                    y: y1,
                 }}
             />
-            <div
+            <motion.div
                 style={{
                     position: "absolute",
                     bottom: "-10%",
-                    left: "-10%",
-                    width: "500px",
-                    height: "500px",
-                    background:
-                        "radial-gradient(circle, rgba(0, 155, 119, 0.1) 0%, rgba(255, 255, 255, 0) 70%)",
+                    left: "-5%",
+                    width: "40vw",
+                    height: "40vw",
                     borderRadius: "50%",
-                    zIndex: -1,
-                    filter: "blur(60px)",
+                    background: "radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)",
+                    zIndex: 1,
+                    y: y2,
                 }}
             />
-
-            <div className="container">
-                <div
-                    style={{
-                        maxWidth: "800px",
-                        margin: "0 auto",
-                        textAlign: "center",
-                    }}
-                >
-                    <div
-                        style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: "0.5rem",
-                            background: "rgba(91, 46, 145, 0.2)",
-                            border: "1px solid rgba(106, 76, 147, 0.4)",
-                            padding: "8px 16px",
-                            borderRadius: "50px",
-                            color: "var(--color-secondary-light)",
-                            marginBottom: "1.5rem",
-                            fontSize: "0.9rem",
-                            fontWeight: "600",
-                        }}
-                    >
-                        <Sparkles size={16} />
-                        <span>Digital Magic for Modern Brands</span>
-                    </div>
-
-                    <h1
-                        style={{
-                            fontSize: "3.5rem",
-                            marginBottom: "1.5rem",
-                            letterSpacing: "-0.02em",
-                            color: "var(--color-text)",
-                        }}
-                    >
-                        We Craft Digital Experiences That{" "}
-                        <span className="text-gradient">
-                            Scale Your Business
-                        </span>
-                    </h1>
-
-                    <p
-                        style={{
-                            fontSize: "1.25rem",
-                            lineHeight: "1.6",
-                            marginBottom: "2.5rem",
-                            maxWidth: "600px",
-                            marginLeft: "auto",
-                            marginRight: "auto",
-                        }}
-                    >
-                        Webzards is a full-service digital marketing agency. We
-                        perform wizardry with SEO, PPC, and Web Design to turn
-                        visitors into loyal customers.
-                    </p>
-
-                    <div
-                        style={{
-                            display: "flex",
-                            gap: "1rem",
-                            justifyContent: "center",
-                            flexWrap: "wrap",
-                        }}
-                    >
-                        <a
-                            href="#contact"
-                            className="btn btn-primary"
-                            style={{ padding: "16px 32px", fontSize: "1.1rem" }}
-                        >
-                            Let's Talk Growth{" "}
-                            <ArrowRight
-                                size={20}
-                                style={{ marginLeft: "8px" }}
-                            />
-                        </a>
-                        <a
-                            href="#portfolio"
-                            className="btn btn-outline"
-                            style={{ padding: "16px 32px", fontSize: "1.1rem" }}
-                        >
-                            View Our Work
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <style>{`
-        @media (max-width: 768px) {
-          h1 { fontSize: 2.5rem !important; }
-        }
-      `}</style>
         </section>
     );
 };

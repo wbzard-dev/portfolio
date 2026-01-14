@@ -1,240 +1,140 @@
-import React from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Check } from "lucide-react";
 
 const Contact = () => {
+    const [status, setStatus] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = new FormData(form);
+        setStatus("sending");
+
+        try {
+            const response = await fetch("https://formspree.io/f/mnqeonqj", {
+                method: "POST",
+                body: data,
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            if (response.ok) {
+                setStatus("success");
+                form.reset();
+            } else {
+                setStatus("error");
+            }
+        } catch (error) {
+            setStatus("error");
+        }
+    };
+
     return (
-        <section
-            id="contact"
-            style={{ backgroundColor: "var(--color-primary-light)" }}
-        >
+        <section id="contact" style={{ background: "var(--color-bg)", padding: "var(--section-padding) 0" }}>
             <div className="container">
-                <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-                    <h2
-                        style={{
-                            fontSize: "2.5rem",
-                            color: "var(--color-text)",
-                        }}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(clamp(280px, 100%, 500px), 1fr))", gap: "clamp(3rem, 10vw, 6rem)" }}>
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
                     >
-                        Let's Build Something Great
-                    </h2>
-                    <p style={{ maxWidth: "600px", margin: "0 auto" }}>
-                        Ready to take your digital presence to the next level?
-                        Get in touch today.
-                    </p>
-                </div>
-
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns:
-                            "repeat(auto-fit, minmax(300px, 1fr))",
-                        gap: "4rem",
-                    }}
-                >
-                    {/* Contact Info */}
-                    <div>
-                        <h3
-                            style={{
-                                fontSize: "1.5rem",
-                                marginBottom: "2rem",
-                                color: "var(--color-text)",
-                            }}
-                        >
-                            Get In Touch
-                        </h3>
-
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "2rem",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: "1rem",
-                                    alignItems: "flex-start",
-                                }}
+                        <span style={{ fontSize: "0.85rem", letterSpacing: "0.2em", color: "var(--color-text-muted)" }}>
+                            GET IN TOUCH
+                        </span>
+                        <h2 style={{ fontSize: "clamp(2rem, 8vw, 5rem)", marginTop: "1rem", lineHeight: 1 }}>
+                            LET'S START A PROJECT.
+                        </h2>
+                        <div style={{ marginTop: "clamp(2rem, 5vw, 3rem)" }}>
+                            <p style={{ color: "var(--color-text-muted)", marginBottom: "0.5rem" }}>Email us at</p>
+                            <a
+                                href="mailto:vivekg.work@gmail.com"
+                                style={{ fontSize: "clamp(1.2rem, 3vw, 1.5rem)", fontWeight: 600, textDecoration: "underline" }}
                             >
-                                <div style={{ color: "var(--color-accent)" }}>
-                                    <Mail size={24} />
-                                </div>
-                                <div>
-                                    <h4
-                                        style={{
-                                            margin: "0 0 0.5rem",
-                                            fontSize: "1.1rem",
-                                            color: "var(--color-text)",
-                                        }}
-                                    >
-                                        Email Us
-                                    </h4>
-                                    <a
-                                        href="mailto:hello@webzards.com"
-                                        style={{
-                                            color: "var(--color-text-muted)",
-                                        }}
-                                    >
-                                        hello@webzards.com
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: "1rem",
-                                    alignItems: "flex-start",
-                                }}
-                            >
-                                <div style={{ color: "var(--color-accent)" }}>
-                                    <Phone size={24} />
-                                </div>
-                                <div>
-                                    <h4
-                                        style={{
-                                            margin: "0 0 0.5rem",
-                                            fontSize: "1.1rem",
-                                            color: "var(--color-text)",
-                                        }}
-                                    >
-                                        Call Us
-                                    </h4>
-                                    <a
-                                        href="tel:+15551234567"
-                                        style={{
-                                            color: "var(--color-text-muted)",
-                                        }}
-                                    >
-                                        +1 (555) 123-4567
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: "1rem",
-                                    alignItems: "flex-start",
-                                }}
-                            >
-                                <div style={{ color: "var(--color-accent)" }}>
-                                    <MapPin size={24} />
-                                </div>
-                                <div>
-                                    <h4
-                                        style={{
-                                            margin: "0 0 0.5rem",
-                                            fontSize: "1.1rem",
-                                            color: "var(--color-text)",
-                                        }}
-                                    >
-                                        Visit Us
-                                    </h4>
-                                    <p style={{ margin: 0 }}>
-                                        123 Digital Ave, Tech City, TC 90210
-                                    </p>
-                                </div>
-                            </div>
+                                vivekg.work@gmail.com
+                            </a>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Contact Form */}
-                    <form
-                        style={{
-                            backgroundColor: "var(--color-bg)",
-                            padding: "2.5rem",
-                            borderRadius: "var(--radius-lg)",
-                            border: "1px solid rgba(0,0,0,0.05)",
-                        }}
-                        onSubmit={(e) => e.preventDefault()}
+                    <motion.form
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+                        onSubmit={handleSubmit}
+                        action="https://formspree.io/f/mnqeonqj"
+                        method="POST"
                     >
-                        <div style={{ marginBottom: "1.5rem" }}>
-                            <label
-                                style={{
-                                    display: "block",
-                                    marginBottom: "0.5rem",
-                                    fontWeight: 500,
-                                }}
-                            >
-                                Name
-                            </label>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                            <label style={{ fontSize: "0.75rem", textTransform: "uppercase", opacity: 0.5, fontWeight: 700 }}>Name</label>
                             <input
                                 type="text"
-                                placeholder="John Doe"
-                                style={{
-                                    width: "100%",
-                                    padding: "12px",
-                                    backgroundColor: "rgba(0,0,0,0.02)",
-                                    border: "1px solid rgba(0,0,0,0.1)",
-                                    borderRadius: "var(--radius-md)",
-                                    color: "var(--color-text)",
-                                    fontSize: "1rem",
-                                }}
+                                name="name"
+                                required
+                                className="glass"
+                                style={{ padding: "1.25rem", borderRadius: "var(--radius-md)", border: "1px solid var(--color-border)", color: "#fff" }}
+                                placeholder="Your Name"
                             />
                         </div>
-
-                        <div style={{ marginBottom: "1.5rem" }}>
-                            <label
-                                style={{
-                                    display: "block",
-                                    marginBottom: "0.5rem",
-                                    fontWeight: 500,
-                                }}
-                            >
-                                Email
-                            </label>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                            <label style={{ fontSize: "0.75rem", textTransform: "uppercase", opacity: 0.5, fontWeight: 700 }}>Email</label>
                             <input
                                 type="email"
-                                placeholder="john@example.com"
-                                style={{
-                                    width: "100%",
-                                    padding: "12px",
-                                    backgroundColor: "rgba(0,0,0,0.02)",
-                                    border: "1px solid rgba(0,0,0,0.1)",
-                                    borderRadius: "var(--radius-md)",
-                                    color: "var(--color-text)",
-                                    fontSize: "1rem",
-                                }}
+                                name="email"
+                                required
+                                className="glass"
+                                style={{ padding: "1.25rem", borderRadius: "var(--radius-md)", border: "1px solid var(--color-border)", color: "#fff" }}
+                                placeholder="Email Address"
                             />
                         </div>
-
-                        <div style={{ marginBottom: "2rem" }}>
-                            <label
-                                style={{
-                                    display: "block",
-                                    marginBottom: "0.5rem",
-                                    fontWeight: 500,
-                                }}
-                            >
-                                Message
-                            </label>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                            <label style={{ fontSize: "0.75rem", textTransform: "uppercase", opacity: 0.5, fontWeight: 700 }}>Message</label>
                             <textarea
                                 rows="4"
-                                placeholder="Tell us about your project..."
-                                style={{
-                                    width: "100%",
-                                    padding: "12px",
-                                    backgroundColor: "rgba(0,0,0,0.02)",
-                                    border: "1px solid rgba(0,0,0,0.1)",
-                                    borderRadius: "var(--radius-md)",
-                                    color: "var(--color-text)",
-                                    fontSize: "1rem",
-                                    resize: "vertical",
-                                }}
-                            ></textarea>
+                                name="message"
+                                required
+                                className="glass"
+                                style={{ padding: "1.25rem", borderRadius: "var(--radius-md)", border: "1px solid var(--color-border)", resize: "none", color: "#fff" }}
+                                placeholder="How can we help?"
+                            />
                         </div>
-
-                        <button
-                            type="submit"
-                            className="btn btn-primary"
-                            style={{ width: "100%" }}
+                        <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            disabled={status === "sending"}
+                            style={{
+                                background: status === "success" ? "#22c55e" : "var(--color-text)",
+                                color: "var(--color-bg)",
+                                padding: "1.25rem",
+                                borderRadius: "100px",
+                                fontWeight: 700,
+                                fontSize: "1rem",
+                                cursor: status === "sending" ? "not-allowed" : "pointer",
+                                border: "none",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                gap: "1rem",
+                                transition: "all 0.3s ease"
+                            }}
                         >
-                            Send Message{" "}
-                            <Send size={18} style={{ marginLeft: "8px" }} />
-                        </button>
-                    </form>
+                            {status === "success" ? (
+                                <>SENT <Check size={20} /></>
+                            ) : status === "sending" ? (
+                                "SENDING..."
+                            ) : (
+                                <>SEND INQUIRY <ArrowUpRight size={20} /></>
+                            )}
+                        </motion.button>
+                        {status === "error" && (
+                            <p style={{ color: "#ef4444", fontSize: "0.85rem", textAlign: "center" }}>
+                                Something went wrong. Please try again.
+                            </p>
+                        )}
+                    </motion.form>
                 </div>
             </div>
         </section>

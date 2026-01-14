@@ -1,183 +1,131 @@
-import React from "react";
-import { ExternalLink } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { MoveRight } from "lucide-react";
 
 const projects = [
     {
-        title: "Neon Tech",
-        category: "Web Design & SEO",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
-        description: "Redesigned website and 200% increase in organic traffic.",
-    },
-    {
-        title: "Flow Fitness",
-        category: "Social Media",
-        image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800",
-        description: "Launched a viral campaign reaching 1M+ users.",
-    },
-    {
-        title: "EcoMarket",
-        category: "E-commerce PPC",
-        image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&q=80&w=800",
-        description: "Optimized ad spend reduced CPA by 40%.",
-        link: "#",
-    },
-    {
         title: "Blokz",
-        category: "Web Development",
+        category: "E-Commerce Ecosystem",
         image: "https://ik.imagekit.io/ugdlmxlzt/logo.svg?updatedAt=1764950686563",
-        description:
-            "A modern, high-performance e-commerce platform built for scale.",
         link: "/blokz",
+        color: "#f38b2a"
+    },
+    {
+        title: "One Habit",
+        category: "Product Detail App",
+        image: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&q=80&w=800",
+        link: "/one-habit",
+        color: "#4f46e5"
     },
 ];
 
 const Portfolio = () => {
-    return (
-        <section id="portfolio">
-            <div className="container">
-                <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-                    <h2
-                        style={{
-                            fontSize: "2.5rem",
-                            color: "var(--color-text)",
-                        }}
-                    >
-                        Selected Works
-                    </h2>
-                    <p style={{ maxWidth: "600px", margin: "0 auto" }}>
-                        See how we've helped other businesses achieve their
-                        goals.
-                    </p>
-                </div>
+    const [hoveredIndex, setHoveredIndex] = useState(null);
 
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns:
-                            "repeat(auto-fit, minmax(300px, 1fr))",
-                        gap: "2rem",
-                    }}
+    return (
+        <section id="portfolio" style={{ background: "var(--color-bg)", padding: "10rem 0" }}>
+            <div className="container">
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    style={{ marginBottom: "clamp(3rem, 10vw, 6rem)" }}
                 >
+                    <span style={{ fontSize: "0.85rem", letterSpacing: "0.2em", color: "var(--color-text-muted)" }}>
+                        SELECTED WORKS
+                    </span>
+                    <h2 style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)", marginTop: "1rem" }}>
+                        PROJECTS
+                    </h2>
+                </motion.div>
+
+                <div style={{ display: "flex", flexDirection: "column" }}>
                     {projects.map((project, index) => (
-                        <div
+                        <Link
+                            to={project.link}
                             key={index}
-                            className="portfolio-card"
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
                             style={{
-                                borderRadius: "var(--radius-lg)",
-                                overflow: "hidden",
+                                borderBottom: "1px solid var(--color-border)",
+                                padding: "2.5rem 0",
                                 position: "relative",
-                                group: "project",
-                                height: "400px",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                textDecoration: "none",
                             }}
                         >
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className="portfolio-img"
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    objectFit: "fill",
-                                    transition: "transform 0.5s ease",
-                                }}
-                            />
-                            <div
-                                className="portfolio-overlay"
-                                style={{
-                                    position: "absolute",
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    padding: "2rem",
-                                    background:
-                                        "linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent)",
-                                    transform: "translateY(20px)",
-                                    opacity: 0.9,
-                                    transition: "all 0.3s ease",
-                                }}
-                            >
-                                <span
-                                    style={{
-                                        color: "var(--color-accent)",
-                                        fontWeight: 600,
-                                        fontSize: "0.9rem",
-                                        display: "block",
-                                        marginBottom: "0.5rem",
-                                    }}
-                                >
-                                    {project.category}
+                            <div style={{ position: "relative", zIndex: 2 }}>
+                                <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", marginBottom: "0.25rem", display: "block" }}>
+                                    0{index + 1}
                                 </span>
-                                <h3
+                                <motion.h3
+                                    animate={{ x: hoveredIndex === index ? 20 : 0 }}
                                     style={{
-                                        fontSize: "1.5rem",
-                                        color: "var(--color-white)",
-                                        marginBottom: "0.5rem",
+                                        fontSize: "clamp(1.75rem, 5vw, 3.5rem)",
+                                        margin: 0,
+                                        transition: "color 0.3s",
+                                        color: hoveredIndex === index ? project.color : "var(--color-text)"
                                     }}
                                 >
                                     {project.title}
-                                </h3>
-                                <p
-                                    style={{
-                                        color: "white",
-                                        marginBottom: "1.5rem",
-                                        fontSize: "0.95rem",
-                                    }}
-                                >
-                                    {project.description}
-                                </p>
-                                {project.link &&
-                                project.link.startsWith("/") ? (
-                                    <Link
-                                        to={project.link}
-                                        className="btn-link"
-                                        style={{
-                                            color: "var(--color-white)",
-                                            fontWeight: 600,
-                                            display: "inline-flex",
-                                            alignItems: "center",
-                                            gap: "0.5rem",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        View Case Study{" "}
-                                        <ExternalLink size={16} />
-                                    </Link>
-                                ) : (
-                                    <a
-                                        href={project.link || "#"}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="btn-link"
-                                        style={{
-                                            color: "var(--color-white)",
-                                            fontWeight: 600,
-                                            display: "inline-flex",
-                                            alignItems: "center",
-                                            gap: "0.5rem",
-                                            textDecoration: "none",
-                                        }}
-                                    >
-                                        View Case Study{" "}
-                                        <ExternalLink size={16} />
-                                    </a>
-                                )}
+                                </motion.h3>
                             </div>
-                        </div>
+
+                            <motion.div
+                                animate={{ opacity: hoveredIndex === index ? 1 : 0, x: hoveredIndex === index ? -10 : 0 }}
+                                style={{ zIndex: 2, display: "flex", alignItems: "center", gap: "1rem" }}
+                                className="project-meta"
+                            >
+                                <span style={{ fontSize: "0.9rem", color: "var(--color-text-muted)" }}>{project.category}</span>
+                                <MoveRight size={28} />
+                            </motion.div>
+
+                            {/* Hover Image Preview - Hidden on mobile for better UX */}
+                            <AnimatePresence>
+                                {hoveredIndex === index && (
+                                    <motion.div
+                                        className="hover-preview"
+                                        initial={{ opacity: 0, scale: 0.8, rotate: -5, y: -20 }}
+                                        animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
+                                        exit={{ opacity: 0, scale: 0.8, rotate: 5, y: 20 }}
+                                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{
+                                            position: "absolute",
+                                            right: "15%",
+                                            top: "50%",
+                                            width: "clamp(250px, 30vw, 400px)",
+                                            height: "clamp(150px, 20vw, 250px)",
+                                            zIndex: 1,
+                                            pointerEvents: "none",
+                                            overflow: "hidden",
+                                            borderRadius: "var(--radius-md)",
+                                            boxShadow: "0 30px 60px rgba(0,0,0,0.4)",
+                                            transform: "translateY(-50%)"
+                                        }}
+                                    >
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                        />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </Link>
                     ))}
                 </div>
             </div>
             <style>{`
-        .portfolio-card:hover .portfolio-img {
-          transform: scale(1.05);
-        }
-        .portfolio-card:hover .portfolio-overlay {
-          transform: translateY(0);
-        }
-        .btn-link:hover {
-          color: var(--color-accent) !important;
-        }
-      `}</style>
+                @media (max-width: 768px) {
+                    .hover-preview { display: none !important; }
+                    .project-meta { opacity: 1 !important; x: 0 !important; }
+                    .project-meta span { display: none; }
+                }
+            `}</style>
         </section>
     );
 };

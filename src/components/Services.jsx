@@ -1,134 +1,95 @@
 import React from "react";
-import {
-    Search,
-    MousePointer,
-    Monitor,
-    BarChart,
-    PenTool,
-    Share2,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { Search, PenTool, BarChart3, Globe, Shield, Zap } from "lucide-react";
 
 const services = [
     {
-        icon: <Search size={32} />,
-        title: "Search Engine Optimization",
-        description:
-            "Rank higher on Google with our data-driven SEO strategies that drive organic traffic.",
+        icon: <Search size={28} />,
+        title: "SEO Wizardry",
+        desc: "Rank higher and dominate search results with our advanced SEO strategies.",
     },
     {
-        icon: <MousePointer size={32} />,
-        title: "Pay-Per-Click Advertising",
-        description:
-            "Maximize ROI with targeted campaigns on Google Ads, Meta, and LinkedIn.",
+        icon: <PenTool size={28} />,
+        title: "Content Craft",
+        desc: "Engaging content that turns casual readers into loyal brand advocates.",
     },
     {
-        icon: <Monitor size={32} />,
-        title: "Web Design & Development",
-        description:
-            "Stunning, high-performance websites built to convert visitors into customers.",
+        icon: <BarChart3 size={28} />,
+        title: "PPC Magic",
+        desc: "Data-driven advertising that maximizes ROI and accelerates growth.",
     },
     {
-        icon: <PenTool size={32} />,
-        title: "Content Marketing",
-        description:
-            "Compelling storytelling that builds authority and engages your audience.",
+        icon: <Globe size={28} />,
+        title: "Web Design",
+        desc: "Beautiful, high-converting websites built with modern technologies.",
     },
     {
-        icon: <Share2 size={32} />,
-        title: "Social Media Management",
-        description:
-            "Build a community around your brand with consistent, high-quality social content.",
+        icon: <Shield size={28} />,
+        title: "Brand Strategy",
+        desc: "Building solid foundations for brands that want to stand the test of time.",
     },
     {
-        icon: <BarChart size={32} />,
-        title: "Analytics & Reporting",
-        description:
-            "Transparent reporting so you know exactly where every dollar goes.",
+        icon: <Zap size={28} />,
+        title: "Performance",
+        desc: "Lightning fast experiences that keep your users coming back for more.",
     },
 ];
 
 const Services = () => {
     return (
-        <section
-            id="services"
-            style={{ backgroundColor: "var(--color-primary-light)" }}
-        >
+        <section id="services" style={{ background: "var(--color-bg)" }}>
             <div className="container">
-                <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-                    <h2
-                        style={{
-                            fontSize: "2.5rem",
-                            color: "var(--color-text)",
-                        }}
-                    >
-                        Our Expertise
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    style={{ marginBottom: "clamp(3rem, 10vw, 6rem)", textAlign: "center" }}
+                >
+                    <span style={{ fontSize: "0.85rem", letterSpacing: "0.2em", color: "var(--color-text-muted)" }}>
+                        OUR SERVICES
+                    </span>
+                    <h2 style={{ fontSize: "clamp(2rem, 8vw, 4.5rem)", marginTop: "1rem" }}>
+                        EXPERT SOLUTIONS
                     </h2>
-                    <p style={{ maxWidth: "600px", margin: "0 auto" }}>
-                        We provide a full spectrum of digital marketing services
-                        to help your business grow.
-                    </p>
-                </div>
+                </motion.div>
 
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns:
-                            "repeat(auto-fit, minmax(300px, 1fr))",
-                        gap: "2rem",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(clamp(250px, 100%, 350px), 1fr))",
+                        gap: "clamp(1.5rem, 3vw, 2rem)",
                     }}
                 >
                     {services.map((service, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className="service-card"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className="glass"
                             style={{
-                                backgroundColor: "var(--color-bg)",
-                                padding: "2rem",
+                                padding: "3rem",
                                 borderRadius: "var(--radius-lg)",
-                                border: "1px solid rgba(0, 0, 0, 0.05)",
-                                transition:
-                                    "transform 0.3s ease, box-shadow 0.3s ease",
-                                cursor: "default",
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: "1.5rem",
+                                transition: "border-color 0.3s",
                             }}
+                            whileHover={{ borderColor: "rgba(255,255,255,0.3)", y: -10 }}
                         >
-                            <div
-                                style={{
-                                    color: "var(--color-accent)",
-                                    marginBottom: "1.5rem",
-                                    background: "rgba(0, 155, 119, 0.1)",
-                                    width: "64px",
-                                    height: "64px",
-                                    borderRadius: "50%",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                }}
-                            >
-                                {service.icon}
-                            </div>
-                            <h3
-                                style={{
-                                    fontSize: "1.5rem",
-                                    marginBottom: "1rem",
-                                    color: "var(--color-text)",
-                                }}
-                            >
+                            <div style={{ color: "var(--color-text)" }}>{service.icon}</div>
+                            <h3 style={{ fontSize: "1.5rem", textTransform: "none", letterSpacing: "0" }}>
                                 {service.title}
                             </h3>
-                            <p style={{ marginBottom: 0 }}>
-                                {service.description}
+                            <p style={{ color: "var(--color-text-muted)", margin: 0 }}>
+                                {service.desc}
                             </p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
-            <style>{`
-        .service-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-          border-color: var(--color-secondary);
-        }
-      `}</style>
         </section>
     );
 };

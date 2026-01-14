@@ -1,195 +1,113 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Rocket } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState("");
+    const [hidden, setHidden] = useState(false);
+    const [lastY, setLastY] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            const currentY = window.scrollY;
+            setIsScrolled(currentY > 50);
+
+            if (currentY > lastY && currentY > 200) {
+                setHidden(true);
+            } else {
+                setHidden(false);
+            }
+            setLastY(currentY);
         };
+
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
-                    }
-                });
-            },
-            { threshold: 0.5, rootMargin: "-70px 0px 0px 0px" }
-        );
-
-        const sections = document.querySelectorAll("section[id]");
-        sections.forEach((section) => observer.observe(section));
-
-        return () => observer.disconnect();
-    }, []);
+    }, [lastY]);
 
     const navLinks = [
-        { name: "Services", href: "#services" },
-        { name: "Work", href: "#portfolio" },
-        { name: "About", href: "#about" },
-        { name: "Contact", href: "#contact" },
+        { name: "Work", href: "/#portfolio" },
+        { name: "Services", href: "/#services" },
+        { name: "About", href: "/#about" },
+        { name: "Contact", href: "/#contact" },
     ];
 
     return (
-        <header
+        <motion.header
+            variants={{
+                visible: { y: 0, opacity: 1 },
+                hidden: { y: -100, opacity: 0 },
+            }}
+            animate={hidden ? "hidden" : "visible"}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{
                 position: "fixed",
-                top: 0,
+                top: "1.5rem",
                 left: 0,
                 right: 0,
                 zIndex: 1000,
-                backgroundColor: isScrolled
-                    ? "rgba(255, 255, 255, 0.95)"
-                    : "transparent",
-                backdropFilter: isScrolled ? "blur(10px)" : "none",
-                borderBottom: isScrolled
-                    ? "1px solid rgba(0, 0, 0, 0.1)"
-                    : "none",
-                transition: "all 0.3s ease",
-                padding: isScrolled ? "1rem 0" : "1.5rem 0",
+                display: "flex",
+                justifyContent: "center",
+                pointerEvents: "none",
+                padding: "0 1rem"
             }}
         >
-            <div
-                className="container"
+            <nav
+                className="glass"
                 style={{
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between",
+                    gap: "clamp(0.75rem, 3vw, 2rem)",
+                    padding: "0.5rem 1.25rem",
+                    borderRadius: "100px",
+                    pointerEvents: "auto",
+                    width: "fit-content",
+                    maxWidth: "95vw"
                 }}
             >
                 <a
-                    href="#"
+                    href="/"
                     style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        fontSize: "1.5rem",
+                        fontFamily: "Syne, sans-serif",
+                        fontSize: "clamp(1rem, 4vw, 1.25rem)",
                         fontWeight: "800",
-                        color: "var(--color-text)",
+                        letterSpacing: "-0.05em",
+                        marginRight: "0.25rem"
                     }}
                 >
-                    <Rocket className="text-accent" size={28} />
-                    <span>Webzards</span>
+                    W.
                 </a>
 
-                {/* Desktop Nav */}
-                <nav
-                    style={{
-                        display: "none",
-                        gap: "2rem",
-                        alignItems: "center",
-                    }}
-                    className="desktop-nav"
-                >
+                <div style={{ display: "flex", gap: "clamp(0.6rem, 2vw, 1.25rem)" }} className="nav-links-container">
                     {navLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
                             style={{
-                                fontWeight: 500,
-                                color:
-                                    activeSection === link.href.substring(1)
-                                        ? "var(--color-accent)"
-                                        : "var(--color-text)",
-                                fontSize: "0.95rem",
-                                transition: "color 0.3s ease",
+                                fontSize: "clamp(0.65rem, 2.5vw, 0.75rem)",
+                                fontWeight: "700",
+                                textTransform: "uppercase",
+                                letterSpacing: "0.05em",
+                                opacity: 0.6,
+                                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                                whiteSpace: "nowrap"
                             }}
-                            className="nav-link"
+                            className="nav-item-link"
                         >
                             {link.name}
                         </a>
                     ))}
-                    <a href="#contact" className="btn btn-primary">
-                        Start Project
-                    </a>
-                </nav>
-
-                {/* Mobile Toggle */}
-                <button
-                    className="mobile-toggle"
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    style={{ color: "var(--color-text)", display: "block" }}
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-
-                {/* Mobile Nav */}
-                {/* Mobile Nav */}
-                <div
-                    className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}
-                    style={{
-                        position: "absolute",
-                        top: "100%",
-                        left: 0,
-                        right: 0,
-                        backgroundColor: "var(--color-bg)",
-                        padding: "2rem",
-                        borderBottom: "1px solid rgba(0,0,0,0.1)",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "1.5rem",
-                        alignItems: "center",
-                        zIndex: 999,
-                    }}
-                >
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            style={{
-                                fontSize: "1.1rem",
-                                fontWeight: 600,
-                                color:
-                                    activeSection === link.href.substring(1)
-                                        ? "var(--color-accent)"
-                                        : "var(--color-text)",
-                                transition: "color 0.3s ease",
-                            }}
-                        >
-                            {link.name}
-                        </a>
-                    ))}
-                    <a
-                        href="#contact"
-                        className="btn btn-primary"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        style={{ width: "100%" }}
-                    >
-                        Start Project
-                    </a>
                 </div>
-            </div>
+            </nav>
             <style>{`
-        @media (min-width: 768px) {
-          .desktop-nav { display: flex !important; }
-          .mobile-toggle { display: none !important; }
-          .mobile-menu { display: none !important; }
-        }
-        .nav-link:hover { color: var(--color-accent) !important; }
-        
-        .mobile-menu {
-          opacity: 0;
-          transform: translateY(-20px);
-          pointer-events: none;
-          transition: all 0.3s ease-in-out;
-        }
-        .mobile-menu.open {
-          opacity: 1;
-          transform: translateY(0);
-          pointer-events: auto;
-        }
-      `}</style>
-        </header>
+                .nav-item-link:hover {
+                    opacity: 1 !important;
+                    transform: translateY(-1px);
+                }
+                @media (max-width: 380px) {
+                    .nav-links-container { gap: 0.5rem !important; }
+                    nav { padding: 0.5rem 1rem !important; }
+                }
+            `}</style>
+        </motion.header>
     );
 };
 

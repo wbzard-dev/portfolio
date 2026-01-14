@@ -1,146 +1,88 @@
 import React from "react";
-import { Target, Users, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 const About = () => {
+    const itemVariants = {
+        initial: { opacity: 0, y: 40 },
+        whileInView: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 1.2,
+                ease: [0.16, 1, 0.3, 1]
+            }
+        }
+    };
+
     return (
-        <section id="about">
-            <div
-                className="container"
-                style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    alignItems: "center",
-                    gap: "4rem",
-                }}
-            >
-                <div style={{ flex: "1 1 400px" }}>
-                    <div style={{ position: "relative" }}>
-                        <img
-                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"
-                            alt="Team meeting"
-                            style={{
-                                borderRadius: "var(--radius-lg)",
-                                boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                            }}
-                        />
-                        <div
-                            style={{
-                                position: "absolute",
-                                bottom: "-30px",
-                                right: "-30px",
-                                backgroundColor: "var(--color-secondary)",
-                                padding: "2rem",
-                                borderRadius: "var(--radius-lg)",
-                                maxWidth: "200px",
-                            }}
-                        >
-                            <p
-                                style={{
-                                    fontSize: "3rem",
-                                    fontWeight: "800",
-                                    color: "var(--color-white)",
-                                    marginBottom: "0.5rem",
-                                    lineHeight: 1,
-                                }}
-                            >
-                                12+
-                            </p>
-                            <p
-                                style={{
-                                    margin: 0,
-                                    fontWeight: 600,
-                                    color: "rgba(255,255,255,0.8)",
-                                }}
-                            >
-                                Years of Experience
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style={{ flex: "1 1 400px" }}>
-                    <h2
-                        style={{
-                            fontSize: "2.5rem",
-                            color: "var(--color-text)",
-                        }}
+        <section id="about" style={{ background: "var(--color-bg)", padding: "var(--section-padding) 0" }}>
+            <div className="container">
+                <div style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(clamp(300px, 100%, 500px), 1fr))",
+                    gap: "clamp(3rem, 10vw, 10rem)"
+                }}>
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true }}
+                        variants={itemVariants}
                     >
-                        We Are Digital Architects
-                    </h2>
-                    <p style={{ fontSize: "1.1rem", marginBottom: "2rem" }}>
-                        Founded in 2023, Webzards was born from a passion to
-                        merge creative design with data-driven marketing. We
-                        don't just clear paths; we build highways to success for
-                        our clients.
-                    </p>
+                        <span style={{ fontSize: "0.85rem", letterSpacing: "0.4em", color: "var(--color-text-muted)", fontWeight: 700 }}>
+                            OUR GENESIS
+                        </span>
+                        <h2 style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)", marginTop: "1rem", lineHeight: 0.9 }}>
+                            THE QUEST FOR PERFECTION.
+                        </h2>
+                    </motion.div>
 
-                    <div
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "1.5rem",
-                        }}
+                    <motion.div
+                        initial="initial"
+                        whileInView="whileInView"
+                        viewport={{ once: true }}
+                        variants={itemVariants}
+                        style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
                     >
-                        <div style={{ display: "flex", gap: "1rem" }}>
-                            <div
-                                style={{
-                                    background: "rgba(0, 155, 119, 0.1)",
-                                    padding: "12px",
-                                    borderRadius: "8px",
-                                    height: "fit-content",
-                                    color: "var(--color-accent)",
-                                }}
-                            >
-                                <Target size={24} />
+                        <p style={{ fontSize: "clamp(1.1rem, 3vw, 1.4rem)", lineHeight: 1.6, color: "var(--color-text-muted)" }}>
+                            We operate at the delicate intersection of architecture and digital storytelling. Founded on the principle that excellence is the only baseline, Wbzard crafts digital artifacts that resonate long after the first interaction.
+                        </p>
+                        <p style={{ fontSize: "1.1rem", lineHeight: 1.7, opacity: 0.8 }}>
+                            Our approach is methodical, yet poetic. We dismantle complex problems to build intuitive solutions, ensuring every pixel serves a purpose and every interaction tells a part of your brand legacy.
+                        </p>
+
+                        <div style={{
+                            display: "grid",
+                            gridTemplateColumns: "1fr 1fr",
+                            gap: "2rem",
+                            marginTop: "2rem",
+                            borderTop: "1px solid var(--color-border)",
+                            paddingTop: "clamp(2rem, 5vw, 3rem)"
+                        }}>
+                            <div>
+                                <span style={{ fontSize: "0.75rem", letterSpacing: "0.2em", color: "var(--color-text-muted)", display: "block", marginBottom: "0.5rem" }}>LEGACY</span>
+                                <span style={{ fontSize: "clamp(1rem, 3vw, 1.5rem)", fontWeight: 800 }}>BORN 2015</span>
                             </div>
                             <div>
-                                <h3
-                                    style={{
-                                        fontSize: "1.25rem",
-                                        marginBottom: "0.5rem",
-                                        color: "var(--color-text)",
-                                    }}
-                                >
-                                    Mission
-                                </h3>
-                                <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                                    To empower brands with the tools and
-                                    strategies they need to dominate their
-                                    market.
-                                </p>
+                                <span style={{ fontSize: "0.75rem", letterSpacing: "0.2em", color: "var(--color-text-muted)", display: "block", marginBottom: "0.5rem" }}>IMPACT</span>
+                                <span style={{ fontSize: "clamp(1rem, 3vw, 1.5rem)", fontWeight: 800 }}>150+ BUILDS</span>
                             </div>
                         </div>
-
-                        <div style={{ display: "flex", gap: "1rem" }}>
-                            <div
-                                style={{
-                                    background: "rgba(91, 46, 145, 0.2)",
-                                    padding: "12px",
-                                    borderRadius: "8px",
-                                    height: "fit-content",
-                                    color: "var(--color-secondary-light)",
-                                }}
-                            >
-                                <Users size={24} />
-                            </div>
-                            <div>
-                                <h3
-                                    style={{
-                                        fontSize: "1.25rem",
-                                        marginBottom: "0.5rem",
-                                        color: "var(--color-text)",
-                                    }}
-                                >
-                                    Team
-                                </h3>
-                                <p style={{ margin: 0, fontSize: "0.95rem" }}>
-                                    A diverse group of designers, developers,
-                                    and strategists working in harmony.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    </motion.div>
                 </div>
+            </div>
+            {/* Background Narrative Ornament - Hidden on small mobile */}
+            <div style={{
+                position: "absolute",
+                left: "1rem",
+                bottom: "5%",
+                opacity: 0.1,
+                fontSize: "0.65rem",
+                writingMode: "vertical-rl",
+                letterSpacing: "0.5em",
+                textTransform: "uppercase",
+                pointerEvents: "none"
+            }} className="hide-mobile">
+                ARCHITECTING THE FUTURE OF DIGITAL COMMERCE
             </div>
         </section>
     );

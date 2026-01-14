@@ -1,167 +1,71 @@
 import React from "react";
-import { Rocket, Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Twitter, Linkedin, Instagram, Github } from "lucide-react";
 
 const Footer = () => {
     return (
-        <footer
-            style={{
-                backgroundColor: "var(--color-bg)",
-                padding: "4rem 0 2rem",
-                borderTop: "1px solid rgba(0,0,0,0.05)",
-            }}
-        >
+        <footer style={{ background: "var(--color-bg)", padding: "var(--section-padding) 0 3rem" }}>
             <div className="container">
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns:
-                            "repeat(auto-fit, minmax(200px, 1fr))",
-                        gap: "3rem",
-                        marginBottom: "4rem",
-                    }}
-                >
-                    {/* Brand */}
-                    <div style={{ maxWidth: "300px" }}>
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.5rem",
-                                fontSize: "1.5rem",
-                                fontWeight: "800",
-                                color: "var(--color-text)",
-                                marginBottom: "1.5rem",
-                            }}
-                        >
-                            <Rocket className="text-accent" size={28} />
-                            <span>Webzards</span>
+                <div style={{ textAlign: "center", marginBottom: "clamp(6rem, 15vw, 10rem)", position: "relative" }}>
+                    <h2 style={{
+                        fontSize: "clamp(5rem, 25vw, 15rem)",
+                        letterSpacing: "-0.05em",
+                        opacity: 0.03,
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        transform: "translate(-50%, -50%)",
+                        zIndex: 0,
+                        pointerEvents: "none",
+                        whiteSpace: "nowrap"
+                    }}>
+                        WBZARD
+                    </h2>
+                    <div style={{ position: "relative", zIndex: 1, paddingTop: "2rem" }}>
+                        <h3 style={{ fontSize: "clamp(1.5rem, 5vw, 3rem)", marginBottom: "clamp(1rem, 3vw, 2rem)" }}>Wanna work with us?</h3>
+                        <a href="mailto:hello@wbzard.com" style={{ fontSize: "clamp(1.2rem, 4vw, 2rem)", fontWeight: 800, textDecoration: "underline" }}>
+                            SAY HELLO.
+                        </a>
+                    </div>
+                </div>
+
+                <div style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "space-between",
+                    alignItems: "flex-end",
+                    borderTop: "1px solid var(--color-border)",
+                    paddingTop: "clamp(2rem, 5vw, 4rem)",
+                    gap: "2rem"
+                }}>
+                    <div style={{ minWidth: "200px" }}>
+                        <a href="/" style={{ fontSize: "2rem", fontWeight: 800, fontFamily: "Syne, sans-serif" }}>W.</a>
+                        <p style={{ marginTop: "1rem", color: "var(--color-text-muted)", maxWidth: "300px" }}>Crafting digital experiences that matter.</p>
+                    </div>
+
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "clamp(2rem, 8vw, 4rem)" }}>
+                        <div>
+                            <h4 style={{ fontSize: "0.8rem", textTransform: "uppercase", opacity: 0.5, marginBottom: "1.5rem" }}>Socials</h4>
+                            <div style={{ display: "flex", gap: "1.5rem" }}>
+                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Twitter size={20} /></a>
+                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Linkedin size={20} /></a>
+                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Instagram size={20} /></a>
+                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Github size={20} /></a>
+                            </div>
                         </div>
-                        <p>
-                            Transforming businesses through digital innovation.
-                            We build the future of the web.
-                        </p>
-                    </div>
-
-                    {/* Quick Links */}
-                    <div>
-                        <h4
-                            style={{
-                                color: "var(--color-text)",
-                                marginBottom: "1.5rem",
-                            }}
-                        >
-                            Company
-                        </h4>
-                        <ul style={{ listStyle: "none", padding: 0 }}>
-                            {["About", "Services", "Portfolio", "Contact"].map(
-                                (item) => (
-                                    <li
-                                        key={item}
-                                        style={{ marginBottom: "1rem" }}
-                                    >
-                                        <a
-                                            href={`#${item.toLowerCase()}`}
-                                            className="footer-link"
-                                        >
-                                            {item}
-                                        </a>
-                                    </li>
-                                )
-                            )}
-                        </ul>
-                    </div>
-
-                    {/* Services */}
-                    <div>
-                        <h4
-                            style={{
-                                color: "var(--color-text)",
-                                marginBottom: "1.5rem",
-                            }}
-                        >
-                            Services
-                        </h4>
-                        <ul style={{ listStyle: "none", padding: 0 }}>
-                            {[
-                                "SEO Optimization",
-                                "Web Design",
-                                "Social Media",
-                                "Content Strategy",
-                            ].map((item) => (
-                                <li key={item} style={{ marginBottom: "1rem" }}>
-                                    <a href="#" className="footer-link">
-                                        {item}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Social */}
-                    <div>
-                        <h4
-                            style={{
-                                color: "var(--color-text)",
-                                marginBottom: "1.5rem",
-                            }}
-                        >
-                            Follow Us
-                        </h4>
-                        <div style={{ display: "flex", gap: "1rem" }}>
-                            <a href="#" className="social-link">
-                                <Twitter size={20} />
-                            </a>
-                            <a href="#" className="social-link">
-                                <Linkedin size={20} />
-                            </a>
-                            <a href="#" className="social-link">
-                                <Instagram size={20} />
-                            </a>
-                            <a href="#" className="social-link">
-                                <Facebook size={20} />
-                            </a>
+                        <div>
+                            <h4 style={{ fontSize: "0.8rem", textTransform: "uppercase", opacity: 0.5, marginBottom: "1.5rem" }}>Legal</h4>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                                <a href="#" style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>Privacy Policy</a>
+                                <a href="#" style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>Terms of Service</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div
-                    style={{
-                        textAlign: "center",
-                        paddingTop: "2rem",
-                        borderTop: "1px solid rgba(0,0,0,0.05)",
-                        color: "var(--color-text-muted)",
-                        fontSize: "0.9rem",
-                    }}
-                >
-                    &copy; {new Date().getFullYear()} Webzards Digital Agency.
-                    All rights reserved.
+                <div style={{ marginTop: "6rem", textAlign: "center", fontSize: "0.8rem", color: "var(--color-text-muted)", opacity: 0.5 }}>
+                    &copy; {new Date().getFullYear()} WBZARD. ALL RIGHTS RESERVED.
                 </div>
             </div>
-            <style>{`
-        .footer-link {
-          color: var(--color-text-muted);
-          transition: color 0.2s ease;
-        }
-        .footer-link:hover {
-          color: var(--color-accent);
-        }
-        .social-link {
-          width: 40px;
-          height: 40px;
-          background: rgba(0,0,0,0.05);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 50%;
-          color: var(--color-text);
-          transition: all 0.3s ease;
-        }
-        .social-link:hover {
-          background: var(--color-accent);
-          color: var(--color-white);
-          transform: translateY(-3px);
-        }
-      `}</style>
         </footer>
     );
 };
