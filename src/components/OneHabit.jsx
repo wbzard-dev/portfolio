@@ -48,7 +48,6 @@ const OneHabit = () => {
             exit={{ opacity: 0 }}
             style={{ backgroundColor: theme.bg, color: theme.text, overflowX: "hidden" }}
         >
-            {/* --- BRANDED HERO (BLUE/INDIGO) --- */}
             <section style={{ minHeight: "100vh", padding: "clamp(6rem, 15vw, 10rem) 1.5rem 4rem", display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
                 <div style={{
                     position: "absolute",
