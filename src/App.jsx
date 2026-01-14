@@ -40,13 +40,6 @@ function App() {
         };
     }, []);
 
-    useEffect(() => {
-        const { search } = window.location;
-        if (search.startsWith("?")) {
-            const path = search.slice(2);
-            navigate(path, { replace: true });
-        }
-    }, [navigate]);
 
     return (
         <div className="App">
