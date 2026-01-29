@@ -85,17 +85,18 @@ const Hero = () => {
                             }
                         }}
                         style={{
-                            fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
+                            fontSize: "clamp(1.3rem, 6vw, 4.5rem)",
                             marginBottom: "0",
                             lineHeight: 0.8,
                             letterSpacing: "-0.05em",
                             fontWeight: 800,
                             textTransform: "uppercase",
                             width: "100%",
-                            textAlign: "left"
+                            textAlign: "left",
+                            WebkitTextSizeAdjust: "100%"
                         }} className="mobile-center"
                     >
-                        <span style={{ display: "block", overflow: "hidden" }}>
+                        <span style={{ display: "block", overflow: "visible" }}>
                             <motion.span
                                 variants={itemVariants}
                                 style={{ display: "block" }}
@@ -112,7 +113,7 @@ const Hero = () => {
                             width: "100%",
                             gap: "clamp(0.5rem, 2vw, 1rem)",
                             marginTop: "clamp(0.5rem, 2vw, 1rem)",
-                            overflow: "hidden"
+                            overflow: "visible"
                         }} className="hero-second-row">
                             <motion.span
                                 variants={itemVariants}
@@ -157,6 +158,8 @@ const Hero = () => {
                     .hero-second-row { justify-content: center !important; flex-direction: column !important; align-items: center !important; }
                     .hero-desc-container { text-align: center !important; margin: 3rem auto 0 !important; }
                     .hero-text-grid { align-items: center !important; }
+                    section { padding: 6rem 1rem 4rem !important; overflow: visible !important; }
+                    .hero-text-grid { overflow: visible !important; }
                 }
             `}</style>
 

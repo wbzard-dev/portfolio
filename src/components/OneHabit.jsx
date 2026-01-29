@@ -77,11 +77,12 @@ const OneHabit = () => {
                         </div>
 
                         <h1 style={{
-                            fontSize: "clamp(2.5rem, 11vw, 6rem)",
+                            fontSize: "clamp(1.3rem, 5vw, 3.5rem)",
                             fontWeight: "900",
                             lineHeight: 0.8,
                             letterSpacing: "-0.06em",
-                            textTransform: "uppercase"
+                            textTransform: "uppercase",
+                            WebkitTextSizeAdjust: "100%"
                         }}>
                             MASTER THE <br />
                             <span style={{ color: "transparent", WebkitTextStroke: `1px ${theme.secondary}` }}>SINGULARITY.</span>
@@ -315,11 +316,11 @@ const OneHabit = () => {
 
             <style>{`
                 @media (max-width: 768px) {
-                    section { padding: 6rem 1.5rem !important; }
-                    .container { padding: 0 1.5rem !important; }
+                    section { padding: 6rem 1.5rem !important; overflow: visible !important; }
+                    .container { padding: 0 1rem !important; }
                     h1 { line-height: 1 !important; }
                     .glass { padding: 2.5rem 1.5rem !important; }
-                    .mobile-center { align-items: center !important; text-align: center !important; }
+                    .mobile-center { align-items: center !important; text-align: center !important; overflow: visible !important; }
                     .mobile-center-flex { justify-content: center !important; }
                 }
             `}</style>

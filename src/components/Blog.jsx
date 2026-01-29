@@ -61,7 +61,7 @@ const Blog = () => {
                     style={{ marginBottom: "clamp(4rem, 10vw, 6rem)" }}
                 >
                     <span style={{ color: "var(--color-text-muted)", letterSpacing: "0.4em", fontSize: "0.75rem", fontWeight: 800, display: "block", marginBottom: "1rem" }}>JOURNAL & PERSPECTIVES</span>
-                    <h1 style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)", lineHeight: 0.9 }}>THE <span style={{ color: "transparent", WebkitTextStroke: "1px var(--color-text)" }}>ARTIFACTS.</span></h1>
+                    <h1 style={{ fontSize: "clamp(1.3rem, 5vw, 3.5rem)", lineHeight: 0.9, WebkitTextSizeAdjust: "100%" }}>THE <span style={{ color: "transparent", WebkitTextStroke: "1px var(--color-text)" }}>ARTIFACTS.</span></h1>
                 </motion.div>
 
                 <motion.div

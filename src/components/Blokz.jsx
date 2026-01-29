@@ -78,12 +78,12 @@ const Blokz = () => {
 
                         <motion.h1
                             style={{
-                                fontSize: "clamp(2.5rem, 11vw, 8.5rem)",
+                                fontSize: "clamp(1.3rem, 5vw, 3.5rem)",
                                 fontWeight: "900",
-                                lineHeight: 0.85,
-                                letterSpacing: "-0.05em",
+                                lineHeight: 0.8,
+                                letterSpacing: "-0.06em",
                                 textTransform: "uppercase",
-                                marginBottom: "2rem"
+                                WebkitTextSizeAdjust: "100%"
                             }}
                         >
                             LIGHTING UP <br />
@@ -363,12 +363,13 @@ const Blokz = () => {
             {/* Global Mobile Responsive Styles */}
             <style>{`
                 @media (max-width: 768px) {
-                    section { padding: 6rem 1.5rem !important; }
-                    .container { padding: 0 1.5rem !important; }
+                    section { padding: 6rem 1.5rem !important; overflow: visible !important; }
+                    .container { padding: 0 1rem !important; }
                     h1 { line-height: 1 !important; }
                     table { display: block; overflow-x: auto; }
                     .glass { padding: 2.5rem 1.5rem !important; }
-                    .mobile-center { align-items: center !important; text-align: center !important; }
+                    .mobile-center { align-items: center !important; text-align: center !important; overflow: visible !important; }
+                    .mobile-show { display: block !important; }
                     .mobile-center-flex { justify-content: center !important; }
                 }
             `}</style>
