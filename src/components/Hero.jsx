@@ -55,11 +55,12 @@ const Hero = () => {
                         variants={itemVariants}
                         style={{
                             fontSize: "clamp(0.7rem, 2vw, 0.85rem)",
-                            letterSpacing: "0.3em",
+                            letterSpacing: "0.4em",
                             color: "var(--color-text-muted)",
                             display: "block",
                             marginBottom: "clamp(1.5rem, 5vw, 2rem)",
-                            fontWeight: 600
+                            fontWeight: 800,
+                            fontFamily: "'Syne', sans-serif"
                         }}
                     >
                         STRATEGIC DIGITAL ARCHITECTURE
@@ -67,14 +68,22 @@ const Hero = () => {
                 </div>
 
                 <div className="hero-text-grid" style={{
+                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    gap: "clamp(0.5rem, 2vw, 1rem)",
                     alignItems: "center",
-                    width: "100%"
+                    gap: "clamp(1rem, 2vw, 2rem)"
                 }}>
                     <motion.h1
-                        variants={itemVariants}
+                        variants={{
+                            initial: {},
+                            animate: {
+                                transition: {
+                                    staggerChildren: 0.1,
+                                    delayChildren: 0.4
+                                }
+                            }
+                        }}
                         style={{
                             fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
                             marginBottom: "0",
@@ -84,9 +93,17 @@ const Hero = () => {
                             textTransform: "uppercase",
                             width: "100%",
                             textAlign: "left"
-                        }}
+                        }} className="mobile-center"
                     >
-                        <span style={{ display: "block" }} className="mobile-center">ENGINEERING</span>
+                        <span style={{ display: "block", overflow: "hidden" }}>
+                            <motion.span
+                                variants={itemVariants}
+                                style={{ display: "block" }}
+                            >
+                                ENGINEERING
+                            </motion.span>
+                        </span>
+
                         <span style={{
                             display: "flex",
                             flexWrap: "wrap",
@@ -94,13 +111,21 @@ const Hero = () => {
                             alignItems: "baseline",
                             width: "100%",
                             gap: "clamp(0.5rem, 2vw, 1rem)",
-                            marginTop: "clamp(0.5rem, 2vw, 1rem)"
+                            marginTop: "clamp(0.5rem, 2vw, 1rem)",
+                            overflow: "hidden"
                         }} className="hero-second-row">
-                            <span style={{
-                                color: "transparent",
-                                WebkitTextStroke: "1px var(--color-text)",
-                            }}>DIGITAL</span>
-                            <span>LEGACIES.</span>
+                            <motion.span
+                                variants={itemVariants}
+                                style={{
+                                    color: "transparent",
+                                    WebkitTextStroke: "1px var(--color-text)",
+                                }}
+                            >
+                                DIGITAL
+                            </motion.span>
+                            <motion.span variants={itemVariants}>
+                                LEGACIES.
+                            </motion.span>
                         </span>
                     </motion.h1>
                 </div>

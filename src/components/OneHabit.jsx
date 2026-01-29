@@ -77,7 +77,7 @@ const OneHabit = () => {
                         </div>
 
                         <h1 style={{
-                            fontSize: "clamp(2.5rem, 11vw, 8.5rem)",
+                            fontSize: "clamp(2.5rem, 11vw, 6rem)",
                             fontWeight: "900",
                             lineHeight: 0.8,
                             letterSpacing: "-0.06em",

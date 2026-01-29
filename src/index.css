@@ -60,9 +60,18 @@ h4,
 .font-syne {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
     line-height: 0.9;
     text-transform: uppercase;
+}
+
+.text-stroke {
+    color: transparent !important;
+    -webkit-text-stroke: 1px var(--color-text);
+}
+
+.text-muted {
+    color: var(--color-text-muted);
 }
 
 a {

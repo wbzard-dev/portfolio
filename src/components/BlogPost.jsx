@@ -97,7 +97,7 @@ const BlogPost = () => {
                             <span style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}><FaUser /> {post.author.toUpperCase()}</span>
                         </div>
 
-                        <h1 style={{ fontSize: "clamp(2.5rem, 8vw, 2.5rem)", maxWidth: "1000px", lineHeight: 1, marginBottom: "0" }}>
+                        <h1 style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)", maxWidth: "1000px", lineHeight: 1, marginBottom: "0" }}>
                             {post.title}
                         </h1>
                     </motion.div>
@@ -139,13 +139,13 @@ const BlogPost = () => {
             </div>
 
             <style>{`
-                .blog-content h1 { font-size: 2.5rem; margin: 4rem 0 2rem; }
-                .blog-content h2 { font-size: 2rem; margin: 3.5rem 0 1.5rem; }
-                .blog-content h3 { font-size: 1.5rem; margin: 2.5rem 0 1rem; }
-                .blog-content p { margin-bottom: 2rem; }
-                .blog-content ul { margin-bottom: 2rem; padding-left: 1.5rem; }
-                .blog-content li { margin-bottom: 0.75rem; }
-                .blog-content blockquote { border-left: 4px solid var(--color-primary); padding-left: 2rem; margin: 4rem 0; font-style: italic; opacity: 0.8; }
+                .blog-content h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 3rem); margin: 4rem 0 2rem; line-height: 1.1; }
+                .blog-content h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 4vw, 2.25rem); margin: 3.5rem 0 1.5rem; line-height: 1.2; }
+                .blog-content h3 { font-family: 'Syne', sans-serif; font-size: clamp(1.25rem, 3vw, 1.75rem); margin: 2.5rem 0 1.25rem; line-height: 1.2; }
+                .blog-content p { margin-bottom: 2.5rem; }
+                .blog-content ul, .blog-content ol { margin-bottom: 2.5rem; padding-left: 1.5rem; }
+                .blog-content li { margin-bottom: 1rem; }
+                .blog-content blockquote { border-left: 2px solid var(--color-accent); padding: 1rem 0 1rem 2rem; margin: 4rem 0; font-style: italic; font-size: 1.4rem; opacity: 1; color: #fff; background: rgba(255,255,255,0.02); }
                 .blog-content strong { color: #fff; font-weight: 700; }
                 .blog-content code { background: rgba(255,255,255,0.05); padding: 0.2rem 0.4rem; borderRadius: 4px; font-size: 0.9em; }
             `}</style>
