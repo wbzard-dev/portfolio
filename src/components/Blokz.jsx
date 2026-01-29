@@ -12,6 +12,7 @@ import {
     FaTimes,
     FaArrowRight
 } from "react-icons/fa";
+import SEO from "./SEO";
 
 const Blokz = () => {
     const { scrollY } = useScroll();
@@ -41,6 +42,11 @@ const Blokz = () => {
             exit={{ opacity: 0 }}
             style={{ backgroundColor: theme.bg, color: theme.text, overflowX: "hidden" }}
         >
+            <SEO
+                title="Blokz | Reinventing Retail for the Kiranas"
+                description="Empowering India's neighborhood shops with sustainable hyperlocal digitization. 0% commission technology for the community."
+                url="https://wbzard-dev.github.io/portfolio/blokz"
+            />
             {/* --- BRANDED HERO --- */}
             <section style={{ minHeight: "100vh", padding: "clamp(6rem, 15vw, 10rem) 1.5rem 4rem", display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
                 <motion.div

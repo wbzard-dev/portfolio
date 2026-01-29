@@ -15,6 +15,7 @@ import Blokz from "./components/Blokz";
 import OneHabit from "./components/OneHabit";
 import Blog from "./components/Blog";
 import BlogPost from "./components/BlogPost";
+import SEO from "./components/SEO";
 
 function App() {
     const location = useLocation();
@@ -52,6 +53,7 @@ function App() {
                         path="/"
                         element={
                             <main>
+                                <SEO />
                                 <Hero />
                                 <Portfolio />
                                 <Services />

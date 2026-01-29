@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaCalendarAlt, FaUser, FaArrowRight } from "react-icons/fa";
+import SEO from "./SEO";
 
 const Blog = () => {
     const [posts, setPosts] = useState([]);
@@ -47,6 +48,11 @@ const Blog = () => {
 
     return (
         <section style={{ padding: "clamp(8rem, 15vw, 12rem) 1.5rem 6rem", minHeight: "100vh" }}>
+            <SEO
+                title="Journal & Perspectives"
+                description="Explore our latest thoughts, artifacts, and engineering insights on digital architecture and marketing."
+                url="https://wbzard-dev.github.io/portfolio/blog"
+            />
             <div className="container">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

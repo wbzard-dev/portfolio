@@ -66,70 +66,43 @@ const Hero = () => {
                     </motion.span>
                 </div>
 
-                <div style={{
+                <div className="hero-text-grid" style={{
                     display: "flex",
                     flexDirection: "column",
                     gap: "clamp(0.5rem, 2vw, 1rem)",
-                    alignItems: "center"
-                }} className="hero-text-grid">
-                    <div style={{ overflow: "hidden", width: "100%", textAlign: "left" }} className="mobile-center">
-                        <motion.h1
-                            variants={itemVariants}
-                            style={{
-                                fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
-                                marginBottom: "0",
-                                lineHeight: 0.8,
-                                letterSpacing: "-0.05em",
-                                fontWeight: 800,
-                                textTransform: "uppercase"
-                            }}
-                        >
-                            ENGINEERING
-                        </motion.h1>
-                    </div>
-
-                    <div style={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        justifyContent: "space-between",
-                        alignItems: "baseline",
-                        width: "100%",
-                        gap: "clamp(0.5rem, 2vw, 1rem)",
-                        marginTop: "clamp(0.5rem, 2vw, 1rem)"
-                    }} className="hero-second-row">
-                        <div style={{ overflow: "hidden" }}>
-                            <motion.h1
-                                variants={itemVariants}
-                                style={{
-                                    fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
-                                    marginBottom: "0",
-                                    lineHeight: 0.8,
-                                    letterSpacing: "-0.05em",
-                                    fontWeight: 800,
-                                    color: "transparent",
-                                    WebkitTextStroke: "1px var(--color-text)",
-                                    textTransform: "uppercase"
-                                }}
-                            >
-                                DIGITAL
-                            </motion.h1>
-                        </div>
-                        <div style={{ overflow: "hidden" }}>
-                            <motion.h1
-                                variants={itemVariants}
-                                style={{
-                                    fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
-                                    marginBottom: "0",
-                                    lineHeight: 0.8,
-                                    letterSpacing: "-0.05em",
-                                    fontWeight: 800,
-                                    textTransform: "uppercase"
-                                }}
-                            >
-                                LEGACIES.
-                            </motion.h1>
-                        </div>
-                    </div>
+                    alignItems: "center",
+                    width: "100%"
+                }}>
+                    <motion.h1
+                        variants={itemVariants}
+                        style={{
+                            fontSize: "clamp(2.5rem, 12vw, 8.5rem)",
+                            marginBottom: "0",
+                            lineHeight: 0.8,
+                            letterSpacing: "-0.05em",
+                            fontWeight: 800,
+                            textTransform: "uppercase",
+                            width: "100%",
+                            textAlign: "left"
+                        }}
+                    >
+                        <span style={{ display: "block" }} className="mobile-center">ENGINEERING</span>
+                        <span style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            justifyContent: "space-between",
+                            alignItems: "baseline",
+                            width: "100%",
+                            gap: "clamp(0.5rem, 2vw, 1rem)",
+                            marginTop: "clamp(0.5rem, 2vw, 1rem)"
+                        }} className="hero-second-row">
+                            <span style={{
+                                color: "transparent",
+                                WebkitTextStroke: "1px var(--color-text)",
+                            }}>DIGITAL</span>
+                            <span>LEGACIES.</span>
+                        </span>
+                    </motion.h1>
                 </div>
 
                 <motion.div

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { FaCalendarAlt, FaUser, FaArrowLeft, FaShareAlt } from "react-icons/fa";
+import SEO from "./SEO";
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -52,6 +53,13 @@ const BlogPost = () => {
             exit={{ opacity: 0 }}
             style={{ paddingBottom: "10rem" }}
         >
+            <SEO
+                title={post.title}
+                description={post.excerpt}
+                image={post.coverImage}
+                url={`https://wbzard-dev.github.io/portfolio/blog/${id}`}
+                type="article"
+            />
             {/* --- POST HERO --- */}
             <div style={{ height: "70vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "flex-end", paddingBottom: "clamp(3rem, 10vw, 6rem)" }}>
                 <div style={{ position: "absolute", inset: 0, zIndex: -1 }}>

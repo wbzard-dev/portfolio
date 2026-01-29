@@ -10,6 +10,7 @@ import {
     FaBrain,
     FaInfinity
 } from "react-icons/fa";
+import SEO from "./SEO";
 
 const OneHabit = () => {
     const containerRef = useRef(null);
@@ -48,6 +49,11 @@ const OneHabit = () => {
             exit={{ opacity: 0 }}
             style={{ backgroundColor: theme.bg, color: theme.text, overflowX: "hidden" }}
         >
+            <SEO
+                title="One Habit | Master the Singularity"
+                description="A behavioral framework designed to bridge the gap between human intent and automated action. Focus on a single core behavior until it becomes autonomous."
+                url="https://wbzard-dev.github.io/portfolio/one-habit"
+            />
             <section style={{ minHeight: "100vh", padding: "clamp(6rem, 15vw, 10rem) 1.5rem 4rem", display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
                 <div style={{
                     position: "absolute",
