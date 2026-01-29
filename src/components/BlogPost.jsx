@@ -89,7 +89,7 @@ const BlogPost = () => {
                             <span style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}><FaUser /> {post.author.toUpperCase()}</span>
                         </div>
 
-                        <h1 style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)", maxWidth: "1000px", lineHeight: 1, marginBottom: "0" }}>
+                        <h1 style={{ fontSize: "clamp(2.5rem, 8vw, 2.5rem)", maxWidth: "1000px", lineHeight: 1, marginBottom: "0" }}>
                             {post.title}
                         </h1>
                     </motion.div>
