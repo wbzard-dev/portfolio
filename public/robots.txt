@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wbzard-dev.github.io/portfolio/sitemap.xml
+Sitemap: https://wbzard.com/sitemap.xml

@@ -57,7 +57,7 @@ const BlogPost = () => {
                 title={post.title}
                 description={post.excerpt}
                 image={post.coverImage}
-                url={`https://wbzard-dev.github.io/portfolio/blog/${id}`}
+                url={`https://wbzard.com/blog/${id}`}
                 type="article"
             />
             {/* --- POST HERO --- */}
