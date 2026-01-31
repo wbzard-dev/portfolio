@@ -1,8 +1,8 @@
-id: "js-execution-context-2026"
-title: "Execution Context & Call Stack: How JavaScript Really Runs Your Code"
+id: "js-hoisting-2026"
+title: "Hoisting in JavaScript: var vs let vs const – What Really Happens"
 date: "2026-02-01"
 author: "Vivek"
-excerpt: "Understanding JS execution is the first step to mastering it."
+excerpt: "Variables in JavaScript don’t behave like they seem. Hoisting explains why."
 coverImage: "https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg"
 category: "JavaScript"
 content: |
