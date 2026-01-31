@@ -1,0 +1,57 @@
+id: "js-execution-context-2026"
+title: "Execution Context & Call Stack: How JavaScript Really Runs Your Code"
+date: "2026-02-01"
+author: "Vivek"
+excerpt: "Understanding JS execution is the first step to mastering it."
+coverImage: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
+category: "JavaScript"
+content: |
+
+  # How JavaScript Executes Your Code
+
+  JavaScript might seem straightforward — write a function, call it, get results. But under the hood, **every line of JS code goes through a well-defined execution process**. Understanding this is like lifting the hood of a car: suddenly, you know why things behave the way they do.
+
+  That process revolves around **execution context** and the **call stack**.
+
+  ## What Is an Execution Context?
+
+  Think of an execution context as a **container that holds everything JavaScript needs to run a piece of code**. It includes:
+  - The scope chain (what variables and functions are accessible)
+  - The `this` value
+  - Variables, functions, and parameters
+
+  Every time JS runs code, it creates an execution context — but not all contexts are equal.
+
+  ### Two Main Types:
+  1. **Global Execution Context**  
+     - Created when your script first runs  
+     - Forms the global environment (`window` in browsers, `global` in Node.js)  
+     - Only one exists per script
+
+  2. **Function Execution Context**  
+     - Created every time a function is invoked  
+     - Holds local variables and the function’s scope  
+     - Disappears when the function finishes
+
+  ## The Call Stack: JS’s Line Manager
+
+  JavaScript is **single-threaded**. It can only do one thing at a time. Enter the **call stack** — a LIFO (Last In, First Out) stack that keeps track of execution contexts.
+
+  ### How It Works:
+  - The **global context** is pushed onto the stack first  
+  - When a function is called, a **new context is pushed on top**  
+  - Once the function completes, its context is **popped off**  
+  - Execution resumes in the previous context
+
+  ```javascript
+  function first() {
+    console.log('First');
+    second();
+    console.log('First again');
+  }
+
+  function second() {
+    console.log('Second');
+  }
+
+  first();
