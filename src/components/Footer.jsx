@@ -22,7 +22,7 @@ const Footer = () => {
                     </h2>
                     <div style={{ position: "relative", zIndex: 1, paddingTop: "2rem" }}>
                         <h3 style={{ fontSize: "clamp(1.5rem, 5vw, 3rem)", marginBottom: "clamp(1rem, 3vw, 2rem)" }}>Wanna work with us?</h3>
-                        <a href="mailto:hello@wbzard.com" style={{ fontSize: "clamp(1.2rem, 4vw, 2rem)", fontWeight: 800, textDecoration: "underline" }}>
+                        <a href="mailto:wbzard.dev@gmail.com" style={{ fontSize: "clamp(1.2rem, 4vw, 2rem)", fontWeight: 800, textDecoration: "underline" }}>
                             SAY HELLO.
                         </a>
                     </div>
@@ -46,10 +46,10 @@ const Footer = () => {
                         <div>
                             <h4 style={{ fontSize: "0.8rem", textTransform: "uppercase", opacity: 0.5, marginBottom: "1.5rem" }}>Socials</h4>
                             <div style={{ display: "flex", gap: "1.5rem" }}>
-                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Twitter size={20} /></a>
-                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Linkedin size={20} /></a>
-                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Instagram size={20} /></a>
-                                <a href="#" style={{ color: "var(--color-text-muted)" }}><Github size={20} /></a>
+                                {/* <a href="#" style={{ color: "var(--color-text-muted)" }}><Twitter size={20} /></a> */}
+                                {/* <a href="#" style={{ color: "var(--color-text-muted)" }}><Linkedin size={20} /></a> */}
+                                <a href="https://www.instagram.com/wbzard/" style={{ color: "var(--color-text-muted)" }}><Instagram size={20} /></a>
+                                {/* <a href="#" style={{ color: "var(--color-text-muted)" }}><Github size={20} /></a> */}
                             </div>
                         </div>
                         <div>
