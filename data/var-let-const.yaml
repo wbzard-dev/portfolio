@@ -1,0 +1,98 @@
+id: "js-execution-context-2026"
+title: "Execution Context & Call Stack: How JavaScript Really Runs Your Code"
+date: "2026-02-01"
+author: "Vivek"
+excerpt: "Understanding JS execution is the first step to mastering it."
+coverImage: "https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg"
+category: "JavaScript"
+content: |
+    # Understanding Hoisting in JavaScript
+
+    You might have seen code like this and wondered why it works:
+
+    ```javascript
+    console.log(a); // undefined
+    var a = 5;
+    ```
+
+    But this one throws an error:
+
+    ```javascript
+    console.log(b); // ReferenceError: Cannot access 'b' before initialization
+    let b = 10;
+    ```
+
+    What’s going on? Welcome to the world of hoisting — a core concept in JavaScript that explains how variables and functions are initialized before code execution.
+
+    ## What Is Hoisting?
+    Hoisting is JavaScript’s default behavior of moving declarations to the top of their scope during the compilation phase. Think of it like this: JS scans your code before execution and sets up memory for variables and functions.
+
+    
+
+    But here’s the catch — not all variables are hoisted the same way. This is where var, let, and const behave differently.
+
+    ## Hoisting with var
+    Variables declared with var are hoisted and initialized with undefined. This is why your first example doesn’t break:
+
+    ```javascript
+    console.log(a); // undefined
+    var a = 5;
+    ```
+
+    Internally, JS does something like:
+    ```javascript
+    var a;
+    console.log(a); // undefined
+    a = 5;
+    ```
+
+    ### Key Points for var:
+    - Hoisted to the top of their function or global scope
+    - Initialized with undefined
+    - Can be re-declared in the same scope
+
+    ⚠️ **Gotcha**: This can lead to unexpected bugs, especially in loops:
+    ```javascript
+    for (var i = 0; i < 3; i++) {
+      setTimeout(() => console.log(i), 100);
+    }
+    // Output: 3 3 3
+    ```
+
+    ## Hoisting with let
+    Variables declared with let are hoisted but not initialized. They exist in a “temporal dead zone” (TDZ) from the start of the block until the declaration is evaluated.
+
+    
+
+    ```javascript
+    console.log(b); // ReferenceError: Cannot access 'b' before initialization
+    let b = 10;
+    ```
+
+    ## Hoisting with const
+    const behaves almost exactly like let in terms of hoisting — it’s block-scoped and in a temporal dead zone. The only difference? You must initialize it at declaration:
+
+    ```javascript
+    const c; // SyntaxError: Missing initializer in const declaration
+    ```
+
+    ## Function Hoisting
+    Functions are also hoisted — but only function declarations, not function expressions:
+
+    ```javascript
+    greet(); // Hello!
+    function greet() {
+      console.log('Hello!');
+    }
+    ```
+
+    But this will break:
+    ```javascript
+    greet(); // TypeError: greet is not a function
+    var greet = function() {
+      console.log('Hello!');
+    };
+    ```
+
+    ## Conclusion
+    Hoisting is JavaScript’s way of preparing your code before it runs. Once you understand hoisting, reading and debugging JS becomes much easier.
