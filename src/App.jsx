@@ -49,22 +49,9 @@ function App() {
             <Header />
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
-                    <Route
-                        path="/"
-                        element={
-                            <main>
-                                <SEO />
-                                <Hero />
-                                <Portfolio />
-                                <Services />
-                                <Testimonials />
-                                <About />
-                                <Contact />
-                            </main>
-                        }
-                    />
-                    <Route path="/blokz" element={<Blokz />} />
-                    <Route path="/one-habit" element={<OneHabit />} />
+                    
+                    
+                    
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:id" element={<BlogPost />} />
                 </Routes>
