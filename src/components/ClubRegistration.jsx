@@ -101,12 +101,30 @@ const ClubRegistration = () => {
                 setStatus("success");
                 form.reset();
                 setDomain("");
+                if (window.gtag) {
+                    window.gtag("event", "club_registration_success", {
+                        event_category: "registration",
+                        event_label: data.domain || "unknown",
+                    });
+                }
             } else {
                 setStatus("error");
+                if (window.gtag) {
+                    window.gtag("event", "club_registration_error", {
+                        event_category: "registration",
+                        reason: result.message || "server_error",
+                    });
+                }
             }
         } catch (error) {
             console.error("Submission error:", error);
             setStatus("error");
+            if (window.gtag) {
+                window.gtag("event", "club_registration_error", {
+                    event_category: "registration",
+                    reason: "fetch_error",
+                });
+            }
         }
     };
 
