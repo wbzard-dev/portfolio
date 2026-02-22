@@ -63,7 +63,9 @@ const ClubRegistration = () => {
     const [status, setStatus] = useState(""); // "", "sending", "success", "error"
     const [showModal, setShowModal] = useState(false);
 
-    // Prevent body scroll when modal is open
+    // Optional: Only lock scroll if user really wants to avoid background jitter
+    // But for now, let's keep it simple to allow pull-to-refresh and native feel
+    /*
     useEffect(() => {
         if (showModal) {
             document.body.style.overflow = "hidden";
@@ -74,6 +76,7 @@ const ClubRegistration = () => {
             document.body.style.overflow = "unset";
         };
     }, [showModal]);
+    */
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -166,7 +169,7 @@ const ClubRegistration = () => {
             color: "#fff",
             padding: "2rem 1rem",
             position: "relative",
-            overflow: "hidden"
+            overflowX: "hidden"
         }}>
             <PixelBackground />
 
@@ -198,7 +201,6 @@ const ClubRegistration = () => {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
                             onClick={(e) => e.stopPropagation()}
-                            onWheel={(e) => e.stopPropagation()}
                             style={{
                                 background: "#0f1417",
                                 border: "1px solid rgba(164, 255, 1, 0.2)",
@@ -206,7 +208,7 @@ const ClubRegistration = () => {
                                 padding: "clamp(1.5rem, 4vw, 2.5rem)",
                                 maxWidth: "600px",
                                 width: "calc(100% - 2rem)",
-                                height: "85vh",
+                                maxHeight: "80vh",
                                 overflowY: "auto",
                                 WebkitOverflowScrolling: "touch",
                                 position: "relative",

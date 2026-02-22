@@ -23,7 +23,9 @@ function App() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Initialize Lenis for smooth scrolling
+        // Disable Lenis for the registration page to allow native momentum scroll
+        if (isRegistrationPage) return;
+
         const lenis = new Lenis({
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -42,7 +44,7 @@ function App() {
         return () => {
             lenis.destroy();
         };
-    }, []);
+    }, [isRegistrationPage]);
 
 
     const isRegistrationPage = location.pathname === "/club-registration";
