@@ -339,7 +339,14 @@ const ClubRegistration = () => {
                             JOIN THE <span style={{ color: "#a4ff01" }}>.ROOT</span> CREW
                         </h1>
                         <button
-                            onClick={() => setShowModal(true)}
+                            onClick={() => {
+                                setShowModal(true);
+                                if (window.gtag) {
+                                    window.gtag("event", "view_club_info", {
+                                        event_category: "engagement",
+                                    });
+                                }
+                            }}
                             style={{
                                 background: "none",
                                 border: "none",

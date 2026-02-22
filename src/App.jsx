@@ -24,6 +24,15 @@ function App() {
     const isRegistrationPage = location.pathname === "/club-registration";
 
     useEffect(() => {
+        // Track page view on route change
+        if (window.gtag) {
+            window.gtag("config", "G-7WMQSEW2DZ", {
+                page_path: location.pathname + location.search,
+            });
+        }
+    }, [location]);
+
+    useEffect(() => {
         // Disable Lenis for the registration page to allow native momentum scroll
         if (isRegistrationPage) return;
 
