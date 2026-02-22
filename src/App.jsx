@@ -16,6 +16,7 @@ import OneHabit from "./components/OneHabit";
 import Blog from "./components/Blog";
 import BlogPost from "./components/BlogPost";
 import SEO from "./components/SEO";
+import ClubRegistration from "./components/ClubRegistration";
 
 function App() {
     const location = useLocation();
@@ -44,9 +45,11 @@ function App() {
     }, []);
 
 
+    const isRegistrationPage = location.pathname === "/club-registration";
+
     return (
         <div className="App">
-            <Header />
+            {!isRegistrationPage && <Header />}
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route
@@ -67,9 +70,10 @@ function App() {
                     <Route path="/one-habit" element={<OneHabit />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:id" element={<BlogPost />} />
+                    <Route path="/club-registration" element={<ClubRegistration />} />
                 </Routes>
             </AnimatePresence>
-            <Footer />
+            {!isRegistrationPage && <Footer />}
         </div>
     );
 }
