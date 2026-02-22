@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Check, Upload, Laptop, Palette, Send, Phone, Mail } from "lucide-react";
 
@@ -61,6 +61,19 @@ const PixelBackground = () => {
 const ClubRegistration = () => {
     const [domain, setDomain] = useState("");
     const [status, setStatus] = useState(""); // "", "sending", "success", "error"
+    const [showModal, setShowModal] = useState(false);
+
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (showModal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [showModal]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -133,6 +146,19 @@ const ClubRegistration = () => {
         letterSpacing: "0.05em",
     };
 
+    const modalContent = [
+        "This is not a participation club — it is a working technical body.",
+        "As a member, you contribute through real execution, not just attendance.",
+        "You will work on structured technical projects and real problem statements.",
+        "You may lead teams, organize events, and mentor juniors.",
+        "You gain hands-on experience in planning, execution, and documentation.",
+        "You develop professional discipline, accountability, and leadership skills.",
+        "Your contributions become verified experience and portfolio proof.",
+        "Selection is intentional — commitment and responsibility matter here.",
+        "This role is for students ready to grow through ownership and execution.",
+        "Root access isn't given, it's earned."
+    ];
+
     return (
         <div style={{
             minHeight: "100vh",
@@ -143,6 +169,81 @@ const ClubRegistration = () => {
             overflow: "hidden"
         }}>
             <PixelBackground />
+
+            {/* Modal */}
+            <AnimatePresence>
+                {showModal && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowModal(false)}
+                        style={{
+                            position: "fixed",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            background: "rgba(0, 0, 0, 0.8)",
+                            backdropFilter: "blur(8px)",
+                            zIndex: 1000,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            padding: "1rem"
+                        }}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            onClick={(e) => e.stopPropagation()}
+                            onWheel={(e) => e.stopPropagation()}
+                            style={{
+                                background: "#0f1417",
+                                border: "1px solid rgba(164, 255, 1, 0.2)",
+                                borderRadius: "24px",
+                                padding: "clamp(1.5rem, 4vw, 2.5rem)",
+                                maxWidth: "600px",
+                                width: "calc(100% - 2rem)",
+                                height: "85vh",
+                                overflowY: "auto",
+                                position: "relative",
+                                boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                                scrollbarWidth: "thin",
+                                scrollbarColor: "#a4ff01 rgba(255,255,255,0.05)"
+                            }}
+                        >
+                            <button
+                                onClick={() => setShowModal(false)}
+                                style={{
+                                    position: "absolute",
+                                    top: "1.5rem",
+                                    right: "1.5rem",
+                                    background: "none",
+                                    border: "none",
+                                    color: "rgba(255,255,255,0.4)",
+                                    cursor: "pointer",
+                                    fontSize: "1.2rem"
+                                }}
+                            >
+                                ✕
+                            </button>
+                            <h2 style={{ color: "#a4ff01", marginBottom: "2rem", fontSize: "1.8rem" }}>Why be a .root Member?</h2>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                                {modalContent.map((point, i) => (
+                                    <div key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                                        <div style={{ color: "#a4ff01", marginTop: "0.3rem" }}>●</div>
+                                        <p style={{ color: "rgba(255,255,255,0.8)", lineHeight: 1.5, margin: 0 }}>
+                                            {i === modalContent.length - 1 ? <strong>{point}</strong> : point}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Animated Background Orbs */}
             <div style={{
@@ -162,9 +263,6 @@ const ClubRegistration = () => {
                     <div>
                         <div style={{ fontFamily: "'Fredoka', sans-serif", fontSize: "2.5rem", fontWeight: "700", color: "#a4ff01", lineHeight: 1 }}>
                             .root
-                        </div>
-                        <div style={{ fontSize: "0.7rem", color: "rgba(255, 255, 255, 0.4)", marginTop: "0.25rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                            powered by wbzard
                         </div>
                     </div>
                     <div style={{ display: "flex", gap: "0.75rem" }}>
@@ -219,10 +317,28 @@ const ClubRegistration = () => {
                         <h1 style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", lineHeight: 1, marginBottom: "1.5rem" }}>
                             JOIN THE <span style={{ color: "#a4ff01" }}>.ROOT</span> CREW
                         </h1>
-                        <p style={{ fontSize: "clamp(1.1rem, 2vw, 1.3rem)", color: "rgba(255, 255, 255, 0.7)", maxWidth: "600px", margin: "0 auto" }}>
-                            go from understanding <span style={{ color: "#fff", fontWeight: 700 }}>"How the Internet works"</span> to <br />
-                            <span style={{ color: "#a4ff01", fontWeight: 700 }}>"I am shipping an entire application today"</span>
-                        </p>
+                        <button
+                            onClick={() => setShowModal(true)}
+                            style={{
+                                background: "none",
+                                border: "none",
+                                outline: "none",
+                                cursor: "pointer",
+                                fontSize: "clamp(1.1rem, 2vw, 1.3rem)",
+                                color: "#a4ff01",
+                                fontWeight: "600",
+                                textDecoration: "underline",
+                                textUnderlineOffset: "8px",
+                                transition: "all 0.3s ease",
+                                padding: "0.5rem"
+                            }}
+                            className="why-link"
+                        >
+                            Why be a .root Member?
+                        </button>
+                        <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", marginTop: "0.5rem", letterSpacing: "0.05em" }}>
+                            (Click here to learn more)
+                        </div>
                     </motion.div>
 
                     {/* Registration Form */}
@@ -237,9 +353,12 @@ const ClubRegistration = () => {
                             boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)"
                         }}
                     >
-                        <h2 style={{ fontSize: "1.5rem", marginBottom: "2.5rem", textAlign: "center", opacity: 0.9 }}>
+                        <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem", textAlign: "center", opacity: 0.9 }}>
                             Member Recruitment 2026
                         </h2>
+                        <p style={{ textAlign: "center", fontSize: "0.9rem", color: "rgba(255,255,255,0.4)", marginBottom: "3rem" }}>
+                            Fill out the below form.
+                        </p>
 
                         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
                             {/* Row 1: Name and USN */}
@@ -461,6 +580,18 @@ const ClubRegistration = () => {
                             )}
                         </form>
                     </motion.div>
+
+                    <div style={{
+                        textAlign: "center",
+                        fontSize: "0.65rem",
+                        color: "rgba(255, 255, 255, 0.2)",
+                        marginTop: "2rem",
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        fontWeight: "500"
+                    }}>
+                        In association with wbzard
+                    </div>
                 </motion.div>
 
                 {/* Footer simple */}
@@ -473,6 +604,11 @@ const ClubRegistration = () => {
                 .form-input:focus, .form-select:focus {
                     border-color: #a4ff01 !important;
                     box-shadow: 0 0 0 1px #a4ff01 !important;
+                }
+                .why-link:hover {
+                    color: #fff !important;
+                    opacity: 0.8;
+                    transform: scale(1.05);
                 }
                 .cta-icon:hover {
                     background: rgba(164, 255, 1, 0.1) !important;
