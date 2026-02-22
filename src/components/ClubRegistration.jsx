@@ -208,6 +208,7 @@ const ClubRegistration = () => {
                                 width: "calc(100% - 2rem)",
                                 height: "85vh",
                                 overflowY: "auto",
+                                WebkitOverflowScrolling: "touch",
                                 position: "relative",
                                 boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
                                 scrollbarWidth: "thin",
