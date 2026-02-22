@@ -21,6 +21,7 @@ import ClubRegistration from "./components/ClubRegistration";
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
+    const isRegistrationPage = location.pathname === "/club-registration";
 
     useEffect(() => {
         // Disable Lenis for the registration page to allow native momentum scroll
@@ -47,7 +48,6 @@ function App() {
     }, [isRegistrationPage]);
 
 
-    const isRegistrationPage = location.pathname === "/club-registration";
 
     return (
         <div className="App">
