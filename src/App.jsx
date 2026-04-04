@@ -81,7 +81,7 @@ function App() {
                     <Route path="/one-habit" element={<OneHabit />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/blog/:id" element={<BlogPost />} />
-                    <Route path="/club-registration" element={<ClubRegistration />} />
+                    {/* <Route path="/club-registration" element={<ClubRegistration />} /> */}
                 </Routes>
             </AnimatePresence>
             {!isRegistrationPage && <Footer />}
