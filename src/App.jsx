@@ -17,10 +17,11 @@ import DiscoverySection from "./components/DiscoverySection";
 import FAQSection       from "./components/FAQSection";
 
 // Other pages
-import Blog     from "./components/Blog";
-import BlogPost from "./components/BlogPost";
-import Blokz    from "./components/Blokz";
-import OneHabit from "./components/OneHabit";
+import Blog        from "./components/Blog";
+import BlogPost    from "./components/BlogPost";
+import Blokz       from "./components/Blokz";
+import OneHabit    from "./components/OneHabit";
+import ServicePage from "./components/ServicePage";
 
 function App() {
     const location = useLocation();
@@ -67,10 +68,11 @@ function App() {
                             </main>
                         }
                     />
-                    <Route path="/blog"       element={<Blog />} />
-                    <Route path="/blog/:id"   element={<BlogPost />} />
-                    <Route path="/blokz"      element={<Blokz />} />
-                    <Route path="/one-habit"  element={<OneHabit />} />
+                    <Route path="/blog"            element={<Blog />} />
+                    <Route path="/blog/:id"        element={<BlogPost />} />
+                    <Route path="/services/:slug"  element={<ServicePage />} />
+                    <Route path="/blokz"           element={<Blokz />} />
+                    <Route path="/one-habit"       element={<OneHabit />} />
                 </Routes>
             </AnimatePresence>
             <Footer />

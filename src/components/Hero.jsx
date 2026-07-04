@@ -148,13 +148,13 @@ const Hero = () => {
                     >
                         Book a Discovery Session <ArrowRight size={15} />
                     </button>
-                    <a
-                        href="/#services"
+                    <button
                         className="btn-outline-dark"
                         style={{ fontSize: "0.875rem", padding: "0.875rem 1.75rem" }}
+                        onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
                     >
                         Explore Services
-                    </a>
+                    </button>
                 </motion.div>
             </div>
         </section>
