@@ -1,4 +1,9 @@
 import { StrictMode } from "react";
+
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+window.scrollTo(0, 0);
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
