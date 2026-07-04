@@ -1,97 +1,117 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Search, PenTool, BarChart3, Globe, Shield, Zap } from "lucide-react";
+import { Code2, Zap, Globe, Sparkles, ArrowRight } from "lucide-react";
 
 const services = [
     {
-        icon: <Search size={28} />,
-        title: "SEO Wizardry",
-        desc: "Rank higher and dominate search results with our advanced SEO strategies.",
+        icon:  <Code2 size={26} />,
+        title: "Custom Software Development",
+        desc:  "Internal dashboards, CRM systems, client portals, and workflow platforms — built specifically around how your business operates.",
+        href:  "/services/custom-software-development",
     },
     {
-        icon: <PenTool size={28} />,
-        title: "Content Craft",
-        desc: "Engaging content that turns casual readers into loyal brand advocates.",
+        icon:  <Zap size={26} />,
+        title: "Business Process Automation",
+        desc:  "Eliminate repetitive manual work. From lead management and client onboarding to reporting and internal workflows.",
+        href:  "/services/business-automation",
     },
     {
-        icon: <BarChart3 size={28} />,
-        title: "PPC Magic",
-        desc: "Data-driven advertising that maximizes ROI and accelerates growth.",
+        icon:  <Globe size={26} />,
+        title: "Website Development",
+        desc:  "Websites built for business outcomes — lead generation, customer acquisition, and seamless integration with your operations.",
+        href:  "/services/website-development",
     },
     {
-        icon: <Globe size={28} />,
-        title: "Web Design",
-        desc: "Beautiful, high-converting websites built with modern technologies.",
-    },
-    {
-        icon: <Shield size={28} />,
-        title: "Brand Strategy",
-        desc: "Building solid foundations for brands that want to stand the test of time.",
-    },
-    {
-        icon: <Zap size={28} />,
-        title: "Performance",
-        desc: "Lightning fast experiences that keep your users coming back for more.",
+        icon:  <Sparkles size={26} />,
+        title: "AI Solutions",
+        desc:  "Practical AI implementations that improve productivity and automate processes. No AI for the sake of AI — only what creates real value.",
+        href:  "/services/ai-solutions",
     },
 ];
 
-const Services = () => {
-    return (
-        <section id="services" style={{ background: "var(--color-bg)" }}>
-            <div className="container">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    style={{ marginBottom: "clamp(3rem, 10vw, 6rem)", textAlign: "center" }}
-                >
-                    <span style={{ fontSize: "0.85rem", letterSpacing: "0.2em", color: "var(--color-text-muted)" }}>
-                        OUR SERVICES
-                    </span>
-                    <h2 style={{ fontSize: "clamp(2rem, 8vw, 4.5rem)", marginTop: "1rem" }}>
-                        EXPERT SOLUTIONS
-                    </h2>
-                </motion.div>
-
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(auto-fit, minmax(clamp(250px, 100%, 350px), 1fr))",
-                        gap: "clamp(1.5rem, 3vw, 2rem)",
-                    }}
-                >
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="glass"
-                            style={{
-                                padding: "3rem",
-                                borderRadius: "var(--radius-lg)",
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: "1.5rem",
-                                transition: "border-color 0.3s",
-                            }}
-                            whileHover={{ borderColor: "rgba(255,255,255,0.3)", y: -10 }}
-                        >
-                            <div style={{ color: "var(--color-text)" }}>{service.icon}</div>
-                            <h3 style={{ fontSize: "1.5rem", textTransform: "none", letterSpacing: "0" }}>
-                                {service.title}
-                            </h3>
-                            <p style={{ color: "var(--color-text-muted)", margin: 0 }}>
-                                {service.desc}
-                            </p>
-                        </motion.div>
-                    ))}
+const Services = () => (
+    <section id="services" style={{ background: "var(--bg)", padding: "var(--section-pad) 0" }}>
+        <div className="container">
+            {/* Header */}
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "clamp(2.5rem, 6vw, 4rem)", gap: "1.5rem" }}>
+                <div>
+                    <motion.p
+                        className="section-label"
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        Services
+                    </motion.p>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.05 }}
+                        style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)", lineHeight: 1.1 }}
+                    >
+                        Solutions built around your business.
+                    </motion.h2>
                 </div>
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    style={{ fontSize: "0.875rem", color: "var(--text-muted)", maxWidth: "280px", lineHeight: 1.65 }}
+                >
+                    Every service starts with understanding your business — not with a predefined package.
+                </motion.p>
             </div>
-        </section>
-    );
-};
+
+            {/* Grid */}
+            <div style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+                gap: "1.25rem",
+            }}>
+                {services.map((s, i) => (
+                    <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.55, delay: i * 0.08 }}
+                        whileHover={{ y: -4 }}
+                        className="card"
+                        style={{
+                            padding: "2rem",
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: "1rem",
+                            transition: "box-shadow 0.25s ease",
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)"}
+                        onMouseLeave={e => e.currentTarget.style.boxShadow = "none"}
+                    >
+                        <div style={{ color: "var(--accent)", width: "fit-content", padding: "0.625rem", background: "#EEF3FF", borderRadius: "8px" }}>
+                            {s.icon}
+                        </div>
+                        <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 600, fontSize: "1.05rem", letterSpacing: "-0.015em", lineHeight: 1.3 }}>
+                            {s.title}
+                        </h3>
+                        <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.7, flex: 1 }}>
+                            {s.desc}
+                        </p>
+                        <a
+                            href={s.href}
+                            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontSize: "0.78rem", fontWeight: 700, color: "var(--accent)", marginTop: "0.25rem", transition: "gap 0.2s" }}
+                            onMouseEnter={e => e.currentTarget.style.gap = "0.65rem"}
+                            onMouseLeave={e => e.currentTarget.style.gap = "0.4rem"}
+                        >
+                            Learn More <ArrowRight size={13} />
+                        </a>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
 
 export default Services;

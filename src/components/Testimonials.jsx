@@ -6,7 +6,7 @@ const testimonials = [
     {
         name: "Sarah Johnson",
         role: "CEO, BrightStart",
-        content: "Webzards completely transformed our online presence. Our leads have tripled since the new site went live!",
+        content: "Wbzard Labs completely transformed our online presence. Our leads have tripled since the new site went live!",
     },
     {
         name: "Mark Davis",

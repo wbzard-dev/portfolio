@@ -1,195 +1,162 @@
-import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+
+const cyclingWords = ["Simple.", "Efficient.", "Automated.", "Streamlined."];
 
 const Hero = () => {
-    const { scrollY } = useScroll();
-    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-    const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-    const opacity = useTransform(scrollY, [0, 600], [1, 0]);
+    const [index, setIndex] = useState(0);
 
-    const containerVariants = {
-        initial: { opacity: 0 },
-        animate: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.3
-            }
-        }
-    };
-
-    const itemVariants = {
-        initial: { opacity: 0, y: 60 },
-        animate: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 1.4,
-                ease: [0.16, 1, 0.3, 1]
-            }
-        }
-    };
+    useEffect(() => {
+        const id = setInterval(() => {
+            setIndex(i => (i + 1) % cyclingWords.length);
+        }, 2200);
+        return () => clearInterval(id);
+    }, []);
 
     return (
         <section
+            id="hero"
             style={{
-                minHeight: "100vh",
+                height: "100svh",
+                minHeight: "620px",
+                background: "var(--bg-dark)",
+                color: "#fff",
                 display: "flex",
                 flexDirection: "column",
+                alignItems: "center",
                 justifyContent: "center",
+                textAlign: "center",
                 position: "relative",
                 overflow: "hidden",
-                background: "var(--color-bg)",
-                padding: "clamp(6rem, 15vw, 10rem) 1.5rem 4rem"
+                padding: "calc(64px + 0.75rem) 1.5rem 3rem",
             }}
         >
-            <motion.div
-                className="container"
-                variants={containerVariants}
-                initial="initial"
-                animate="animate"
-                style={{ position: "relative", zIndex: 2, opacity }}
-            >
-                <div style={{ overflow: "hidden", textAlign: "center" }} className="mobile-center">
-                    <motion.span
-                        variants={itemVariants}
-                        style={{
-                            fontSize: "clamp(0.7rem, 2vw, 0.85rem)",
-                            letterSpacing: "0.4em",
-                            color: "var(--color-text-muted)",
-                            display: "block",
-                            marginBottom: "clamp(1.5rem, 5vw, 2rem)",
-                            fontWeight: 800,
-                            fontFamily: "'Syne', sans-serif"
-                        }}
-                    >
-                        STRATEGIC DIGITAL ARCHITECTURE
-                    </motion.span>
-                </div>
+            {/* Dot grid */}
+            <div style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0)",
+                backgroundSize: "36px 36px",
+                zIndex: 1,
+                pointerEvents: "none",
+            }} />
 
-                <div className="hero-text-grid" style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: "clamp(1rem, 2vw, 2rem)"
-                }}>
-                    <motion.h1
-                        variants={{
-                            initial: {},
-                            animate: {
-                                transition: {
-                                    staggerChildren: 0.1,
-                                    delayChildren: 0.4
-                                }
-                            }
-                        }}
-                        style={{
-                            fontSize: "clamp(1.3rem, 6vw, 4.5rem)",
-                            marginBottom: "0",
-                            lineHeight: 0.8,
-                            letterSpacing: "-0.05em",
-                            fontWeight: 800,
-                            textTransform: "uppercase",
-                            width: "100%",
-                            textAlign: "left",
-                            WebkitTextSizeAdjust: "100%"
-                        }} className="mobile-center"
-                    >
-                        <span style={{ display: "block", overflow: "visible" }}>
-                            <motion.span
-                                variants={itemVariants}
-                                style={{ display: "block" }}
-                            >
-                                ENGINEERING
-                            </motion.span>
-                        </span>
+            <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1000px" }}>
 
-                        <span style={{
-                            display: "flex",
-                            flexWrap: "wrap",
-                            justifyContent: "space-between",
-                            alignItems: "baseline",
-                            width: "100%",
-                            gap: "clamp(0.5rem, 2vw, 1rem)",
-                            marginTop: "clamp(0.5rem, 2vw, 1rem)",
-                            overflow: "visible"
-                        }} className="hero-second-row">
-                            <motion.span
-                                variants={itemVariants}
-                                style={{
-                                    color: "transparent",
-                                    WebkitTextStroke: "1px var(--color-text)",
-                                }}
-                            >
-                                DIGITAL
-                            </motion.span>
-                            <motion.span variants={itemVariants}>
-                                LEGACIES.
-                            </motion.span>
-                        </span>
-                    </motion.h1>
-                </div>
-
-                <motion.div
-                    variants={itemVariants}
+                {/* Overline */}
+                {/* <motion.p
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
                     style={{
-                        maxWidth: "600px",
-                        marginTop: "clamp(3rem, 10vw, 5rem)",
-                        marginLeft: "auto",
-                        textAlign: "right"
+                        fontFamily: "'Satoshi', sans-serif",
+                        fontSize: "0.68rem",
+                        fontWeight: 600,
+                        letterSpacing: "0.2em",
+                        textTransform: "uppercase",
+                        color: "rgba(255,255,255,0.35)",
+                        marginBottom: "2.5rem",
                     }}
-                    className="hero-desc-container"
                 >
-                    <p style={{
-                        fontSize: "clamp(1rem, 3.5vw, 1.35rem)",
-                        color: "var(--color-text-muted)",
+                    Wbzard Labs
+                </motion.p> */}
+
+                {/* Static line */}
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    style={{
+                        fontFamily: "'Satoshi', sans-serif",
+                        fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
                         fontWeight: 400,
-                        lineHeight: 1.5
-                    }}>
-                        Wbzard is a boutique architecture firm for the digital age. We build high-performance systems for brands that demand absolute excellence.
-                    </p>
+                        color: "rgba(255,255,255,0.45)",
+                        letterSpacing: "0.01em",
+                        marginBottom: "0.25rem",
+                    }}
+                >
+                    Keeping your business
+                </motion.p>
+
+                {/* Cycling word */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.35 }}
+                    style={{
+                        height: "clamp(5rem, 14vw, 12rem)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        overflow: "hidden",
+                        marginBottom: "2rem",
+                    }}
+                >
+                    <AnimatePresence mode="wait">
+                        <motion.span
+                            key={cyclingWords[index]}
+                            initial={{ y: "60%", opacity: 0 }}
+                            animate={{ y: "0%", opacity: 1 }}
+                            exit={{ y: "-60%", opacity: 0 }}
+                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                            style={{
+                                display: "block",
+                                fontFamily: "'Anton', Arial, sans-serif",
+                                fontWeight: 400,
+                                fontSize: "clamp(4.5rem, 13vw, 11rem)",
+                                lineHeight: 1,
+                                letterSpacing: "-0.01em",
+                                color: "#fff",
+                                whiteSpace: "nowrap",
+                            }}
+                        >
+                            {cyclingWords[index]}
+                        </motion.span>
+                    </AnimatePresence>
                 </motion.div>
-            </motion.div>
 
-            <style>{`
-                @media (max-width: 768px) {
-                    .mobile-center { text-align: center !important; }
-                    .hero-second-row { justify-content: center !important; flex-direction: column !important; align-items: center !important; }
-                    .hero-desc-container { text-align: center !important; margin: 3rem auto 0 !important; }
-                    .hero-text-grid { align-items: center !important; }
-                    section { padding: 6rem 1rem 4rem !important; overflow: visible !important; }
-                    .hero-text-grid { overflow: visible !important; }
-                }
-            `}</style>
+                {/* Subheadline */}
+                <motion.p
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.5 }}
+                    style={{
+                        fontFamily: "'Satoshi', sans-serif",
+                        fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)",
+                        fontWeight: 400,
+                        color: "rgba(255,255,255,0.45)",
+                        maxWidth: "500px",
+                        margin: "0 auto 2.25rem",
+                        lineHeight: 1.7,
+                    }}
+                >
+                    Custom software, automation, and digital systems built to eliminate manual work — starting with understanding your business.
+                </motion.p>
 
-            {/* Subtle Gradient Backdrops */}
-            <motion.div
-                style={{
-                    position: "absolute",
-                    top: "10%",
-                    right: "-5%",
-                    width: "50vw",
-                    height: "50vw",
-                    borderRadius: "50%",
-                    background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%)",
-                    zIndex: 1,
-                    y: y1,
-                }}
-            />
-            <motion.div
-                style={{
-                    position: "absolute",
-                    bottom: "-10%",
-                    left: "-5%",
-                    width: "40vw",
-                    height: "40vw",
-                    borderRadius: "50%",
-                    background: "radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)",
-                    zIndex: 1,
-                    y: y2,
-                }}
-            />
+                {/* CTAs */}
+                <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.65 }}
+                    style={{ display: "flex", gap: "0.875rem", justifyContent: "center", flexWrap: "wrap" }}
+                >
+                    <button
+                        className="btn-primary-dark"
+                        data-cal-link="vivek-g-ts38ii/30min"
+                        style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "0.875rem", padding: "0.875rem 1.75rem" }}
+                    >
+                        Book a Discovery Session <ArrowRight size={15} />
+                    </button>
+                    <a
+                        href="/#services"
+                        className="btn-outline-dark"
+                        style={{ fontSize: "0.875rem", padding: "0.875rem 1.75rem" }}
+                    >
+                        Explore Services
+                    </a>
+                </motion.div>
+            </div>
         </section>
     );
 };
