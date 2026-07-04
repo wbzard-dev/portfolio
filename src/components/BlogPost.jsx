@@ -53,9 +53,11 @@ const BlogPost = () => {
             <SEO
                 title={post.title}
                 description={post.excerpt}
-                image={post.coverImage}
+                image={post.coverImage || "https://wbzard.com/images/final-logo.png"}
                 url={`https://wbzard.com/blog/${id}`}
                 type="article"
+                author={post.author}
+                datePublished={post.date}
             />
 
             {/* Cover image hero */}

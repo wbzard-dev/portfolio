@@ -2,12 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wbzard.com/</loc>
-    <lastmod>2026-02-01</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <priority>1.00</priority>
   </url>
   <url>
+    <loc>https://wbzard.com/services/custom-software-development</loc>
+    <lastmod>2026-07-04</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/services/business-automation</loc>
+    <lastmod>2026-07-04</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/services/website-development</loc>
+    <lastmod>2026-07-04</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/services/ai-solutions</loc>
+    <lastmod>2026-07-04</lastmod>
+    <priority>0.90</priority>
+  </url>
+  <url>
     <loc>https://wbzard.com/blog</loc>
-    <lastmod>2026-02-01</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <priority>0.80</priority>
   </url>
   <url>
@@ -24,15 +44,5 @@
     <loc>https://wbzard.com/blog/var-let-const</loc>
     <lastmod>2026-02-01</lastmod>
     <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://wbzard.com/blokz</loc>
-    <lastmod>2026-01-29</lastmod>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://wbzard.com/one-habit</loc>
-    <lastmod>2026-01-29</lastmod>
-    <priority>0.60</priority>
   </url>
 </urlset>
