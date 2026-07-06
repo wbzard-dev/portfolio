@@ -22,6 +22,7 @@ import BlogPost    from "./components/BlogPost";
 import Blokz       from "./components/Blokz";
 import OneHabit    from "./components/OneHabit";
 import ServicePage from "./components/ServicePage";
+import CohortV1    from "./components/CohortV1";
 
 function App() {
     const location = useLocation();
@@ -73,6 +74,7 @@ function App() {
                     <Route path="/services/:slug"  element={<ServicePage />} />
                     <Route path="/blokz"           element={<Blokz />} />
                     <Route path="/one-habit"       element={<OneHabit />} />
+                    <Route path="/cohort/v1"       element={<CohortV1 />} />
                 </Routes>
             </AnimatePresence>
             <Footer />

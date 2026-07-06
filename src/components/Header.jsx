@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const navLinks = [
     { name: "Services", href: "/#services" },
@@ -10,11 +10,17 @@ const navLinks = [
     { name: "Contact",  href: "/#contact" },
 ];
 
+const cohortLinks = [
+    { name: "Cohort v1", href: "/cohort/v1", badge: "New" },
+];
+
 const Header = () => {
-    const [scrollY, setScrollY]     = useState(0);
-    const [hidden, setHidden]       = useState(false);
-    const [lastY, setLastY]         = useState(0);
-    const [menuOpen, setMenuOpen]   = useState(false);
+    const [scrollY, setScrollY]         = useState(0);
+    const [hidden, setHidden]           = useState(false);
+    const [lastY, setLastY]             = useState(0);
+    const [menuOpen, setMenuOpen]       = useState(false);
+    const [cohortOpen, setCohortOpen]   = useState(false);
+    const cohortRef                     = useRef(null);
     const location = useLocation();
 
     useEffect(() => {
@@ -28,7 +34,17 @@ const Header = () => {
         return () => window.removeEventListener("scroll", onScroll);
     }, [lastY]);
 
-    useEffect(() => { setMenuOpen(false); }, [location]);
+    useEffect(() => { setMenuOpen(false); setCohortOpen(false); }, [location]);
+
+    useEffect(() => {
+        const handler = (e) => {
+            if (cohortRef.current && !cohortRef.current.contains(e.target)) {
+                setCohortOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handler);
+        return () => document.removeEventListener("mousedown", handler);
+    }, []);
 
     // Switch from dark (hero) to light (rest of page)
     const pastHero = scrollY > (typeof window !== "undefined" ? window.innerHeight * 0.85 : 700);
@@ -106,6 +122,72 @@ const Header = () => {
                                 {link.name}
                             </a>
                         ))}
+
+                        {/* Cohort dropdown */}
+                        <div ref={cohortRef} style={{ position: "relative" }}>
+                            <button
+                                onClick={() => setCohortOpen(o => !o)}
+                                style={{
+                                    display: "flex", alignItems: "center", gap: "0.3rem",
+                                    fontFamily: "'Satoshi', sans-serif",
+                                    fontSize: "0.875rem", fontWeight: 500,
+                                    color: cohortOpen ? textHover : textCol,
+                                    background: "none", border: "none", cursor: "pointer",
+                                    padding: 0, transition: "color 0.2s ease",
+                                }}
+                            >
+                                Cohort <ChevronDown size={14} style={{ transition: "transform 0.2s ease", transform: cohortOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
+                            </button>
+                            {cohortOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                                    style={{
+                                        position: "absolute", top: "calc(100% + 0.75rem)", left: "50%",
+                                        transform: "translateX(-50%)",
+                                        background: "#fff",
+                                        border: "1px solid var(--border)",
+                                        borderRadius: "var(--radius-md)",
+                                        boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                                        padding: "0.5rem",
+                                        minWidth: "180px",
+                                        zIndex: 100,
+                                    }}
+                                >
+                                    {cohortLinks.map(cl => (
+                                        <Link
+                                            key={cl.name}
+                                            to={cl.href}
+                                            style={{
+                                                display: "flex", alignItems: "center", justifyContent: "space-between",
+                                                padding: "0.6rem 0.875rem",
+                                                borderRadius: "var(--radius-sm)",
+                                                fontFamily: "'Satoshi', sans-serif",
+                                                fontSize: "0.85rem", fontWeight: 500,
+                                                color: "var(--text)",
+                                                transition: "background 0.15s ease",
+                                            }}
+                                            onMouseEnter={e => e.currentTarget.style.background = "var(--bg-subtle)"}
+                                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                                        >
+                                            {cl.name}
+                                            {cl.badge && (
+                                                <span style={{
+                                                    fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em",
+                                                    textTransform: "uppercase", color: "#fff",
+                                                    background: "var(--accent)", borderRadius: "4px",
+                                                    padding: "0.1rem 0.4rem",
+                                                }}>
+                                                    {cl.badge}
+                                                </span>
+                                            )}
+                                        </Link>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </div>
+
                         <button
                             className="btn-primary"
                             data-cal-link="vivek-g-ts38ii/30min"
@@ -158,6 +240,28 @@ const Header = () => {
                             {link.name}
                         </a>
                     ))}
+
+                    {/* Mobile cohort links */}
+                    <div style={{ borderTop: `1px solid ${borderCol}`, paddingTop: "1rem" }}>
+                        <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: pastHero ? "var(--text-muted)" : "rgba(255,255,255,0.35)", marginBottom: "0.75rem" }}>
+                            Cohort
+                        </p>
+                        {cohortLinks.map(cl => (
+                            <Link
+                                key={cl.name}
+                                to={cl.href}
+                                style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", fontWeight: 500, color: pastHero ? "var(--text)" : "#fff", marginBottom: "0.5rem" }}
+                            >
+                                {cl.name}
+                                {cl.badge && (
+                                    <span style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#fff", background: "var(--accent)", borderRadius: "4px", padding: "0.1rem 0.4rem" }}>
+                                        {cl.badge}
+                                    </span>
+                                )}
+                            </Link>
+                        ))}
+                    </div>
+
                     <button
                         className="btn-primary"
                         data-cal-link="vivek-g-ts38ii/30min"
