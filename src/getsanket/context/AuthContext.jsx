@@ -75,8 +75,19 @@ export const AuthProvider = ({ children }) => {
         })
     }
 
+    const updateProfile = async (name, company_name, company_website) => {
+        const res = await authFetch('/api/auth/profile', {
+            method: 'PATCH',
+            body: JSON.stringify({ name, company_name, company_website })
+        })
+        const data = await res.json()
+        if (!data.success) throw new Error(data.message)
+        setUser(data.user)
+        return data.user
+    }
+
     return (
-        <AuthContext.Provider value={{ user, loading, login, signup, logout, authFetch, refreshUser }}>
+        <AuthContext.Provider value={{ user, loading, login, signup, logout, authFetch, refreshUser, updateProfile }}>
             {children}
         </AuthContext.Provider>
     )

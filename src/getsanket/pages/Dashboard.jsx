@@ -310,7 +310,7 @@ const CreateFormModal = ({ onClose, onCreated }) => {
 // ── Email Compose Modal ────────────────────────────────────────────────────────
 
 const EmailComposeModal = ({ selectedSubmissions, formName, onClose }) => {
-    const { authFetch } = useAuth()
+    const { authFetch, user } = useAuth()
     const [step, setStep] = useState(0)
     const [template, setTemplate] = useState(null)
     const [customMessage, setCustomMessage] = useState('')
@@ -330,6 +330,8 @@ const EmailComposeModal = ({ selectedSubmissions, formName, onClose }) => {
     const makeVars = (sub) => ({
         ...(sub?.data || {}), form_name: formName,
         custom_message: customMessage, offer_code: offerCode, deadline,
+        company_name: user?.company_name || '',
+        sender_name: user?.name || '',
     })
     const previewVars = makeVars(selectedSubmissions[0] || { data: { name: 'Jane Smith', email: 'jane@example.com' } })
     const previewHtml    = template ? template.render(previewVars) : ''
@@ -749,7 +751,7 @@ const FormsPage = () => {
 // ── Settings Page ──────────────────────────────────────────────────────────────
 
 const SettingsPage = ({ onUpgrade }) => {
-    const { user, authFetch, refreshUser } = useAuth()
+    const { user, authFetch, refreshUser, updateProfile } = useAuth()
     const initials = user?.name
         ? user.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
         : '?'
@@ -759,6 +761,23 @@ const SettingsPage = ({ onUpgrade }) => {
     const [billingLoading, setBillingLoading] = useState(true)
     const [cancelling, setCancelling] = useState(false)
     const [cancelError, setCancelError] = useState('')
+
+    const [profileForm, setProfileForm] = useState({
+        name: user?.name || '',
+        company_name: user?.company_name || '',
+        company_website: user?.company_website || '',
+    })
+    const [profileSaving, setProfileSaving] = useState(false)
+    const [profileError, setProfileError] = useState('')
+    const [profileSaved, setProfileSaved] = useState(false)
+
+    useEffect(() => {
+        setProfileForm({
+            name: user?.name || '',
+            company_name: user?.company_name || '',
+            company_website: user?.company_website || '',
+        })
+    }, [user?.name, user?.company_name, user?.company_website])
 
     useEffect(() => {
         authFetch('/api/subscriptions/status').then(r => r.json())
@@ -782,6 +801,20 @@ const SettingsPage = ({ onUpgrade }) => {
         }
     }
 
+    const handleProfileSave = async (e) => {
+        e.preventDefault()
+        setProfileSaving(true); setProfileError(''); setProfileSaved(false)
+        try {
+            await updateProfile(profileForm.name, profileForm.company_name, profileForm.company_website)
+            setProfileSaved(true)
+            setTimeout(() => setProfileSaved(false), 2500)
+        } catch (err) {
+            setProfileError(err.message)
+        } finally {
+            setProfileSaving(false)
+        }
+    }
+
     const SoonBadge = () => (
         <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--muted)', padding: '2px 8px', borderRadius: 'var(--r-pill)', fontFamily: "'Satoshi', sans-serif" }}>
             Soon
@@ -797,12 +830,8 @@ const SettingsPage = ({ onUpgrade }) => {
 
             {/* Profile */}
             <div className="card" style={{ marginBottom: '1.25rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-                    <h3 style={{ margin: 0 }}>Profile</h3>
-                    <SoonBadge />
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-                    <div style={{ width: 52, height: 52, borderRadius: '50%', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, fontWeight: 700, color: '#fff', flexShrink: 0, fontFamily: "'Satoshi', sans-serif" }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                    <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, fontWeight: 700, color: '#fff', flexShrink: 0, fontFamily: "'Satoshi', sans-serif" }}>
                         {initials}
                     </div>
                     <div>
@@ -810,6 +839,41 @@ const SettingsPage = ({ onUpgrade }) => {
                         <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 2 }}>{user?.email}</div>
                     </div>
                 </div>
+                <form onSubmit={handleProfileSave} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        <label className="field-label">Full name</label>
+                        <input
+                            required className="input-field" placeholder="Your name"
+                            value={profileForm.name}
+                            onChange={e => setProfileForm(f => ({ ...f, name: e.target.value }))}
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        <label className="field-label">Company name
+                            <span style={{ color: 'var(--muted)', fontWeight: 400, marginLeft: 6, fontSize: 13 }}>used in email templates</span>
+                        </label>
+                        <input
+                            className="input-field" placeholder="Acme Inc."
+                            value={profileForm.company_name}
+                            onChange={e => setProfileForm(f => ({ ...f, company_name: e.target.value }))}
+                        />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                        <label className="field-label">Company website</label>
+                        <input
+                            className="input-field" placeholder="https://acme.com" type="url"
+                            value={profileForm.company_website}
+                            onChange={e => setProfileForm(f => ({ ...f, company_website: e.target.value }))}
+                        />
+                    </div>
+                    {profileError && <p className="error-text">{profileError}</p>}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <button type="submit" disabled={profileSaving} className="btn-primary" style={{ padding: '9px 20px' }}>
+                            {profileSaving ? <><Loader2 size={14} className="animate-spin" /> Saving…</> : 'Save profile'}
+                        </button>
+                        {profileSaved && <span style={{ fontSize: 13, color: 'var(--success)', display: 'flex', alignItems: 'center', gap: 4 }}><CheckCircle2 size={14} /> Saved</span>}
+                    </div>
+                </form>
             </div>
 
             {/* Billing */}

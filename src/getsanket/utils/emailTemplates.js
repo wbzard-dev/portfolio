@@ -6,13 +6,15 @@
 const sub = (str, vars) =>
     str.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? vars[k.toLowerCase()] ?? '')
 
-const wrap = (content, accentBg = '#2563EB') => `
+const wrap = (content, accentBg = '#2563EB', vars = {}) => {
+  const brand = vars.company_name || 'GetSanket'
+  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GetSanket</title>
+  <title>${brand}</title>
 </head>
 <body style="margin:0;padding:0;background:#F2F1EE;font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#F2F1EE;padding:40px 20px;">
@@ -22,7 +24,7 @@ const wrap = (content, accentBg = '#2563EB') => `
         <!-- Logo bar -->
         <tr>
           <td style="background:${accentBg};padding:20px 32px;border-radius:12px 12px 0 0;">
-            <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em;">GetSanket</span>
+            <span style="font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.02em;">${brand}</span>
           </td>
         </tr>
 
@@ -37,7 +39,7 @@ const wrap = (content, accentBg = '#2563EB') => `
         <tr>
           <td style="background:#F9F9F7;padding:18px 32px;border-radius:0 0 12px 12px;border-top:1px solid #E5E4E0;">
             <p style="margin:0;font-size:12px;color:#9CA3AF;text-align:center;line-height:1.6;">
-              Sent via <strong>GetSanket</strong> · You're receiving this because you submitted a form.
+              Sent via <strong>${brand}</strong> · You're receiving this because you submitted a form.
             </p>
           </td>
         </tr>
@@ -47,6 +49,7 @@ const wrap = (content, accentBg = '#2563EB') => `
   </table>
 </body>
 </html>`
+}
 
 const h2Style = 'margin:0 0 12px;font-size:22px;font-weight:700;color:#0D0D0D;letter-spacing:-0.02em;line-height:1.2;'
 const pStyle = 'margin:0 0 16px;font-size:15px;color:#4B5563;line-height:1.7;'
@@ -77,7 +80,7 @@ export const followUp = {
         <p style="margin:0;font-size:13px;color:#9CA3AF;line-height:1.6;">
           Replied to the wrong thread? Just hit reply and we'll sort it out.
         </p>
-    `, '#2563EB'),
+    `, '#2563EB', vars),
 }
 
 // ── 2. Thank You ──────────────────────────────────────────────────────────────
@@ -103,9 +106,9 @@ export const thankYou = {
         <hr style="${dividerStyle}">
         <p style="margin:16px 0 0;font-size:14px;color:#374151;">
           Warm regards,<br>
-          <strong>The GetSanket Team</strong>
+          <strong>${vars.sender_name || vars.company_name || 'The Team'}</strong>
         </p>
-    `, '#16a34a'),
+    `, '#16a34a', vars),
 }
 
 // ── 3. Special Offer ──────────────────────────────────────────────────────────
@@ -135,7 +138,7 @@ export const specialOffer = {
         <p style="margin:0;font-size:13px;color:#9CA3AF;">
           This offer is exclusive to you and cannot be transferred.
         </p>
-    `, '#d97706'),
+    `, '#d97706', vars),
 }
 
 // ── 4. Welcome ────────────────────────────────────────────────────────────────
@@ -166,7 +169,7 @@ export const welcome = {
         <p style="margin:0;font-size:13px;color:#9CA3AF;">
           Questions? Just reply to this email — we read every message.
         </p>
-    `, '#7c3aed'),
+    `, '#7c3aed', vars),
 }
 
 // ── 5. Reminder ───────────────────────────────────────────────────────────────
@@ -198,7 +201,7 @@ export const reminder = {
         <p style="margin:0;font-size:13px;color:#9CA3AF;">
           Not interested? No worries — just ignore this email.
         </p>
-    `, '#0ea5e9'),
+    `, '#0ea5e9', vars),
 }
 
 // ── 6. Newsletter / Update ────────────────────────────────────────────────────
@@ -209,9 +212,9 @@ export const newsletter = {
     description: 'Product updates and news for your leads',
     icon: '📰',
     color: '#374151',
-    subject: (vars) => `Latest from GetSanket — ${vars.name ? 'for you, ' + vars.name : 'updates & news'}`,
+    subject: (vars) => `Latest from ${vars.company_name || 'us'} — ${vars.name ? 'for you, ' + vars.name : 'updates & news'}`,
     render: (vars) => wrap(`
-        <h2 style="${h2Style}">What's new at GetSanket 📬</h2>
+        <h2 style="${h2Style}">What's new ${vars.company_name ? 'at ' + vars.company_name : ''} 📬</h2>
         <p style="${pStyle}">Hi ${vars.name || 'there'}, here's a quick update from the team.</p>
         ${vars.custom_message ? `
         <div style="border-left:3px solid #2563EB;padding:12px 20px;margin:20px 0;background:#EFF6FF;border-radius:0 8px 8px 0;">
@@ -228,9 +231,9 @@ export const newsletter = {
         </p>
         <hr style="${dividerStyle}">
         <p style="margin:0;font-size:13px;color:#9CA3AF;line-height:1.6;">
-          You're receiving this because you submitted <strong>${vars.form_name || 'a form'}</strong> on GetSanket.
+          You're receiving this because you submitted <strong>${vars.form_name || 'a form'}</strong>.
         </p>
-    `, '#374151'),
+    `, '#374151', vars),
 }
 
 
