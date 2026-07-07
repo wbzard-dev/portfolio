@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-    ArrowRight, CheckCircle, Play, Users, Award, Briefcase,
+    ArrowRight, CheckCircle, Users, Award, Briefcase,
     Code2, Globe, Terminal, Linkedin, FileText, Zap, Brain,
-    ChevronDown, ChevronUp, Star, Clock, Shield
+    ChevronDown, Star, Clock, Shield, BookOpen, Layers, Rocket,
 } from "lucide-react";
 import SEO from "./SEO";
 
@@ -42,61 +42,194 @@ const painPoints = [
     {
         icon: <Users size={22} />,
         title: "Your profile looks like everyone else's",
-        desc: "\"Proficient in React, Node.js, MongoDB\" — so does every other resume in the pile. Recruiters skip right past you.",
+        desc: '"Proficient in React, Node.js, MongoDB" — so does every other resume in the pile. Recruiters skip right past you.',
     },
 ];
 
-const modules = [
+const curriculum = [
     {
-        phase: "Phase 1 — Foundation",
+        phase: "Phase 1",
+        title: "Foundation",
+        weekRange: "Weeks 1–2",
+        subtitle: "Build learning muscles and understand how the web actually works.",
         color: "#2563EB",
-        items: [
+        icon: <Brain size={18} />,
+        weeks: [
             {
-                icon: <Brain size={18} />,
+                week: 1,
                 title: "How to Learn",
-                desc: "First principles thinking, Feynman technique, spaced repetition, building mental models. Learn how to learn — so every new technology takes you days, not months.",
+                tag: "Mindset",
+                bullets: [
+                    "Feynman Technique — teach-back for deep understanding, not surface recall",
+                    "Spaced repetition — why cramming fails; how to actually retain code",
+                    "First principles thinking — break any problem down to atoms",
+                    "The developer learning curve: syntax → framework → architecture confusion",
+                    "VS Code setup, git basics, and the debugging mindset",
+                ],
+                deliverable: "Learning journal setup + 5-question quiz applying the Feynman Technique",
             },
             {
-                icon: <Globe size={18} />,
+                week: 2,
                 title: "How the Internet Works",
-                desc: "DNS, TCP/IP, HTTP/HTTPS, how browsers render pages, what happens when you type a URL. The fundamentals every engineer must know.",
+                tag: "Fundamentals",
+                bullets: [
+                    "Full request journey: DNS → TCP handshake → TLS → HTTP → server → browser render",
+                    "HTTP vs HTTPS, status codes (200, 301, 404, 500, 503) — what each means",
+                    "Headers, cookies, and why they exist",
+                    "How browsers render: DOM → CSSOM → JavaScript blocking → reflow & repaint",
+                    "Hands-on: DevTools Network tab, trace real websites, throttle network speed",
+                ],
+                deliverable: "Network Trace Analysis — trace 5 real websites and answer speed questions",
             },
         ],
     },
     {
-        phase: "Phase 2 — The Stack",
+        phase: "Phase 2",
+        title: "The Stack",
+        weekRange: "Weeks 3–8",
+        subtitle: "Ship two real, deployed projects. Cover the full MERN stack and core DevOps.",
         color: "#7C3AED",
-        items: [
+        icon: <Layers size={18} />,
+        weeks: [
             {
-                icon: <Code2 size={18} />,
-                title: "MERN Stack — Full Course",
-                desc: "MongoDB, Express, React, Node.js from scratch. Three real projects. REST APIs, auth, state management, database design. No shortcuts.",
+                week: 3,
+                title: "JavaScript Fundamentals + Project 1 Kickoff",
+                tag: "JavaScript",
+                bullets: [
+                    "Variables, types, scope, the call stack — why it matters, not just what it is",
+                    "Functions: pure vs impure, closures, higher-order functions",
+                    "Async JavaScript: callbacks → promises → async/await, error handling",
+                    "Project 1 kickoff: Expense Tracker (MERN) — build your first 3 REST routes",
+                    "Mini-projects: calculator, promise-based data fetcher, async image loader",
+                ],
+                deliverable: "Backend scaffolded: GET all, GET one, POST create routes working in Postman",
             },
             {
-                icon: <Terminal size={18} />,
-                title: "DevOps Basics — Deploy Real Apps",
-                desc: "Linux basics, Git, Docker intro, CI/CD pipelines, deploying to a VPS or cloud (AWS/Railway). Every project you build, you ship.",
+                week: 4,
+                title: "React Fundamentals + Project 1 Frontend",
+                tag: "React",
+                bullets: [
+                    "JSX, functional components, props and state (useState)",
+                    "useEffect — dependency arrays, cleanup, side effects done right",
+                    "Controlled inputs, forms, conditional rendering, lists and keys",
+                    "API integration: fetch, loading states, error handling, CORS explained",
+                    "Connect Expense Tracker frontend to your backend — it talks to a real API",
+                ],
+                deliverable: "Frontend 80% complete — form, list, delete, and category filter working",
+            },
+            {
+                week: 5,
+                title: "Node.js, Express & Databases",
+                tag: "Backend",
+                bullets: [
+                    "Node.js event loop — why everything is async and how it works",
+                    "Express middleware, routing, URL params vs query params",
+                    "MongoDB: documents vs relational, Mongoose schemas, CRUD operations",
+                    "Environment variables (.env), error handling patterns, API design conventions",
+                    "Polish Expense Tracker backend: validation, proper status codes, tested routes",
+                ],
+                deliverable: "All CRUD routes working, tested in Postman, backend ready for deployment",
+            },
+            {
+                week: 6,
+                title: "DevOps & Deployment — Ship Project 1",
+                tag: "DevOps",
+                bullets: [
+                    "Git & GitHub: meaningful commits, branching, pull requests",
+                    "Deployment pipeline: local → staging → production",
+                    "Docker basics: what containerization is, write a Dockerfile, push to Docker Hub",
+                    "Deploy frontend to Vercel, backend to Railway — live app at a real URL",
+                    "Write a README that explains your project to a recruiter in 30 seconds",
+                ],
+                deliverable: "Expense Tracker live and deployed — share the link",
+            },
+            {
+                week: 7,
+                title: "Advanced React + Project 2 Kickoff",
+                tag: "React Advanced",
+                bullets: [
+                    "State management: useContext, useReducer, state lifting — when to use which",
+                    "Custom hooks — write your own, stop repeating logic",
+                    "Performance: useMemo, useCallback, React.memo — only where it matters",
+                    "Project 2 kickoff: Kanban Board — design database schema and component tree",
+                    "Intro to drag-and-drop (React Beautiful DnD / dnd-kit)",
+                ],
+                deliverable: "Kanban project scaffolded: schema designed, backend routes planned",
+            },
+            {
+                week: 8,
+                title: "Full Project Sprint — Ship Project 2",
+                tag: "Build Week",
+                bullets: [
+                    "Build drag-and-drop kanban: columns, cards, board statistics",
+                    "Advanced MongoDB: aggregation pipelines, nested document updates",
+                    "State management under complexity — how to stay in control",
+                    "Error handling at the UI level: what if a drag fails? What if save fails?",
+                    "Deploy Kanban Board — second live project on your portfolio",
+                ],
+                deliverable: "Kanban Board live and deployed with clean commit history",
             },
         ],
     },
     {
-        phase: "Phase 3 — Career",
+        phase: "Phase 3",
+        title: "Career",
+        weekRange: "Weeks 9–12",
+        subtitle: "Interview prep, portfolio polish, and your capstone project. Get job-ready.",
         color: "#059669",
-        items: [
+        icon: <Rocket size={18} />,
+        weeks: [
             {
-                icon: <Briefcase size={18} />,
-                title: "Mock Interviews",
-                desc: "Live mock interviews with real feedback. DSA basics, system design conversations, behavioural rounds. Know what to say and how to say it.",
+                week: 9,
+                title: "Portfolio Polish + Interview Prep Basics",
+                tag: "Portfolio",
+                bullets: [
+                    "What employers actually look at in your GitHub — and what they skip",
+                    "Writing READMEs that explain the why, not just the what",
+                    "Introduction to behavioral interviews — how to tell a project story",
+                    "Technical interview structure for fresh grads — what to expect",
+                    "Build or polish your GitHub portfolio page / personal site",
+                ],
+                deliverable: "Both project repos polished with updated READMEs + portfolio page live",
             },
             {
-                icon: <Linkedin size={18} />,
-                title: "LinkedIn Domination",
-                desc: "Profile audit, content strategy, how to get noticed by recruiters. Build a LinkedIn presence that works while you sleep.",
+                week: 10,
+                title: "DSA Basics + Mock Interview #1",
+                tag: "DSA",
+                bullets: [
+                    "Data structures: arrays, objects, strings, linked lists — why they matter",
+                    "Algorithms: sorting, searching, two pointers — practical, not theoretical",
+                    "Problem-solving approach: read → clarify → pseudocode → code → optimise",
+                    "LeetCode easy-level problems: Two Sum, Valid Parentheses, Merge Sorted Array",
+                    "1-on-1 mock interview #1: project walk-through + one coding problem",
+                ],
+                deliverable: "5–7 LeetCode easy problems solved + mock interview #1 completed",
             },
             {
-                icon: <FileText size={18} />,
-                title: "ATS-Ready Resume",
-                desc: "A resume that gets past the bots and impresses the humans. Template, personal review, and iteration until it's right.",
+                week: 11,
+                title: "LinkedIn + Resume + Mock Interview #2",
+                tag: "Career Assets",
+                bullets: [
+                    "LinkedIn: headline, about section, projects linked, skills backed by proof",
+                    "ATS-ready resume: achievement-focused bullets, right keywords, no fancy graphics",
+                    "Turn tasks into impact: 'Built a full-stack expense tracker deployed on Railway'",
+                    "Content strategy: posting about what you built, not just links",
+                    "Mock interview #2: light system design ('Design a URL shortener') + behavioral",
+                ],
+                deliverable: "LinkedIn fully updated + ATS resume finalized + mock interview #2 done",
+            },
+            {
+                week: 12,
+                title: "Capstone Project + Final Interview",
+                tag: "Capstone",
+                bullets: [
+                    "Build anything with MERN — your choice (finance dashboard, recipe app, job board…)",
+                    "Must be deployed, documented, and have 2+ non-trivial features",
+                    "Record a 2–3 minute demo video — pitch it like you're in an interview",
+                    "Post on LinkedIn: what you built, what you learned, what's next",
+                    "Final capstone interview (1 hr): project deep-dive, DSA, system design, behavioral",
+                ],
+                deliverable: "Project 3 live + demo video + LinkedIn post + final interview completed",
             },
         ],
     },
@@ -114,7 +247,7 @@ const perks = [
 const faqs = [
     {
         q: "Who is this cohort for?",
-        a: "Anyone who codes but feels like they're missing the bigger picture — students, recent graduates, self-taught developers who want to go from 'I write code' to 'I understand systems'.",
+        a: "Students, recent graduates, and self-taught developers who can write code but feel like they're missing the bigger picture. If you want to go from 'I write code' to 'I understand systems', this is for you.",
     },
     {
         q: "Do I need prior coding experience?",
@@ -130,7 +263,7 @@ const faqs = [
     },
     {
         q: "What about the paid internship?",
-        a: "Selected top performers from the cohort will get internship opportunities through Wbzard Labs. Selection is based on project quality, consistency, and overall performance during the cohort.",
+        a: "Selected top performers from the cohort get internship opportunities through Wbzard Labs. Selection is based on project quality, consistency, and overall performance.",
     },
     {
         q: "When does the next batch start?",
@@ -168,13 +301,150 @@ function FAQ({ q, a }) {
         >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem" }}>
                 <p style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 600, fontSize: "0.975rem", color: "#fff" }}>{q}</p>
-                {open ? <ChevronUp size={18} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0, marginTop: 2 }} /> : <ChevronDown size={18} style={{ color: "rgba(255,255,255,0.45)", flexShrink: 0, marginTop: 2 }} />}
+                <ChevronDown
+                    size={18}
+                    style={{
+                        color: "rgba(255,255,255,0.45)",
+                        flexShrink: 0,
+                        marginTop: 2,
+                        transform: open ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "transform 0.25s ease",
+                    }}
+                />
             </div>
-            {open && (
-                <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, marginTop: "0.75rem" }}>
-                    {a}
-                </p>
-            )}
+            <AnimatePresence>
+                {open && (
+                    <motion.p
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: "auto", marginTop: "0.75rem" }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.75, overflow: "hidden" }}
+                    >
+                        {a}
+                    </motion.p>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+}
+
+function WeekAccordion({ item, color, isOpen, onToggle }) {
+    return (
+        <div style={{
+            border: `1px solid ${isOpen ? color + "40" : "rgba(255,255,255,0.07)"}`,
+            borderRadius: "var(--radius-md)",
+            overflow: "hidden",
+            transition: "border-color 0.25s ease",
+            background: isOpen ? `${color}06` : "rgba(255,255,255,0.02)",
+        }}>
+            {/* Header row */}
+            <button
+                onClick={onToggle}
+                style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "1rem",
+                    padding: "1.1rem 1.4rem",
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                }}
+            >
+                {/* Week pill */}
+                <span style={{
+                    flexShrink: 0,
+                    fontFamily: "'Satoshi', sans-serif",
+                    fontSize: "0.68rem",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    color: color,
+                    background: `${color}18`,
+                    border: `1px solid ${color}30`,
+                    borderRadius: "999px",
+                    padding: "0.2rem 0.6rem",
+                    whiteSpace: "nowrap",
+                }}>
+                    Wk {item.week}
+                </span>
+
+                {/* Title */}
+                <span style={{
+                    flex: 1,
+                    fontFamily: "'Satoshi', sans-serif",
+                    fontWeight: 600,
+                    fontSize: "0.95rem",
+                    color: "#fff",
+                }}>
+                    {item.title}
+                </span>
+
+                {/* Tag */}
+                <span style={{
+                    display: "none",
+                    fontFamily: "'Satoshi', sans-serif",
+                    fontSize: "0.68rem",
+                    fontWeight: 600,
+                    letterSpacing: "0.06em",
+                    color: "rgba(255,255,255,0.3)",
+                    whiteSpace: "nowrap",
+                }} className="week-tag">
+                    {item.tag}
+                </span>
+
+                {/* Chevron */}
+                <ChevronDown
+                    size={16}
+                    style={{
+                        flexShrink: 0,
+                        color: isOpen ? color : "rgba(255,255,255,0.3)",
+                        transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "transform 0.25s ease, color 0.2s ease",
+                    }}
+                />
+            </button>
+
+            {/* Expanded content */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: "hidden" }}
+                    >
+                        <div style={{ padding: "0 1.4rem 1.4rem", paddingTop: 0 }}>
+                            <div style={{ borderTop: `1px solid ${color}20`, paddingTop: "1.1rem" }}>
+                                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "0.6rem", marginBottom: "1.1rem" }}>
+                                    {item.bullets.map((b, i) => (
+                                        <li key={i} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                                            <span style={{ width: 5, height: 5, borderRadius: "50%", background: color, marginTop: "0.45rem", flexShrink: 0 }} />
+                                            <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.7 }}>{b}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <div style={{
+                                    display: "flex",
+                                    alignItems: "flex-start",
+                                    gap: "0.6rem",
+                                    padding: "0.8rem 1rem",
+                                    background: `${color}10`,
+                                    borderRadius: "var(--radius-sm)",
+                                    border: `1px solid ${color}20`,
+                                }}>
+                                    <CheckCircle size={14} style={{ color, flexShrink: 0, marginTop: "0.2rem" }} />
+                                    <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
+                                        <strong style={{ color, fontWeight: 600 }}>Deliverable: </strong>{item.deliverable}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
@@ -182,7 +452,7 @@ function FAQ({ q, a }) {
 /* ─── Registration Form ──────────────────────────────────── */
 function RegistrationForm() {
     const [form, setForm] = useState({ name: "", email: "", phone: "", level: "", stack: "", why: "" });
-    const [status, setStatus] = useState("idle"); // idle | loading | success | error
+    const [status, setStatus] = useState("idle");
 
     const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -216,6 +486,7 @@ function RegistrationForm() {
         fontSize: "0.9rem",
         outline: "none",
         transition: "border-color 0.2s ease",
+        boxSizing: "border-box",
     };
 
     const labelStyle = {
@@ -317,6 +588,69 @@ function RegistrationForm() {
     );
 }
 
+/* ─── Curriculum Phase Block ─────────────────────────────── */
+function PhaseBlock({ phase }) {
+    const [openWeek, setOpenWeek] = useState(null);
+
+    const toggle = (week) => setOpenWeek(prev => prev === week ? null : week);
+
+    return (
+        <motion.div {...fadeUp(0)}>
+            {/* Phase header */}
+            <div style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                marginBottom: "1.25rem",
+                flexWrap: "wrap",
+            }}>
+                <div style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                    background: `${phase.color}15`,
+                    border: `1px solid ${phase.color}30`,
+                    borderRadius: "var(--radius-sm)",
+                    padding: "0.4rem 0.9rem",
+                    color: phase.color,
+                }}>
+                    {phase.icon}
+                    <span style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                        {phase.phase}
+                    </span>
+                </div>
+                <div>
+                    <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "1.2rem", color: "#fff", lineHeight: 1.2 }}>
+                        {phase.title}
+                    </h3>
+                    <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.3)", marginTop: "0.1rem" }}>
+                        {phase.weekRange} · {phase.subtitle}
+                    </p>
+                </div>
+            </div>
+
+            {/* Week accordions */}
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+                paddingLeft: "1.25rem",
+                borderLeft: `2px solid ${phase.color}25`,
+            }}>
+                {phase.weeks.map(item => (
+                    <WeekAccordion
+                        key={item.week}
+                        item={item}
+                        color={phase.color}
+                        isOpen={openWeek === item.week}
+                        onToggle={() => toggle(item.week)}
+                    />
+                ))}
+            </div>
+        </motion.div>
+    );
+}
+
 /* ─── Main Component ─────────────────────────────────────── */
 const CohortV1 = () => {
     return (
@@ -329,21 +663,21 @@ const CohortV1 = () => {
 
             <style>{`
                 .cohort-pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-                .module-items-grid { display: grid; gap: 1rem; }
                 .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
                 .faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; align-items: start; }
                 .form-section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+                .week-tag { display: inline !important; }
                 @media (max-width: 900px) {
                     .cohort-pain-grid { grid-template-columns: 1fr; }
                     .perks-grid { grid-template-columns: 1fr 1fr; }
                     .faq-cols { grid-template-columns: 1fr; gap: 0; }
                     .form-section-inner { grid-template-columns: 1fr; gap: 3rem; }
+                    .week-tag { display: none !important; }
                 }
                 @media (max-width: 600px) {
                     .perks-grid { grid-template-columns: 1fr; }
                     .form-grid { grid-template-columns: 1fr !important; }
                 }
-                .cohort-input-focus:focus { border-color: var(--accent); }
             `}</style>
 
             {/* ── HERO ────────────────────────────────────── */}
@@ -361,14 +695,12 @@ const CohortV1 = () => {
                 overflow: "hidden",
                 padding: "80px 1.5rem 2rem",
             }}>
-                {/* Dot grid */}
                 <div style={{
                     position: "absolute", inset: 0,
                     backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0)",
                     backgroundSize: "36px 36px",
                     zIndex: 1, pointerEvents: "none",
                 }} />
-                {/* Glow */}
                 <div style={{
                     position: "absolute", top: "30%", left: "50%", transform: "translateX(-50%)",
                     width: "700px", height: "350px",
@@ -377,15 +709,6 @@ const CohortV1 = () => {
                 }} />
 
                 <div style={{ position: "relative", zIndex: 2, maxWidth: "860px", width: "100%" }}>
-                    {/* Badge */}
-                    {/* <motion.div {...fadeUp(0.1)} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "rgba(37,99,235,0.15)", border: "1px solid rgba(37,99,235,0.3)", borderRadius: "999px", padding: "0.3rem 0.9rem", marginBottom: "1.25rem" }}>
-                        <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#3B82F6", display: "inline-block", flexShrink: 0 }} />
-                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.72rem", fontWeight: 600, color: "#93C5FD", letterSpacing: "0.08em" }}>
-                            Wbzard Labs · Cohort v1 · Limited Seats
-                        </span>
-                    </motion.div> */}
-
-                    {/* Headline — 2 lines, tight */}
                     <motion.h1 {...fadeUp(0.2)} style={{
                         fontFamily: "'Anton', Arial, sans-serif",
                         fontSize: "clamp(2.8rem, 7vw, 6.5rem)",
@@ -397,7 +720,6 @@ const CohortV1 = () => {
                         <span style={{ color: "var(--accent)" }}>ENGINEERS WHO THINK.</span>
                     </motion.h1>
 
-                    {/* Sub */}
                     <motion.p {...fadeUp(0.32)} style={{
                         fontFamily: "'Satoshi', sans-serif",
                         fontSize: "clamp(0.875rem, 1.6vw, 1.05rem)",
@@ -410,7 +732,6 @@ const CohortV1 = () => {
                         Those are the ones AI can't replace — and <strong style={{ color: "rgba(255,255,255,0.82)" }}>companies fight to hire.</strong>
                     </motion.p>
 
-                    {/* CTAs */}
                     <motion.div {...fadeUp(0.42)} style={{ display: "flex", gap: "0.875rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "2.5rem" }}>
                         <a href="#register" className="btn-primary-dark" style={{ fontSize: "0.9rem", padding: "0.875rem 1.75rem" }}>
                             Apply Now — It's Free <ArrowRight size={15} />
@@ -420,7 +741,6 @@ const CohortV1 = () => {
                         </a>
                     </motion.div>
 
-                    {/* Stats row */}
                     <motion.div {...fadeUp(0.52)} style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap" }}>
                         {[
                             { value: "12", label: "Weeks" },
@@ -507,49 +827,20 @@ const CohortV1 = () => {
             {/* ── CURRICULUM ──────────────────────────────── */}
             <section id="curriculum" style={{ background: "var(--bg-dark)", padding: "var(--section-pad) 0" }}>
                 <div className="container">
-                    <motion.div {...fadeUp(0)} style={{ marginBottom: "4rem", maxWidth: "600px" }}>
+                    <motion.div {...fadeUp(0)} style={{ marginBottom: "4rem", maxWidth: "620px" }}>
                         <SectionLabel dark>The Curriculum</SectionLabel>
                         <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "clamp(1.8rem, 4vw, 2.75rem)", color: "#fff", letterSpacing: "-0.025em", marginBottom: "1rem" }}>
-                            Everything, in the right order
+                            12 weeks. Every week has a job to do.
                         </h2>
                         <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.8 }}>
-                            No random tutorials. No skipping foundations. A structured path from "I can code" to "I can architect, ship, and explain anything."
+                            No filler. No random tutorials. A structured path from "I can write code" to "I can architect, ship, and explain anything."
                         </p>
                     </motion.div>
 
-                    <div style={{ display: "flex", flexDirection: "column", gap: "3.5rem" }}>
-                        {modules.map((phase, pi) => (
-                            <motion.div key={phase.phase} {...fadeUp(pi * 0.1)}>
-                                {/* Phase header */}
-                                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
-                                    <div style={{ width: 12, height: 12, borderRadius: "50%", background: phase.color, flexShrink: 0 }} />
-                                    <p style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.15em", textTransform: "uppercase", color: phase.color }}>
-                                        {phase.phase}
-                                    </p>
-                                </div>
-
-                                <div className="module-items-grid" style={{ paddingLeft: "1.5rem", borderLeft: `2px solid ${phase.color}22` }}>
-                                    {phase.items.map(item => (
-                                        <div key={item.title} style={{
-                                            background: "rgba(255,255,255,0.025)",
-                                            border: "1px solid rgba(255,255,255,0.06)",
-                                            borderRadius: "var(--radius-md)",
-                                            padding: "1.5rem",
-                                            display: "flex",
-                                            gap: "1.25rem",
-                                            alignItems: "flex-start",
-                                        }}>
-                                            <div style={{ width: 38, height: 38, borderRadius: "var(--radius-sm)", background: `${phase.color}20`, display: "flex", alignItems: "center", justifyContent: "center", color: phase.color, flexShrink: 0 }}>
-                                                {item.icon}
-                                            </div>
-                                            <div>
-                                                <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "1rem", color: "#fff", marginBottom: "0.4rem" }}>{item.title}</h3>
-                                                <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.75 }}>{item.desc}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </motion.div>
+                    {/* Phase blocks */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
+                        {curriculum.map((phase, i) => (
+                            <PhaseBlock key={i} phase={phase} />
                         ))}
                     </div>
                 </div>
@@ -606,7 +897,6 @@ const CohortV1 = () => {
             <section id="register" style={{ background: "#050505", padding: "var(--section-pad) 0" }}>
                 <div className="container">
                     <div className="form-section-inner">
-                        {/* Left — pitch */}
                         <motion.div {...fadeUp(0)}>
                             <SectionLabel dark>Secure Your Spot</SectionLabel>
                             <h2 style={{ fontFamily: "'Anton', Arial, sans-serif", fontWeight: 400, fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#fff", lineHeight: 1.0, letterSpacing: "-0.01em", marginBottom: "1.5rem" }}>
@@ -644,7 +934,6 @@ const CohortV1 = () => {
                             </div>
                         </motion.div>
 
-                        {/* Right — form */}
                         <motion.div {...fadeUp(0.15)} style={{
                             background: "rgba(255,255,255,0.03)",
                             border: "1px solid rgba(255,255,255,0.08)",
