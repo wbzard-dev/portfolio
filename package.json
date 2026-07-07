@@ -13,6 +13,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@pdfme/common": "^6.1.11",
+    "@pdfme/generator": "^6.1.11",
+    "@pdfme/schemas": "^6.1.11",
+    "@pdfme/ui": "^6.1.11",
     "@rollup/plugin-yaml": "^4.1.2",
     "@studio-freight/lenis": "^1.0.42",
     "framer-motion": "^12.42.2",
@@ -24,6 +28,7 @@
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.11.0",
+    "recharts": "^3.9.2",
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {

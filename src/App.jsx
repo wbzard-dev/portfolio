@@ -17,15 +17,17 @@ import DiscoverySection from "./components/DiscoverySection";
 import FAQSection       from "./components/FAQSection";
 
 // Other pages
-import Blog        from "./components/Blog";
-import BlogPost    from "./components/BlogPost";
-import Blokz       from "./components/Blokz";
-import OneHabit    from "./components/OneHabit";
-import ServicePage from "./components/ServicePage";
-import CohortV1    from "./components/CohortV1";
+import Blog           from "./components/Blog";
+import BlogPost       from "./components/BlogPost";
+import Blokz          from "./components/Blokz";
+import OneHabit       from "./components/OneHabit";
+import ServicePage    from "./components/ServicePage";
+import CohortV1       from "./components/CohortV1";
+import GetsanketApp   from "./getsanket/GetsanketApp";
 
 function App() {
     const location = useLocation();
+    const isGetsanket = location.pathname.startsWith("/app");
 
     useEffect(() => {
         if (window.gtag) {
@@ -36,6 +38,7 @@ function App() {
     }, [location]);
 
     useEffect(() => {
+        if (isGetsanket) return;
         const lenis = new Lenis({
             duration:        1.8,
             easing:          (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -43,15 +46,14 @@ function App() {
             syncTouch:       true,
             touchMultiplier: 1.4,
         });
-
         const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
         requestAnimationFrame(raf);
         return () => lenis.destroy();
-    }, []);
+    }, [isGetsanket]);
 
     return (
         <div className="App">
-            <Header />
+            {!isGetsanket && <Header />}
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route
@@ -75,9 +77,10 @@ function App() {
                     <Route path="/blokz"           element={<Blokz />} />
                     <Route path="/one-habit"       element={<OneHabit />} />
                     <Route path="/cohort/v1"       element={<CohortV1 />} />
+                    <Route path="/app/*"           element={<GetsanketApp />} />
                 </Routes>
             </AnimatePresence>
-            <Footer />
+            {!isGetsanket && <Footer />}
         </div>
     );
 }
