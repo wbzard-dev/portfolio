@@ -653,7 +653,7 @@ function RegistrationForm() {
         e.preventDefault();
         setFormStatus("loading");
         try {
-            const res = await fetch("https://form.wbzard.com/api/s/c4e2b0dc-21a2-4afb-97a5-79966d3c4587", {
+            const res = await fetch("https://form.wbzard.com/api/s/b6fb3cd2-e355-475c-8c42-555559fffa3c", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Accept: "application/json" },
                 body: JSON.stringify(form),
