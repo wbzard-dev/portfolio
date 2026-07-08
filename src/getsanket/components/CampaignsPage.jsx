@@ -965,7 +965,7 @@ const ScansTab = ({ campaign }) => {
         <div className="empty-state">
             <Users size={40} style={{ color: 'var(--border)', marginBottom: '1rem' }} />
             <p style={{ fontWeight: 600, color: 'var(--ink)' }}>No recipients yet</p>
-            <p style={{ fontSize: 13 }}>Click <strong>Generate More</strong> above to create personalised PDFs.</p>
+            <p style={{ fontSize: 13 }}>Use <strong>Generate</strong> above to upload your CSV and create personalised PDFs.</p>
         </div>
     )
 
@@ -1089,6 +1089,8 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
     const [mode, setMode] = useState('scans') // 'scans' | 'edit' | 'generate'
     const [local, setLocal] = useState(campaign)
 
+    const isFrozen = Number(local.recipient_count || 0) > 0
+
     useEffect(() => { setLocal(campaign); setMode('scans') }, [campaign.id])
 
     const handleDelete = async () => {
@@ -1101,21 +1103,34 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             {/* Header */}
             <div style={{ padding: '0.875rem 1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface)', flexShrink: 0, gap: 10, flexWrap: 'wrap' }}>
-                <div style={{ minWidth: 0 }}>
-                    <h2 style={{ margin: 0, fontSize: '1.1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{local.name}</h2>
-                    {local.redirect_url && <p style={{ margin: '2px 0 0', color: 'var(--muted)', fontSize: 12 }}>↗ {local.redirect_url}</p>}
+                <div style={{ minWidth: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <div>
+                        <h2 style={{ margin: 0, fontSize: '1.1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{local.name}</h2>
+                        {local.redirect_url && <p style={{ margin: '2px 0 0', color: 'var(--muted)', fontSize: 12 }}>↗ {local.redirect_url}</p>}
+                    </div>
+                    {isFrozen && (
+                        <span style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 5,
+                            padding: '3px 10px', borderRadius: 'var(--r-pill)', fontSize: 11, fontWeight: 700,
+                            background: '#f0fdf4', color: '#16a34a', border: '1px solid #86efac',
+                            letterSpacing: '0.05em', textTransform: 'uppercase', flexShrink: 0,
+                        }}>
+                            <Activity size={10} /> Active
+                        </span>
+                    )}
                 </div>
                 <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'center' }}>
-                    {mode === 'scans' ? (
+                    {!isFrozen && mode === 'scans' && (
                         <>
                             <button onClick={() => setMode('generate')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
-                                <RefreshCw size={13} /> Generate More
+                                <RefreshCw size={13} /> Generate
                             </button>
                             <button onClick={() => setMode('edit')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
                                 <Pencil size={13} /> Edit Template
                             </button>
                         </>
-                    ) : (
+                    )}
+                    {!isFrozen && mode !== 'scans' && (
                         <button onClick={() => setMode('scans')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
                             <BarChart2 size={13} /> Back to Scans
                         </button>
@@ -1128,9 +1143,9 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
 
             {/* Content */}
             <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', position: 'relative' }}>
-                {mode === 'scans'    && <ScansTab campaign={local} />}
-                {mode === 'edit'     && <DesignTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
-                {mode === 'generate' && <GenerateTab campaign={local} />}
+                {(isFrozen || mode === 'scans') && <ScansTab campaign={local} />}
+                {!isFrozen && mode === 'edit'     && <DesignTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
+                {!isFrozen && mode === 'generate' && <GenerateTab campaign={local} />}
             </div>
         </div>
     )
@@ -1414,22 +1429,28 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
                         </button>
                     </div>
                 ) : (
-                    campaigns.map(c => (
-                        <button
-                            key={c.id}
-                            className={`form-list-item${selected?.id === c.id && view === 'detail' ? ' active' : ''}`}
-                            onClick={() => { setSelected(c); setView('detail') }}
-                        >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                <QrCode size={14} color="var(--muted)" />
-                                <span style={{ fontWeight: 500, fontSize: 14, textAlign: 'left', color: 'var(--ink)' }}>{c.name}</span>
-                            </div>
-                            <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 3, display: 'flex', gap: 12 }}>
-                                <span>{c.recipient_count ?? 0} recipients</span>
-                                <span>{c.scan_count ?? 0} scans</span>
-                            </div>
-                        </button>
-                    ))
+                    campaigns.map(c => {
+                        const frozen = Number(c.recipient_count || 0) > 0
+                        return (
+                            <button
+                                key={c.id}
+                                className={`form-list-item${selected?.id === c.id && view === 'detail' ? ' active' : ''}`}
+                                onClick={() => { setSelected(c); setView('detail') }}
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                    <QrCode size={14} color="var(--muted)" />
+                                    <span style={{ fontWeight: 500, fontSize: 14, textAlign: 'left', color: 'var(--ink)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.name}</span>
+                                    {frozen && (
+                                        <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#16a34a', flexShrink: 0, boxShadow: '0 0 0 2px #bbf7d0' }} title="Active" />
+                                    )}
+                                </div>
+                                <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 3, display: 'flex', gap: 12 }}>
+                                    <span>{c.recipient_count ?? 0} recipients</span>
+                                    <span>{c.scan_count ?? 0} scans</span>
+                                </div>
+                            </button>
+                        )
+                    })
                 )}
             </div>
 
