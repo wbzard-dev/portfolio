@@ -488,7 +488,7 @@ function RazorpayButton({ onSuccess }) {
 
         const script = document.createElement("script");
         script.src = "https://checkout.razorpay.com/v1/payment-button.js";
-        script.setAttribute("data-payment_button_id", "pl_TAwsnfS2a9B0Xs");
+        script.setAttribute("data-payment_button_id", "pl_TAw1dvTn5e8e75");
         script.async = true;
         form.appendChild(script);
 
@@ -889,7 +889,7 @@ const CohortV1 = () => {
 
                     <motion.div {...fadeUp(0.42)} style={{ display: "flex", gap: "0.875rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "2.5rem" }}>
                         <a href="#register" className="btn-primary-dark" style={{ fontSize: "0.9rem", padding: "0.875rem 1.75rem" }}>
-                            Apply Now — It's Free <ArrowRight size={15} />
+                            Apply Now <ArrowRight size={15} />
                         </a>
                         <a href="#curriculum" className="btn-outline-dark" style={{ fontSize: "0.9rem", padding: "0.875rem 1.75rem" }}>
                             See the Curriculum
