@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     ArrowRight, CheckCircle, Users, Award, Briefcase,
@@ -449,18 +449,45 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
     );
 }
 
-const RAZORPAY_PAYMENT_LINK = "https://rzp.io/rzp/2YWCpXSG";
+/* ─── Razorpay Button ────────────────────────────────────── */
+function RazorpayButton({ onSuccess }) {
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        const cbName = "__rzpCohortCb";
+        window[cbName] = onSuccess;
+
+        const form = document.createElement("form");
+        const script = document.createElement("script");
+        script.src = "https://checkout.razorpay.com/v1/payment-button.js";
+        script.setAttribute("data-payment_button_id", "pl_TAw1dvTn5e8e75");
+        script.setAttribute("data-callback", cbName);
+        script.async = true;
+        form.appendChild(script);
+
+        const el = containerRef.current;
+        if (el) el.appendChild(form);
+
+        return () => {
+            if (el) el.innerHTML = "";
+            delete window[cbName];
+        };
+    }, []);
+
+    return <div ref={containerRef} style={{ display: "flex", justifyContent: "center", marginTop: "0.5rem" }} />;
+}
 
 /* ─── Registration Form ──────────────────────────────────── */
 function RegistrationForm() {
     const [form, setForm] = useState({ name: "", email: "", phone: "", level: "", stack: "", why: "" });
-    const [status, setStatus] = useState("idle");
+    const [formStatus, setFormStatus] = useState("idle");
+    const [paid, setPaid] = useState(false);
 
     const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus("loading");
+        setFormStatus("loading");
         try {
             const res = await fetch("https://formfreedom-backend.onrender.com/api/s/c4e2b0dc-21a2-4afb-97a5-79966d3c4587", {
                 method: "POST",
@@ -468,12 +495,12 @@ function RegistrationForm() {
                 body: JSON.stringify(form),
             });
             if (res.ok) {
-                setStatus("success");
+                setFormStatus("submitted");
             } else {
-                setStatus("error");
+                setFormStatus("error");
             }
         } catch {
-            setStatus("error");
+            setFormStatus("error");
         }
     };
 
@@ -501,7 +528,83 @@ function RegistrationForm() {
         letterSpacing: "0.04em",
     };
 
-    if (status === "success") {
+    /* ── Congratulations screen ── */
+    if (paid) {
+        return (
+            <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{ textAlign: "center", padding: "2.5rem 1.5rem" }}
+            >
+                <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.15, type: "spring", stiffness: 260, damping: 18 }}
+                    style={{
+                        width: 72, height: 72, borderRadius: "50%",
+                        background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        margin: "0 auto 1.5rem",
+                        boxShadow: "0 0 40px rgba(37,99,235,0.4)",
+                    }}
+                >
+                    <Star size={32} style={{ color: "#fff", fill: "#fff" }} />
+                </motion.div>
+
+                <motion.h3
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.28, duration: 0.45 }}
+                    style={{ fontFamily: "'Anton', sans-serif", fontWeight: 400, fontSize: "2rem", color: "#fff", marginBottom: "0.5rem", letterSpacing: "-0.01em" }}
+                >
+                    CONGRATULATIONS!
+                </motion.h3>
+
+                <motion.p
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.36, duration: 0.4 }}
+                    style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.6)", marginBottom: "2rem", lineHeight: 1.7 }}
+                >
+                    Your seat is confirmed. You're part of <strong style={{ color: "#fff" }}>Cohort v1.</strong>
+                </motion.p>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.44, duration: 0.4 }}
+                    style={{
+                        display: "flex", flexDirection: "column", gap: "0.65rem",
+                        textAlign: "left", marginBottom: "2rem",
+                    }}
+                >
+                    {[
+                        "Check your email — we'll send next steps shortly",
+                        "Join the private community once you receive the invite",
+                        "First live session details will be shared on WhatsApp",
+                    ].map(item => (
+                        <div key={item} style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                            <CheckCircle size={15} style={{ color: "#10B981", flexShrink: 0, marginTop: "0.2rem" }} />
+                            <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>{item}</span>
+                        </div>
+                    ))}
+                </motion.div>
+
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                    style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.2)" }}
+                >
+                    Payment confirmed · Secured by Razorpay
+                </motion.p>
+            </motion.div>
+        );
+    }
+
+    /* ── Step 2: payment screen ── */
+    if (formStatus === "submitted") {
         return (
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -512,42 +615,39 @@ function RegistrationForm() {
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginBottom: "2rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                         <CheckCircle size={16} style={{ color: "#10B981" }} />
-                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", fontWeight: 700, color: "#10B981", letterSpacing: "0.05em" }}>STEP 1 DONE</span>
+                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", fontWeight: 700, color: "#10B981", letterSpacing: "0.05em" }}>STEP 1 DONE</span>
                     </div>
                     <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.15)" }} />
                     <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                        <div style={{ width: 16, height: 16, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                            <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.6rem", fontWeight: 700, color: "rgba(255,255,255,0.4)" }}>2</span>
+                        <div style={{
+                            width: 16, height: 16, borderRadius: "50%",
+                            background: "rgba(37,99,235,0.3)", border: "2px solid #2563EB",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                        }}>
+                            <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.6rem", fontWeight: 700, color: "#60A5FA" }}>2</span>
                         </div>
-                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: "0.05em" }}>CONFIRM SEAT</span>
+                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", fontWeight: 700, color: "#60A5FA", letterSpacing: "0.05em" }}>CONFIRM SEAT</span>
                     </div>
                 </div>
 
-                <CheckCircle size={44} style={{ color: "#10B981", margin: "0 auto 1rem" }} />
-                <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "1.35rem", color: "#fff", marginBottom: "0.5rem" }}>
-                    Application received!
+                <CheckCircle size={40} style={{ color: "#10B981", margin: "0 auto 1rem" }} />
+                <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "1.3rem", color: "#fff", marginBottom: "0.5rem" }}>
+                    Application saved!
                 </h3>
-                <p style={{ fontFamily: "'Satoshi', sans-serif", color: "rgba(255,255,255,0.45)", fontSize: "0.9rem", maxWidth: "340px", margin: "0 auto 2rem", lineHeight: 1.7 }}>
-                    Your details are saved. Complete the payment below to <strong style={{ color: "rgba(255,255,255,0.8)" }}>lock in your seat</strong> — only 30 available.
+                <p style={{ fontFamily: "'Satoshi', sans-serif", color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", maxWidth: "300px", margin: "0 auto 2rem", lineHeight: 1.75 }}>
+                    One last step — complete your payment to <strong style={{ color: "rgba(255,255,255,0.8)" }}>lock in your seat.</strong>
                 </p>
 
-                <a
-                    href={RAZORPAY_PAYMENT_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary-dark"
-                    style={{ fontSize: "1rem", padding: "1rem 2rem", display: "inline-flex", gap: "0.5rem", alignItems: "center", justifyContent: "center", width: "100%", boxSizing: "border-box", textDecoration: "none" }}
-                >
-                    Complete Payment — Pay Now <ArrowRight size={16} />
-                </a>
+                <RazorpayButton onSuccess={() => setPaid(true)} />
 
-                <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", marginTop: "1rem" }}>
-                    Secured by Razorpay · Can't pay right now? We'll follow up on your email.
+                <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.72rem", color: "rgba(255,255,255,0.2)", marginTop: "1.25rem" }}>
+                    Secured by Razorpay · UPI · Cards · Netbanking · Wallets
                 </p>
             </motion.div>
         );
     }
 
+    /* ── Step 1: the form ── */
     return (
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }} className="form-grid">
@@ -597,7 +697,7 @@ function RegistrationForm() {
                 />
             </div>
 
-            {status === "error" && (
+            {formStatus === "error" && (
                 <p style={{ color: "#F87171", fontSize: "0.85rem", fontFamily: "'Satoshi', sans-serif" }}>
                     Something went wrong. Please email us directly at vivekg.work@gmail.com
                 </p>
@@ -605,11 +705,11 @@ function RegistrationForm() {
 
             <button
                 type="submit"
-                disabled={status === "loading"}
+                disabled={formStatus === "loading"}
                 className="btn-primary-dark"
-                style={{ fontSize: "0.95rem", padding: "1rem 2rem", width: "100%", justifyContent: "center", opacity: status === "loading" ? 0.7 : 1 }}
+                style={{ fontSize: "0.95rem", padding: "1rem 2rem", width: "100%", justifyContent: "center", opacity: formStatus === "loading" ? 0.7 : 1 }}
             >
-                {status === "loading" ? "Submitting..." : "Apply for the Cohort"} <ArrowRight size={16} />
+                {formStatus === "loading" ? "Submitting..." : "Apply for the Cohort"} <ArrowRight size={16} />
             </button>
 
             <p style={{ textAlign: "center", fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.3)" }}>
@@ -696,18 +796,18 @@ const CohortV1 = () => {
                 .cohort-pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
                 .perks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
                 .faq-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; align-items: start; }
-                .form-section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+                .form-section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; }
                 .week-tag { display: inline !important; }
                 @media (max-width: 900px) {
                     .cohort-pain-grid { grid-template-columns: 1fr; }
                     .perks-grid { grid-template-columns: 1fr 1fr; }
                     .faq-cols { grid-template-columns: 1fr; gap: 0; }
-                    .form-section-inner { grid-template-columns: 1fr; gap: 3rem; }
+                    .form-section-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+                    .form-grid { grid-template-columns: 1fr !important; }
                     .week-tag { display: none !important; }
                 }
                 @media (max-width: 600px) {
                     .perks-grid { grid-template-columns: 1fr; }
-                    .form-grid { grid-template-columns: 1fr !important; }
                 }
             `}</style>
 
