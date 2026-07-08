@@ -78,8 +78,6 @@ const curriculum = [
                     "GitHub setup: SSH keys, pushing your first repo, writing a meaningful README",
                     "What actually happens when you visit a URL: DNS → TCP → TLS → HTTP → browser render",
                     "HTTP status codes, headers, cookies — what they are and why every dev must know them",
-                    "How browsers render: DOM → CSSOM → JavaScript blocking → reflow & repaint",
-                    "Hands-on: DevTools Network tab, trace real websites, throttle network speed",
                 ],
                 deliverable: "GitHub profile set up + first repo pushed + Network Trace Analysis on 3 real websites",
             },
