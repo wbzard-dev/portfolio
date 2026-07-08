@@ -535,7 +535,7 @@ const FormDetail = ({ form, onDelete }) => {
     const [showEmail, setShowEmail] = useState(false)
     const [search, setSearch] = useState('')
 
-    const endpoint = `${import.meta.env.DEV ? window.location.origin : 'https://formfreedom-backend.onrender.com'}/api/s/${form.id}`
+    const endpoint = `${import.meta.env.DEV ? window.location.origin : 'https://form.wbzard.com'}/api/s/${form.id}`
 
     useEffect(() => {
         if (!form?.id) return

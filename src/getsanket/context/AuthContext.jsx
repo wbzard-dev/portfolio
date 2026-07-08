@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext(null)
 
-const API = import.meta.env.DEV ? '' : 'https://formfreedom-backend.onrender.com'
+const API = import.meta.env.DEV ? '' : 'https://form.wbzard.com'
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)

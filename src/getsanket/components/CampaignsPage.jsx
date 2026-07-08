@@ -483,7 +483,7 @@ const GenerateStep = ({ template, campaignMeta, onBack, onDone }) => {
             ])
             const plugins = await getPlugins()
             const baseInput = getInputFromTemplate(template)[0] || {}
-            const apiBase = import.meta.env.DEV ? window.location.origin : 'https://formfreedom-backend.onrender.com'
+            const apiBase = import.meta.env.DEV ? window.location.origin : 'https://form.wbzard.com'
 
             const inputs = recipients.map(r => {
                 const input = { ...baseInput, ...r.csv_data }
@@ -829,7 +829,7 @@ const GenerateTab = ({ campaign }) => {
             const [{ generate }, { getDefaultFont, getInputFromTemplate }] = await Promise.all([import('@pdfme/generator'), import('@pdfme/common')])
             const plugins = await getPlugins()
             const baseInput = getInputFromTemplate(template)[0] || {}
-            const apiBase = import.meta.env.DEV ? window.location.origin : 'https://formfreedom-backend.onrender.com'
+            const apiBase = import.meta.env.DEV ? window.location.origin : 'https://form.wbzard.com'
             const inputs = recipients.map(r => { const input = { ...baseInput, ...r.csv_data }; if (qrField) input[qrField] = `${apiBase}/api/t/${r.tracking_id}`; return input })
 
             const pdf = await generate({ template, inputs, options: { font: getDefaultFont() }, plugins })

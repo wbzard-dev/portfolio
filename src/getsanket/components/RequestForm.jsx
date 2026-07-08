@@ -40,7 +40,7 @@ const RequestForm = ({ onCancel }) => {
     }
 
     if (formKey) {
-        const endpoint = `https://api.wbzard.com/api/s/${formKey}`
+        const endpoint = `https://form.wbzard.com/api/s/${formKey}`
         return (
             <div className="card text-center py-20" style={{ maxWidth: '600px', margin: '0 auto' }}>
                 <div style={{ color: '#10b981', marginBottom: '1.5rem' }}>
