@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import {
     QrCode, Plus, Loader2, X, Trash2, Download,
     Upload, FileText, CheckCircle2, Users, Save,
     BarChart2, Clock, LayoutTemplate, ChevronRight,
     ArrowLeft, Zap, Activity, ScanLine, FileJson,
-    FilePlus, Image as ImageIcon,
+    FilePlus, Image as ImageIcon, Pencil, RefreshCw,
+    ArrowUpDown, Filter,
 } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
@@ -897,12 +898,26 @@ const GenerateTab = ({ campaign }) => {
     )
 }
 
-// ── Existing campaign: Scans tab ───────────────────────────────────────────────
+// ── Rich Scans dashboard ───────────────────────────────────────────────────────
+
+const parseData = (raw) => {
+    if (!raw) return {}
+    if (typeof raw === 'object') return raw
+    try { return JSON.parse(raw) } catch { return {} }
+}
+
+const getBestName = (r) => {
+    const d = parseData(r.csv_data)
+    return d.name || d.Name || d.full_name || d.Full_Name || d.fullname || d.first_name || d.First_Name
+        || d.email || d.Email || r.display_name || '—'
+}
 
 const ScansTab = ({ campaign }) => {
     const { authFetch } = useAuth()
     const [recipients, setRecipients] = useState([])
     const [loading, setLoading] = useState(true)
+    const [filter, setFilter] = useState('all')   // 'all' | 'scanned' | 'unscanned'
+    const [sortBy, setSortBy] = useState('scans') // 'scans' | 'name' | 'last'
 
     useEffect(() => {
         authFetch(`/api/campaigns/${campaign.id}/recipients`)
@@ -911,52 +926,155 @@ const ScansTab = ({ campaign }) => {
             .finally(() => setLoading(false))
     }, [campaign.id])
 
+    const withData = useMemo(() =>
+        recipients.map(r => ({ ...r, _data: parseData(r.csv_data) }))
+    , [recipients])
+
+    // Collect all CSV field names (cap at 6 extra columns to keep table readable)
+    const csvFields = useMemo(() => {
+        const seen = new Set()
+        withData.forEach(r => Object.keys(r._data).forEach(k => seen.add(k)))
+        // de-prioritise fields already shown as "name"
+        const nameKeys = new Set(['name', 'Name', 'full_name', 'Full_Name', 'fullname', 'first_name', 'First_Name'])
+        return [...seen].filter(k => !nameKeys.has(k)).slice(0, 6)
+    }, [withData])
+
+    const totalScans  = withData.reduce((s, r) => s + Number(r.scan_count || 0), 0)
+    const scannedCount = withData.filter(r => Number(r.scan_count) > 0).length
+    const scanRate    = withData.length > 0 ? Math.round((scannedCount / withData.length) * 100) : 0
+
+    const displayed = useMemo(() => {
+        let rows = [...withData]
+        if (filter === 'scanned')   rows = rows.filter(r => Number(r.scan_count) > 0)
+        if (filter === 'unscanned') rows = rows.filter(r => Number(r.scan_count) === 0)
+        rows.sort((a, b) => {
+            if (sortBy === 'scans') return Number(b.scan_count) - Number(a.scan_count)
+            if (sortBy === 'name')  return getBestName(a).localeCompare(getBestName(b))
+            if (sortBy === 'last') {
+                return (b.last_scanned ? new Date(b.last_scanned).getTime() : 0)
+                     - (a.last_scanned ? new Date(a.last_scanned).getTime() : 0)
+            }
+            return 0
+        })
+        return rows
+    }, [withData, filter, sortBy])
+
     if (loading) return <div className="empty-state"><Loader2 size={24} className="animate-spin" /></div>
 
     if (recipients.length === 0) return (
         <div className="empty-state">
             <Users size={40} style={{ color: 'var(--border)', marginBottom: '1rem' }} />
-            <p>No recipients yet.</p>
-            <p style={{ fontSize: 13 }}>Use the <strong>Generate</strong> tab to create personalised PDFs.</p>
+            <p style={{ fontWeight: 600, color: 'var(--ink)' }}>No recipients yet</p>
+            <p style={{ fontSize: 13 }}>Click <strong>Generate More</strong> above to create personalised PDFs.</p>
         </div>
     )
 
-    const totalScans = recipients.reduce((sum, r) => sum + Number(r.scan_count || 0), 0)
-    const scannedCount = recipients.filter(r => Number(r.scan_count) > 0).length
+    const thStyle = { padding: '9px 14px', textAlign: 'left', fontWeight: 700, fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.07em', whiteSpace: 'nowrap', background: 'var(--bg)', borderBottom: '1px solid var(--border)' }
+    const tdStyle = { padding: '10px 14px', color: 'var(--ink)', fontSize: 13, maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }
 
     return (
-        <div style={{ padding: '1.5rem', overflowY: 'auto', height: '100%' }}>
-            <div style={{ display: 'flex', gap: 12, marginBottom: '1.5rem' }}>
-                {[{ label: 'Recipients', value: recipients.length }, { label: 'Scanned', value: scannedCount }, { label: 'Total Scans', value: totalScans }].map(s => (
-                    <div key={s.label} className="stat-card" style={{ flex: 1, padding: '1rem 1.25rem' }}>
-                        <div className="stat-card-value" style={{ fontSize: '1.75rem' }}>{s.value}</div>
-                        <div className="stat-card-label">{s.label}</div>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+            {/* Stats bar */}
+            <div style={{ display: 'flex', gap: 12, padding: '1rem 1.5rem', borderBottom: '1px solid var(--border)', background: 'var(--surface)', flexShrink: 0, flexWrap: 'wrap' }}>
+                {[
+                    { label: 'Recipients', value: withData.length, color: 'var(--ink)' },
+                    { label: 'Scanned',    value: scannedCount,    color: '#16a34a' },
+                    { label: 'Not Yet',    value: withData.length - scannedCount, color: 'var(--muted)' },
+                    { label: 'Total Scans', value: totalScans,     color: 'var(--accent)' },
+                ].map(s => (
+                    <div key={s.label} style={{ display: 'flex', flexDirection: 'column', minWidth: 80 }}>
+                        <span style={{ fontSize: 22, fontWeight: 700, color: s.color, fontFamily: "'Satoshi', sans-serif", lineHeight: 1.1 }}>{s.value}</span>
+                        <span style={{ fontSize: 11, color: 'var(--muted)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em', marginTop: 2 }}>{s.label}</span>
                     </div>
                 ))}
+                {/* Scan rate bar */}
+                <div style={{ flex: 1, minWidth: 140, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingLeft: 12, borderLeft: '1px solid var(--border)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
+                        <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Scan Rate</span>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: scanRate > 50 ? '#16a34a' : 'var(--ink)' }}>{scanRate}%</span>
+                    </div>
+                    <div style={{ height: 6, background: 'var(--border)', borderRadius: 3, overflow: 'hidden' }}>
+                        <div style={{ width: `${scanRate}%`, height: '100%', background: scanRate > 50 ? '#16a34a' : 'var(--accent)', borderRadius: 3, transition: 'width 0.4s' }} />
+                    </div>
+                </div>
             </div>
-            <div style={{ border: '1px solid var(--border)', borderRadius: 10, overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-                    <thead>
-                        <tr style={{ borderBottom: '1px solid var(--border)', background: 'var(--bg)' }}>
-                            {['Recipient', 'Scans', 'Last Scanned'].map(h => (
-                                <th key={h} style={{ padding: '10px 16px', textAlign: h === 'Scans' ? 'center' : 'left', fontWeight: 700, fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.07em', width: h === 'Scans' ? 80 : undefined }}>{h}</th>
+
+            {/* Filter + Sort bar */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0.625rem 1.5rem', borderBottom: '1px solid var(--border)', background: 'var(--bg)', flexShrink: 0, flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: 4 }}>
+                    {[['all', 'All'], ['scanned', 'Scanned'], ['unscanned', 'Not yet']].map(([key, label]) => (
+                        <button key={key} onClick={() => setFilter(key)} style={{
+                            padding: '4px 12px', borderRadius: 'var(--r-pill)', border: '1.5px solid', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: "'Satoshi', sans-serif",
+                            borderColor: filter === key ? 'var(--accent)' : 'var(--border)',
+                            background: filter === key ? 'var(--accent-tint)' : 'transparent',
+                            color: filter === key ? 'var(--accent)' : 'var(--muted)',
+                        }}>{label}</button>
+                    ))}
+                </div>
+                <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ fontSize: 12, color: 'var(--muted)', fontFamily: "'Satoshi', sans-serif" }}>Sort:</span>
+                    {[['scans', 'Scans'], ['name', 'Name'], ['last', 'Last Scan']].map(([key, label]) => (
+                        <button key={key} onClick={() => setSortBy(key)} style={{
+                            padding: '4px 10px', borderRadius: 'var(--r-pill)', border: '1.5px solid', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: "'Satoshi', sans-serif",
+                            borderColor: sortBy === key ? 'var(--ink)' : 'var(--border)',
+                            background: sortBy === key ? 'var(--ink)' : 'transparent',
+                            color: sortBy === key ? '#fff' : 'var(--muted)',
+                        }}>{label}</button>
+                    ))}
+                </div>
+                <span style={{ fontSize: 12, color: 'var(--muted)', fontFamily: "'Satoshi', sans-serif" }}>
+                    {displayed.length} of {withData.length}
+                </span>
+            </div>
+
+            {/* Table */}
+            <div style={{ flex: 1, overflowY: 'auto', overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+                    <thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
+                        <tr>
+                            <th style={{ ...thStyle, minWidth: 160 }}>Name</th>
+                            {csvFields.map(f => (
+                                <th key={f} style={{ ...thStyle, minWidth: 120 }}>{f.replace(/_/g, ' ')}</th>
                             ))}
+                            <th style={{ ...thStyle, width: 80, textAlign: 'center' }}>Scans</th>
+                            <th style={{ ...thStyle, minWidth: 150 }}>Last Scanned</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {recipients.map(r => (
-                            <tr key={r.id} style={{ borderBottom: '1px solid var(--border-2)' }}>
-                                <td style={{ padding: '11px 16px', fontWeight: 500, color: 'var(--ink)' }}>{r.display_name || '—'}</td>
-                                <td style={{ padding: '11px 16px', textAlign: 'center' }}>
-                                    <span style={{ background: Number(r.scan_count) > 0 ? '#f0fdf4' : 'var(--bg)', color: Number(r.scan_count) > 0 ? '#16a34a' : 'var(--muted)', padding: '2px 10px', borderRadius: 20, fontWeight: 600, fontSize: 13 }}>
-                                        {r.scan_count}
-                                    </span>
-                                </td>
-                                <td style={{ padding: '11px 16px', color: 'var(--muted)', fontSize: 13 }}>
-                                    {r.last_scanned ? <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}><Clock size={12} /> {new Date(r.last_scanned).toLocaleString()}</span> : '—'}
-                                </td>
-                            </tr>
-                        ))}
+                        {displayed.map((r, idx) => {
+                            const scans = Number(r.scan_count || 0)
+                            return (
+                                <tr key={r.id} style={{ borderBottom: '1px solid var(--border-2)', background: idx % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.012)' }}>
+                                    <td style={{ ...tdStyle, fontWeight: 600, color: 'var(--ink)' }}>
+                                        {getBestName(r)}
+                                    </td>
+                                    {csvFields.map(f => (
+                                        <td key={f} style={tdStyle} title={String(r._data[f] ?? '')}>
+                                            {r._data[f] != null ? String(r._data[f]) : <span style={{ color: 'var(--border)' }}>—</span>}
+                                        </td>
+                                    ))}
+                                    <td style={{ ...tdStyle, textAlign: 'center' }}>
+                                        <span style={{
+                                            display: 'inline-block',
+                                            background: scans > 0 ? '#f0fdf4' : 'var(--bg-subtle)',
+                                            color: scans > 0 ? '#16a34a' : 'var(--muted)',
+                                            border: `1px solid ${scans > 0 ? '#86efac' : 'var(--border)'}`,
+                                            padding: '2px 12px', borderRadius: 20, fontWeight: 700, fontSize: 13, minWidth: 32, textAlign: 'center',
+                                        }}>
+                                            {scans}
+                                        </span>
+                                    </td>
+                                    <td style={{ ...tdStyle, color: 'var(--muted)', fontSize: 12 }}>
+                                        {r.last_scanned
+                                            ? <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                                                <Clock size={11} />
+                                                {new Date(r.last_scanned).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                              </span>
+                                            : <span style={{ color: 'var(--border)' }}>—</span>}
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>
@@ -964,20 +1082,14 @@ const ScansTab = ({ campaign }) => {
     )
 }
 
-// ── Campaign Detail ────────────────────────────────────────────────────────────
+// ── Campaign Detail (scans-first, no redundant tabs) ──────────────────────────
 
-const DETAIL_TABS = [
-    { key: 'design',   label: 'Design',   icon: <FileText size={14} /> },
-    { key: 'generate', label: 'Generate', icon: <Download size={14} /> },
-    { key: 'scans',    label: 'Scans',    icon: <BarChart2 size={14} /> },
-]
-
-const CampaignDetail = ({ campaign, onDelete, onUpdate, initialTab = 'design' }) => {
+const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
     const { authFetch } = useAuth()
-    const [activeTab, setActiveTab] = useState(initialTab)
+    const [mode, setMode] = useState('scans') // 'scans' | 'edit' | 'generate'
     const [local, setLocal] = useState(campaign)
 
-    useEffect(() => { setLocal(campaign); setActiveTab(initialTab) }, [campaign.id]) // eslint-disable-line
+    useEffect(() => { setLocal(campaign); setMode('scans') }, [campaign.id])
 
     const handleDelete = async () => {
         if (!confirm(`Delete "${campaign.name}"? This removes all recipients and scan data.`)) return
@@ -987,31 +1099,38 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate, initialTab = 'design' })
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <div style={{ padding: '1rem 1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', background: 'var(--surface)', flexShrink: 0 }}>
-                <div>
-                    <h2 style={{ margin: 0, fontSize: '1.15rem' }}>{local.name}</h2>
-                    {local.redirect_url && <p style={{ margin: '3px 0 0', color: 'var(--muted)', fontSize: 12 }}>↗ {local.redirect_url}</p>}
+            {/* Header */}
+            <div style={{ padding: '0.875rem 1.5rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'var(--surface)', flexShrink: 0, gap: 10, flexWrap: 'wrap' }}>
+                <div style={{ minWidth: 0 }}>
+                    <h2 style={{ margin: 0, fontSize: '1.1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{local.name}</h2>
+                    {local.redirect_url && <p style={{ margin: '2px 0 0', color: 'var(--muted)', fontSize: 12 }}>↗ {local.redirect_url}</p>}
                 </div>
-                <button onClick={handleDelete} className="btn-danger"><Trash2 size={14} /> Delete</button>
-            </div>
-            <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', background: 'var(--surface)', padding: '0 1.5rem', flexShrink: 0 }}>
-                {DETAIL_TABS.map(tab => (
-                    <button key={tab.key} onClick={() => setActiveTab(tab.key)} style={{
-                        display: 'flex', alignItems: 'center', gap: 6, padding: '10px 16px',
-                        border: 'none', borderBottom: activeTab === tab.key ? '2px solid var(--ink)' : '2px solid transparent',
-                        background: 'none', cursor: 'pointer', fontSize: 13, marginBottom: -1,
-                        fontWeight: activeTab === tab.key ? 600 : 400,
-                        color: activeTab === tab.key ? 'var(--ink)' : 'var(--muted)',
-                        fontFamily: "'Satoshi', sans-serif",
-                    }}>
-                        {tab.icon}{tab.label}
+                <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'center' }}>
+                    {mode === 'scans' ? (
+                        <>
+                            <button onClick={() => setMode('generate')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
+                                <RefreshCw size={13} /> Generate More
+                            </button>
+                            <button onClick={() => setMode('edit')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
+                                <Pencil size={13} /> Edit Template
+                            </button>
+                        </>
+                    ) : (
+                        <button onClick={() => setMode('scans')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <BarChart2 size={13} /> Back to Scans
+                        </button>
+                    )}
+                    <button onClick={handleDelete} className="btn-danger" style={{ padding: '6px 13px', fontSize: 13 }}>
+                        <Trash2 size={13} /> Delete
                     </button>
-                ))}
+                </div>
             </div>
+
+            {/* Content */}
             <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', position: 'relative' }}>
-                {activeTab === 'design'   && <DesignTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
-                {activeTab === 'generate' && <GenerateTab campaign={local} />}
-                {activeTab === 'scans'    && <ScansTab campaign={local} />}
+                {mode === 'scans'    && <ScansTab campaign={local} />}
+                {mode === 'edit'     && <DesignTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
+                {mode === 'generate' && <GenerateTab campaign={local} />}
             </div>
         </div>
     )
@@ -1146,7 +1265,6 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
     const [loading, setLoading] = useState(true)
     const [view, setView] = useState('list') // 'list' | 'wizard' | 'detail' | 'analytics'
     const [selected, setSelected] = useState(null)
-    const [selectedInitialTab, setSelectedInitialTab] = useState('design')
 
     // Wizard state
     const [wizardStep, setWizardStep] = useState(0)
@@ -1179,9 +1297,8 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
             created_at: new Date().toISOString(),
         }
         setCampaigns(prev => [entry, ...prev])
-        // Auto-navigate to the new campaign's scans tab
+        // Auto-navigate to the new campaign (scans is now the default view)
         setSelected(entry)
-        setSelectedInitialTab('scans')
         setView('detail')
     }
 
@@ -1249,7 +1366,6 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
                     campaign={selected}
                     onDelete={handleDelete}
                     onUpdate={handleUpdate}
-                    initialTab={selectedInitialTab}
                 />
             )
         }
@@ -1302,7 +1418,7 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
                         <button
                             key={c.id}
                             className={`form-list-item${selected?.id === c.id && view === 'detail' ? ' active' : ''}`}
-                            onClick={() => { setSelected(c); setSelectedInitialTab('design'); setView('detail') }}
+                            onClick={() => { setSelected(c); setView('detail') }}
                         >
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                 <QrCode size={14} color="var(--muted)" />
