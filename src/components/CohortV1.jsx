@@ -479,7 +479,15 @@ function VideoEmbed({ videoId }) {
                 events: {
                     onReady(e) {
                         e.target.playVideo();
-                        try { e.target.unloadModule("captions"); } catch (_) {}
+                        const disableCaptions = () => {
+                            try {
+                                e.target.setOption("captions", "track", {});
+                                e.target.unloadModule("captions");
+                            } catch (_) {}
+                        };
+                        disableCaptions();
+                        setTimeout(disableCaptions, 1000);
+                        setTimeout(disableCaptions, 3000);
                         if (!destroyed) setPlaying(true);
                     },
                     onStateChange(e) {
