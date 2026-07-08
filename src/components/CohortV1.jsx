@@ -1055,7 +1055,7 @@ const CohortV1 = () => {
                             </h2>
                             <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.8, marginBottom: "2rem" }}>
                                 This isn't a recording you'll watch at 2x speed and forget. This is a cohort — structured, guided, accountable.
-                                Register your interest now. No payment required.
+                                Register your interest now.
                             </p>
 
                             {[
