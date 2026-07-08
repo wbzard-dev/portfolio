@@ -606,7 +606,7 @@
 /* Submissions table */
 .gs-root .sub-table-wrap { overflow-x: auto; border-radius: 0 0 var(--r-md) var(--r-md); }
 .gs-root .sub-table {
-  width: 100%; border-collapse: collapse;
+  min-width: 100%; border-collapse: collapse;
   font-family: 'Satoshi', sans-serif; font-size: 13px;
 }
 .gs-root .sub-table th {

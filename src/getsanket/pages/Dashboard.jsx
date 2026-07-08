@@ -478,7 +478,6 @@ const SubmissionsTable = ({ submissions, selectedIds, onToggle, onSelectAll }) =
     }
 
     const fields = [...new Set(submissions.flatMap(s => Object.keys(s.data || {})))]
-    const visibleFields = fields.slice(0, 5)
     const allSelected = submissions.every(s => selectedIds?.has(s.id))
     const someSelected = submissions.some(s => selectedIds?.has(s.id))
 
@@ -495,8 +494,7 @@ const SubmissionsTable = ({ submissions, selectedIds, onToggle, onSelectAll }) =
                             />
                         </th>
                         <th>Time</th>
-                        {visibleFields.map(f => <th key={f}>{f.replace(/_/g, ' ')}</th>)}
-                        {fields.length > 5 && <th>+{fields.length - 5} more</th>}
+                        {fields.map(f => <th key={f}>{f.replace(/_/g, ' ')}</th>)}
                     </tr>
                 </thead>
                 <tbody>
@@ -508,12 +506,11 @@ const SubmissionsTable = ({ submissions, selectedIds, onToggle, onSelectAll }) =
                                     <input type="checkbox" checked={!!isSelected} onChange={() => onToggle(s.id)} style={{ cursor: 'pointer', accentColor: 'var(--accent)' }} />
                                 </td>
                                 <td className="sub-table-time">{timeAgo(s.submitted_at)}</td>
-                                {visibleFields.map(f => (
+                                {fields.map(f => (
                                     <td key={f} title={String(s.data?.[f] ?? '')}>
                                         {s.data?.[f] != null ? String(s.data[f]) : <span style={{ color: 'var(--muted)' }}>—</span>}
                                     </td>
                                 ))}
-                                {fields.length > 5 && <td style={{ color: 'var(--muted)' }}>···</td>}
                             </tr>
                         )
                     })}
@@ -1181,7 +1178,7 @@ const AllLeadsPage = () => {
     }
     const selectedSubObjects = filtered.filter(s => selectedSubs.has(s.id))
 
-    const fields = submissions ? [...new Set(submissions.flatMap(s => Object.keys(s.data || {})))].slice(0, 4) : []
+    const fields = submissions ? [...new Set(submissions.flatMap(s => Object.keys(s.data || {})))] : []
 
     return (
         <div style={{ height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
