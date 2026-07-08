@@ -449,6 +449,28 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
     );
 }
 
+/* ─── Video Embed ────────────────────────────────────────── */
+function VideoEmbed({ src, title }) {
+    const [active, setActive] = useState(false);
+    return (
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+            <iframe
+                src={src}
+                title={title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+            />
+            {!active && (
+                <div
+                    onClick={() => setActive(true)}
+                    style={{ position: "absolute", inset: 0, zIndex: 1, cursor: "pointer" }}
+                />
+            )}
+        </div>
+    );
+}
+
 /* ─── Razorpay Button ────────────────────────────────────── */
 function RazorpayButton({ onSuccess }) {
     const containerRef = useRef(null);
@@ -910,16 +932,9 @@ const CohortV1 = () => {
                         maxWidth: "900px",
                         margin: "0 auto",
                     }}>
-                        <iframe
+                        <VideoEmbed
                             src="https://www.youtube.com/embed/dQw4w9WgXcQ"
                             title="Wbzard Labs Cohort v1 — Overview"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            style={{
-                                position: "absolute", top: 0, left: 0,
-                                width: "100%", height: "100%",
-                                border: "none",
-                            }}
                         />
                     </motion.div>
                 </div>
