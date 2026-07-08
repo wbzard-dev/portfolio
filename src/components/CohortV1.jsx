@@ -454,24 +454,26 @@ function RazorpayButton({ onSuccess }) {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        const cbName = "__rzpCohortCb";
-        window[cbName] = onSuccess;
-
         const form = document.createElement("form");
+
+        // Razorpay Payment Button submits this form with razorpay_payment_id on success.
+        // Intercept it so React handles the success state instead of a page reload.
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(e.target));
+            if (data.razorpay_payment_id) onSuccess(data);
+        });
+
         const script = document.createElement("script");
         script.src = "https://checkout.razorpay.com/v1/payment-button.js";
         script.setAttribute("data-payment_button_id", "pl_TAwsnfS2a9B0Xs");
-        script.setAttribute("data-callback", cbName);
         script.async = true;
         form.appendChild(script);
 
         const el = containerRef.current;
         if (el) el.appendChild(form);
 
-        return () => {
-            if (el) el.innerHTML = "";
-            delete window[cbName];
-        };
+        return () => { if (el) el.innerHTML = ""; };
     }, []);
 
     return <div ref={containerRef} style={{ display: "flex", justifyContent: "center", marginTop: "0.5rem" }} />;
