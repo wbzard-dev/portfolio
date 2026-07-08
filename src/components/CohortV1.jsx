@@ -451,41 +451,78 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
 
 /* ─── Video Embed ────────────────────────────────────────── */
 function VideoEmbed({ videoId }) {
-    const iframeRef = useRef(null);
-    const [playing, setPlaying] = useState(true);
+    const containerRef = useRef(null);
+    const playerRef = useRef(null);
+    const [playing, setPlaying] = useState(false);
 
-    const sendCmd = (cmd) => {
-        iframeRef.current?.contentWindow?.postMessage(
-            JSON.stringify({ event: "command", func: cmd, args: "" }),
-            "*"
-        );
-    };
+    useEffect(() => {
+        let destroyed = false;
+
+        const initPlayer = () => {
+            if (destroyed || !containerRef.current) return;
+            playerRef.current = new window.YT.Player(containerRef.current, {
+                videoId,
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    loop: 1,
+                    playlist: videoId,
+                    controls: 0,
+                    rel: 0,
+                    playsinline: 1,
+                    iv_load_policy: 3,
+                    disablekb: 1,
+                },
+                events: {
+                    onReady(e) {
+                        e.target.playVideo();
+                        if (!destroyed) setPlaying(true);
+                    },
+                    onStateChange(e) {
+                        if (!destroyed) setPlaying(e.data === window.YT.PlayerState.PLAYING);
+                    },
+                },
+            });
+        };
+
+        if (window.YT?.Player) {
+            initPlayer();
+        } else {
+            if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+                const tag = document.createElement("script");
+                tag.src = "https://www.youtube.com/iframe_api";
+                document.head.appendChild(tag);
+            }
+            const prev = window.onYouTubeIframeAPIReady;
+            window.onYouTubeIframeAPIReady = () => {
+                prev?.();
+                initPlayer();
+            };
+        }
+
+        return () => {
+            destroyed = true;
+            playerRef.current?.destroy();
+        };
+    }, [videoId]);
 
     const toggle = () => {
-        sendCmd(playing ? "pauseVideo" : "playVideo");
-        setPlaying(p => !p);
+        const p = playerRef.current;
+        if (!p) return;
+        playing ? p.pauseVideo() : p.playVideo();
     };
 
-    const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1&enablejsapi=1`;
-
     return (
-        <div
-            onClick={toggle}
-            style={{ position: "absolute", inset: 0, cursor: "pointer" }}
-        >
-            <iframe
-                ref={iframeRef}
-                src={src}
-                title="Wbzard Labs Cohort v1 — Overview"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", pointerEvents: "none" }}
+        <div onClick={toggle} style={{ position: "absolute", inset: 0, cursor: "pointer" }}>
+            <div
+                ref={containerRef}
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none" }}
             />
             {!playing && (
                 <div style={{
                     position: "absolute", inset: 0,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    background: "rgba(0,0,0,0.35)",
+                    background: "rgba(0,0,0,0.4)",
                 }}>
                     <div style={{
                         width: 64, height: 64, borderRadius: "50%",
