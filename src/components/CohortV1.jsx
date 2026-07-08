@@ -460,7 +460,7 @@ function RazorpayButton({ onSuccess }) {
         const form = document.createElement("form");
         const script = document.createElement("script");
         script.src = "https://checkout.razorpay.com/v1/payment-button.js";
-        script.setAttribute("data-payment_button_id", "pl_TAw1dvTn5e8e75");
+        script.setAttribute("data-payment_button_id", "pl_TAwsnfS2a9B0Xs");
         script.setAttribute("data-callback", cbName);
         script.async = true;
         form.appendChild(script);
