@@ -449,7 +449,7 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
     );
 }
 
-const RAZORPAY_PAYMENT_LINK = "REPLACE_WITH_YOUR_RAZORPAY_PAYMENT_LINK";
+const RAZORPAY_PAYMENT_LINK = "https://rzp.io/rzp/2YWCpXSG";
 
 /* ─── Registration Form ──────────────────────────────────── */
 function RegistrationForm() {
@@ -462,7 +462,7 @@ function RegistrationForm() {
         e.preventDefault();
         setStatus("loading");
         try {
-            const res = await fetch("https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID", {
+            const res = await fetch("https://formfreedom-backend.onrender.com/api/s/c4e2b0dc-21a2-4afb-97a5-79966d3c4587", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Accept: "application/json" },
                 body: JSON.stringify(form),
