@@ -4,6 +4,7 @@ import {
     ArrowRight, CheckCircle, Users, Award, Briefcase,
     Code2, Globe, Terminal, Linkedin, FileText, Zap, Brain,
     ChevronDown, Star, Clock, Shield, BookOpen, Layers, Rocket,
+    Volume2, VolumeX,
 } from "lucide-react";
 import SEO from "./SEO";
 
@@ -454,6 +455,7 @@ function VideoEmbed({ videoId }) {
     const containerRef = useRef(null);
     const playerRef = useRef(null);
     const [playing, setPlaying] = useState(false);
+    const [muted, setMuted] = useState(true);
 
     useEffect(() => {
         let destroyed = false;
@@ -472,10 +474,12 @@ function VideoEmbed({ videoId }) {
                     playsinline: 1,
                     iv_load_policy: 3,
                     disablekb: 1,
+                    cc_load_policy: 0,
                 },
                 events: {
                     onReady(e) {
                         e.target.playVideo();
+                        try { e.target.unloadModule("captions"); } catch (_) {}
                         if (!destroyed) setPlaying(true);
                     },
                     onStateChange(e) {
@@ -506,41 +510,95 @@ function VideoEmbed({ videoId }) {
         };
     }, [videoId]);
 
-    const toggle = () => {
+    const togglePlay = () => {
         const p = playerRef.current;
         if (!p) return;
         playing ? p.pauseVideo() : p.playVideo();
     };
 
+    const toggleMute = (e) => {
+        e.stopPropagation();
+        const p = playerRef.current;
+        if (!p) return;
+        if (muted) {
+            p.unMute();
+            p.setVolume(100);
+            setMuted(false);
+        } else {
+            p.mute();
+            setMuted(true);
+        }
+    };
+
     return (
-        <div onClick={toggle} style={{ position: "absolute", inset: 0, cursor: "pointer" }}>
+        <div>
+            {/* aspect-ratio container */}
             <div
-                ref={containerRef}
-                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none" }}
-            />
-            {!playing && (
-                <div style={{
-                    position: "absolute", inset: 0,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    background: "rgba(0,0,0,0.4)",
-                }}>
+                onClick={togglePlay}
+                style={{
+                    position: "relative",
+                    paddingBottom: "56.25%",
+                    height: 0,
+                    borderRadius: "var(--radius-lg)",
+                    overflow: "hidden",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    cursor: "pointer",
+                }}
+            >
+                <div
+                    ref={containerRef}
+                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none" }}
+                />
+                {!playing && (
                     <div style={{
-                        width: 64, height: 64, borderRadius: "50%",
-                        background: "rgba(255,255,255,0.15)",
-                        backdropFilter: "blur(8px)",
-                        border: "1px solid rgba(255,255,255,0.2)",
+                        position: "absolute", inset: 0,
                         display: "flex", alignItems: "center", justifyContent: "center",
+                        background: "rgba(0,0,0,0.4)",
                     }}>
                         <div style={{
-                            width: 0, height: 0,
-                            borderTop: "12px solid transparent",
-                            borderBottom: "12px solid transparent",
-                            borderLeft: "20px solid #fff",
-                            marginLeft: 4,
-                        }} />
+                            width: 64, height: 64, borderRadius: "50%",
+                            background: "rgba(255,255,255,0.15)",
+                            backdropFilter: "blur(8px)",
+                            border: "1px solid rgba(255,255,255,0.2)",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                        }}>
+                            <div style={{
+                                width: 0, height: 0,
+                                borderTop: "12px solid transparent",
+                                borderBottom: "12px solid transparent",
+                                borderLeft: "20px solid #fff",
+                                marginLeft: 4,
+                            }} />
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </div>
+
+            {/* sound toggle button */}
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "1.25rem" }}>
+                <button
+                    onClick={toggleMute}
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.6rem 1.25rem",
+                        background: muted ? "rgba(255,255,255,0.06)" : "rgba(37,99,235,0.15)",
+                        border: muted ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(37,99,235,0.4)",
+                        borderRadius: "999px",
+                        color: muted ? "rgba(255,255,255,0.5)" : "#60A5FA",
+                        fontFamily: "'Satoshi', sans-serif",
+                        fontSize: "0.82rem",
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        letterSpacing: "0.02em",
+                        transition: "all 0.2s ease",
+                    }}
+                >
+                    {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                    {muted ? "Enable Sound" : "Mute"}
+                </button>
+            </div>
         </div>
     );
 }
@@ -996,16 +1054,7 @@ const CohortV1 = () => {
                         </h2>
                     </motion.div>
 
-                    <motion.div {...fadeUp(0.1)} style={{
-                        position: "relative",
-                        paddingBottom: "56.25%",
-                        height: 0,
-                        borderRadius: "var(--radius-lg)",
-                        overflow: "hidden",
-                        border: "1px solid rgba(255,255,255,0.08)",
-                        maxWidth: "900px",
-                        margin: "0 auto",
-                    }}>
+                    <motion.div {...fadeUp(0.1)} style={{ maxWidth: "900px", margin: "0 auto" }}>
                         <VideoEmbed videoId="D2OvYCVBff0" />
                     </motion.div>
                 </div>
