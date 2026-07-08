@@ -156,9 +156,7 @@ const Sidebar = ({ active, onNavigate, onUpgrade }) => {
         {
             label: 'Campaigns',
             items: [
-                { key: 'campaigns',       label: 'My Campaigns',   icon: <QrCode size={15} /> },
-                { key: 'new-campaign',    label: 'New Campaign',   icon: <Plus size={15} /> },
-                { key: 'scan-analytics',  label: 'Scan Analytics', icon: <ScanLine size={15} /> },
+                { key: 'campaigns', label: 'Campaigns', icon: <QrCode size={15} /> },
             ]
         },
     ]
@@ -1437,15 +1435,9 @@ const Dashboard = () => {
     const [view, setView] = useState('overview')
     const [showTour, setShowTour] = useState(() => shouldShowTour())
     const [showUpgrade, setShowUpgrade] = useState(false)
-    const [wizardTrigger, setWizardTrigger] = useState(0)
 
     const handleNavigate = (key) => {
-        if (key === 'new-campaign') {
-            setWizardTrigger(t => t + 1)
-            setView('campaigns')
-        } else {
-            setView(key)
-        }
+        setView(key)
     }
 
     const fullHeight = view === 'forms' || view === 'campaigns' || view === 'leads'
@@ -1465,10 +1457,9 @@ const Dashboard = () => {
                             <Loader2 size={24} className="animate-spin" />
                         </div>
                     }>
-                        <CampaignsPage wizardTrigger={wizardTrigger} />
+                        <CampaignsPage />
                     </Suspense>
                 )}
-                {view === 'scan-analytics' && <ScanAnalyticsPage />}
                 {view === 'settings' && <SettingsPage onUpgrade={() => setShowUpgrade(true)} />}
             </main>
 
