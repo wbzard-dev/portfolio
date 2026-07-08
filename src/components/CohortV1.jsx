@@ -450,22 +450,59 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
 }
 
 /* ─── Video Embed ────────────────────────────────────────── */
-function VideoEmbed({ src, title }) {
-    const [active, setActive] = useState(false);
+function VideoEmbed({ videoId }) {
+    const iframeRef = useRef(null);
+    const [playing, setPlaying] = useState(true);
+
+    const sendCmd = (cmd) => {
+        iframeRef.current?.contentWindow?.postMessage(
+            JSON.stringify({ event: "command", func: cmd, args: "" }),
+            "*"
+        );
+    };
+
+    const toggle = () => {
+        sendCmd(playing ? "pauseVideo" : "playVideo");
+        setPlaying(p => !p);
+    };
+
+    const src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1&enablejsapi=1`;
+
     return (
-        <div style={{ position: "absolute", inset: 0 }}>
+        <div
+            onClick={toggle}
+            style={{ position: "absolute", inset: 0, cursor: "pointer" }}
+        >
             <iframe
+                ref={iframeRef}
                 src={src}
-                title={title}
+                title="Wbzard Labs Cohort v1 — Overview"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none" }}
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", pointerEvents: "none" }}
             />
-            {!active && (
-                <div
-                    onClick={() => setActive(true)}
-                    style={{ position: "absolute", inset: 0, zIndex: 1, cursor: "pointer" }}
-                />
+            {!playing && (
+                <div style={{
+                    position: "absolute", inset: 0,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: "rgba(0,0,0,0.35)",
+                }}>
+                    <div style={{
+                        width: 64, height: 64, borderRadius: "50%",
+                        background: "rgba(255,255,255,0.15)",
+                        backdropFilter: "blur(8px)",
+                        border: "1px solid rgba(255,255,255,0.2)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                    }}>
+                        <div style={{
+                            width: 0, height: 0,
+                            borderTop: "12px solid transparent",
+                            borderBottom: "12px solid transparent",
+                            borderLeft: "20px solid #fff",
+                            marginLeft: 4,
+                        }} />
+                    </div>
+                </div>
             )}
         </div>
     );
@@ -932,10 +969,7 @@ const CohortV1 = () => {
                         maxWidth: "900px",
                         margin: "0 auto",
                     }}>
-                        <VideoEmbed
-                            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                            title="Wbzard Labs Cohort v1 — Overview"
-                        />
+                        <VideoEmbed videoId="D2OvYCVBff0" />
                     </motion.div>
                 </div>
             </section>
