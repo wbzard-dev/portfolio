@@ -453,7 +453,7 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
 function VideoEmbed({ src, title }) {
     const [active, setActive] = useState(false);
     return (
-        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+        <div style={{ position: "absolute", inset: 0 }}>
             <iframe
                 src={src}
                 title={title}
