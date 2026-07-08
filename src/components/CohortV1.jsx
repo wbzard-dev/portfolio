@@ -449,6 +449,8 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
     );
 }
 
+const RAZORPAY_PAYMENT_LINK = "REPLACE_WITH_YOUR_RAZORPAY_PAYMENT_LINK";
+
 /* ─── Registration Form ──────────────────────────────────── */
 function RegistrationForm() {
     const [form, setForm] = useState({ name: "", email: "", phone: "", level: "", stack: "", why: "" });
@@ -504,14 +506,43 @@ function RegistrationForm() {
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                style={{ textAlign: "center", padding: "3rem 1.5rem" }}
+                style={{ textAlign: "center", padding: "2.5rem 1.5rem" }}
             >
-                <CheckCircle size={48} style={{ color: "#10B981", margin: "0 auto 1.25rem" }} />
-                <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "1.4rem", color: "#fff", marginBottom: "0.75rem" }}>
-                    You're on the list!
+                {/* Step indicators */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginBottom: "2rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                        <CheckCircle size={16} style={{ color: "#10B981" }} />
+                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", fontWeight: 700, color: "#10B981", letterSpacing: "0.05em" }}>STEP 1 DONE</span>
+                    </div>
+                    <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.15)" }} />
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                        <div style={{ width: 16, height: 16, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                            <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.6rem", fontWeight: 700, color: "rgba(255,255,255,0.4)" }}>2</span>
+                        </div>
+                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", fontWeight: 700, color: "rgba(255,255,255,0.4)", letterSpacing: "0.05em" }}>CONFIRM SEAT</span>
+                    </div>
+                </div>
+
+                <CheckCircle size={44} style={{ color: "#10B981", margin: "0 auto 1rem" }} />
+                <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "1.35rem", color: "#fff", marginBottom: "0.5rem" }}>
+                    Application received!
                 </h3>
-                <p style={{ fontFamily: "'Satoshi', sans-serif", color: "rgba(255,255,255,0.55)", fontSize: "0.95rem", maxWidth: "360px", margin: "0 auto" }}>
-                    We'll reach out to your email with the next steps. Keep an eye on your inbox.
+                <p style={{ fontFamily: "'Satoshi', sans-serif", color: "rgba(255,255,255,0.45)", fontSize: "0.9rem", maxWidth: "340px", margin: "0 auto 2rem", lineHeight: 1.7 }}>
+                    Your details are saved. Complete the payment below to <strong style={{ color: "rgba(255,255,255,0.8)" }}>lock in your seat</strong> — only 30 available.
+                </p>
+
+                <a
+                    href={RAZORPAY_PAYMENT_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary-dark"
+                    style={{ fontSize: "1rem", padding: "1rem 2rem", display: "inline-flex", gap: "0.5rem", alignItems: "center", justifyContent: "center", width: "100%", boxSizing: "border-box", textDecoration: "none" }}
+                >
+                    Complete Payment — Pay Now <ArrowRight size={16} />
+                </a>
+
+                <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.25)", marginTop: "1rem" }}>
+                    Secured by Razorpay · Can't pay right now? We'll follow up on your email.
                 </p>
             </motion.div>
         );
@@ -582,7 +613,7 @@ function RegistrationForm() {
             </button>
 
             <p style={{ textAlign: "center", fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.3)" }}>
-                Limited seats · No payment required to register interest
+                Step 1 of 2 · Payment happens on the next screen
             </p>
         </form>
     );
@@ -909,7 +940,7 @@ const CohortV1 = () => {
                             </p>
 
                             {[
-                                "No payment to register interest",
+                                "Fill the form → pay → seat confirmed",
                                 "Live sessions + all recordings",
                                 "1-on-1 feedback, not just videos",
                                 "Paid internship for top performers",
