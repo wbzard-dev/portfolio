@@ -6,6 +6,7 @@ import {
     ChevronDown, Star, Clock, Shield, BookOpen, Layers, Rocket,
     Volume2, VolumeX,
 } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import SEO from "./SEO";
 
 /* ─── Animation helpers ──────────────────────────────────── */
@@ -955,6 +956,15 @@ const CohortV1 = () => {
                 description="A 12-week cohort teaching MERN stack, DevOps, first principles thinking, mock interviews, LinkedIn optimization, and ATS resume prep. Limited seats."
                 keywords="coding cohort, MERN stack course, first principles coding, developer bootcamp, wbzard labs"
             />
+            <Helmet>
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-GSHL1K6DGE" />
+                <script>{`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-GSHL1K6DGE');
+                `}</script>
+            </Helmet>
 
             <style>{`
                 .cohort-pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
