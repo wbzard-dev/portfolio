@@ -1,6 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform, useInView } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion'
 
 const ease = [0.22, 1, 0.36, 1]
 
@@ -232,31 +232,73 @@ const FeatureRow = ({ f }) => {
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 const LandingPage = () => {
+    const [menuOpen, setMenuOpen] = useState(false)
     const heroRef = useRef(null)
     const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
     const heroOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0])
     const heroY       = useTransform(scrollYProgress, [0, 0.65], [0, -64])
+
+    const closeMenu = () => setMenuOpen(false)
 
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
 
             {/* ── Navbar ── */}
             <header className="landing-nav">
-                <Link to="/prformnce" className="landing-logo">
+                <Link to="/prformnce" className="landing-logo" onClick={closeMenu}>
                     <div className="landing-logo-dot" />
                     Prformnce
                 </Link>
-                <nav style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+
+                {/* Desktop nav */}
+                <nav className="landing-nav-desktop">
                     <a href="#problem"      className="nav-link">Why Prformnce</a>
                     <a href="#features"     className="nav-link">Features</a>
                     <a href="#how-it-works" className="nav-link">How it works</a>
                     <a href="#pricing"      className="nav-link">Pricing</a>
                 </nav>
-                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <div className="landing-nav-ctas">
                     <Link to="/prformnce/login"  className="btn-ghost"   style={{ padding: '8px 18px', fontSize: '14px' }}>Sign in</Link>
                     <Link to="/prformnce/signup" className="btn-primary" style={{ padding: '8px 18px', fontSize: '14px' }}>Get started free</Link>
                 </div>
+
+                {/* Mobile hamburger */}
+                <button className="landing-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
+                    {menuOpen ? (
+                        <span style={{ fontSize: '22px', lineHeight: 1, color: 'var(--ink)', fontFamily: 'sans-serif', display: 'block' }}>×</span>
+                    ) : (
+                        <span className="hamburger-bars">
+                            <span /><span /><span />
+                        </span>
+                    )}
+                </button>
             </header>
+
+            {/* Mobile menu */}
+            <AnimatePresence>
+                {menuOpen && (
+                    <motion.div
+                        key="mobile-menu"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: 'hidden', position: 'sticky', top: 64, zIndex: 48, background: 'var(--bg)', borderBottom: '1px solid var(--border)' }}
+                    >
+                        <div style={{ padding: '1.5rem clamp(1.5rem, 4vw, 2rem) 2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                            {[['#problem','Why Prformnce'],['#features','Features'],['#how-it-works','How it works'],['#pricing','Pricing']].map(([href, label]) => (
+                                <a key={href} href={href} className="nav-link" style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--ink)' }} onClick={closeMenu}>
+                                    {label}
+                                </a>
+                            ))}
+                            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                <Link to="/prformnce/login"  className="btn-ghost"   style={{ textAlign: 'center', padding: '11px 18px', justifyContent: 'center' }} onClick={closeMenu}>Sign in</Link>
+                                <Link to="/prformnce/signup" className="btn-primary" style={{ textAlign: 'center', padding: '11px 18px', justifyContent: 'center' }} onClick={closeMenu}>Get started free</Link>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <main style={{ flex: 1 }}>
 
@@ -269,14 +311,14 @@ const LandingPage = () => {
                 }}>
                     <motion.div style={{ opacity: heroOpacity, y: heroY, width: '100%', maxWidth: '920px' }}>
 
-                        <motion.p
+                        {/* <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.1 }}
                             style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '2.5rem' }}
                         >
                             Forms · QR Campaigns · Scan Analytics
-                        </motion.p>
+                        </motion.p> */}
 
                         <div style={{ fontFamily: "'Anton', sans-serif", fontSize: 'clamp(3.25rem, 8.5vw, 7rem)', lineHeight: 0.95, letterSpacing: '-0.01em', color: 'var(--ink)', marginBottom: '2rem' }}>
                             <HeroText delay={0.15}>Capture leads.</HeroText>
