@@ -792,7 +792,11 @@ const GenerateTab = ({ campaign }) => {
     const [count, setCount] = useState(0)
     const [speed, setSpeed] = useState(0)
     const [done, setDone] = useState(false)
+    const [pdfUrl, setPdfUrl] = useState(null)
+    const [pdfFileName, setPdfFileName] = useState('')
     const intervalRef = useRef(null)
+
+    useEffect(() => () => { if (pdfUrl) URL.revokeObjectURL(pdfUrl) }, [pdfUrl])
 
     const template = campaign.template_json ? (() => { try { return JSON.parse(campaign.template_json) } catch { return null } })() : null
     const qrField = template ? findQrField(template) : null
@@ -806,6 +810,7 @@ const GenerateTab = ({ campaign }) => {
         reader.readAsText(file)
         e.target.value = ''
         setDone(false)
+        if (pdfUrl) { URL.revokeObjectURL(pdfUrl); setPdfUrl(null) }
     }
 
     const handleGenerate = async () => {
@@ -838,8 +843,10 @@ const GenerateTab = ({ campaign }) => {
 
             const blob = new Blob([pdf.buffer], { type: 'application/pdf' })
             const url = URL.createObjectURL(blob)
-            const a = document.createElement('a'); a.href = url; a.download = `${campaign.name.replace(/\s+/g, '-')}-${Date.now()}.pdf`; a.click()
-            URL.revokeObjectURL(url)
+            const fname = `${campaign.name.replace(/\s+/g, '-')}-${Date.now()}.pdf`
+            setPdfUrl(url)
+            setPdfFileName(fname)
+            const a = document.createElement('a'); a.href = url; a.download = fname; a.click()
         } catch (err) {
             clearInterval(intervalRef.current)
             console.error('Generation error:', err); alert(`Generation failed: ${err.message}`)
@@ -885,9 +892,21 @@ const GenerateTab = ({ campaign }) => {
             )}
 
             {done && (
-                <div style={{ background: '#f0fdf4', border: '1px solid #86efac', borderRadius: 10, padding: '1rem', marginBottom: '1.5rem', fontSize: 14, color: '#166534' }}>
-                    <CheckCircle2 size={16} style={{ display: 'inline', marginRight: 6 }} />
-                    <strong>{total} PDFs generated</strong> at {speed} PDFs/sec — download started.
+                <div style={{ background: '#f0fdf4', border: '1px solid #86efac', borderRadius: 10, padding: '0.875rem 1.25rem', marginBottom: '1.5rem', fontSize: 14, color: '#166534', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+                    <span>
+                        <CheckCircle2 size={16} style={{ display: 'inline', marginRight: 6 }} />
+                        <strong>{total} PDFs generated</strong> at {speed} PDFs/sec
+                    </span>
+                    {pdfUrl && (
+                        <a
+                            href={pdfUrl}
+                            download={pdfFileName}
+                            className="btn-primary"
+                            style={{ padding: '6px 14px', fontSize: 13, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                        >
+                            <Download size={13} /> Download Again
+                        </a>
+                    )}
                 </div>
             )}
 
