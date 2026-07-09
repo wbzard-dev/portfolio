@@ -15,7 +15,7 @@ const cohortLinks = [
 ];
 
 const projectLinks = [
-    { name: "Prformnce", href: "/prformnce", desc: "QR campaigns & lead tracking" },
+    // { name: "Prformnce", href: "/prformnce", desc: "QR campaigns & lead tracking" },
 ];
 
 const Header = () => {
@@ -129,7 +129,7 @@ const Header = () => {
                         ))}
 
                         {/* Projects dropdown */}
-                        <div ref={projectsRef} style={{ position: "relative" }}>
+                        {/* <div ref={projectsRef} style={{ position: "relative" }}>
                             <button
                                 onClick={() => setProjectsOpen(o => !o)}
                                 style={{
@@ -181,7 +181,7 @@ const Header = () => {
                                     ))}
                                 </motion.div>
                             )}
-                        </div>
+                        </div> */}
 
                         {/* Cohort dropdown */}
                         <div ref={cohortRef} style={{ position: "relative" }}>
