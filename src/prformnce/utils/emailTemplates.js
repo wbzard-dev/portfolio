@@ -7,7 +7,7 @@ const sub = (str, vars) =>
     str.replace(/\{\{(\w+)\}\}/g, (_, k) => vars[k] ?? vars[k.toLowerCase()] ?? '')
 
 const wrap = (content, accentBg = '#2563EB', vars = {}) => {
-  const brand = vars.company_name || 'GetSanket'
+  const brand = vars.company_name || 'Prformnce'
   return `
 <!DOCTYPE html>
 <html lang="en">

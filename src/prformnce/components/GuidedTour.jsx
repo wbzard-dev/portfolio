@@ -2,14 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, X } from 'lucide-react'
 
-const TOUR_KEY = 'getsanket_tour_v1_done'
+const TOUR_KEY = 'prformnce_tour_v1_done'
 const SPOTLIGHT_PAD = 10
 
 const STEPS = [
     {
         target: null,
-        title: 'Welcome to GetSanket',
-        body: 'GetSanket helps you collect leads with embeddable HTML forms, track submissions, run email campaigns, and create QR code campaigns — all in one clean workspace. This quick tour takes under a minute.',
+        title: 'Welcome to Prformnce',
+        body: 'Prformnce helps you collect leads with embeddable HTML forms, track submissions, run email campaigns, and create QR code campaigns — all in one clean workspace. This quick tour takes under a minute.',
         position: 'center',
     },
     {
@@ -27,7 +27,7 @@ const STEPS = [
     {
         target: '[data-tour="new-form-btn"]',
         title: 'Create a form',
-        body: 'Click "New Form" to create a form in seconds. GetSanket gives you a unique endpoint URL — set it as the action of any HTML <form> on your site and submissions land here automatically.',
+        body: 'Click "New Form" to create a form in seconds. Prformnce gives you a unique endpoint URL — set it as the action of any HTML <form> on your site and submissions land here automatically.',
         position: 'left',
     },
     {

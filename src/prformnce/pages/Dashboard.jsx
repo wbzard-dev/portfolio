@@ -168,7 +168,7 @@ const Sidebar = ({ active, onNavigate, onUpgrade }) => {
                     <div className="sidebar-logo-mark">
                         <BarChart2 size={16} color="white" strokeWidth={2.5} />
                     </div>
-                    <span className="sidebar-logo-name">GetSanket</span>
+                    <span className="sidebar-logo-name">Prformnce</span>
                 </div>
             </div>
 

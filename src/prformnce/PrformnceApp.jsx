@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
 import { AuthProvider, useAuth } from './context/AuthContext'
-import './getsanket.css'
+import './prformnce.css'
 
 const Landing   = lazy(() => import('./components/LandingPage'))
 const Login     = lazy(() => import('./pages/Login'))
@@ -25,7 +25,7 @@ const PublicRoute = ({ children }) => {
     return user ? <Navigate to="/app/dashboard" replace /> : children
 }
 
-const GetsanketRoutes = () => (
+const PrformnceRoutes = () => (
     <Suspense fallback={null}>
         <Routes>
             <Route index element={<Landing />} />
@@ -38,12 +38,12 @@ const GetsanketRoutes = () => (
     </Suspense>
 )
 
-const GetsanketApp = () => (
+const PrformnceApp = () => (
     <div className="gs-root">
         <AuthProvider>
-            <GetsanketRoutes />
+            <PrformnceRoutes />
         </AuthProvider>
     </div>
 )
 
-export default GetsanketApp
+export default PrformnceApp

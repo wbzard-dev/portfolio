@@ -18,7 +18,7 @@ const BrandPanel = () => (
                     fontFamily: "'Satoshi', sans-serif", fontWeight: 800,
                     fontSize: '1.1rem', letterSpacing: '-0.025em', color: 'white'
                 }}>
-                    GetSanket
+                    Prformnce
                 </span>
             </div>
 
@@ -27,22 +27,21 @@ const BrandPanel = () => (
                 color: 'white', fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)',
                 letterSpacing: '-0.01em', lineHeight: 1.0, marginBottom: '1.25rem'
             }}>
-                Start tracking leads in minutes.
+                Your leads are waiting. Don't keep them.
             </h2>
             <p style={{
                 fontFamily: "'Satoshi', sans-serif",
                 color: 'rgba(255,255,255,0.6)', fontSize: '1rem',
                 lineHeight: 1.75, marginBottom: '2.5rem'
             }}>
-                Join 500+ teams who use GetSanket to capture and convert more leads — without the engineering overhead.
+                Real-time form tracking, QR campaigns, and engagement analytics — all in one place.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 {[
-                    'Free plan — no credit card needed',
-                    'Live in under 2 minutes',
-                    'Unlimited submissions on paid plans',
-                    'Cancel anytime'
+                    'No setup cost — free forever plan',
+                    'Works with any HTML form',
+                    'See submissions the moment they happen'
                 ].map(item => (
                     <div key={item} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <CheckCircle2 size={16} color="rgba(255,255,255,0.5)" style={{ flexShrink: 0 }} />
@@ -75,22 +74,22 @@ const BrandPanel = () => (
                 color: 'rgba(255,255,255,0.85)', fontSize: '14px',
                 lineHeight: 1.7, margin: '0 0 10px'
             }}>
-                "We tracked 3,000 attendees at our conference with zero setup friction. Unbelievable."
+                "Prformnce paid for itself in the first week. We went from missing leads to closing them."
             </p>
             <span style={{
                 fontFamily: "'Satoshi', sans-serif",
                 color: 'rgba(255,255,255,0.4)', fontSize: '13px', fontWeight: 600
             }}>
-                Rajan K. · Head of Events
+                Priya M. · Growth Lead
             </span>
         </div>
     </div>
 )
 
-const Signup = () => {
-    const { signup } = useAuth()
+const Login = () => {
+    const { login } = useAuth()
     const navigate = useNavigate()
-    const [form, setForm] = useState({ name: '', email: '', password: '' })
+    const [form, setForm] = useState({ email: '', password: '' })
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -99,7 +98,7 @@ const Signup = () => {
         setError('')
         setLoading(true)
         try {
-            await signup(form.name, form.email, form.password)
+            await login(form.email, form.password)
             navigate('/app/dashboard')
         } catch (err) {
             setError(err.message)
@@ -121,26 +120,17 @@ const Signup = () => {
                 >
                     <Link to="/app" className="auth-logo">
                         <div className="auth-logo-dot" />
-                        GetSanket
+                        Prformnce
                     </Link>
 
                     <div style={{ marginBottom: '2rem' }}>
-                        <h2 style={{ marginBottom: '6px' }}>Create your account</h2>
-                        <p style={{ margin: 0, fontSize: '15px' }}>Free forever. No credit card required.</p>
+                        <h2 style={{ marginBottom: '6px' }}>Welcome back</h2>
+                        <p style={{ margin: 0, fontSize: '15px' }}>Sign in to your Prformnce account</p>
                     </div>
 
                     <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                            <label className="field-label">Full name</label>
-                            <input
-                                required type="text" className="input-field"
-                                placeholder="Vivek Kumar"
-                                value={form.name}
-                                onChange={e => setForm({ ...form, name: e.target.value })}
-                            />
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                            <label className="field-label">Work email</label>
+                            <label className="field-label">Email address</label>
                             <input
                                 required type="email" className="input-field"
                                 placeholder="you@company.com"
@@ -149,14 +139,9 @@ const Signup = () => {
                             />
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                            <label className="field-label">
-                                Password
-                                <span style={{ color: 'var(--muted)', fontWeight: 400, marginLeft: '6px', fontSize: '13px' }}>
-                                    min 8 characters
-                                </span>
-                            </label>
+                            <label className="field-label">Password</label>
                             <input
-                                required type="password" minLength={8} className="input-field"
+                                required type="password" className="input-field"
                                 placeholder="••••••••"
                                 value={form.password}
                                 onChange={e => setForm({ ...form, password: e.target.value })}
@@ -173,19 +158,15 @@ const Signup = () => {
                         >
                             {loading
                                 ? <Loader2 size={18} className="animate-spin" />
-                                : <><span>Create free account</span> <ArrowRight size={16} /></>
+                                : <><span>Sign in</span> <ArrowRight size={16} /></>
                             }
                         </button>
-
-                        <p style={{ margin: 0, fontSize: '12px', color: 'var(--muted)', textAlign: 'center', lineHeight: 1.6 }}>
-                            By signing up, you agree to our Terms of Service and Privacy Policy.
-                        </p>
                     </form>
 
-                    <p style={{ marginTop: '1.25rem', textAlign: 'center', fontSize: '14px', color: 'var(--muted)' }}>
-                        Already have an account?{' '}
-                        <Link to="/app/login" style={{ color: 'var(--accent)', fontWeight: 600, textDecoration: 'none' }}>
-                            Sign in
+                    <p style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '14px', color: 'var(--muted)' }}>
+                        Don't have an account?{' '}
+                        <Link to="/app/signup" style={{ color: 'var(--accent)', fontWeight: 600, textDecoration: 'none' }}>
+                            Sign up free
                         </Link>
                     </p>
                 </motion.div>
@@ -194,4 +175,4 @@ const Signup = () => {
     )
 }
 
-export default Signup
+export default Login

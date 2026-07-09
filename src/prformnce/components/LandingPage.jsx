@@ -18,7 +18,7 @@ const stagger = {
 const Logo = () => (
     <Link to="/app" className="landing-logo">
         <div className="landing-logo-dot" />
-        GetSanket
+        Prformnce
     </Link>
 )
 
@@ -47,7 +47,7 @@ const testimonials = [
     {
         name: 'Priya M.',
         role: 'Growth Lead, Fintech startup',
-        text: 'GetSanket cut our lead response time in half. We know the moment someone submits — no more checking spreadsheets.'
+        text: 'Prformnce cut our lead response time in half. We know the moment someone submits — no more checking spreadsheets.'
     },
     {
         name: 'Rajan K.',
@@ -192,7 +192,7 @@ const LandingPage = () => {
                     >
                         {[
                             { value: '2M+', label: 'Leads tracked' },
-                            { value: '500+', label: 'Teams using GetSanket' },
+                            { value: '500+', label: 'Teams using Prformnce' },
                             { value: '99.9%', label: 'Uptime SLA' },
                             { value: '<2 min', label: 'Setup time' }
                         ].map((s, i) => (
@@ -318,7 +318,7 @@ const LandingPage = () => {
                                 {
                                     n: '03',
                                     title: 'Watch leads arrive',
-                                    desc: 'Monitor every submission and scan in real time from your GetSanket dashboard.'
+                                    desc: 'Monitor every submission and scan in real time from your Prformnce dashboard.'
                                 }
                             ].map((step, i) => (
                                 <motion.div
@@ -354,7 +354,7 @@ const LandingPage = () => {
                     <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
                         <span className="section-eyebrow">Customer stories</span>
                         <h2 style={{ fontSize: 'clamp(1.75rem, 3vw, 2.25rem)' }}>
-                            Teams that ship faster with GetSanket
+                            Teams that ship faster with Prformnce
                         </h2>
                     </div>
 
@@ -459,7 +459,7 @@ const LandingPage = () => {
 
                                     {plan.contactUs ? (
                                         <a
-                                            href="mailto:vivekg.work@gmail.com?subject=GetSanket Team Plan"
+                                            href="mailto:vivekg.work@gmail.com?subject=Prformnce Team Plan"
                                             style={{
                                                 display: 'block', textAlign: 'center',
                                                 padding: '11px 20px', borderRadius: 'var(--r-sm)',
@@ -516,7 +516,7 @@ const LandingPage = () => {
                             Start tracking leads in 2 minutes
                         </h2>
                         <p style={{ color: 'rgba(255,255,255,0.6)', margin: '0 auto 2.5rem', fontSize: '1.05rem', lineHeight: 1.7 }}>
-                            Join hundreds of teams already using GetSanket to capture, track, and convert more leads.
+                            Join hundreds of teams already using Prformnce to capture, track, and convert more leads.
                         </p>
                         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
                             <Link
@@ -560,7 +560,7 @@ const LandingPage = () => {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)' }} />
                         <span style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: '0.95rem', color: '#E5E7EB', letterSpacing: '-0.02em' }}>
-                            GetSanket
+                            Prformnce
                         </span>
                     </div>
                     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
@@ -572,7 +572,7 @@ const LandingPage = () => {
                         <Link to="/app/login" style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', fontFamily: "'Satoshi', sans-serif", fontWeight: 500 }}>Sign in</Link>
                     </div>
                     <p style={{ margin: 0, fontSize: '13px', color: 'rgba(255,255,255,0.3)', fontFamily: "'Satoshi', sans-serif" }}>
-                        © {new Date().getFullYear()} GetSanket
+                        © {new Date().getFullYear()} Prformnce
                     </p>
                 </div>
             </footer>

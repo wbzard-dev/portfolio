@@ -179,7 +179,7 @@ export const promoVoucher = {
                 verticalAlignment: 'middle', characterSpacing: 1, readOnly: true,
             }),
 
-            text('brand_name', 'GetSanket', 82, 12, 120, 10, {
+            text('brand_name', 'Prformnce', 82, 12, 120, 10, {
                 fontSize: 10, fontColor: '#7c3aed', alignment: 'left',
                 verticalAlignment: 'middle', characterSpacing: 0, readOnly: true,
             }),
@@ -331,7 +331,7 @@ export const workshopTicket = {
             }),
 
             rect('bottom_accent', 0, 204, 148, 6, { color: '#064e3b' }),
-            text('organizer', 'Powered by GetSanket', 10, 205, 128, 5, {
+            text('organizer', 'Powered by Prformnce', 10, 205, 128, 5, {
                 fontSize: 6, fontColor: '#6ee7b7', alignment: 'center',
                 verticalAlignment: 'middle', readOnly: true,
             }),
@@ -416,7 +416,7 @@ export const realEstateCard = {
 
             // ── Footer
             rect('footer', 0, 194, 148, 16, { color: '#1e293b' }),
-            text('brand_footer', 'GetSanket · getsanket.com', 8, 199, 132, 6, {
+            text('brand_footer', 'Prformnce · prformnce.com', 8, 199, 132, 6, {
                 fontSize: 6, fontColor: '#94a3b8', alignment: 'center',
                 verticalAlignment: 'middle', readOnly: true,
             }),

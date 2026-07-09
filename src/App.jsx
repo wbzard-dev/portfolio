@@ -23,11 +23,11 @@ import Blokz          from "./components/Blokz";
 import OneHabit       from "./components/OneHabit";
 import ServicePage    from "./components/ServicePage";
 import CohortV1       from "./components/CohortV1";
-import GetsanketApp   from "./getsanket/GetsanketApp";
+import PrformnceApp   from "./prformnce/PrformnceApp";
 
 function App() {
     const location = useLocation();
-    const isGetsanket = location.pathname.startsWith("/app");
+    const isPrformnce = location.pathname.startsWith("/app");
 
     useEffect(() => {
         if (window.gtag) {
@@ -38,7 +38,7 @@ function App() {
     }, [location]);
 
     useEffect(() => {
-        if (isGetsanket) return;
+        if (isPrformnce) return;
         const lenis = new Lenis({
             duration:        1.8,
             easing:          (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -49,11 +49,11 @@ function App() {
         const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf); };
         requestAnimationFrame(raf);
         return () => lenis.destroy();
-    }, [isGetsanket]);
+    }, [isPrformnce]);
 
     return (
         <div className="App">
-            {!isGetsanket && <Header />}
+            {!isPrformnce && <Header />}
             <AnimatePresence mode="wait">
                 <Routes location={location} key={location.pathname}>
                     <Route
@@ -77,10 +77,10 @@ function App() {
                     <Route path="/blokz"           element={<Blokz />} />
                     <Route path="/one-habit"       element={<OneHabit />} />
                     <Route path="/cohort/v1"       element={<CohortV1 />} />
-                    <Route path="/app/*"           element={<GetsanketApp />} />
+                    <Route path="/app/*"           element={<PrformnceApp />} />
                 </Routes>
             </AnimatePresence>
-            {!isGetsanket && <Footer />}
+            {!isPrformnce && <Footer />}
         </div>
     );
 }

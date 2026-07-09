@@ -48,7 +48,7 @@ const UpgradeModal = ({ onClose, onSuccess }) => {
             const options = {
                 key: import.meta.env.VITE_RAZORPAY_KEY_ID,
                 subscription_id: data.subscription_id,
-                name: 'GetSanket',
+                name: 'Prformnce',
                 description: 'Pro Plan — ₹799/month',
                 prefill: { name: user?.name || '', email: user?.email || '' },
                 theme: { color: '#2563EB' },
