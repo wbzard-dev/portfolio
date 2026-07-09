@@ -14,13 +14,19 @@ const cohortLinks = [
     { name: "Cohort v1", href: "/cohort/v1", badge: "New" },
 ];
 
+const projectLinks = [
+    { name: "Prformnce", href: "/prformnce", desc: "QR campaigns & lead tracking" },
+];
+
 const Header = () => {
     const [scrollY, setScrollY]         = useState(0);
     const [hidden, setHidden]           = useState(false);
     const [lastY, setLastY]             = useState(0);
-    const [menuOpen, setMenuOpen]       = useState(false);
-    const [cohortOpen, setCohortOpen]   = useState(false);
-    const cohortRef                     = useRef(null);
+    const [menuOpen, setMenuOpen]         = useState(false);
+    const [cohortOpen, setCohortOpen]     = useState(false);
+    const [projectsOpen, setProjectsOpen] = useState(false);
+    const cohortRef                       = useRef(null);
+    const projectsRef                     = useRef(null);
     const location = useLocation();
 
     useEffect(() => {
@@ -34,13 +40,12 @@ const Header = () => {
         return () => window.removeEventListener("scroll", onScroll);
     }, [lastY]);
 
-    useEffect(() => { setMenuOpen(false); setCohortOpen(false); }, [location]);
+    useEffect(() => { setMenuOpen(false); setCohortOpen(false); setProjectsOpen(false); }, [location]);
 
     useEffect(() => {
         const handler = (e) => {
-            if (cohortRef.current && !cohortRef.current.contains(e.target)) {
-                setCohortOpen(false);
-            }
+            if (cohortRef.current && !cohortRef.current.contains(e.target)) setCohortOpen(false);
+            if (projectsRef.current && !projectsRef.current.contains(e.target)) setProjectsOpen(false);
         };
         document.addEventListener("mousedown", handler);
         return () => document.removeEventListener("mousedown", handler);
@@ -122,6 +127,61 @@ const Header = () => {
                                 {link.name}
                             </a>
                         ))}
+
+                        {/* Projects dropdown */}
+                        <div ref={projectsRef} style={{ position: "relative" }}>
+                            <button
+                                onClick={() => setProjectsOpen(o => !o)}
+                                style={{
+                                    display: "flex", alignItems: "center", gap: "0.3rem",
+                                    fontFamily: "'Satoshi', sans-serif",
+                                    fontSize: "0.875rem", fontWeight: 500,
+                                    color: projectsOpen ? textHover : textCol,
+                                    background: "none", border: "none", cursor: "pointer",
+                                    padding: 0, transition: "color 0.2s ease",
+                                }}
+                            >
+                                Projects <ChevronDown size={14} style={{ transition: "transform 0.2s ease", transform: projectsOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
+                            </button>
+                            {projectsOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                                    style={{
+                                        position: "absolute", top: "calc(100% + 0.75rem)", left: "50%",
+                                        transform: "translateX(-50%)",
+                                        background: "#fff",
+                                        border: "1px solid var(--border)",
+                                        borderRadius: "var(--radius-md)",
+                                        boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                                        padding: "0.5rem",
+                                        minWidth: "220px",
+                                        zIndex: 100,
+                                    }}
+                                >
+                                    {projectLinks.map(pl => (
+                                        <Link
+                                            key={pl.name}
+                                            to={pl.href}
+                                            style={{
+                                                display: "flex", flexDirection: "column",
+                                                padding: "0.6rem 0.875rem",
+                                                borderRadius: "var(--radius-sm)",
+                                                fontFamily: "'Satoshi', sans-serif",
+                                                color: "var(--text)",
+                                                transition: "background 0.15s ease",
+                                            }}
+                                            onMouseEnter={e => e.currentTarget.style.background = "var(--bg-subtle)"}
+                                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                                        >
+                                            <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>{pl.name}</span>
+                                            {pl.desc && <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "0.15rem" }}>{pl.desc}</span>}
+                                        </Link>
+                                    ))}
+                                </motion.div>
+                            )}
+                        </div>
 
                         {/* Cohort dropdown */}
                         <div ref={cohortRef} style={{ position: "relative" }}>
@@ -240,6 +300,23 @@ const Header = () => {
                             {link.name}
                         </a>
                     ))}
+
+                    {/* Mobile projects links */}
+                    <div style={{ borderTop: `1px solid ${borderCol}`, paddingTop: "1rem" }}>
+                        <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: pastHero ? "var(--text-muted)" : "rgba(255,255,255,0.35)", marginBottom: "0.75rem" }}>
+                            Projects
+                        </p>
+                        {projectLinks.map(pl => (
+                            <Link
+                                key={pl.name}
+                                to={pl.href}
+                                style={{ display: "flex", flexDirection: "column", marginBottom: "0.75rem" }}
+                            >
+                                <span style={{ fontSize: "1rem", fontWeight: 500, color: pastHero ? "var(--text)" : "#fff" }}>{pl.name}</span>
+                                {pl.desc && <span style={{ fontSize: "0.8rem", color: pastHero ? "var(--text-muted)" : "rgba(255,255,255,0.5)" }}>{pl.desc}</span>}
+                            </Link>
+                        ))}
+                    </div>
 
                     {/* Mobile cohort links */}
                     <div style={{ borderTop: `1px solid ${borderCol}`, paddingTop: "1rem" }}>

@@ -27,7 +27,7 @@ import PrformnceApp   from "./prformnce/PrformnceApp";
 
 function App() {
     const location = useLocation();
-    const isPrformnce = location.pathname.startsWith("/app");
+    const isPrformnce = location.pathname.startsWith("/prformnce");
 
     useEffect(() => {
         if (window.gtag) {
@@ -77,7 +77,7 @@ function App() {
                     <Route path="/blokz"           element={<Blokz />} />
                     <Route path="/one-habit"       element={<OneHabit />} />
                     <Route path="/cohort/v1"       element={<CohortV1 />} />
-                    <Route path="/app/*"           element={<PrformnceApp />} />
+                    <Route path="/prformnce/*"           element={<PrformnceApp />} />
                 </Routes>
             </AnimatePresence>
             {!isPrformnce && <Footer />}

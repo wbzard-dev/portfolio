@@ -99,7 +99,7 @@ const Login = () => {
         setLoading(true)
         try {
             await login(form.email, form.password)
-            navigate('/app/dashboard')
+            navigate('/prformnce/dashboard')
         } catch (err) {
             setError(err.message)
         } finally {
@@ -118,7 +118,7 @@ const Login = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <Link to="/app" className="auth-logo">
+                    <Link to="/prformnce" className="auth-logo">
                         <div className="auth-logo-dot" />
                         Prformnce
                     </Link>
@@ -165,7 +165,7 @@ const Login = () => {
 
                     <p style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '14px', color: 'var(--muted)' }}>
                         Don't have an account?{' '}
-                        <Link to="/app/signup" style={{ color: 'var(--accent)', fontWeight: 600, textDecoration: 'none' }}>
+                        <Link to="/prformnce/signup" style={{ color: 'var(--accent)', fontWeight: 600, textDecoration: 'none' }}>
                             Sign up free
                         </Link>
                     </p>

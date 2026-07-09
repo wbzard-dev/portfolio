@@ -16,13 +16,13 @@ const ProtectedRoute = ({ children }) => {
             <Loader2 size={28} className="animate-spin" style={{ color: '#aaa' }} />
         </div>
     )
-    return user ? children : <Navigate to="/app/login" replace />
+    return user ? children : <Navigate to="/prformnce/login" replace />
 }
 
 const PublicRoute = ({ children }) => {
     const { user, loading } = useAuth()
     if (loading) return null
-    return user ? <Navigate to="/app/dashboard" replace /> : children
+    return user ? <Navigate to="/prformnce/dashboard" replace /> : children
 }
 
 const PrformnceRoutes = () => (
@@ -33,7 +33,7 @@ const PrformnceRoutes = () => (
             <Route path="signup"      element={<PublicRoute><Signup /></PublicRoute>} />
             <Route path="dashboard"   element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="dashboard/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="*"           element={<Navigate to="/app" replace />} />
+            <Route path="*"           element={<Navigate to="/prformnce" replace />} />
         </Routes>
     </Suspense>
 )
