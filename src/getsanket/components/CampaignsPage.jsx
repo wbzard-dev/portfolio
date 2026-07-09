@@ -412,7 +412,7 @@ const DesignerStep = ({ initialTemplate, campaignName, onBack, onNext }) => {
 
 // ── Step 3: Generate (CSV + Generate) ─────────────────────────────────────────
 
-const GenerateStep = ({ template, campaignMeta, onBack, onDone }) => {
+const GenerateStep = ({ template, campaignMeta, onBack, onDone, onViewCampaign }) => {
     const { authFetch } = useAuth()
     const [csvData, setCsvData] = useState([])
     const [csvFileName, setCsvFileName] = useState('')
@@ -501,6 +501,8 @@ const GenerateStep = ({ template, campaignMeta, onBack, onDone }) => {
             const fileName = `${campaignMeta.name.replace(/\s+/g, '-')}-${Date.now()}.pdf`
             setPdfUrl(url)
             setPdfFileName(fileName)
+            // Auto-trigger download immediately
+            const dlLink = document.createElement('a'); dlLink.href = url; dlLink.download = fileName; dlLink.click()
             setPhase('done')
             onDone({ id: campaignId, name: campaignMeta.name, redirectUrl: campaignMeta.redirectUrl, recipientCount: total })
         } catch (err) {
@@ -656,13 +658,20 @@ const GenerateStep = ({ template, campaignMeta, onBack, onDone }) => {
                             </div>
                         </div>
                         {phase === 'done' && (
-                            <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-                                <button onClick={handleDownload} className="btn-primary" style={{ padding: '12px 24px', fontSize: 15 }}>
-                                    <Download size={16} /> Download PDF Bundle
-                                </button>
-                                <span style={{ fontSize: 13, color: 'var(--muted)' }}>
-                                    Scans are now tracked live — click <strong>View Campaign</strong> at top to see analytics.
-                                </span>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                                    <button onClick={handleDownload} className="btn-primary" style={{ padding: '12px 24px', fontSize: 15 }}>
+                                        <Download size={16} /> Download PDF Bundle
+                                    </button>
+                                    {onViewCampaign && (
+                                        <button onClick={onViewCampaign} className="btn-ghost" style={{ padding: '12px 20px', fontSize: 15 }}>
+                                            View Campaign →
+                                        </button>
+                                    )}
+                                </div>
+                                <p style={{ margin: 0, fontSize: 13, color: 'var(--muted)' }}>
+                                    Scans are tracked live. Download started automatically — use the button above if you need it again.
+                                </p>
                             </div>
                         )}
                     </div>
@@ -1331,9 +1340,8 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
             created_at: new Date().toISOString(),
         }
         setCampaigns(prev => [entry, ...prev])
-        // Auto-navigate to the new campaign (scans is now the default view)
+        // Pre-select but stay on wizard done screen so user can download
         setSelected(entry)
-        setView('detail')
     }
 
     const handleDelete = (id) => {
@@ -1351,7 +1359,7 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
         return (
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <div style={{ padding: '0 1.5rem', height: 54, borderBottom: '1px solid var(--border)', background: 'var(--surface)', display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
-                    <button onClick={() => setView('list')} className="icon-btn" title="Cancel" style={{ flexShrink: 0 }}>
+                    <button onClick={() => setView(selected ? 'detail' : 'list')} className="icon-btn" title="Cancel" style={{ flexShrink: 0 }}>
                         <X size={18} />
                     </button>
                     <StepIndicator current={wizardStep} />
@@ -1383,6 +1391,7 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
                             campaignMeta={wizardMeta}
                             onBack={() => setWizardStep(2)}
                             onDone={handleWizardDone}
+                            onViewCampaign={() => setView('detail')}
                         />
                     )}
                 </div>
