@@ -52,13 +52,14 @@ const curriculum = [
     {
         phase: "Phase 1",
         title: "Foundation",
-        weekRange: "Weeks 1–2",
+        dayRange: "Days 1–8",
         subtitle: "Build learning muscles and understand how the web actually works.",
         color: "#2563EB",
         icon: <Brain size={18} />,
         weeks: [
             {
                 week: 1,
+                dayRange: "Days 1–4",
                 title: "How to Learn",
                 tag: "Mindset",
                 bullets: [
@@ -72,6 +73,7 @@ const curriculum = [
             },
             {
                 week: 2,
+                dayRange: "Days 5–8",
                 title: "Developer Toolkit & Web Fundamentals",
                 tag: "Fundamentals",
                 bullets: [
@@ -88,26 +90,28 @@ const curriculum = [
     {
         phase: "Phase 2",
         title: "The Stack",
-        weekRange: "Weeks 3–8",
+        dayRange: "Days 9–33",
         subtitle: "Ship two real, deployed projects. Cover the full MERN stack and core DevOps.",
         color: "#7C3AED",
         icon: <Layers size={18} />,
         weeks: [
             {
                 week: 3,
+                dayRange: "Days 9–12",
                 title: "JavaScript Fundamentals + Project 1 Kickoff",
                 tag: "JavaScript",
                 bullets: [
                     "Variables, types, scope, the call stack — why it matters, not just what it is",
                     "Functions: pure vs impure, closures, higher-order functions",
                     "Async JavaScript: callbacks → promises → async/await, error handling",
-                    "Project 1 kickoff: Project 1 (MERN) — build your first 3 REST routes",
+                    "Project 1 kickoff: build your first 3 REST routes",
                     "Mini-projects: calculator, promise-based data fetcher, async image loader",
                 ],
                 deliverable: "Backend scaffolded: GET all, GET one, POST create routes working in Postman",
             },
             {
                 week: 4,
+                dayRange: "Days 13–17",
                 title: "React Fundamentals + Project 1 Frontend",
                 tag: "React",
                 bullets: [
@@ -121,6 +125,7 @@ const curriculum = [
             },
             {
                 week: 5,
+                dayRange: "Days 18–21",
                 title: "Node.js, Express & Databases",
                 tag: "Backend",
                 bullets: [
@@ -134,6 +139,7 @@ const curriculum = [
             },
             {
                 week: 6,
+                dayRange: "Days 22–25",
                 title: "DevOps & Deployment — Ship Project 1",
                 tag: "DevOps",
                 bullets: [
@@ -147,19 +153,21 @@ const curriculum = [
             },
             {
                 week: 7,
+                dayRange: "Days 26–29",
                 title: "Advanced React + Project 2 Kickoff",
                 tag: "React Advanced",
                 bullets: [
                     "State management: useContext, useReducer, state lifting — when to use which",
                     "Custom hooks — write your own, stop repeating logic",
                     "Performance: useMemo, useCallback, React.memo — only where it matters",
-                    "Project 2 kickoff: Project 2 — design database schema and component tree",
+                    "Project 2 kickoff — design database schema and component tree",
                     "Intro to drag-and-drop (React Beautiful DnD / dnd-kit)",
                 ],
                 deliverable: "Project 2 scaffolded: schema designed, backend routes planned",
             },
             {
                 week: 8,
+                dayRange: "Days 30–33",
                 title: "Full Project Sprint — Ship Project 2",
                 tag: "Build Week",
                 bullets: [
@@ -176,13 +184,14 @@ const curriculum = [
     {
         phase: "Phase 3",
         title: "Career",
-        weekRange: "Weeks 9–12",
+        dayRange: "Days 34–45",
         subtitle: "Interview prep, portfolio polish, and your capstone project. Get job-ready.",
         color: "#059669",
         icon: <Rocket size={18} />,
         weeks: [
             {
                 week: 9,
+                dayRange: "Days 34–37",
                 title: "Portfolio Polish + Interview Prep Basics",
                 tag: "Portfolio",
                 bullets: [
@@ -196,6 +205,7 @@ const curriculum = [
             },
             {
                 week: 10,
+                dayRange: "Days 38–40",
                 title: "Technical Interview Prep + Mock Interview #1",
                 tag: "Interview Prep",
                 bullets: [
@@ -209,19 +219,21 @@ const curriculum = [
             },
             {
                 week: 11,
+                dayRange: "Days 41–43",
                 title: "LinkedIn + Resume + Mock Interview #2",
                 tag: "Career Assets",
                 bullets: [
                     "LinkedIn: headline, about section, projects linked, skills backed by proof",
+                    "We help you start posting on LinkedIn — build in public, attract the right opportunities",
                     "ATS-ready resume: achievement-focused bullets, right keywords, no fancy graphics",
                     "Turn tasks into impact: 'Built a full-stack app with real users, deployed end-to-end'",
-                    "Content strategy: posting about what you built, not just links",
                     "Mock interview #2: light system design ('Design a URL shortener') + behavioral",
                 ],
-                deliverable: "LinkedIn fully updated + ATS resume finalized + mock interview #2 done",
+                deliverable: "LinkedIn fully updated + first post published + ATS resume finalized + mock interview #2 done",
             },
             {
                 week: 12,
+                dayRange: "Days 44–45",
                 title: "Capstone Project + Final Interview",
                 tag: "Capstone",
                 bullets: [
@@ -238,11 +250,10 @@ const curriculum = [
 ];
 
 const perks = [
-    { icon: <Award size={20} />, title: "Course Completion Certificate", desc: "Wbzard Labs certified. Shareable on LinkedIn." },
+    { icon: <Award size={20} />, title: "Course Completion Certificate", desc: "Wbzard Labs certified. Shareable on LinkedIn to showcase your achievement." },
     { icon: <Users size={20} />, title: "1-on-1 Mock Interview Sessions", desc: "Real feedback, not generic advice." },
-    { icon: <Linkedin size={20} />, title: "LinkedIn Profile Review", desc: "Personal audit from someone who's done it." },
+    { icon: <Linkedin size={20} />, title: "LinkedIn Profile & Content Help", desc: "We help you set up your profile and start posting about what you build — consistently." },
     { icon: <FileText size={20} />, title: "ATS Resume Review", desc: "We rewrite it until recruiters notice you." },
-    { icon: <Star size={20} />, title: "Paid Internship (Selected)", desc: "Top performers get real internship opportunities through Wbzard Labs." },
     { icon: <Shield size={20} />, title: "Private Community Access", desc: "Lifetime access to the cohort community." },
 ];
 
@@ -257,15 +268,15 @@ const faqs = [
     },
     {
         q: "How long is the cohort?",
-        a: "12 weeks, part-time. Designed so you can complete it alongside college or a full-time job. Approximately 8–10 hours per week.",
+        a: "45 days, part-time. Designed so you can complete it alongside college or a full-time job. Approximately 2–3 hours of focused learning per day.",
     },
     {
         q: "Is it live or recorded?",
         a: "Live sessions every weekend, all recorded. Miss a session? Watch the recording. Everything is async-friendly.",
     },
     {
-        q: "What about the paid internship?",
-        a: "Selected top performers from the cohort get internship opportunities through Wbzard Labs. Selection is based on project quality, consistency, and overall performance.",
+        q: "What projects will I build?",
+        a: "You'll build 3 full-stack projects end-to-end — from database design to deployment. Two are guided (we scaffold it together), and the third is your own capstone. All three are live on the internet and on your GitHub when you finish.",
     },
     {
         q: "When does the next batch start?",
@@ -355,7 +366,7 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
                     textAlign: "left",
                 }}
             >
-                {/* Week pill */}
+                {/* Day range pill */}
                 <span style={{
                     flexShrink: 0,
                     fontFamily: "'Satoshi', sans-serif",
@@ -369,7 +380,7 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
                     padding: "0.2rem 0.6rem",
                     whiteSpace: "nowrap",
                 }}>
-                    Wk {item.week}
+                    {item.dayRange}
                 </span>
 
                 {/* Title */}
@@ -612,41 +623,10 @@ function VideoEmbed({ videoId }) {
     );
 }
 
-/* ─── Razorpay Button ────────────────────────────────────── */
-function RazorpayButton({ onSuccess }) {
-    const containerRef = useRef(null);
-
-    useEffect(() => {
-        const form = document.createElement("form");
-
-        // Razorpay Payment Button submits this form with razorpay_payment_id on success.
-        // Intercept it so React handles the success state instead of a page reload.
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const data = Object.fromEntries(new FormData(e.target));
-            if (data.razorpay_payment_id) onSuccess(data);
-        });
-
-        const script = document.createElement("script");
-        script.src = "https://checkout.razorpay.com/v1/payment-button.js";
-        script.setAttribute("data-payment_button_id", "pl_TAw1dvTn5e8e75");
-        script.async = true;
-        form.appendChild(script);
-
-        const el = containerRef.current;
-        if (el) el.appendChild(form);
-
-        return () => { if (el) el.innerHTML = ""; };
-    }, []);
-
-    return <div ref={containerRef} style={{ display: "flex", justifyContent: "center", marginTop: "0.5rem" }} />;
-}
-
 /* ─── Registration Form ──────────────────────────────────── */
 function RegistrationForm() {
     const [form, setForm] = useState({ name: "", email: "", phone: "", level: "", stack: "", why: "" });
     const [formStatus, setFormStatus] = useState("idle");
-    const [paid, setPaid] = useState(false);
 
     const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -693,8 +673,8 @@ function RegistrationForm() {
         letterSpacing: "0.04em",
     };
 
-    /* ── Congratulations screen ── */
-    if (paid) {
+    /* ── Success screen ── */
+    if (formStatus === "submitted") {
         return (
             <motion.div
                 initial={{ opacity: 0, scale: 0.92 }}
@@ -708,13 +688,13 @@ function RegistrationForm() {
                     transition={{ delay: 0.15, type: "spring", stiffness: 260, damping: 18 }}
                     style={{
                         width: 72, height: 72, borderRadius: "50%",
-                        background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
+                        background: "linear-gradient(135deg, #10B981 0%, #059669 100%)",
                         display: "flex", alignItems: "center", justifyContent: "center",
                         margin: "0 auto 1.5rem",
-                        boxShadow: "0 0 40px rgba(37,99,235,0.4)",
+                        boxShadow: "0 0 40px rgba(16,185,129,0.35)",
                     }}
                 >
-                    <Star size={32} style={{ color: "#fff", fill: "#fff" }} />
+                    <CheckCircle size={32} style={{ color: "#fff" }} />
                 </motion.div>
 
                 <motion.h3
@@ -723,7 +703,7 @@ function RegistrationForm() {
                     transition={{ delay: 0.28, duration: 0.45 }}
                     style={{ fontFamily: "'Anton', sans-serif", fontWeight: 400, fontSize: "2rem", color: "#fff", marginBottom: "0.5rem", letterSpacing: "-0.01em" }}
                 >
-                    CONGRATULATIONS!
+                    YOU'RE REGISTERED!
                 </motion.h3>
 
                 <motion.p
@@ -732,7 +712,7 @@ function RegistrationForm() {
                     transition={{ delay: 0.36, duration: 0.4 }}
                     style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.6)", marginBottom: "2rem", lineHeight: 1.7 }}
                 >
-                    Your seat is confirmed. You're part of <strong style={{ color: "#fff" }}>Cohort v1.</strong>
+                    We've received your interest. You're on the list for <strong style={{ color: "#fff" }}>Cohort v1.</strong>
                 </motion.p>
 
                 <motion.div
@@ -755,64 +735,11 @@ function RegistrationForm() {
                         </div>
                     ))}
                 </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", color: "rgba(255,255,255,0.2)" }}
-                >
-                    Payment confirmed · Secured by Razorpay
-                </motion.p>
             </motion.div>
         );
     }
 
-    /* ── Step 2: payment screen ── */
-    if (formStatus === "submitted") {
-        return (
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                style={{ textAlign: "center", padding: "2.5rem 1.5rem" }}
-            >
-                {/* Step indicators */}
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginBottom: "2rem" }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                        <CheckCircle size={16} style={{ color: "#10B981" }} />
-                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", fontWeight: 700, color: "#10B981", letterSpacing: "0.05em" }}>STEP 1 DONE</span>
-                    </div>
-                    <div style={{ width: 32, height: 1, background: "rgba(255,255,255,0.15)" }} />
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                        <div style={{
-                            width: 16, height: 16, borderRadius: "50%",
-                            background: "rgba(37,99,235,0.3)", border: "2px solid #2563EB",
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                        }}>
-                            <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.6rem", fontWeight: 700, color: "#60A5FA" }}>2</span>
-                        </div>
-                        <span style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.75rem", fontWeight: 700, color: "#60A5FA", letterSpacing: "0.05em" }}>CONFIRM SEAT</span>
-                    </div>
-                </div>
-
-                <CheckCircle size={40} style={{ color: "#10B981", margin: "0 auto 1rem" }} />
-                <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "1.3rem", color: "#fff", marginBottom: "0.5rem" }}>
-                    Application saved!
-                </h3>
-                <p style={{ fontFamily: "'Satoshi', sans-serif", color: "rgba(255,255,255,0.45)", fontSize: "0.875rem", maxWidth: "300px", margin: "0 auto 2rem", lineHeight: 1.75 }}>
-                    One last step — complete your payment to <strong style={{ color: "rgba(255,255,255,0.8)" }}>lock in your seat.</strong>
-                </p>
-
-                <RazorpayButton onSuccess={() => setPaid(true)} />
-
-                <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.72rem", color: "rgba(255,255,255,0.2)", marginTop: "1.25rem" }}>
-                    Secured by Razorpay · UPI · Cards · Netbanking · Wallets
-                </p>
-            </motion.div>
-        );
-    }
-
-    /* ── Step 1: the form ── */
+    /* ── Registration form ── */
     return (
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }} className="form-grid">
@@ -874,12 +801,8 @@ function RegistrationForm() {
                 className="btn-primary-dark"
                 style={{ fontSize: "0.95rem", padding: "1rem 2rem", width: "100%", justifyContent: "center", opacity: formStatus === "loading" ? 0.7 : 1 }}
             >
-                {formStatus === "loading" ? "Submitting..." : "Apply for the Cohort"} <ArrowRight size={16} />
+                {formStatus === "loading" ? "Submitting..." : "Register My Interest"} <ArrowRight size={16} />
             </button>
-
-            <p style={{ textAlign: "center", fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.3)" }}>
-                Step 1 of 2 · Payment happens on the next screen
-            </p>
         </form>
     );
 }
@@ -920,7 +843,7 @@ function PhaseBlock({ phase }) {
                         {phase.title}
                     </h3>
                     <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.3)", marginTop: "0.1rem" }}>
-                        {phase.weekRange} · {phase.subtitle}
+                        {phase.dayRange} · {phase.subtitle}
                     </p>
                 </div>
             </div>
@@ -953,7 +876,7 @@ const CohortV1 = () => {
         <>
             <SEO
                 title="Cohort v1 — Learn to Think Like an Engineer | Wbzard Labs"
-                description="A 12-week cohort teaching MERN stack, DevOps, first principles thinking, mock interviews, LinkedIn optimization, and ATS resume prep. Limited seats."
+                description="A 45-day cohort teaching MERN stack, DevOps, first principles thinking, 3 end-to-end projects, LinkedIn posting strategy, ATS resume prep, and mock interviews. Limited seats."
                 keywords="coding cohort, MERN stack course, first principles coding, developer bootcamp, wbzard labs"
             />
             <Helmet>
@@ -1048,7 +971,7 @@ const CohortV1 = () => {
 
                     <motion.div {...fadeUp(0.52)} style={{ display: "flex", gap: "2rem", justifyContent: "center", flexWrap: "wrap" }}>
                         {[
-                            { value: "12", label: "Weeks" },
+                            { value: "45", label: "Days" },
                             { value: "30", label: "Seats Only" },
                             { value: "3", label: "Real Projects" },
                             { value: "100%", label: "Career Support" },
@@ -1116,10 +1039,10 @@ const CohortV1 = () => {
                     <motion.div {...fadeUp(0)} style={{ marginBottom: "4rem", maxWidth: "620px" }}>
                         <SectionLabel dark>The Curriculum</SectionLabel>
                         <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "clamp(1.8rem, 4vw, 2.75rem)", color: "#fff", letterSpacing: "-0.025em", marginBottom: "1rem" }}>
-                            12 weeks. Every week has a job to do.
+                            45 days. Every day has a job to do.
                         </h2>
                         <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "1rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.8 }}>
-                            No filler. No random tutorials. A structured path from "I can write code" to "I can architect, ship, and explain anything."
+                            No filler. No random tutorials. A structured path from "I can write code" to "I can architect, ship, and explain anything." You'll build 3 complete projects end-to-end — from database to deployment.
                         </p>
                     </motion.div>
 
@@ -1143,17 +1066,16 @@ const CohortV1 = () => {
                     </motion.div>
 
                     <motion.div className="perks-grid" variants={stagger} initial="initial" whileInView="whileInView" viewport={{ once: true }}>
-                        {perks.map((p, i) => (
+                        {perks.map((p) => (
                             <motion.div key={p.title} variants={itemVariant} style={{
-                                background: i === 4 ? "rgba(37,99,235,0.08)" : "rgba(255,255,255,0.03)",
-                                border: i === 4 ? "1px solid rgba(37,99,235,0.3)" : "1px solid rgba(255,255,255,0.07)",
+                                background: "rgba(255,255,255,0.03)",
+                                border: "1px solid rgba(255,255,255,0.07)",
                                 borderRadius: "var(--radius-lg)",
                                 padding: "1.75rem",
                             }}>
-                                <div style={{ color: i === 4 ? "#FBBF24" : "#60A5FA", marginBottom: "1rem" }}>{p.icon}</div>
+                                <div style={{ color: "#60A5FA", marginBottom: "1rem" }}>{p.icon}</div>
                                 <h3 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "0.975rem", color: "#fff", marginBottom: "0.4rem" }}>
                                     {p.title}
-                                    {i === 4 && <span style={{ fontSize: "0.7rem", background: "rgba(251,191,36,0.15)", color: "#FBBF24", borderRadius: "4px", padding: "0.1rem 0.4rem", marginLeft: "0.5rem", verticalAlign: "middle" }}>EXCLUSIVE</span>}
                                 </h3>
                                 <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.65 }}>{p.desc}</p>
                             </motion.div>
@@ -1195,10 +1117,12 @@ const CohortV1 = () => {
                             </p>
 
                             {[
-                                "Fill the form → pay → seat confirmed",
+                                "3 full-stack projects built end-to-end, live on the internet",
+                                "We help you start posting on LinkedIn and build in public",
+                                "ATS-friendly resume built from scratch with you",
+                                "Course completion certificate from Wbzard Labs",
                                 "Live sessions + all recordings",
                                 "1-on-1 feedback, not just videos",
-                                "Paid internship for top performers",
                             ].map(item => (
                                 <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
                                     <CheckCircle size={16} style={{ color: "#10B981", flexShrink: 0 }} />
@@ -1215,7 +1139,7 @@ const CohortV1 = () => {
                                     Starting Soon — Date TBA
                                 </p>
                                 <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", marginTop: "0.25rem" }}>
-                                    Register now to get priority seat allocation and early access pricing.
+                                    Register now to get priority seat allocation and early access.
                                 </p>
                             </div>
                         </motion.div>
