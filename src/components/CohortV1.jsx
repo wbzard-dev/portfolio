@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     ArrowRight, CheckCircle, Users, Award, Briefcase,
     Code2, Globe, Terminal, Linkedin, FileText, Zap, Brain,
     ChevronDown, Star, Clock, Shield, BookOpen, Layers, Rocket,
-    Volume2, VolumeX,
 } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import SEO from "./SEO";
@@ -462,167 +461,6 @@ function WeekAccordion({ item, color, isOpen, onToggle }) {
     );
 }
 
-/* ─── Video Embed ────────────────────────────────────────── */
-function VideoEmbed({ videoId }) {
-    const containerRef = useRef(null);
-    const playerRef = useRef(null);
-    const [playing, setPlaying] = useState(false);
-    const [muted, setMuted] = useState(true);
-
-    useEffect(() => {
-        let destroyed = false;
-
-        const initPlayer = () => {
-            if (destroyed || !containerRef.current) return;
-            playerRef.current = new window.YT.Player(containerRef.current, {
-                videoId,
-                playerVars: {
-                    autoplay: 1,
-                    mute: 1,
-                    loop: 1,
-                    playlist: videoId,
-                    controls: 0,
-                    rel: 0,
-                    playsinline: 1,
-                    iv_load_policy: 3,
-                    disablekb: 1,
-                    cc_load_policy: 0,
-                },
-                events: {
-                    onReady(e) {
-                        e.target.playVideo();
-                        const disableCaptions = () => {
-                            try {
-                                e.target.setOption("captions", "track", {});
-                                e.target.unloadModule("captions");
-                            } catch (_) {}
-                        };
-                        disableCaptions();
-                        setTimeout(disableCaptions, 1000);
-                        setTimeout(disableCaptions, 3000);
-                        if (!destroyed) setPlaying(true);
-                    },
-                    onStateChange(e) {
-                        if (!destroyed) setPlaying(e.data === window.YT.PlayerState.PLAYING);
-                    },
-                },
-            });
-        };
-
-        if (window.YT?.Player) {
-            initPlayer();
-        } else {
-            if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-                const tag = document.createElement("script");
-                tag.src = "https://www.youtube.com/iframe_api";
-                document.head.appendChild(tag);
-            }
-            const prev = window.onYouTubeIframeAPIReady;
-            window.onYouTubeIframeAPIReady = () => {
-                prev?.();
-                initPlayer();
-            };
-        }
-
-        return () => {
-            destroyed = true;
-            playerRef.current?.destroy();
-        };
-    }, [videoId]);
-
-    const togglePlay = () => {
-        const p = playerRef.current;
-        if (!p) return;
-        playing ? p.pauseVideo() : p.playVideo();
-    };
-
-    const toggleMute = (e) => {
-        e.stopPropagation();
-        const p = playerRef.current;
-        if (!p) return;
-        if (muted) {
-            p.unMute();
-            p.setVolume(100);
-            setMuted(false);
-        } else {
-            p.mute();
-            setMuted(true);
-        }
-    };
-
-    return (
-        <div>
-            {/* aspect-ratio container */}
-            <div
-                onClick={togglePlay}
-                style={{
-                    position: "relative",
-                    paddingBottom: "56.25%",
-                    height: 0,
-                    borderRadius: "var(--radius-lg)",
-                    overflow: "hidden",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    cursor: "pointer",
-                }}
-            >
-                <div
-                    ref={containerRef}
-                    style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", pointerEvents: "none" }}
-                />
-                {!playing && (
-                    <div style={{
-                        position: "absolute", inset: 0,
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        background: "rgba(0,0,0,0.4)",
-                    }}>
-                        <div style={{
-                            width: 64, height: 64, borderRadius: "50%",
-                            background: "rgba(255,255,255,0.15)",
-                            backdropFilter: "blur(8px)",
-                            border: "1px solid rgba(255,255,255,0.2)",
-                            display: "flex", alignItems: "center", justifyContent: "center",
-                        }}>
-                            <div style={{
-                                width: 0, height: 0,
-                                borderTop: "12px solid transparent",
-                                borderBottom: "12px solid transparent",
-                                borderLeft: "20px solid #fff",
-                                marginLeft: 4,
-                            }} />
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {/* sound toggle button */}
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "1.25rem" }}>
-                <button
-                    onClick={toggleMute}
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                        padding: "0.6rem 1.25rem",
-                        background: muted ? "rgba(255,255,255,0.06)" : "rgba(37,99,235,0.15)",
-                        border: muted ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(37,99,235,0.4)",
-                        borderRadius: "999px",
-                        color: muted ? "rgba(255,255,255,0.5)" : "#60A5FA",
-                        fontFamily: "'Satoshi', sans-serif",
-                        fontSize: "0.82rem",
-                        fontWeight: 600,
-                        cursor: "pointer",
-                        letterSpacing: "0.02em",
-                        transition: "all 0.2s ease",
-                    }}
-                >
-                    {muted ? <VolumeX size={15} /> : <Volume2 size={15} />}
-                    {muted ? "Enable Sound" : "Mute"}
-                </button>
-            </div>
-        </div>
-    );
-}
-
 /* ─── Registration Form ──────────────────────────────────── */
 function RegistrationForm() {
     const [form, setForm] = useState({ name: "", email: "", phone: "", level: "", stack: "", why: "" });
@@ -981,22 +819,6 @@ const CohortV1 = () => {
                                 <p style={{ fontFamily: "'Satoshi', sans-serif", fontSize: "0.7rem", color: "rgba(255,255,255,0.3)", marginTop: "0.2rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>{s.label}</p>
                             </div>
                         ))}
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* ── VIDEO ───────────────────────────────────── */}
-            <section style={{ background: "#0a0a0a", padding: "var(--section-pad) 0" }}>
-                <div className="container">
-                    <motion.div {...fadeUp(0)} style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-                        <SectionLabel dark>Watch This First</SectionLabel>
-                        <h2 style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "clamp(1.6rem, 4vw, 2.5rem)", color: "#fff", letterSpacing: "-0.025em" }}>
-                            What this cohort will do for you
-                        </h2>
-                    </motion.div>
-
-                    <motion.div {...fadeUp(0.1)} style={{ maxWidth: "900px", margin: "0 auto" }}>
-                        <VideoEmbed videoId="D2OvYCVBff0" />
                     </motion.div>
                 </div>
             </section>
