@@ -1,0 +1,352 @@
+/* ══════════════════════════════════════════════════
+   Prformnce skin for pdfme Designer
+   Scoped under .gs-root — restyles pdfme's structural
+   classes (.pdfme-designer-*) and the antd v5 primitives
+   it renders internally. Functionality is untouched.
+   ══════════════════════════════════════════════════ */
+
+/* ── Root + canvas surface ──────────────────────────── */
+.gs-root .pdfme-designer-root {
+  background: var(--bg);
+  font-family: 'Satoshi', system-ui, sans-serif;
+  color: var(--ink);
+}
+
+.gs-root .pdfme-designer-background {
+  background: var(--bg-subtle);
+}
+
+.gs-root .pdfme-designer-canvas {
+  background: var(--bg-subtle);
+}
+
+/* ── Left sidebar (tools / plugin palette) ──────────── */
+.gs-root .pdfme-designer-left-sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 10px 6px;
+  gap: 4px;
+}
+
+.gs-root [class*="pdfme-designer-plugin-"] {
+  border-radius: var(--r-sm);
+  color: var(--text);
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease;
+  padding: 8px;
+}
+
+.gs-root [class*="pdfme-designer-plugin-"]:hover {
+  background: var(--accent-tint);
+  color: var(--accent);
+}
+
+.gs-root [class*="pdfme-designer-plugin-"] svg {
+  color: currentColor;
+}
+
+/* ── Right sidebar (property inspector) ─────────────── */
+.gs-root .pdfme-designer-right-sidebar {
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  color: var(--text);
+}
+
+.gs-root .pdfme-designer-detail-view {
+  padding: 12px;
+}
+
+.gs-root .pdfme-designer-list-view {
+  padding: 12px;
+}
+
+.gs-root .pdfme-designer-back-button {
+  color: var(--text);
+  border-radius: var(--r-sm);
+  padding: 4px 8px;
+}
+.gs-root .pdfme-designer-back-button:hover {
+  background: var(--bg-subtle);
+  color: var(--ink);
+}
+
+.gs-root .pdfme-designer-sidebar-toggle {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--muted) !important;
+  border-radius: var(--r-sm) !important;
+  box-shadow: var(--shadow-xs);
+}
+.gs-root .pdfme-designer-sidebar-toggle:hover {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* ── Bulk edit / delete controls ────────────────────── */
+.gs-root .pdfme-designer-bulk-update,
+.gs-root .pdfme-designer-bulk-commit {
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--r-sm);
+}
+.gs-root .pdfme-designer-bulk-cancel {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+}
+.gs-root .pdfme-designer-delete-button {
+  color: var(--danger);
+  border-radius: var(--r-sm);
+}
+.gs-root .pdfme-designer-delete-button:hover {
+  background: rgba(220, 38, 38, 0.08);
+}
+
+/* Alignment button row */
+.gs-root [class*="pdfme-designer-align-"] {
+  border-radius: var(--r-sm);
+  color: var(--muted);
+  transition: background 120ms ease, color 120ms ease;
+}
+.gs-root [class*="pdfme-designer-align-"]:hover {
+  background: var(--accent-tint);
+  color: var(--accent);
+}
+
+/* ══════════════════════════════════════════════════
+   antd v5 primitive overrides — only inside pdfme
+   root, so we don't leak into the rest of Prformnce
+   ══════════════════════════════════════════════════ */
+
+/* Buttons */
+.gs-root .pdfme-designer-root .ant-btn {
+  font-family: 'Satoshi', sans-serif;
+  border-radius: var(--r-sm);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+.gs-root .pdfme-designer-root .ant-btn-default {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+.gs-root .pdfme-designer-root .ant-btn-default:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+  background: var(--surface) !important;
+}
+
+.gs-root .pdfme-designer-root .ant-btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.gs-root .pdfme-designer-root .ant-btn-primary:hover {
+  background: var(--accent-dark) !important;
+  border-color: var(--accent-dark) !important;
+}
+
+.gs-root .pdfme-designer-root .ant-btn-text {
+  color: var(--text);
+}
+.gs-root .pdfme-designer-root .ant-btn-text:hover {
+  background: var(--bg-subtle) !important;
+  color: var(--ink) !important;
+}
+
+.gs-root .pdfme-designer-root .ant-btn-dangerous {
+  color: var(--danger);
+  border-color: var(--border);
+}
+.gs-root .pdfme-designer-root .ant-btn-dangerous:hover {
+  color: #fff !important;
+  background: var(--danger) !important;
+  border-color: var(--danger) !important;
+}
+
+/* Inputs */
+.gs-root .pdfme-designer-root .ant-input,
+.gs-root .pdfme-designer-root .ant-input-affix-wrapper,
+.gs-root .pdfme-designer-root .ant-input-number,
+.gs-root .pdfme-designer-root .ant-input-number-input {
+  font-family: 'Satoshi', sans-serif;
+  border-radius: var(--r-sm);
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--ink);
+}
+.gs-root .pdfme-designer-root .ant-input:focus,
+.gs-root .pdfme-designer-root .ant-input-affix-wrapper:focus,
+.gs-root .pdfme-designer-root .ant-input-affix-wrapper-focused,
+.gs-root .pdfme-designer-root .ant-input-number-focused {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+}
+
+/* Selects */
+.gs-root .pdfme-designer-root .ant-select .ant-select-selector {
+  font-family: 'Satoshi', sans-serif;
+  border-radius: var(--r-sm) !important;
+  border-color: var(--border) !important;
+  background: var(--surface) !important;
+  color: var(--ink) !important;
+}
+.gs-root .pdfme-designer-root .ant-select:hover .ant-select-selector {
+  border-color: var(--accent) !important;
+}
+.gs-root .pdfme-designer-root .ant-select-focused .ant-select-selector {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+}
+
+/* Select dropdown menu (rendered at body — target globally but only when open) */
+.ant-select-dropdown {
+  font-family: 'Satoshi', sans-serif;
+  border-radius: var(--r-md, 10px);
+  padding: 6px;
+}
+.ant-select-dropdown .ant-select-item {
+  border-radius: 6px;
+  font-size: 13px;
+}
+.ant-select-dropdown .ant-select-item-option-selected {
+  background: #EFF6FF !important;
+  color: #2563EB !important;
+  font-weight: 500;
+}
+.ant-select-dropdown .ant-select-item-option-active:not(.ant-select-item-option-selected) {
+  background: #F2F1EE !important;
+}
+
+/* Collapse (property groups) */
+.gs-root .pdfme-designer-root .ant-collapse {
+  background: transparent;
+  border: none;
+}
+.gs-root .pdfme-designer-root .ant-collapse-item {
+  border-bottom: 1px solid var(--border);
+}
+.gs-root .pdfme-designer-root .ant-collapse-header {
+  font-family: 'Satoshi', sans-serif !important;
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+  padding: 12px 8px !important;
+  font-size: 13px;
+}
+.gs-root .pdfme-designer-root .ant-collapse-content {
+  background: transparent !important;
+  border-top: none !important;
+}
+.gs-root .pdfme-designer-root .ant-collapse-content-box {
+  padding: 6px 8px 14px !important;
+}
+
+/* Tabs */
+.gs-root .pdfme-designer-root .ant-tabs-tab {
+  font-family: 'Satoshi', sans-serif;
+  color: var(--muted);
+  padding: 8px 14px !important;
+}
+.gs-root .pdfme-designer-root .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--accent) !important;
+}
+.gs-root .pdfme-designer-root .ant-tabs-ink-bar {
+  background: var(--accent) !important;
+}
+
+/* Menu (if used in sidebar) */
+.gs-root .pdfme-designer-root .ant-menu {
+  background: transparent;
+  border: none !important;
+  font-family: 'Satoshi', sans-serif;
+}
+.gs-root .pdfme-designer-root .ant-menu-item {
+  border-radius: var(--r-sm) !important;
+  color: var(--text) !important;
+}
+.gs-root .pdfme-designer-root .ant-menu-item-selected {
+  background: var(--accent-tint) !important;
+  color: var(--accent) !important;
+}
+
+/* Layout Sider — ensure background inheritance */
+.gs-root .pdfme-designer-root .ant-layout-sider,
+.gs-root .pdfme-designer-root .ant-layout-sider-children {
+  background: transparent !important;
+}
+
+/* Divider */
+.gs-root .pdfme-designer-root .ant-divider {
+  border-color: var(--border) !important;
+}
+
+/* Labels & form text */
+.gs-root .pdfme-designer-root label,
+.gs-root .pdfme-designer-root .ant-form-item-label > label {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.01em;
+}
+
+/* Switch */
+.gs-root .pdfme-designer-root .ant-switch-checked {
+  background: var(--accent) !important;
+}
+
+/* Checkbox / Radio */
+.gs-root .pdfme-designer-root .ant-checkbox-checked .ant-checkbox-inner,
+.gs-root .pdfme-designer-root .ant-radio-checked .ant-radio-inner {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Tooltip — rendered at body, restyle globally (small blast radius) */
+.ant-tooltip .ant-tooltip-inner {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 12px;
+  background: #0D0D0D;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+.ant-tooltip .ant-tooltip-arrow::before {
+  background: #0D0D0D;
+}
+
+/* Popover (used for color pickers etc.) */
+.ant-popover .ant-popover-inner {
+  border-radius: var(--r-md, 10px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.03);
+  font-family: 'Satoshi', sans-serif;
+}
+
+/* Modal */
+.gs-root .pdfme-designer-root .ant-modal-content {
+  border-radius: var(--r-lg) !important;
+  font-family: 'Satoshi', sans-serif;
+}
+.gs-root .pdfme-designer-root .ant-modal-header {
+  border-bottom: 1px solid var(--border) !important;
+}
+.gs-root .pdfme-designer-root .ant-modal-title {
+  color: var(--ink) !important;
+  font-weight: 600;
+}
+
+/* Scrollbars inside the designer — thin, subtle */
+.gs-root .pdfme-designer-root ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.gs-root .pdfme-designer-root ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+.gs-root .pdfme-designer-root ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+.gs-root .pdfme-designer-root ::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -13,6 +13,7 @@ import { useAuth } from '../context/AuthContext'
 import { parseCsv } from '../utils/csv'
 import { STARTER_TEMPLATES } from '../utils/campaignTemplates'
 import UpgradeModal from './UpgradeModal'
+import '../prformnce-designer.css'
 
 // ── pdfme helpers ──────────────────────────────────────────────────────────────
 
