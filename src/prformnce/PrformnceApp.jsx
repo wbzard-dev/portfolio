@@ -4,10 +4,11 @@ import { Loader2 } from 'lucide-react'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import './prformnce.css'
 
-const Landing   = lazy(() => import('./components/LandingPage'))
-const Login     = lazy(() => import('./pages/Login'))
-const Signup    = lazy(() => import('./pages/Signup'))
-const Dashboard = lazy(() => import('./pages/Dashboard'))
+const Landing      = lazy(() => import('./components/LandingPage'))
+const Login        = lazy(() => import('./pages/Login'))
+const Signup       = lazy(() => import('./pages/Signup'))
+const Dashboard    = lazy(() => import('./pages/Dashboard'))
+const CampaignPage = lazy(() => import('./pages/CampaignPage'))
 
 const ProtectedRoute = ({ children }) => {
     const { user, loading } = useAuth()
@@ -33,6 +34,7 @@ const PrformnceRoutes = () => (
             <Route path="signup"      element={<PublicRoute><Signup /></PublicRoute>} />
             <Route path="dashboard"   element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="dashboard/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="c/:slug"     element={<CampaignPage />} />
             <Route path="*"           element={<Navigate to="/prformnce" replace />} />
         </Routes>
     </Suspense>
