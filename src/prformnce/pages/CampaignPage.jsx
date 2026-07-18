@@ -9,6 +9,8 @@ import { getTemplate } from '../campaign-templates'
  * Form submissions post to /api/s/:formId (existing public endpoint).
  * ──────────────────────────────────────────────────────────────────────── */
 
+const API = import.meta.env.DEV ? '' : 'https://form.wbzard.com'
+
 const CampaignPage = () => {
     const { slug } = useParams()
     const [state, setState] = useState({ loading: true, campaign: null, error: null })
@@ -19,7 +21,7 @@ const CampaignPage = () => {
         let cancelled = false
         setState({ loading: true, campaign: null, error: null })
 
-        fetch(`/api/public/campaigns/${slug}`)
+        fetch(`${API}/api/public/campaigns/${slug}`)
             .then(r => r.json())
             .then(data => {
                 if (cancelled) return
@@ -42,7 +44,7 @@ const CampaignPage = () => {
         if (!state.campaign?.formId) return { success: false }
         setSubmitting(true)
         try {
-            const res = await fetch(`/api/s/${state.campaign.formId}`, {
+            const res = await fetch(`${API}/api/s/${state.campaign.formId}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
