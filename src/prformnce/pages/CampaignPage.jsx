@@ -28,6 +28,25 @@ const CampaignPage = () => {
                 if (data.success) {
                     setState({ loading: false, campaign: data.campaign, error: null })
                     if (data.campaign?.name) document.title = data.campaign.name
+
+                    // Fire-and-forget view beacon — one per session per campaign
+                    try {
+                        const key = `pfm_view_${slug}`
+                        if (!sessionStorage.getItem(key)) {
+                            let sid = sessionStorage.getItem('pfm_sid')
+                            if (!sid) {
+                                sid = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
+                                sessionStorage.setItem('pfm_sid', sid)
+                            }
+                            sessionStorage.setItem(key, '1')
+                            fetch(`${API}/api/public/campaigns/${slug}/view`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ session_id: sid }),
+                                keepalive: true,
+                            }).catch(() => {})
+                        }
+                    } catch { /* sessionStorage unavailable */ }
                 } else {
                     setState({ loading: false, campaign: null, error: data.message || 'Campaign not found.' })
                 }

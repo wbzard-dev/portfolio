@@ -106,16 +106,34 @@ const StepIndicator = ({ current }) => (
 // ── Step 0: Campaign Setup ─────────────────────────────────────────────────────
 
 const SetupStep = ({ onNext }) => {
+    const { authFetch } = useAuth()
     const [name, setName] = useState('')
     const [url, setUrl] = useState('')
+    const [linkType, setLinkType] = useState('url')  // 'url' | 'campaign'
+    const [webCampaigns, setWebCampaigns] = useState([])
+    const [selectedWebId, setSelectedWebId] = useState('')
+
+    useEffect(() => {
+        authFetch('/api/campaigns?type=web')
+            .then(r => r.json())
+            .then(data => { if (data.success) setWebCampaigns(data.campaigns.filter(c => c.published)) })
+            .catch(() => {})
+    }, [])
 
     const canProceed = name.trim().length > 0
 
+    const finalRedirect = linkType === 'campaign' && selectedWebId
+        ? (() => {
+            const c = webCampaigns.find(w => w.id === selectedWebId)
+            return c ? `${window.location.origin}/prformnce/c/${c.slug}` : ''
+        })()
+        : url.trim()
+
     return (
-        <div style={{ padding: '3rem 2.5rem', maxWidth: 560 }}>
-            <h2 style={{ margin: '0 0 6px' }}>New Campaign</h2>
+        <div style={{ padding: '3rem 2.5rem', maxWidth: 620 }}>
+            <h2 style={{ margin: '0 0 6px' }}>New Print Campaign</h2>
             <p style={{ margin: '0 0 2.5rem', fontSize: 14 }}>
-                Name your campaign first — you can design the template and upload recipients in the next steps.
+                Name your campaign, choose where the QR takes people, then design the PDF in the next step.
             </p>
 
             <div className="flex flex-col gap-2" style={{ marginBottom: 20 }}>
@@ -129,29 +147,73 @@ const SetupStep = ({ onNext }) => {
                     placeholder="e.g. TechConf 2025 Badges"
                     value={name}
                     onChange={e => setName(e.target.value)}
-                    onKeyDown={e => e.key === 'Enter' && canProceed && onNext({ name: name.trim(), redirectUrl: url.trim() })}
+                    onKeyDown={e => e.key === 'Enter' && canProceed && onNext({ name: name.trim(), redirectUrl: finalRedirect })}
                 />
             </div>
 
-            <div className="flex flex-col gap-2" style={{ marginBottom: 36 }}>
-                <label className="field-label">
-                    QR Redirect URL <span style={{ fontWeight: 400, color: 'var(--muted)' }}>(optional)</span>
-                </label>
-                <input
-                    type="url"
-                    className="input-field"
-                    placeholder="https://your-site.com/event"
-                    value={url}
-                    onChange={e => setUrl(e.target.value)}
-                    onKeyDown={e => e.key === 'Enter' && canProceed && onNext({ name: name.trim(), redirectUrl: url.trim() })}
-                />
-                <span style={{ fontSize: 12, color: 'var(--muted)' }}>
+            <div className="flex flex-col gap-2" style={{ marginBottom: 20 }}>
+                <label className="field-label">Where should the QR take people?</label>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 12 }}>
+                    <button
+                        type="button"
+                        onClick={() => setLinkType('url')}
+                        style={{
+                            padding: '10px 12px', fontSize: 13,
+                            border: `1.5px solid ${linkType === 'url' ? 'var(--accent)' : 'var(--border)'}`,
+                            background: linkType === 'url' ? 'var(--accent-tint)' : 'var(--surface)',
+                            color: linkType === 'url' ? 'var(--accent)' : 'var(--text)',
+                            borderRadius: 'var(--r-sm)', fontWeight: 500, cursor: 'pointer',
+                        }}
+                    >
+                        Custom URL
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setLinkType('campaign')}
+                        disabled={webCampaigns.length === 0}
+                        style={{
+                            padding: '10px 12px', fontSize: 13,
+                            border: `1.5px solid ${linkType === 'campaign' ? 'var(--accent)' : 'var(--border)'}`,
+                            background: linkType === 'campaign' ? 'var(--accent-tint)' : 'var(--surface)',
+                            color: linkType === 'campaign' ? 'var(--accent)' : (webCampaigns.length === 0 ? 'var(--muted)' : 'var(--text)'),
+                            borderRadius: 'var(--r-sm)', fontWeight: 500,
+                            cursor: webCampaigns.length === 0 ? 'not-allowed' : 'pointer',
+                        }}
+                        title={webCampaigns.length === 0 ? 'Publish a Web Campaign first to link here' : ''}
+                    >
+                        Existing Web Campaign
+                    </button>
+                </div>
+
+                {linkType === 'url' ? (
+                    <input
+                        type="url"
+                        className="input-field"
+                        placeholder="https://your-site.com/event"
+                        value={url}
+                        onChange={e => setUrl(e.target.value)}
+                        onKeyDown={e => e.key === 'Enter' && canProceed && onNext({ name: name.trim(), redirectUrl: finalRedirect })}
+                    />
+                ) : (
+                    <select
+                        className="input-field"
+                        value={selectedWebId}
+                        onChange={e => setSelectedWebId(e.target.value)}
+                    >
+                        <option value="">Select a published Web Campaign…</option>
+                        {webCampaigns.map(c => (
+                            <option key={c.id} value={c.id}>{c.name} — /c/{c.slug}</option>
+                        ))}
+                    </select>
+                )}
+
+                <span style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6 }}>
                     Scanning a QR code on the generated PDF logs the scan and redirects here.
                 </span>
             </div>
 
             <button
-                onClick={() => onNext({ name: name.trim(), redirectUrl: url.trim() })}
+                onClick={() => onNext({ name: name.trim(), redirectUrl: finalRedirect })}
                 disabled={!canProceed}
                 className="btn-primary"
                 style={{ padding: '12px 28px', fontSize: 15 }}
