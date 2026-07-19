@@ -4,7 +4,7 @@ import {
     Plus, Loader2, Copy, Check,
     Trash2, X, BarChart2, ArrowRight, Inbox, Mail, Send,
     CheckCircle2, AlertCircle, HelpCircle, TrendingUp, TrendingDown, Zap,
-    Settings, Search, CreditCard, Calendar, Star, Users, ScanLine, Activity
+    Settings, Search, CreditCard, Calendar, Star, Users, ScanLine, Activity, Globe
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
@@ -13,7 +13,8 @@ import { EMAIL_TEMPLATES, renderTemplate } from '../utils/emailTemplates'
 import { GuidedTour, shouldShowTour } from '../components/GuidedTour'
 import UpgradeModal from '../components/UpgradeModal'
 
-const CampaignsPage = lazy(() => import('../components/CampaignsPage'))
+const CampaignsPage      = lazy(() => import('../components/CampaignsPage'))
+const LandingPagesPage   = lazy(() => import('./LandingPagesPage'))
 
 // ── Utilities ──────────────────────────────────────────────────────────────────
 
@@ -156,7 +157,8 @@ const Sidebar = ({ active, onNavigate, onUpgrade }) => {
         {
             label: 'Campaigns',
             items: [
-                { key: 'campaigns', label: 'Campaigns', icon: <QrCode size={15} /> },
+                { key: 'campaigns',     label: 'Campaigns',     icon: <QrCode size={15} /> },
+                { key: 'landing-pages', label: 'Landing Pages', icon: <Globe size={15} /> },
             ]
         },
     ]
@@ -1437,7 +1439,7 @@ const Dashboard = () => {
         setView(key)
     }
 
-    const fullHeight = view === 'forms' || view === 'campaigns' || view === 'leads'
+    const fullHeight = view === 'forms' || view === 'campaigns' || view === 'leads' || view === 'landing-pages'
 
     return (
         <div className="app-layout">
@@ -1455,6 +1457,15 @@ const Dashboard = () => {
                         </div>
                     }>
                         <CampaignsPage />
+                    </Suspense>
+                )}
+                {view === 'landing-pages' && (
+                    <Suspense fallback={
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--muted)' }}>
+                            <Loader2 size={24} className="animate-spin" />
+                        </div>
+                    }>
+                        <LandingPagesPage />
                     </Suspense>
                 )}
                 {view === 'settings' && <SettingsPage onUpgrade={() => setShowUpgrade(true)} />}

@@ -13,8 +13,6 @@ import { useAuth } from '../context/AuthContext'
 import { parseCsv } from '../utils/csv'
 import { STARTER_TEMPLATES } from '../utils/campaignTemplates'
 import UpgradeModal from './UpgradeModal'
-import CampaignLandingTab from './CampaignLandingTab'
-import { Globe as GlobeIcon } from 'lucide-react'
 import '../prformnce-designer.css'
 
 // ── pdfme helpers ──────────────────────────────────────────────────────────────
@@ -1117,7 +1115,7 @@ const ScansTab = ({ campaign }) => {
 
 const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
     const { authFetch } = useAuth()
-    const [mode, setMode] = useState('scans') // 'scans' | 'edit' | 'generate' | 'landing'
+    const [mode, setMode] = useState('scans') // 'scans' | 'edit' | 'generate'
     const [local, setLocal] = useState(campaign)
 
     const isFrozen = Number(local.recipient_count || 0) > 0
@@ -1151,24 +1149,17 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
                     )}
                 </div>
                 <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'center' }}>
-                    {mode === 'scans' && (
+                    {!isFrozen && mode === 'scans' && (
                         <>
-                            {!isFrozen && (
-                                <>
-                                    <button onClick={() => setMode('generate')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
-                                        <RefreshCw size={13} /> Generate
-                                    </button>
-                                    <button onClick={() => setMode('edit')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
-                                        <Pencil size={13} /> Edit Template
-                                    </button>
-                                </>
-                            )}
-                            <button onClick={() => setMode('landing')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
-                                <GlobeIcon size={13} /> Landing Page
+                            <button onClick={() => setMode('generate')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
+                                <RefreshCw size={13} /> Generate
+                            </button>
+                            <button onClick={() => setMode('edit')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
+                                <Pencil size={13} /> Edit Template
                             </button>
                         </>
                     )}
-                    {mode !== 'scans' && (
+                    {!isFrozen && mode !== 'scans' && (
                         <button onClick={() => setMode('scans')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
                             <BarChart2 size={13} /> Back to Scans
                         </button>
@@ -1181,8 +1172,7 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
 
             {/* Content */}
             <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', position: 'relative' }}>
-                {mode === 'scans' && <ScansTab campaign={local} />}
-                {mode === 'landing' && <CampaignLandingTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
+                {(isFrozen || mode === 'scans') && <ScansTab campaign={local} />}
                 {!isFrozen && mode === 'edit'     && <DesignTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
                 {!isFrozen && mode === 'generate' && <GenerateTab campaign={local} />}
             </div>
