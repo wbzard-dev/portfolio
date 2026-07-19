@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
-    Check, Copy, ExternalLink, Save, Eye, Globe, Loader2,
-    Palette, User, Mail, Phone, Building2, MessageSquare,
+    Check, Copy, ExternalLink, Save, Eye, Globe, Loader2, Palette,
+    ChevronDown, ChevronUp, Trash2, ArrowUp, ArrowDown, Plus, X,
+    User, Mail, Phone, Building2, MessageSquare,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
-import { TEMPLATE_LIST, getTemplate } from '../campaign-templates'
+import { getTemplate } from '../campaign-templates'
+import { SECTION_LIST, getSectionDef, createSection } from '../campaign-templates/sections'
 import { DEFAULT_BRAND_COLOR } from '../campaign-templates/shared'
 
-/* ── Fixed catalog of togglable form fields ──────────────────────────────── */
+/* ── Fixed catalog of form fields (used inside Form section editor) ─────── */
 const FIELD_CATALOG = [
     { name: 'name',    label: 'Full name', type: 'text',     icon: User,          placeholder: 'Your name' },
     { name: 'email',   label: 'Email',     type: 'email',    icon: Mail,          placeholder: 'you@example.com' },
@@ -16,62 +19,31 @@ const FIELD_CATALOG = [
     { name: 'message', label: 'Message',   type: 'textarea', icon: MessageSquare, placeholder: 'Anything else?' },
 ]
 
+/* ── Root ────────────────────────────────────────────────────────────────── */
+
 const CampaignLandingTab = ({ campaign, onSave }) => {
     const { authFetch } = useAuth()
+    const templateId = campaign.landing_page_template || 'focus'
 
-    /* ── State: which template + editable config draft ─────────────────── */
-    const [templateId, setTemplateId] = useState(campaign.landing_page_template || 'focus')
     const [config, setConfig] = useState(() => {
         if (campaign.landing_page_config) {
-            try { return JSON.parse(campaign.landing_page_config) } catch { /* fall through */ }
+            try {
+                const parsed = JSON.parse(campaign.landing_page_config)
+                // Migration: if old-shape config (no `sections`), fall back to template defaults
+                if (!Array.isArray(parsed?.sections)) {
+                    return { ...getTemplate(templateId).defaultConfig }
+                }
+                return parsed
+            } catch { /* fall through */ }
         }
-        return { ...getTemplate('focus').defaultConfig }
+        return { ...getTemplate(templateId).defaultConfig }
     })
     const [published, setPublished] = useState(!!campaign.published)
     const [saving, setSaving] = useState(false)
     const [saveError, setSaveError] = useState('')
     const [savedAt, setSavedAt] = useState(null)
     const [copied, setCopied] = useState(false)
-
-    /* When user picks a new template, backfill any missing config keys from
-       that template's defaults — preserves what the user already typed. */
-    const switchTemplate = (newId) => {
-        setTemplateId(newId)
-        const defaults = getTemplate(newId).defaultConfig
-        setConfig(prev => ({ ...defaults, ...prev, brand_color: prev.brand_color || defaults.brand_color }))
-    }
-
-    const setField = useCallback((path, value) => {
-        setConfig(prev => {
-            if (path.includes('.')) {
-                const [parent, key] = path.split('.')
-                return { ...prev, [parent]: { ...(prev[parent] || {}), [key]: value } }
-            }
-            return { ...prev, [path]: value }
-        })
-    }, [])
-
-    /* ── Form fields — synced against the fixed catalog ────────────────── */
-    const activeFieldNames = new Set((config.form_fields || []).map(f => f.name))
-
-    const toggleField = (catalogField) => {
-        const current = config.form_fields || []
-        const exists = current.find(f => f.name === catalogField.name)
-        const next = exists
-            ? current.filter(f => f.name !== catalogField.name)
-            : [...current, {
-                name: catalogField.name,
-                label: catalogField.label,
-                type: catalogField.type,
-                required: true,
-                placeholder: catalogField.placeholder,
-            }]
-        setField('form_fields', next)
-    }
-
-    const setFieldRequired = (name, required) => {
-        setField('form_fields', (config.form_fields || []).map(f => f.name === name ? { ...f, required } : f))
-    }
+    const [showAdd, setShowAdd] = useState(false)
 
     /* ── Public URL + copy ─────────────────────────────────────────────── */
     const publicUrl = useMemo(() => {
@@ -84,6 +56,48 @@ const CampaignLandingTab = ({ campaign, onSave }) => {
         setCopied(true)
         setTimeout(() => setCopied(false), 1600)
     }
+
+    /* ── Section operations ────────────────────────────────────────────── */
+    const sections = config.sections || []
+
+    const updateSectionConfig = useCallback((sectionId, key, value) => {
+        setConfig(prev => ({
+            ...prev,
+            sections: prev.sections.map(s =>
+                s.id === sectionId ? { ...s, config: { ...s.config, [key]: value } } : s
+            ),
+        }))
+    }, [])
+
+    const moveSection = (sectionId, dir) => {
+        setConfig(prev => {
+            const idx = prev.sections.findIndex(s => s.id === sectionId)
+            if (idx < 0) return prev
+            const target = idx + dir
+            if (target < 0 || target >= prev.sections.length) return prev
+            const next = [...prev.sections]
+            ;[next[idx], next[target]] = [next[target], next[idx]]
+            return { ...prev, sections: next }
+        })
+    }
+
+    const removeSection = (sectionId) => {
+        if (!confirm('Remove this section?')) return
+        setConfig(prev => ({ ...prev, sections: prev.sections.filter(s => s.id !== sectionId) }))
+    }
+
+    const addSection = (type) => {
+        const s = createSection(type)
+        if (!s) return
+        setConfig(prev => ({ ...prev, sections: [...prev.sections, s] }))
+        setShowAdd(false)
+    }
+
+    /* Section types not yet used (singletons filtered) */
+    const availableToAdd = SECTION_LIST.filter(def => {
+        if (!def.singleton) return true
+        return !sections.some(s => s.type === def.type)
+    })
 
     /* ── Save ──────────────────────────────────────────────────────────── */
     const handleSave = async (opts = {}) => {
@@ -124,8 +138,8 @@ const CampaignLandingTab = ({ campaign, onSave }) => {
 
     /* ── Render ────────────────────────────────────────────────────────── */
     return (
-        <div style={{ height: '100%', overflow: 'auto', padding: '24px 32px', background: 'var(--bg)' }}>
-            {/* Top banner: publish state + public URL */}
+        <div style={{ height: '100%', overflow: 'auto', padding: '24px 32px 32px', background: 'var(--bg)' }}>
+            {/* Publish banner */}
             <div style={{
                 display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap',
                 padding: '14px 18px', marginBottom: 24, borderRadius: 'var(--r-md)',
@@ -140,16 +154,10 @@ const CampaignLandingTab = ({ campaign, onSave }) => {
                 </div>
                 <div style={{ flex: 1, minWidth: 240, display: 'flex', alignItems: 'center', gap: 8 }}>
                     <code style={{
-                        flex: 1,
-                        padding: '8px 12px',
-                        borderRadius: 6,
-                        background: 'var(--bg-subtle)',
-                        fontSize: 12,
-                        color: 'var(--text)',
+                        flex: 1, padding: '8px 12px', borderRadius: 6,
+                        background: 'var(--bg-subtle)', fontSize: 12, color: 'var(--text)',
                         fontFamily: 'ui-monospace, monospace',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
+                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                     }}>{publicUrl}</code>
                     <button onClick={copyUrl} className="btn-ghost" style={{ padding: '6px 10px', fontSize: 12, display: 'flex', alignItems: 'center', gap: 5 }}>
                         {copied ? <Check size={13} /> : <Copy size={13} />}
@@ -165,130 +173,71 @@ const CampaignLandingTab = ({ campaign, onSave }) => {
                     onClick={togglePublish}
                     disabled={saving}
                     style={{
-                        padding: '8px 16px',
-                        borderRadius: 6,
-                        fontSize: 13,
-                        fontWeight: 600,
-                        border: 'none',
+                        padding: '8px 16px', borderRadius: 6, fontSize: 13, fontWeight: 600,
+                        border: published ? '1px solid #fecaca' : 'none',
                         cursor: saving ? 'wait' : 'pointer',
                         background: published ? '#fff' : 'var(--accent)',
                         color: published ? '#dc2626' : '#fff',
-                        borderStyle: published ? 'solid' : 'none',
-                        borderWidth: published ? 1 : 0,
-                        borderColor: '#fecaca',
                     }}
                 >
                     {published ? 'Unpublish' : 'Publish'}
                 </button>
             </div>
 
-            {/* Template picker */}
-            <Section title="Template" description="Pick a design. You can change it anytime.">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 14 }}>
-                    {TEMPLATE_LIST.map(tpl => {
-                        const selected = templateId === tpl.id
-                        return (
-                            <button
-                                key={tpl.id}
-                                onClick={() => switchTemplate(tpl.id)}
-                                style={{
-                                    textAlign: 'left',
-                                    padding: 16,
-                                    background: 'var(--surface)',
-                                    border: `2px solid ${selected ? 'var(--accent)' : 'var(--border)'}`,
-                                    borderRadius: 'var(--r-md)',
-                                    cursor: 'pointer',
-                                    transition: 'border-color 120ms ease, box-shadow 120ms ease',
-                                    boxShadow: selected ? '0 0 0 3px rgba(37,99,235,0.10)' : 'none',
-                                    position: 'relative',
-                                }}
-                            >
-                                <TemplateThumb id={tpl.id} brandColor={config.brand_color} />
-                                <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{tpl.name}</div>
-                                    {selected && (
-                                        <span style={{
-                                            width: 20, height: 20, borderRadius: '50%',
-                                            background: 'var(--accent)', color: '#fff',
-                                            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                                        }}>
-                                            <Check size={12} />
-                                        </span>
-                                    )}
-                                </div>
-                                <p style={{ margin: '4px 0 0', fontSize: 12, color: 'var(--muted)', lineHeight: 1.4 }}>
-                                    {tpl.description}
-                                </p>
-                            </button>
-                        )
-                    })}
+            {/* Brand color */}
+            <Section title="Brand" description="One color drives buttons, accents, and highlights across the whole page.">
+                <ColorInput
+                    label="Brand color"
+                    value={config.brand_color || DEFAULT_BRAND_COLOR}
+                    onChange={v => setConfig(prev => ({ ...prev, brand_color: v }))}
+                />
+            </Section>
+
+            {/* Sections */}
+            <Section
+                title="Sections"
+                description="Drag order with the arrows. Add or remove sections. Each section's content is editable — layout and colors follow the template."
+            >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {sections.map((section, i) => (
+                        <SectionCard
+                            key={section.id}
+                            section={section}
+                            isFirst={i === 0}
+                            isLast={i === sections.length - 1}
+                            brandColor={config.brand_color || DEFAULT_BRAND_COLOR}
+                            onConfigChange={(key, value) => updateSectionConfig(section.id, key, value)}
+                            onMoveUp={() => moveSection(section.id, -1)}
+                            onMoveDown={() => moveSection(section.id, 1)}
+                            onRemove={() => removeSection(section.id)}
+                        />
+                    ))}
+
+                    {availableToAdd.length > 0 && (
+                        <button
+                            onClick={() => setShowAdd(true)}
+                            style={{
+                                padding: '14px 18px',
+                                background: 'var(--surface)',
+                                border: '2px dashed var(--border)',
+                                borderRadius: 'var(--r-md)',
+                                fontSize: 14,
+                                color: 'var(--muted)',
+                                fontWeight: 500,
+                                cursor: 'pointer',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                                transition: 'border-color 120ms ease, color 120ms ease',
+                            }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)' }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--muted)' }}
+                        >
+                            <Plus size={14} /> Add section
+                        </button>
+                    )}
                 </div>
             </Section>
 
-            {/* Two-column config */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: 24 }}>
-                <Section title="Content" description="What visitors see on the page.">
-                    <Input label="Eyebrow (small label above headline)" value={config.eyebrow || ''} onChange={v => setField('eyebrow', v)} placeholder="Limited access" />
-                    <Input label="Headline" value={config.headline || ''} onChange={v => setField('headline', v)} placeholder="Something worth waiting for." />
-                    <Input label="Subhead" value={config.subhead || ''} onChange={v => setField('subhead', v)} placeholder="One short sentence explaining what this is." multiline />
-                    <Input label="CTA button text" value={config.cta_text || ''} onChange={v => setField('cta_text', v)} placeholder="Notify me" />
-                    <Input label="Success message" value={config.success_message || ''} onChange={v => setField('success_message', v)} placeholder="You're on the list — check your inbox." multiline />
-                </Section>
-
-                <Section title="Brand & contact" description="Colors, image, contact points.">
-                    <ColorInput label="Brand color" value={config.brand_color || DEFAULT_BRAND_COLOR} onChange={v => setField('brand_color', v)} />
-                    <Input label="Image URL (optional)" value={config.image_url || ''} onChange={v => setField('image_url', v)} placeholder="https://…" />
-                    <Input label="Contact email (footer)" value={config.contact?.email || ''} onChange={v => setField('contact.email', v)} placeholder="hello@example.com" />
-                    <Input label="Contact phone (footer)" value={config.contact?.phone || ''} onChange={v => setField('contact.phone', v)} placeholder="+91 98xxx xxxxx" />
-                </Section>
-            </div>
-
-            {/* Form fields */}
-            <Section title="Form fields" description="Choose what visitors need to fill out. Required by default.">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10 }}>
-                    {FIELD_CATALOG.map(cf => {
-                        const isActive = activeFieldNames.has(cf.name)
-                        const current = (config.form_fields || []).find(f => f.name === cf.name)
-                        const Icon = cf.icon
-                        return (
-                            <div
-                                key={cf.name}
-                                style={{
-                                    padding: 14,
-                                    background: isActive ? 'var(--surface)' : 'var(--bg-subtle)',
-                                    border: `1.5px solid ${isActive ? 'var(--accent)' : 'var(--border)'}`,
-                                    borderRadius: 'var(--r-md)',
-                                    transition: 'border-color 120ms ease',
-                                }}
-                            >
-                                <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
-                                    <input
-                                        type="checkbox"
-                                        checked={isActive}
-                                        onChange={() => toggleField(cf)}
-                                        style={{ width: 16, height: 16, accentColor: '#2563EB' }}
-                                    />
-                                    <Icon size={16} style={{ color: 'var(--muted)' }} />
-                                    <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--ink)' }}>{cf.label}</span>
-                                </label>
-                                {isActive && (
-                                    <label style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 8, marginLeft: 26, fontSize: 12, color: 'var(--muted)', cursor: 'pointer' }}>
-                                        <input
-                                            type="checkbox"
-                                            checked={current?.required !== false}
-                                            onChange={e => setFieldRequired(cf.name, e.target.checked)}
-                                            style={{ width: 13, height: 13, accentColor: '#2563EB' }}
-                                        />
-                                        Required
-                                    </label>
-                                )}
-                            </div>
-                        )
-                    })}
-                </div>
-            </Section>
-
-            {/* Save bar */}
+            {/* Sticky save bar */}
             <div style={{
                 position: 'sticky', bottom: 0, marginTop: 32,
                 display: 'flex', alignItems: 'center', gap: 12,
@@ -330,26 +279,335 @@ const CampaignLandingTab = ({ campaign, onSave }) => {
                     Save changes
                 </button>
             </div>
+
+            {/* Add section modal */}
+            <AnimatePresence>
+                {showAdd && (
+                    <AddSectionModal
+                        available={availableToAdd}
+                        onPick={addSection}
+                        onClose={() => setShowAdd(false)}
+                    />
+                )}
+            </AnimatePresence>
         </div>
     )
 }
 
-/* ── Small building blocks ───────────────────────────────────────────────── */
+/* ── Per-section editor card ──────────────────────────────────────────── */
+
+const SectionCard = ({ section, isFirst, isLast, brandColor, onConfigChange, onMoveUp, onMoveDown, onRemove }) => {
+    const def = getSectionDef(section.type)
+    const [expanded, setExpanded] = useState(true)
+    if (!def) return null
+    const Icon = def.icon
+
+    return (
+        <div style={{
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--r-md)',
+            background: 'var(--surface)',
+            overflow: 'hidden',
+        }}>
+            <div style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '12px 14px',
+                borderBottom: expanded ? '1px solid var(--border-2)' : 'none',
+                background: 'var(--surface)',
+            }}>
+                <div style={{
+                    width: 28, height: 28, borderRadius: 6,
+                    background: 'var(--accent-tint)', color: 'var(--accent)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                    <Icon size={14} />
+                </div>
+                <button
+                    onClick={() => setExpanded(v => !v)}
+                    style={{
+                        background: 'none', border: 'none', padding: 0,
+                        cursor: 'pointer', flex: 1,
+                        textAlign: 'left', minWidth: 0,
+                    }}
+                >
+                    <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{def.name}</div>
+                    <div style={{ fontSize: 12, color: 'var(--muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {def.description}
+                    </div>
+                </button>
+                <button onClick={onMoveUp} disabled={isFirst} className="icon-btn" title="Move up" style={{ opacity: isFirst ? 0.35 : 1, cursor: isFirst ? 'default' : 'pointer' }}>
+                    <ArrowUp size={14} />
+                </button>
+                <button onClick={onMoveDown} disabled={isLast} className="icon-btn" title="Move down" style={{ opacity: isLast ? 0.35 : 1, cursor: isLast ? 'default' : 'pointer' }}>
+                    <ArrowDown size={14} />
+                </button>
+                <button onClick={onRemove} className="icon-btn" title="Remove section" style={{ color: '#dc2626' }}>
+                    <Trash2 size={14} />
+                </button>
+                <button onClick={() => setExpanded(v => !v)} className="icon-btn" title={expanded ? 'Collapse' : 'Expand'}>
+                    {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                </button>
+            </div>
+
+            {expanded && (
+                <div style={{ padding: 16 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                        {def.fields.map(f => (
+                            <Input
+                                key={f.key}
+                                label={f.label}
+                                value={section.config?.[f.key] || ''}
+                                onChange={v => onConfigChange(f.key, v)}
+                                placeholder={f.placeholder}
+                                multiline={f.type === 'textarea'}
+                            />
+                        ))}
+                        {section.type === 'form' && (
+                            <FormFieldsEditor
+                                fields={section.config?.form_fields || []}
+                                onChange={next => onConfigChange('form_fields', next)}
+                            />
+                        )}
+                        {section.type === 'features' && (
+                            <FeaturesEditor
+                                features={section.config?.features || []}
+                                onChange={next => onConfigChange('features', next)}
+                            />
+                        )}
+                    </div>
+                </div>
+            )}
+        </div>
+    )
+}
+
+/* ── Form fields editor (existing catalog toggler, adapted) ─────────────── */
+
+const FormFieldsEditor = ({ fields, onChange }) => {
+    const activeNames = new Set(fields.map(f => f.name))
+
+    const toggleField = (cf) => {
+        const exists = activeNames.has(cf.name)
+        onChange(exists
+            ? fields.filter(f => f.name !== cf.name)
+            : [...fields, { name: cf.name, label: cf.label, type: cf.type, required: true, placeholder: cf.placeholder }]
+        )
+    }
+
+    const setRequired = (name, required) => {
+        onChange(fields.map(f => f.name === name ? { ...f, required } : f))
+    }
+
+    return (
+        <div>
+            <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)', marginBottom: 8 }}>
+                Form fields
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 8 }}>
+                {FIELD_CATALOG.map(cf => {
+                    const isActive = activeNames.has(cf.name)
+                    const current = fields.find(f => f.name === cf.name)
+                    const Icon = cf.icon
+                    return (
+                        <div
+                            key={cf.name}
+                            style={{
+                                padding: 10,
+                                background: isActive ? 'var(--surface)' : 'var(--bg-subtle)',
+                                border: `1.5px solid ${isActive ? 'var(--accent)' : 'var(--border)'}`,
+                                borderRadius: 8,
+                            }}
+                        >
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+                                <input
+                                    type="checkbox"
+                                    checked={isActive}
+                                    onChange={() => toggleField(cf)}
+                                    style={{ width: 15, height: 15, accentColor: '#2563EB' }}
+                                />
+                                <Icon size={14} style={{ color: 'var(--muted)' }} />
+                                <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--ink)' }}>{cf.label}</span>
+                            </label>
+                            {isActive && (
+                                <label style={{ display: 'flex', alignItems: 'center', gap: 5, marginTop: 6, marginLeft: 24, fontSize: 11, color: 'var(--muted)', cursor: 'pointer' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={current?.required !== false}
+                                        onChange={e => setRequired(cf.name, e.target.checked)}
+                                        style={{ width: 12, height: 12, accentColor: '#2563EB' }}
+                                    />
+                                    Required
+                                </label>
+                            )}
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+    )
+}
+
+/* ── Features array editor (repeater) ───────────────────────────────────── */
+
+const FEATURE_ICONS = ['Check', 'Zap', 'Star', 'Shield', 'Sparkles', 'TrendingUp', 'Users', 'Rocket']
+
+const FeaturesEditor = ({ features, onChange }) => {
+    const setFeature = (i, key, value) => {
+        onChange(features.map((f, idx) => idx === i ? { ...f, [key]: value } : f))
+    }
+    const remove = (i) => onChange(features.filter((_, idx) => idx !== i))
+    const add = () => onChange([...features, { icon: 'Check', title: 'New feature', description: '' }])
+
+    return (
+        <div>
+            <div style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)', marginBottom: 8 }}>
+                Feature cards
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {features.map((feat, i) => (
+                    <div key={i} style={{ padding: 12, background: 'var(--bg-subtle)', border: '1px solid var(--border)', borderRadius: 8, position: 'relative' }}>
+                        <button
+                            onClick={() => remove(i)}
+                            className="icon-btn"
+                            style={{ position: 'absolute', top: 6, right: 6, color: '#dc2626' }}
+                            title="Remove"
+                        >
+                            <X size={13} />
+                        </button>
+                        <div style={{ display: 'grid', gridTemplateColumns: '120px 1fr', gap: 8, marginBottom: 8 }}>
+                            <select
+                                value={feat.icon}
+                                onChange={e => setFeature(i, 'icon', e.target.value)}
+                                style={{
+                                    padding: '7px 8px', fontSize: 12,
+                                    border: '1px solid var(--border)', borderRadius: 6,
+                                    background: 'var(--surface)',
+                                }}
+                            >
+                                {FEATURE_ICONS.map(name => <option key={name} value={name}>{name}</option>)}
+                            </select>
+                            <input
+                                type="text"
+                                value={feat.title || ''}
+                                onChange={e => setFeature(i, 'title', e.target.value)}
+                                placeholder="Feature title"
+                                style={{
+                                    padding: '7px 10px', fontSize: 13,
+                                    border: '1px solid var(--border)', borderRadius: 6,
+                                    background: 'var(--surface)',
+                                }}
+                            />
+                        </div>
+                        <textarea
+                            value={feat.description || ''}
+                            onChange={e => setFeature(i, 'description', e.target.value)}
+                            placeholder="Short description"
+                            rows={2}
+                            style={{
+                                width: '100%',
+                                padding: '7px 10px', fontSize: 13,
+                                border: '1px solid var(--border)', borderRadius: 6,
+                                background: 'var(--surface)',
+                                fontFamily: 'Satoshi, sans-serif',
+                                resize: 'vertical',
+                            }}
+                        />
+                    </div>
+                ))}
+                <button
+                    onClick={add}
+                    className="btn-ghost"
+                    style={{ padding: '8px 12px', fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}
+                >
+                    <Plus size={12} /> Add feature
+                </button>
+            </div>
+        </div>
+    )
+}
+
+/* ── Add section modal ──────────────────────────────────────────────────── */
+
+const AddSectionModal = ({ available, onPick, onClose }) => (
+    <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            zIndex: 1000, padding: 20,
+        }}
+        onClick={onClose}
+    >
+        <motion.div
+            initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
+            onClick={e => e.stopPropagation()}
+            style={{
+                width: '100%', maxWidth: 560,
+                background: 'var(--surface)',
+                borderRadius: 'var(--r-lg)',
+                boxShadow: 'var(--shadow-lg)',
+                overflow: 'hidden',
+            }}
+        >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '18px 22px', borderBottom: '1px solid var(--border)' }}>
+                <h3 style={{ margin: 0, fontSize: '1.05rem', color: 'var(--ink)' }}>Add a section</h3>
+                <button onClick={onClose} className="icon-btn"><X size={16} /></button>
+            </div>
+            <div style={{ padding: 18, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                {available.map(def => {
+                    const Icon = def.icon
+                    return (
+                        <button
+                            key={def.type}
+                            onClick={() => onPick(def.type)}
+                            style={{
+                                padding: 16, background: 'var(--surface)',
+                                border: '1.5px solid var(--border)', borderRadius: 10,
+                                textAlign: 'left', cursor: 'pointer',
+                                display: 'flex', flexDirection: 'column', gap: 8,
+                                transition: 'border-color 120ms ease, background 120ms ease',
+                            }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.background = 'var(--accent-tint)' }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = 'var(--surface)' }}
+                        >
+                            <div style={{
+                                width: 28, height: 28, borderRadius: 6,
+                                background: 'var(--accent-tint)', color: 'var(--accent)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            }}>
+                                <Icon size={14} />
+                            </div>
+                            <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{def.name}</div>
+                            <div style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.4 }}>{def.description}</div>
+                        </button>
+                    )
+                })}
+                {available.length === 0 && (
+                    <div style={{ gridColumn: 'span 2', padding: 20, textAlign: 'center', color: 'var(--muted)', fontSize: 13 }}>
+                        Every section type is already used. Remove one first if you'd like to swap.
+                    </div>
+                )}
+            </div>
+        </motion.div>
+    </motion.div>
+)
+
+/* ── Small building blocks ────────────────────────────────────────────── */
 
 const Section = ({ title, description, children }) => (
-    <div style={{ marginBottom: 32 }}>
+    <div style={{ marginBottom: 28 }}>
         <div style={{ marginBottom: 12 }}>
             <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>{title}</h3>
-            {description && <p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--muted)' }}>{description}</p>}
+            {description && <p style={{ margin: '4px 0 0', fontSize: 13, color: 'var(--muted)', lineHeight: 1.5 }}>{description}</p>}
         </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>{children}</div>
+        {children}
     </div>
 )
 
 const Input = ({ label, value, onChange, placeholder, multiline }) => {
-    const inputStyle = {
+    const style = {
         width: '100%',
-        padding: '10px 12px',
+        padding: '9px 12px',
         border: '1.5px solid var(--border)',
         borderRadius: 'var(--r-sm)',
         fontSize: 14,
@@ -359,25 +617,20 @@ const Input = ({ label, value, onChange, placeholder, multiline }) => {
         outline: 'none',
     }
     return (
-        <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <label style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
             <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)' }}>{label}</span>
             {multiline ? (
                 <textarea
-                    value={value}
-                    onChange={e => onChange(e.target.value)}
-                    placeholder={placeholder}
-                    rows={2}
-                    style={{ ...inputStyle, resize: 'vertical', minHeight: 60 }}
+                    value={value} onChange={e => onChange(e.target.value)}
+                    placeholder={placeholder} rows={2}
+                    style={{ ...style, resize: 'vertical', minHeight: 54 }}
                     onFocus={e => e.target.style.borderColor = 'var(--accent)'}
                     onBlur={e => e.target.style.borderColor = 'var(--border)'}
                 />
             ) : (
                 <input
-                    type="text"
-                    value={value}
-                    onChange={e => onChange(e.target.value)}
-                    placeholder={placeholder}
-                    style={inputStyle}
+                    type="text" value={value} onChange={e => onChange(e.target.value)}
+                    placeholder={placeholder} style={style}
                     onFocus={e => e.target.style.borderColor = 'var(--accent)'}
                     onBlur={e => e.target.style.borderColor = 'var(--border)'}
                 />
@@ -389,7 +642,7 @@ const Input = ({ label, value, onChange, placeholder, multiline }) => {
 const ColorInput = ({ label, value, onChange }) => (
     <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--muted)' }}>{label}</span>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'stretch' }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'stretch', maxWidth: 320 }}>
             <div style={{
                 display: 'flex', alignItems: 'center', gap: 8,
                 padding: '6px 8px',
@@ -398,29 +651,21 @@ const ColorInput = ({ label, value, onChange }) => (
                 background: 'var(--surface)',
             }}>
                 <input
-                    type="color"
-                    value={value}
+                    type="color" value={value}
                     onChange={e => onChange(e.target.value)}
                     style={{ width: 32, height: 32, border: 'none', borderRadius: 4, cursor: 'pointer', background: 'transparent' }}
                 />
                 <Palette size={14} style={{ color: 'var(--muted)' }} />
             </div>
             <input
-                type="text"
-                value={value}
-                onChange={e => onChange(e.target.value)}
+                type="text" value={value} onChange={e => onChange(e.target.value)}
                 placeholder="#2563EB"
                 style={{
-                    flex: 1,
-                    padding: '10px 12px',
-                    border: '1.5px solid var(--border)',
-                    borderRadius: 'var(--r-sm)',
-                    fontSize: 14,
-                    fontFamily: 'ui-monospace, monospace',
-                    color: 'var(--ink)',
-                    background: 'var(--surface)',
-                    outline: 'none',
-                    textTransform: 'uppercase',
+                    flex: 1, padding: '10px 12px',
+                    border: '1.5px solid var(--border)', borderRadius: 'var(--r-sm)',
+                    fontSize: 14, fontFamily: 'ui-monospace, monospace',
+                    color: 'var(--ink)', background: 'var(--surface)',
+                    outline: 'none', textTransform: 'uppercase',
                 }}
                 onFocus={e => e.target.style.borderColor = 'var(--accent)'}
                 onBlur={e => e.target.style.borderColor = 'var(--border)'}
@@ -428,59 +673,5 @@ const ColorInput = ({ label, value, onChange }) => (
         </div>
     </label>
 )
-
-/* ── Tiny in-card visual thumbnail — schematic, not a real render ───────── */
-const TemplateThumb = ({ id, brandColor }) => {
-    const color = brandColor || DEFAULT_BRAND_COLOR
-    // Focus thumbnail: two-column (text left, form right)
-    if (id === 'focus') {
-        return (
-            <div style={{
-                width: '100%', aspectRatio: '16 / 10',
-                background: '#F9F9F7',
-                borderRadius: 8,
-                border: '1px solid var(--border)',
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 10,
-                padding: 14,
-                overflow: 'hidden',
-                position: 'relative',
-            }}>
-                <div>
-                    <div style={{ width: 40, height: 8, borderRadius: 4, background: color, opacity: 0.25, marginBottom: 8 }} />
-                    <div style={{ width: '90%', height: 14, borderRadius: 3, background: '#0D0D0D', marginBottom: 6 }} />
-                    <div style={{ width: '70%', height: 14, borderRadius: 3, background: '#0D0D0D', marginBottom: 12 }} />
-                    <div style={{ width: '100%', height: 5, borderRadius: 3, background: '#D1D5DB', marginBottom: 3 }} />
-                    <div style={{ width: '85%', height: 5, borderRadius: 3, background: '#D1D5DB' }} />
-                </div>
-                <div style={{
-                    background: '#fff',
-                    borderRadius: 6,
-                    padding: 8,
-                    boxShadow: '0 4px 10px rgba(0,0,0,0.06)',
-                    display: 'flex', flexDirection: 'column', gap: 5,
-                }}>
-                    <div style={{ height: 8, borderRadius: 3, background: '#E5E4E0' }} />
-                    <div style={{ height: 8, borderRadius: 3, background: '#E5E4E0' }} />
-                    <div style={{ height: 12, borderRadius: 3, background: color, marginTop: 4 }} />
-                </div>
-            </div>
-        )
-    }
-    // Fallback placeholder for future templates
-    return (
-        <div style={{
-            width: '100%', aspectRatio: '16 / 10',
-            background: 'var(--bg-subtle)',
-            borderRadius: 8,
-            border: '1px dashed var(--border)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: 'var(--muted)', fontSize: 12,
-        }}>
-            Coming soon
-        </div>
-    )
-}
 
 export default CampaignLandingTab
