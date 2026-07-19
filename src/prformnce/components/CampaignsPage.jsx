@@ -13,6 +13,7 @@ import { useAuth } from '../context/AuthContext'
 import { parseCsv } from '../utils/csv'
 import { STARTER_TEMPLATES } from '../utils/campaignTemplates'
 import UpgradeModal from './UpgradeModal'
+import CampaignLandingTab from './CampaignLandingTab'
 import '../prformnce-designer.css'
 
 // ── pdfme helpers ──────────────────────────────────────────────────────────────
@@ -1113,14 +1114,14 @@ const ScansTab = ({ campaign }) => {
 
 // ── Campaign Detail (scans-first, no redundant tabs) ──────────────────────────
 
-const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
+const CampaignDetail = ({ campaign, onDelete, onUpdate, initialMode }) => {
     const { authFetch } = useAuth()
-    const [mode, setMode] = useState('scans') // 'scans' | 'edit' | 'generate'
+    const [mode, setMode] = useState(initialMode || 'scans') // 'scans' | 'edit' | 'generate' | 'landing'
     const [local, setLocal] = useState(campaign)
 
     const isFrozen = Number(local.recipient_count || 0) > 0
 
-    useEffect(() => { setLocal(campaign); setMode('scans') }, [campaign.id])
+    useEffect(() => { setLocal(campaign); setMode(initialMode || 'scans') }, [campaign.id])
 
     const handleDelete = async () => {
         if (!confirm(`Delete "${campaign.name}"? This removes all recipients and scan data.`)) return
@@ -1172,7 +1173,8 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate }) => {
 
             {/* Content */}
             <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', position: 'relative' }}>
-                {(isFrozen || mode === 'scans') && <ScansTab campaign={local} />}
+                {mode === 'scans'   && <ScansTab campaign={local} />}
+                {mode === 'landing' && <CampaignLandingTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
                 {!isFrozen && mode === 'edit'     && <DesignTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
                 {!isFrozen && mode === 'generate' && <GenerateTab campaign={local} />}
             </div>
@@ -1303,12 +1305,13 @@ const AnalyticsPanel = () => {
 
 // ── Main CampaignsPage ────────────────────────────────────────────────────────
 
-const CampaignsPage = ({ wizardTrigger = 0 }) => {
+const CampaignsPage = ({ wizardTrigger = 0, navParams = null }) => {
     const { authFetch } = useAuth()
     const [campaigns, setCampaigns] = useState([])
     const [loading, setLoading] = useState(true)
     const [view, setView] = useState('list') // 'list' | 'wizard' | 'detail' | 'analytics'
     const [selected, setSelected] = useState(null)
+    const [initialMode, setInitialMode] = useState(null)
 
     // Wizard state
     const [wizardStep, setWizardStep] = useState(0)
@@ -1322,6 +1325,29 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
             .then(data => { if (data.success) setCampaigns(data.campaigns) })
             .finally(() => setLoading(false))
     }, [])
+
+    // Handle navParams from parent (e.g. from Templates page: open a specific campaign in a mode)
+    useEffect(() => {
+        if (!navParams?.openCampaignId || loading) return
+        const found = campaigns.find(c => c.id === navParams.openCampaignId)
+        if (found) {
+            setSelected(found)
+            setInitialMode(navParams.mode || null)
+            setView('detail')
+        } else {
+            // Not in the list yet — fetch it
+            authFetch(`/api/campaigns/${navParams.openCampaignId}`)
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        setCampaigns(prev => [data.campaign, ...prev.filter(c => c.id !== data.campaign.id)])
+                        setSelected(data.campaign)
+                        setInitialMode(navParams.mode || null)
+                        setView('detail')
+                    }
+                })
+        }
+    }, [navParams, loading])
 
     const startWizard = useCallback(() => {
         setWizardStep(0); setWizardMeta(null); setWizardTemplate(null); setView('wizard')
@@ -1408,6 +1434,7 @@ const CampaignsPage = ({ wizardTrigger = 0 }) => {
                 <CampaignDetail
                     key={selected.id}
                     campaign={selected}
+                    initialMode={initialMode}
                     onDelete={handleDelete}
                     onUpdate={handleUpdate}
                 />

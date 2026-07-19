@@ -4,7 +4,8 @@ import {
     Plus, Loader2, Copy, Check,
     Trash2, X, BarChart2, ArrowRight, Inbox, Mail, Send,
     CheckCircle2, AlertCircle, HelpCircle, TrendingUp, TrendingDown, Zap,
-    Settings, Search, CreditCard, Calendar, Star, Users, ScanLine, Activity, Globe
+    Settings, Search, CreditCard, Calendar, Star, Users, ScanLine, Activity, Globe,
+    LayoutGrid,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
@@ -15,6 +16,7 @@ import UpgradeModal from '../components/UpgradeModal'
 
 const CampaignsPage      = lazy(() => import('../components/CampaignsPage'))
 const LandingPagesPage   = lazy(() => import('./LandingPagesPage'))
+const TemplatesPage      = lazy(() => import('./TemplatesPage'))
 
 // ── Utilities ──────────────────────────────────────────────────────────────────
 
@@ -144,21 +146,16 @@ const Sidebar = ({ active, onNavigate, onUpgrade }) => {
     const sections = [
         {
             items: [
-                { key: 'overview', label: 'Overview', icon: <LayoutDashboard size={16} /> },
+                { key: 'overview',  label: 'Overview',  icon: <LayoutDashboard size={16} /> },
+                { key: 'templates', label: 'Templates', icon: <LayoutGrid size={15} /> },
             ]
         },
         {
-            label: 'Forms',
+            label: 'Work',
             items: [
-                { key: 'forms',  label: 'Submissions', icon: <Inbox size={15} /> },
-                { key: 'leads',  label: 'Email Leads',  icon: <Mail size={15} /> },
-            ]
-        },
-        {
-            label: 'Campaigns',
-            items: [
-                { key: 'campaigns',     label: 'Campaigns',     icon: <QrCode size={15} /> },
-                { key: 'landing-pages', label: 'Landing Pages', icon: <Globe size={15} /> },
+                { key: 'campaigns',   label: 'Campaigns',   icon: <QrCode size={15} /> },
+                { key: 'forms',       label: 'Submissions', icon: <Inbox size={15} /> },
+                { key: 'leads',       label: 'Email Leads', icon: <Mail size={15} /> },
             ]
         },
     ]
@@ -1432,14 +1429,16 @@ const ScanAnalyticsPage = () => {
 
 const Dashboard = () => {
     const [view, setView] = useState('overview')
+    const [navParams, setNavParams] = useState(null)
     const [showTour, setShowTour] = useState(() => shouldShowTour())
     const [showUpgrade, setShowUpgrade] = useState(false)
 
-    const handleNavigate = (key) => {
+    const handleNavigate = (key, params = null) => {
         setView(key)
+        setNavParams(params)
     }
 
-    const fullHeight = view === 'forms' || view === 'campaigns' || view === 'leads' || view === 'landing-pages'
+    const fullHeight = view === 'forms' || view === 'campaigns' || view === 'leads' || view === 'landing-pages' || view === 'templates'
 
     return (
         <div className="app-layout">
@@ -1456,7 +1455,7 @@ const Dashboard = () => {
                             <Loader2 size={24} className="animate-spin" />
                         </div>
                     }>
-                        <CampaignsPage />
+                        <CampaignsPage navParams={navParams} />
                     </Suspense>
                 )}
                 {view === 'landing-pages' && (
@@ -1466,6 +1465,15 @@ const Dashboard = () => {
                         </div>
                     }>
                         <LandingPagesPage />
+                    </Suspense>
+                )}
+                {view === 'templates' && (
+                    <Suspense fallback={
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: 'var(--muted)' }}>
+                            <Loader2 size={24} className="animate-spin" />
+                        </div>
+                    }>
+                        <TemplatesPage onNavigate={handleNavigate} />
                     </Suspense>
                 )}
                 {view === 'settings' && <SettingsPage onUpgrade={() => setShowUpgrade(true)} />}
