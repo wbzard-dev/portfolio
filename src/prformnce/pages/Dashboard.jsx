@@ -973,6 +973,90 @@ const SettingsPage = ({ onUpgrade }) => {
 
 // ── Overview Page ──────────────────────────────────────────────────────────────
 
+// ── Onboarding hero — shown on empty Overview ──────────────────────────────────
+
+const OnboardingHero = ({ onNavigate }) => (
+    <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+            marginBottom: '2rem',
+            padding: '32px 32px 28px',
+            background: 'linear-gradient(135deg, #F9F9F7 0%, #EFF6FF 100%)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--r-lg)',
+            position: 'relative',
+            overflow: 'hidden',
+        }}
+    >
+        <div
+            aria-hidden
+            style={{
+                position: 'absolute',
+                top: '-40%', right: '-10%',
+                width: 380, height: 380,
+                background: 'radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 65%)',
+                pointerEvents: 'none',
+            }}
+        />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 720 }}>
+            <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                padding: '4px 10px', borderRadius: 100,
+                background: 'rgba(37,99,235,0.10)', color: 'var(--accent)',
+                fontSize: 11, fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase',
+                marginBottom: 14,
+            }}>
+                <Star size={11} /> Getting started
+            </div>
+            <h2 style={{
+                margin: 0, marginBottom: 10,
+                fontSize: 'clamp(1.5rem, 3vw, 2rem)',
+                fontFamily: "'Satoshi', sans-serif",
+                fontWeight: 700, letterSpacing: '-0.025em',
+                color: 'var(--ink)',
+            }}>
+                Create your first campaign
+            </h2>
+            <p style={{
+                margin: 0, marginBottom: 22,
+                fontSize: 15, color: 'var(--muted)', lineHeight: 1.6,
+                maxWidth: 560,
+            }}>
+                A campaign is one unified funnel — a landing page for your visitors, a form to capture leads, and QR-tracked flyers for the physical world. Pick where you want to start.
+            </p>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                <button
+                    onClick={() => onNavigate('templates')}
+                    className="btn-primary"
+                    style={{ padding: '11px 20px', fontSize: 14, display: 'flex', alignItems: 'center', gap: 7 }}
+                >
+                    <Globe size={15} /> Start a Web Campaign
+                </button>
+                <button
+                    onClick={() => onNavigate('templates')}
+                    style={{
+                        padding: '11px 20px',
+                        background: 'var(--surface)',
+                        border: '1px solid var(--border)',
+                        borderRadius: 'var(--r-sm)',
+                        fontSize: 14, fontWeight: 500,
+                        color: 'var(--ink)',
+                        cursor: 'pointer',
+                        display: 'flex', alignItems: 'center', gap: 7,
+                        transition: 'border-color 120ms ease',
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border)'}
+                >
+                    <QrCode size={15} /> Or a Print Campaign
+                </button>
+            </div>
+        </div>
+    </motion.div>
+)
+
 const OverviewPage = ({ onNavigate, onStartTour }) => {
     const { authFetch, user } = useAuth()
     const [forms, setForms] = useState([])
@@ -1052,6 +1136,11 @@ const OverviewPage = ({ onNavigate, onStartTour }) => {
                     <Plus size={15} /> New Form
                 </button>
             </div>
+
+            {/* Onboarding hero — shown only when user has no campaigns yet */}
+            {!statsLoading && (kpis?.campaigns_total || 0) === 0 && (
+                <OnboardingHero onNavigate={onNavigate} />
+            )}
 
             {/* KPI cards */}
             <div data-tour="stat-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>

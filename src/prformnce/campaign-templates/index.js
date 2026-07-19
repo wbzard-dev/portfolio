@@ -45,10 +45,65 @@ export const TEMPLATES = {
                 config: { email: '', phone: '', website: '', copyright: new Date().getFullYear().toString() },
             },
         ],
-        defaultConfig: {
-            brand_color: DEFAULT_BRAND_COLOR,
-            get sections() { return TEMPLATES.focus.default_sections() },
-        },
+    },
+
+    event: {
+        id: 'event',
+        name: 'Event',
+        description: 'Hero + benefits + form + closing CTA. Ideal for event launches, product announcements, workshops.',
+        component: Focus,
+        default_sections: () => [
+            {
+                ...createSection('hero'),
+                config: {
+                    eyebrow: 'Save your seat',
+                    headline: 'The event people are already talking about.',
+                    subhead: 'One night. One room. The people you actually want to meet.',
+                    image_url: '',
+                    cta_text: 'Reserve your spot',
+                    cta_url: '#form',
+                },
+            },
+            {
+                ...createSection('features'),
+                config: {
+                    section_headline: 'What to expect',
+                    section_subhead: '',
+                    features: [
+                        { icon: 'Users',      title: 'Real conversations',  description: 'Small-group format, no keynote fatigue.' },
+                        { icon: 'Sparkles',   title: 'Curated speakers',    description: 'Practitioners who ship, not talking heads.' },
+                        { icon: 'Rocket',     title: 'Practical takeaways', description: 'Leave with things you can use on Monday.' },
+                    ],
+                },
+            },
+            {
+                ...createSection('form'),
+                config: {
+                    section_headline: 'Reserve your spot',
+                    section_subhead: 'Seats are limited — we\'ll confirm within 24 hours.',
+                    cta_text: 'Request an invite',
+                    success_message: "Thanks — we'll be in touch within 24 hours.",
+                    form_fields: [
+                        { name: 'name',    label: 'Full name', type: 'text',  required: true, placeholder: 'Your name' },
+                        { name: 'email',   label: 'Email',     type: 'email', required: true, placeholder: 'you@example.com' },
+                        { name: 'company', label: 'Company',   type: 'text',  required: false, placeholder: 'Where you work' },
+                    ],
+                },
+            },
+            {
+                ...createSection('cta'),
+                config: {
+                    headline: 'Doors close soon.',
+                    subhead: 'Once seats fill, that\'s it. No waitlist.',
+                    cta_text: 'Request an invite',
+                    cta_url: '#form',
+                },
+            },
+            {
+                ...createSection('footer'),
+                config: { email: '', phone: '', website: '', copyright: new Date().getFullYear().toString() },
+            },
+        ],
     },
 }
 
