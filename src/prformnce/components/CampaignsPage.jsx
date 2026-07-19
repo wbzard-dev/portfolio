@@ -1004,6 +1004,134 @@ const getBestName = (r) => {
         || d.email || d.Email || r.display_name || '—'
 }
 
+// ── Web Analytics tab (for web campaigns — views + submissions + conversion) ──
+
+const WebAnalyticsTab = ({ campaign }) => {
+    const { authFetch } = useAuth()
+    const [views, setViews] = useState(null)
+    const [submissions, setSubmissions] = useState(0)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        setLoading(true)
+        Promise.all([
+            authFetch(`/api/campaigns/${campaign.id}/views?days=30`).then(r => r.json()),
+            campaign.form_id
+                ? authFetch(`/api/forms/${campaign.form_id}/submissions`).then(r => r.json())
+                : Promise.resolve({ success: true, submissions: [] }),
+        ]).then(([viewsData, subsData]) => {
+            if (viewsData.success) setViews(viewsData)
+            if (subsData.success) setSubmissions(subsData.submissions?.length || 0)
+        }).finally(() => setLoading(false))
+    }, [campaign.id, campaign.form_id])
+
+    if (loading) return <div className="empty-state"><Loader2 size={24} className="animate-spin" /></div>
+
+    const totalViews    = views?.summary?.total_views || 0
+    const uniques       = views?.summary?.unique_visitors || 0
+    const conversion    = uniques > 0 ? Math.round((submissions / uniques) * 1000) / 10 : 0
+    const timeseries    = views?.timeseries || []
+    const publicUrl     = campaign.slug ? `${typeof window !== 'undefined' ? window.location.origin : ''}/prformnce/c/${campaign.slug}` : ''
+
+    return (
+        <div style={{ padding: '24px 32px', overflow: 'auto', height: '100%' }}>
+            {!campaign.published && (
+                <div style={{
+                    padding: '12px 16px', marginBottom: 20,
+                    background: '#fff7ed', border: '1px solid #fed7aa',
+                    borderRadius: 'var(--r-md)', color: '#9a3412', fontSize: 13,
+                }}>
+                    This landing page is unpublished. Views won't accrue until you publish it.
+                </div>
+            )}
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14, marginBottom: 24 }}>
+                <StatCard label="Total views" value={totalViews.toLocaleString()} accent="#2563EB" />
+                <StatCard label="Unique visitors" value={uniques.toLocaleString()} accent="#8b5cf6" />
+                <StatCard label="Submissions" value={submissions.toLocaleString()} accent="#16a34a" />
+                <StatCard label="Conversion rate" value={`${conversion}%`} accent="#f59e0b" />
+            </div>
+
+            {publicUrl && (
+                <div style={{
+                    padding: '12px 16px', marginBottom: 24,
+                    background: 'var(--surface)', border: '1px solid var(--border)',
+                    borderRadius: 'var(--r-md)',
+                    display: 'flex', alignItems: 'center', gap: 12,
+                }}>
+                    <span style={{ fontSize: 12, color: 'var(--muted)', fontWeight: 500 }}>URL</span>
+                    <code style={{
+                        flex: 1, padding: '6px 10px', borderRadius: 5,
+                        background: 'var(--bg-subtle)', fontSize: 12,
+                        color: 'var(--text)', fontFamily: 'ui-monospace, monospace',
+                        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                    }}>{publicUrl}</code>
+                    <a href={publicUrl} target="_blank" rel="noreferrer" className="btn-ghost" style={{ padding: '5px 10px', fontSize: 12, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                        Open <ExternalLinkIcon />
+                    </a>
+                </div>
+            )}
+
+            <div style={{
+                padding: 20, background: 'var(--surface)', border: '1px solid var(--border)',
+                borderRadius: 'var(--r-md)',
+            }}>
+                <h3 style={{ margin: 0, marginBottom: 12, fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>
+                    Views · last 30 days
+                </h3>
+                {timeseries.length === 0 ? (
+                    <div style={{ padding: '40px 0', textAlign: 'center', color: 'var(--muted)', fontSize: 14 }}>
+                        No views yet. Share the URL to start seeing traffic here.
+                    </div>
+                ) : (
+                    <ResponsiveContainer width="100%" height={220}>
+                        <AreaChart data={timeseries} margin={{ top: 5, right: 5, bottom: 5, left: -20 }}>
+                            <defs>
+                                <linearGradient id="viewsGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#2563EB" stopOpacity={0.28} />
+                                    <stop offset="95%" stopColor="#2563EB" stopOpacity={0} />
+                                </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="var(--border-2)" vertical={false} />
+                            <XAxis dataKey="day" tick={{ fontSize: 11, fill: 'var(--muted)' }} stroke="var(--border)" />
+                            <YAxis tick={{ fontSize: 11, fill: 'var(--muted)' }} stroke="var(--border)" allowDecimals={false} />
+                            <Tooltip
+                                contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, fontSize: 12 }}
+                            />
+                            <Area type="monotone" dataKey="views" stroke="#2563EB" strokeWidth={2} fill="url(#viewsGrad)" />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                )}
+            </div>
+        </div>
+    )
+}
+
+const StatCard = ({ label, value, accent }) => (
+    <div style={{
+        padding: 16,
+        background: 'var(--surface)',
+        border: '1px solid var(--border)',
+        borderRadius: 'var(--r-md)',
+        borderTop: `3px solid ${accent}`,
+    }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--muted)', letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: 6 }}>
+            {label}
+        </div>
+        <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+            {value}
+        </div>
+    </div>
+)
+
+const ExternalLinkIcon = () => (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+        <polyline points="15 3 21 3 21 9" />
+        <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+)
+
 const ScansTab = ({ campaign }) => {
     const { authFetch } = useAuth()
     const [recipients, setRecipients] = useState([])
@@ -1212,7 +1340,12 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate, initialMode }) => {
                     )}
                 </div>
                 <div style={{ display: 'flex', gap: 8, flexShrink: 0, alignItems: 'center' }}>
-                    {!isFrozen && mode === 'scans' && (
+                    {mode === 'scans' && local.campaign_type === 'web' && (
+                        <button onClick={() => setMode('landing')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <Pencil size={13} /> Edit Landing Page
+                        </button>
+                    )}
+                    {mode === 'scans' && local.campaign_type !== 'web' && !isFrozen && (
                         <>
                             <button onClick={() => setMode('generate')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
                                 <RefreshCw size={13} /> Generate
@@ -1222,9 +1355,9 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate, initialMode }) => {
                             </button>
                         </>
                     )}
-                    {!isFrozen && mode !== 'scans' && (
+                    {mode !== 'scans' && (
                         <button onClick={() => setMode('scans')} className="btn-ghost" style={{ padding: '6px 13px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 6 }}>
-                            <BarChart2 size={13} /> Back to Scans
+                            <BarChart2 size={13} /> {local.campaign_type === 'web' ? 'Back to Analytics' : 'Back to Scans'}
                         </button>
                     )}
                     <button onClick={handleDelete} className="btn-danger" style={{ padding: '6px 13px', fontSize: 13 }}>
@@ -1235,7 +1368,7 @@ const CampaignDetail = ({ campaign, onDelete, onUpdate, initialMode }) => {
 
             {/* Content */}
             <div style={{ flex: 1, minHeight: 0, overflow: 'hidden', position: 'relative' }}>
-                {mode === 'scans'   && <ScansTab campaign={local} />}
+                {mode === 'scans'   && (local.campaign_type === 'web' ? <WebAnalyticsTab campaign={local} /> : <ScansTab campaign={local} />)}
                 {mode === 'landing' && <CampaignLandingTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
                 {!isFrozen && mode === 'edit'     && <DesignTab campaign={local} onSave={u => { setLocal(u); onUpdate(u) }} />}
                 {!isFrozen && mode === 'generate' && <GenerateTab campaign={local} />}
