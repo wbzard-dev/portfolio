@@ -86,7 +86,7 @@ const ClubRegistration = () => {
         setStatus("sending");
 
         try {
-            const response = await fetch("https://orca-app-xc7lo.ondigitalocean.app/api/register", {
+            const response = await fetch("https://whale-app-q5evg.ondigitalocean.app/api/register", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
