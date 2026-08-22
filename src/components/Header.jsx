@@ -96,7 +96,7 @@ const Header = () => {
                     {/* Logo */}
                     <Link to="/" style={{ display: "flex", alignItems: "center" }}>
                         <img
-                            src="/images/final-logo.png"
+                            src={`${import.meta.env.BASE_URL}images/final-logo.png`}
                             alt="Wbzard Labs"
                             style={{
                                 height: "70px",

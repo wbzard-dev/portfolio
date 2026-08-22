@@ -24,7 +24,7 @@ const Footer = () => (
                 <div>
                     <Link to="/" style={{ display: "inline-flex", marginBottom: "1.25rem" }}>
                         <img
-                            src="/images/final-logo.png"
+                            src={`${import.meta.env.BASE_URL}images/final-logo.png`}
                             alt="Wbzard Labs"
                             style={{
                                 height: "70px",
