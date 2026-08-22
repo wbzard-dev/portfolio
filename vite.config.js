@@ -5,7 +5,7 @@ import yaml from "@rollup/plugin-yaml";
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [react(), yaml()],
-    base: "/portfolio/",
+    base: "/",
     server: {
         proxy: {
             "/api": "http://localhost:5000",
