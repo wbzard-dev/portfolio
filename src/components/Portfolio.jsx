@@ -18,6 +18,22 @@ const projects = [
         link: "/one-habit",
         color: "#4f46e5"
     },
+    {
+        title: "QuickFix Services",
+        category: "Business Website",
+        image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800",
+        link: "https://www.quickfixservices.co.in/",
+        color: "#10b981",
+        external: true
+    },
+    {
+        title: "The Rugged",
+        category: "Brand Website",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=800",
+        link: "https://the-rugged.com/",
+        color: "#e11d48",
+        external: true
+    },
 ];
 
 const Portfolio = () => {
@@ -42,9 +58,15 @@ const Portfolio = () => {
                 </motion.div>
 
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                    {projects.map((project, index) => (
-                        <Link
-                            to={project.link}
+                    {projects.map((project, index) => {
+                        const LinkComponent = project.external ? "a" : Link;
+                        const linkProps = project.external
+                            ? { href: project.link, target: "_blank", rel: "noopener noreferrer" }
+                            : { to: project.link };
+
+                        return (
+                        <LinkComponent
+                            {...linkProps}
                             key={index}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
@@ -115,8 +137,9 @@ const Portfolio = () => {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </Link>
-                    ))}
+                        </LinkComponent>
+                        );
+                    })}
                 </div>
             </div>
             <style>{`
