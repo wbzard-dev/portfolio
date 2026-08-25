@@ -4,12 +4,6 @@ import { ArrowUpRight } from "lucide-react";
 
 const works = [
     {
-        title: "QuickFix Services",
-        role:  "Web Development",
-        desc:  "Business website built to convert local service inquiries into booked jobs.",
-        href:  "https://www.quickfixservices.co.in/",
-    },
-    {
         title: "The Rugged",
         role:  "Web Development",
         desc:  "Brand website designed around the product line and a clear path to purchase.",
