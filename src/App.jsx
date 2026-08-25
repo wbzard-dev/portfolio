@@ -12,6 +12,7 @@ import Hero             from "./components/Hero";
 import ProblemSection   from "./components/ProblemSection";
 import ApproachTimeline from "./components/ApproachTimeline";
 import Services         from "./components/Services";
+import Work             from "./components/Work";
 import WhyDifferent     from "./components/WhyDifferent";
 import DiscoverySection from "./components/DiscoverySection";
 import FAQSection       from "./components/FAQSection";
@@ -65,6 +66,7 @@ function App() {
                                 <ProblemSection />
                                 <ApproachTimeline />
                                 <Services />
+                                <Work />
                                 <WhyDifferent />
                                 <DiscoverySection />
                                 <FAQSection />
