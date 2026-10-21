@@ -1,18 +1,36 @@
 # robots.txt for https://www.wbzard.com
 User-agent: *
 Allow: /
-
 # Conversion page — not useful in search results
 Disallow: /thank-you
 
-# Allow ad platform crawlers to check landing pages (Google Ads, Meta link previews)
+# Ad platform crawlers (Google Ads landing-page checks, Meta link previews)
 User-agent: AdsBot-Google
-Allow: /
-
 User-agent: AdsBot-Google-Mobile
-Allow: /
-
 User-agent: facebookexternalhit
 Allow: /
 
+# AI assistants & AI search — we want to be found and cited in AI answers.
+# OpenAI (ChatGPT search, browsing, training)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+# Anthropic (Claude)
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: ClaudeBot
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+# Google Gemini / AI Overviews grounding, Apple Intelligence, Microsoft Copilot (via Bing), Meta AI, DuckDuckGo AI
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: bingbot
+User-agent: meta-externalagent
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /thank-you
+
+# Plain-text site summary for AI assistants: https://www.wbzard.com/llms.txt
 Sitemap: https://www.wbzard.com/sitemap.xml

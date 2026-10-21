@@ -47,6 +47,7 @@ const BlogPost = () => {
                 author={post.author}
                 datePublished={post.date}
                 dateModified={post.updated}
+                abstract={post.takeaways?.join(" ")}
                 breadcrumbs={[{ name: "Blog", path: "/blog" }, { name: post.title, path: `/blog/${id}` }]}
             />
 
@@ -129,6 +130,19 @@ const BlogPost = () => {
                     transition={{ duration: 0.65, delay: 0.25 }}
                     style={{ maxWidth: "820px", marginTop: "3rem" }}
                 >
+                    {/* Quick answers up front — the part readers skim and AI assistants quote */}
+                    {post.takeaways?.length > 0 && (
+                        <aside aria-labelledby="key-takeaways" style={{ background: "#EEF3FF", border: "1px solid #D6E2FF", borderRadius: "var(--radius-lg)", padding: "clamp(1.25rem, 3vw, 1.75rem)", marginBottom: "2.5rem" }}>
+                            <h2 id="key-takeaways" style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "0.875rem" }}>
+                                Key takeaways
+                            </h2>
+                            <ul style={{ paddingLeft: "1.2rem", display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+                                {post.takeaways.map((t, i) => (
+                                    <li key={i} style={{ fontSize: "0.95rem", lineHeight: 1.6 }}>{t}</li>
+                                ))}
+                            </ul>
+                        </aside>
+                    )}
                     <div className="blog-content">
                         <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: MarkdownLink }}>
                             {post.content}

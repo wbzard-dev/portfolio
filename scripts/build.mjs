@@ -26,7 +26,7 @@ await build({
     ssr: { noExternal: ["react-helmet-async"] },
 });
 
-const { render, routes } = await import(pathToFileURL(path.join(ssrOut, "entry-server.js")).href);
+const { render, routes, buildLlmsTxt, buildLlmsFullTxt } = await import(pathToFileURL(path.join(ssrOut, "entry-server.js")).href);
 
 // Untouched template — served for client-only routes (side projects) via host rewrites.
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
@@ -73,6 +73,10 @@ ${routes.filter(r => r.sitemap !== false).map(r => `  <url>
 `;
 fs.writeFileSync(path.join(dist, "sitemap.xml"), sitemap);
 fs.writeFileSync(path.join(root, "public", "sitemap.xml"), sitemap);   // keep the committed copy in sync
+// AI-assistant friendly plain-text versions of the site (https://llmstxt.org)
+fs.writeFileSync(path.join(dist, "llms.txt"), buildLlmsTxt());
+fs.writeFileSync(path.join(dist, "llms-full.txt"), buildLlmsFullTxt());
+console.log("▸ llms.txt + llms-full.txt written");
 fs.rmSync(ssrOut, { recursive: true, force: true });
 
 console.log(`▸ sitemap.xml: ${routes.filter(r => r.sitemap !== false).length} URLs\n✓ Build complete\n`);

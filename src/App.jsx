@@ -7,7 +7,7 @@ import Header           from "./components/Header";
 import Footer           from "./components/Footer";
 import MobileCTABar     from "./components/MobileCTABar";
 import SEO              from "./components/SEO";
-import { faqSchema }    from "./lib/schema";
+import { faqSchema, websiteSchema } from "./lib/schema";
 import { homeFaqs }     from "./data/faqs";
 import { initAnalytics, trackPageView } from "./lib/analytics";
 
@@ -29,6 +29,7 @@ import BlogPost       from "./components/BlogPost";
 import ServicePage    from "./components/ServicePage";
 import LocationPage   from "./components/LocationPage";
 import LaunchPage     from "./components/LaunchPage";
+import AboutPage      from "./components/AboutPage";
 import ThankYou       from "./components/ThankYou";
 import LegalPage      from "./components/LegalPage";
 import NotFound       from "./components/NotFound";
@@ -83,7 +84,7 @@ function App() {
                             path="/"
                             element={
                                 <main>
-                                    <SEO jsonLd={[faqSchema(homeFaqs)]} />
+                                    <SEO jsonLd={[websiteSchema, faqSchema(homeFaqs)]} />
                                     <Hero />
                                     <ProblemSection />
                                     <ApproachTimeline />
@@ -100,6 +101,7 @@ function App() {
                         <Route path="/services/:slug"          element={<ServicePage />} />
                         <Route path="/locations/:city"         element={<LocationPage />} />
                         <Route path="/startup-launch-package"  element={<LaunchPage />} />
+                        <Route path="/about"                   element={<AboutPage />} />
                         <Route path="/blog"                    element={<Blog />} />
                         <Route path="/blog/:id"                element={<BlogPost />} />
                         <Route path="/thank-you"               element={<ThankYou />} />

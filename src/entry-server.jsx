@@ -8,6 +8,7 @@ import App from "./App";
 import { serviceList } from "./data/services";
 import { locationList } from "./data/locations";
 import { posts } from "./data/posts";
+export { buildLlmsTxt, buildLlmsFullTxt } from "./lib/llms";
 
 // Bump when the static pages' content changes meaningfully — feeds <lastmod> in the sitemap.
 const PAGES_UPDATED = "2026-10-21";
@@ -15,6 +16,7 @@ const PAGES_UPDATED = "2026-10-21";
 export const routes = [
     { path: "/",                        priority: "1.0", changefreq: "weekly",  lastmod: PAGES_UPDATED },
     { path: "/startup-launch-package",  priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED },
+    { path: "/about",                   priority: "0.7", changefreq: "monthly", lastmod: PAGES_UPDATED },
     ...serviceList.map(s  => ({ path: s.href, priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED })),
     ...locationList.map(l => ({ path: l.href, priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED })),
     { path: "/blog",                    priority: "0.8", changefreq: "weekly",  lastmod: posts[0]?.date || PAGES_UPDATED },

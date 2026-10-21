@@ -50,6 +50,7 @@ const SEO = ({
     breadcrumbs    = null,     // [{ name, path }]
     jsonLd         = [],       // extra schema.org objects (FAQPage, Service, …)
     noindex        = false,
+    abstract       = null,     // article summary (key takeaways)
 }) => {
     const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
     const canonical = absolute(url);
@@ -69,9 +70,12 @@ const SEO = ({
             "image":            imageUrl,
             "datePublished":    datePublished,
             "dateModified":     dateModified || datePublished,
-            "author":           { "@type": "Person", "name": author },
+            "author":           author === site.founder
+                ? { "@type": "Person", "@id": `${site.url}/about#founder`, "name": author, "url": `${site.url}/about` }
+                : { "@type": "Person", "name": author },
             "publisher":        { "@id": `${site.url}/#organization` },
             "inLanguage":       "en-IN",
+            ...(abstract ? { "abstract": abstract } : {}),
         });
     }
 

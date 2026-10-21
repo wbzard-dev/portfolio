@@ -7,6 +7,7 @@ import FormCTA from "./FormCTA";
 import { locationList } from "../data/locations";
 
 const companyLinks = [
+    { label: "About Us",               href: "/about" },
     { label: "Startup Launch Package", href: "/startup-launch-package" },
     { label: "Our Work",               href: "/#work" },
     { label: "Blog & Guides",          href: "/blog" },

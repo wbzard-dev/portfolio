@@ -5,6 +5,12 @@ metaDescription: "Should your startup build a website, a web app or a mobile app
 date: "2026-10-21"
 author: "Vivek"
 excerpt: "Many first-time founders jump straight to 'we need an app'. Often the fastest route to paying customers is a website plus a lean web app. Here's how to decide."
+takeaways:
+  - "Most new businesses should launch a website plus a lean web app first; it's faster, cheaper and easier for customers to find than a native app."
+  - "Build a mobile app when users need it daily, offline, or with phone features like background location or Bluetooth."
+  - "An MVP should do one job brilliantly: core workflow, login, payments, an admin panel and analytics."
+  - "Custom web applications in India typically cost ₹2–15 lakh+; cutting the MVP scope is the biggest lever on cost."
+  - "Always own the code repository and app-store accounts, and plan launch marketing alongside the build."
 coverImage: "/images/blog/website-or-app-first-for-startups.png"
 category: "Apps & MVPs"
 keywords: "MVP development Bangalore, website or app first, app development for startups, mobile app development Bangalore, web app vs mobile app, MVP development India, startup app developers Shivamogga"

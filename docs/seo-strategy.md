@@ -136,7 +136,25 @@ Old URLs `/services/custom-software-development`, `/business-automation` and `/a
 
 ---
 
-## 5. Google Search Console — submission steps
+## 5. AI assistant (LLM) visibility
+
+Goal: get cited when people ask ChatGPT, Claude, Perplexity, Gemini or Google AI Overviews things like *"best digital marketing agency for startups in Shivamogga"*.
+
+**Built into the site**
+- Prerendered HTML: most AI crawlers don't run JavaScript, so this is the foundation.
+- `/llms.txt` (index) and `/llms-full.txt` (all services, locations, FAQs and guides as Markdown), regenerated on every build.
+- `/about` page with plain factual statements (who, what, where, founder) and `Organization`, `Person`, `WebSite` and `AboutPage` schema.
+- "Key takeaways" at the top of every guide, plus FAQ sections with `FAQPage` schema: short, quotable answers.
+- `robots.txt` explicitly allows OAI-SearchBot, ChatGPT-User, GPTBot, Claude-SearchBot, Claude-User, ClaudeBot, PerplexityBot, Google-Extended, Applebot, bingbot (which feeds Copilot and ChatGPT search), meta-externalagent and DuckAssistBot.
+
+**Things to do outside the site**
+- **Cloudflare:** check **Security → Bots** and **AI Crawl Control**. Cloudflare can block AI crawlers by default, which overrides robots.txt. Allow the bots you want.
+- **Bing Webmaster Tools:** submit the sitemap. ChatGPT search and Copilot draw heavily on Bing's index.
+- **Get mentioned elsewhere:** AI answers favour businesses named on other sites, such as Google Business Profile, Clutch, GoodFirms, DesignRush, Justdial, a LinkedIn company page, local news and client sites crediting you. Keep the name, description and contact details identical everywhere.
+- **Reviews:** Google reviews that mention the service and city ("built our website in Shivamogga") help both local SEO and AI answers.
+- **Test monthly:** ask ChatGPT, Perplexity and Gemini "digital marketing agency for startups in Shivamogga" and similar questions, and note whether and how Wbzard Labs appears.
+
+## 6. Google Search Console — submission steps
 
 1. Deploy the new build (`npm run build`, then publish `dist/`).
 2. Go to [search.google.com/search-console](https://search.google.com/search-console) → **Add property** → choose **Domain** → `wbzard.com` → verify with the DNS TXT record at your domain registrar.
@@ -149,7 +167,7 @@ Old URLs `/services/custom-software-development`, `/business-automation` and `/a
 
 ---
 
-## 6. Google Business Profile (do this first, it's free)
+## 7. Google Business Profile (do this first, it's free)
 
 - If you have a physical address in Shivamogga or Bangalore, create a profile there. If you work from home or remotely, set it up as a **service-area business** (hide the address, serve Shivamogga + Bangalore).
 - Category: **Internet marketing service** (primary), with **Website designer** and **Marketing agency** as secondary.
@@ -158,7 +176,7 @@ Old URLs `/services/custom-software-development`, `/business-automation` and `/a
 
 ---
 
-## 7. Meta & Google Ads readiness checklist
+## 8. Meta & Google Ads readiness checklist
 
 All of these are wired into the code; they only need IDs in `src/config/site.js`:
 
@@ -184,7 +202,7 @@ All of these are wired into the code; they only need IDs in `src/config/site.js`
 
 ---
 
-## 8. Things to review before going live
+## 9. Things to review before going live
 
 - [ ] Timelines and commitments in the copy ("2–4 weeks", "3–5 weeks", "reply within one working day"): confirm they match how you actually work.
 - [ ] Privacy policy and terms are a sensible starting template, not legal advice. Have them reviewed.
