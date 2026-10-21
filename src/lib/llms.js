@@ -8,6 +8,8 @@ import { locationList } from "../data/locations";
 import { posts } from "../data/posts";
 import { homeFaqs } from "../data/faqs";
 import { works } from "../data/work";
+import { courseList } from "../data/courses";
+import { shivamoggaServiceList } from "../data/shivamogga";
 
 const url = (path) => `${site.url}${path === "/" ? "/" : path}`;
 // Blog Markdown uses site-relative links; make them absolute for readers outside the site.
@@ -37,6 +39,11 @@ export function buildLlmsTxt() {
         "## Locations",
         "",
         ...locationList.map(l => `- [${l.city} (${l.altName})](${url(l.href)}): ${l.seoDesc}`),
+        ...shivamoggaServiceList.map(s => `- [${s.label} in Shivamogga](${url(s.href)}): ${s.seoDesc}`),
+        "",
+        "## Courses (live online)",
+        "",
+        ...courseList.map(c => `- [${c.short} Course — ₹${c.fee.toLocaleString("en-IN")}, ${c.duration}](${url(c.href)}): ${c.seoDesc}`),
         "",
         "## Guides",
         "",
@@ -83,6 +90,26 @@ export function buildLlmsFullTxt() {
             `### ${l.whoHeadline}\n\n${l.who.map(w => `- ${w}`).join("\n")}`,
             `Areas served: ${l.areas.join(", ")}.`,
             `### FAQ\n\n${faqBlock(l.faqs)}`,
+        ].join("\n\n")),
+
+        ...shivamoggaServiceList.map(s => [
+            `## ${s.label} in Shivamogga (Shimoga)`,
+            `Page: ${url(s.href)}`,
+            s.intro,
+            `### ${s.whyTitle}\n\n${s.why.map(w => `- **${w.title}:** ${w.desc}`).join("\n")}`,
+            `### ${s.includesTitle}\n\n${s.includes.map(i => `- ${i}`).join("\n")}`,
+            `### ${s.costTitle}\n\n${s.cost}`,
+            `### FAQ\n\n${faqBlock(s.faqs)}`,
+        ].join("\n\n")),
+
+        ...courseList.map(c => [
+            `## Course: ${c.name}`,
+            `Page: ${url(c.href)}`,
+            `- **Fee:** ₹${c.fee.toLocaleString("en-IN")}\n- **Duration:** ${c.duration} (${c.workload})\n- **Format:** ${c.format}\n- **Projects:** ${c.projects}\n- **Level:** ${c.level}`,
+            c.subheadline,
+            `### Syllabus\n\n${c.curriculum.map((m, i) => `${i + 1}. **${m.title}:** ${m.topics.join("; ")}`).join("\n")}`,
+            `### Outcomes\n\n${c.outcomes.map(o => `- ${o}`).join("\n")}`,
+            `### FAQ\n\n${faqBlock(c.faqs)}`,
         ].join("\n\n")),
 
         `## Frequently asked questions\n\n${faqBlock(homeFaqs)}`,

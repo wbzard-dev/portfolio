@@ -39,6 +39,9 @@ export const site = {
     // Leave empty to fall back to opening the visitor's email client.
     leadFormEndpoint: "https://formspree.io/f/xdearpej",
 
+    // Course (student) enquiries are kept separate from agency leads.
+    courseFormEndpoint: "https://formspree.io/f/xaqdprwv",
+
     // The site's one enquiry form. Every "Get your free launch plan" CTA links here.
     formPath: "/startup-launch-package#get-started",
 };

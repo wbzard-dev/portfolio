@@ -4,12 +4,13 @@ import { MessageCircle } from "lucide-react";
 import FormCTA from "./FormCTA";
 import { site, whatsappUrl } from "../config/site";
 
-const hiddenOn = [site.formPath.split("#")[0], "/thank-you"];
+// Hidden on the form page itself, conversion pages, and course pages (students have their own CTA).
+const isHidden = (path) => path === site.formPath.split("#")[0] || path === "/thank-you" || path.startsWith("/courses");
 
 // Sticky bottom bar on phones — most ad traffic is mobile, so the form is always one tap away.
 const MobileCTABar = () => {
     const { pathname } = useLocation();
-    if (hiddenOn.includes(pathname)) return null;
+    if (isHidden(pathname)) return null;
     const wa = whatsappUrl();
 
     return (

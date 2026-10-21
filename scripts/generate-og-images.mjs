@@ -35,6 +35,9 @@ const images = [
     { out: "og/digital-marketing.png",      label: "Meta & Google Ads",      title: "Ads that pay for themselves." },
     { out: "og/bangalore.png",              label: "Bangalore · Bengaluru",  title: "Launch your Bangalore startup properly." },
     { out: "og/shivamogga.png",             label: "Shivamogga · Shimoga",   title: "Take your Shivamogga business online." },
+    { out: "og/mern-stack-course-shivamogga.png", label: "Live Online · ₹5,000", title: "MERN Stack Course for Shivamogga students." },
+    { out: "og/devops-course-shivamogga.png",     label: "Live Online · ₹5,000", title: "DevOps Course for Shivamogga students." },
+    { out: "og/courses.png",                      label: "Courses · Shivamogga",  title: "Developer courses: MERN Stack & DevOps." },
 ];
 
 for (const file of fs.readdirSync(path.join(root, "data")).filter(f => f.endsWith(".yaml"))) {

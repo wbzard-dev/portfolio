@@ -9,6 +9,7 @@ import CTASection from "./CTASection";
 import FormCTA from "./FormCTA";
 import { locations, locationList } from "../data/locations";
 import { serviceList } from "../data/services";
+import { shivamoggaServiceList } from "../data/shivamogga";
 import { posts } from "../data/posts";
 import { site } from "../config/site";
 
@@ -32,8 +33,10 @@ const LocationPage = () => {
     );
 
     const path = `/locations/${city}`;
-    const localPosts = posts.filter(p => (p.locations || []).includes(city)).slice(0, 3);
+    const localPosts = posts.filter(p => (p.locations || []).includes(city) && p.category !== "Careers").slice(0, 3);
     const otherLocation = locationList.find(o => o.slug !== city);
+    // Shivamogga has dedicated local service pages; link to those where they exist.
+    const serviceHref = (sv) => (city === "shivamogga" && shivamoggaServiceList.find(x => x.service === sv.slug)?.href) || sv.href;
 
     return (
         <div style={{ background: "var(--bg)" }}>
@@ -102,7 +105,7 @@ const LocationPage = () => {
                         {serviceList.map((s, i) => (
                             <motion.div key={s.slug} {...fadeUp(i * 0.06)}>
                                 <Link
-                                    to={s.href}
+                                    to={serviceHref(s)}
                                     className="card"
                                     style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "0.875rem", height: "100%", transition: "box-shadow 0.25s ease, transform 0.25s ease" }}
                                     onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.06)"; e.currentTarget.style.transform = "translateY(-3px)"; }}

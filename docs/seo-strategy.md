@@ -118,10 +118,36 @@ The competitor research below shows why this works: Bangalore agencies are gener
 /services/digital-marketing         (Meta & Google Ads)
 /locations/bangalore
 /locations/shivamogga
-/blog  +  /blog/:slug               8 posts
+/shivamogga/website-design          Shivamogga-specific service pages — one per high-intent local search
+/shivamogga/seo-services
+/shivamogga/social-media-marketing
+/shivamogga/google-meta-ads
+/courses                            Course hub (MERN + DevOps, live online, ₹5,000 each)
+/courses/mern-stack-course-shivamogga
+/courses/devops-course-shivamogga
+/about                              Factual entity page (also feeds llms.txt)
+/blog  +  /blog/:slug               18 posts (8 founder, 7 Shivamogga business, 3 student career guides)
 /privacy-policy  /terms             Required by Meta lead ads & Google Ads policies
-/thank-you                          Conversion URL (noindex, disallowed in robots.txt)
+/thank-you                          Agency conversion URL (noindex)
+/courses/thank-you                  Course conversion URL (noindex) — separate so ads can track students vs clients
 ```
+
+### Shivamogga "Top 3" plan
+
+Shivamogga searches have few genuinely local competitors, so each core service gets its own page (one page can't rank top 3 for four different searches):
+
+| Target search | Page | Supporting guides |
+|---|---|---|
+| digital marketing agency Shivamogga / Shimoga | `/locations/shivamogga` | best-digital-marketing-agency-shivamogga |
+| website design Shivamogga / Shimoga | `/shivamogga/website-design` | website-design-cost-shivamogga |
+| SEO services Shivamogga | `/shivamogga/seo-services` | shimoga-vs-shivamogga-seo, google-business-profile-shivamogga-local-seo |
+| social media marketing Shivamogga | `/shivamogga/social-media-marketing` | instagram-whatsapp-marketing-shivamogga |
+| Google Ads / Facebook ads Shivamogga | `/shivamogga/google-meta-ads` | google-ads-shivamogga-guide |
+| industry long-tail (coaching, homestays) | guides | coaching-centre-marketing-shivamogga, homestay-marketing-jog-falls-agumbe |
+| MERN stack course Shivamogga | `/courses/mern-stack-course-shivamogga` | what-is-mern-stack, full-stack-developer-from-shivamogga |
+| DevOps course Shivamogga | `/courses/devops-course-shivamogga` | devops-roadmap-for-beginners |
+
+**Off-site actions that decide the top 3:** a verified Google Business Profile (service-area business covering Shivamogga), reviews that mention the service and city, and listings on Justdial, Sulekha and IndiaMART with identical name, phone and website. For the courses, list them on course directories, and share them with college placement cells and student WhatsApp groups (JNNCE, PESITM, Kuvempu University and others).
 
 Old URLs `/services/custom-software-development`, `/business-automation` and `/ai-solutions` redirect to `/services/app-development` (301 in `public/_redirects`, plus a client-side redirect). The three retired pre-pivot posts redirect to `/blog`.
 

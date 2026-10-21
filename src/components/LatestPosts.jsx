@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { posts, formatDate } from "../data/posts";
 
 const LatestPosts = () => {
-    const latest = posts.slice(0, 3);
+    const latest = posts.filter(p => p.category !== "Careers").slice(0, 3);   // career guides are for students, not founders
     if (!latest.length) return null;
 
     return (

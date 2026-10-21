@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { serviceList } from "../data/services";
 import { locationList } from "../data/locations";
+import { courseList } from "../data/courses";
 import { site } from "../config/site";
 import FormCTA from "./FormCTA";
 
@@ -11,12 +12,15 @@ const navLinks = [
     { name: "Launch Package", href: "/startup-launch-package" },
     { name: "Work",           href: "/#work" },
     { name: "Blog",           href: "/blog" },
-    { name: "Contact",        href: "/#contact" },
 ];
 
 const dropdowns = [
     { name: "Services",  items: serviceList.map(s => ({ name: s.label, href: s.href })) },
     { name: "Locations", items: locationList.map(l => ({ name: l.city, href: l.href, desc: `Startups & businesses in ${l.city}` })) },
+    { name: "Courses",   items: [
+        ...courseList.map(c => ({ name: `${c.short} Course`, href: c.href, desc: `Live online · ₹${c.fee.toLocaleString("en-IN")}` })),
+        { name: "All courses", href: "/courses" },
+    ] },
 ];
 
 const Dropdown = ({ menu, open, onToggle, textCol, textHover }) => (
@@ -85,6 +89,9 @@ const Header = () => {
     const navRef                  = useRef(null);
     const location = useLocation();
     const navigate = useNavigate();
+    // Students on course pages get a course CTA instead of the agency "launch plan" one.
+    const inCourses = location.pathname.startsWith("/courses");
+    const courseCTAHref = courseList.some(c => c.href === location.pathname) ? `${location.pathname}#enroll` : "/courses";
 
     useEffect(() => {
         const onScroll = () => {
@@ -198,9 +205,15 @@ const Header = () => {
                             </a>
                         ))}
 
-                        <FormCTA location="header" arrow={false} style={{ fontSize: "0.8rem", padding: "0.6rem 1.2rem" }}>
-                            Free Launch Plan
-                        </FormCTA>
+                        {inCourses ? (
+                            <Link to={courseCTAHref} className="btn-primary" style={{ fontSize: "0.8rem", padding: "0.6rem 1.2rem" }}>
+                                Register Now
+                            </Link>
+                        ) : (
+                            <FormCTA location="header" arrow={false} style={{ fontSize: "0.8rem", padding: "0.6rem 1.2rem" }}>
+                                Free Launch Plan
+                            </FormCTA>
+                        )}
                     </nav>
 
                     {/* Mobile toggle */}
@@ -266,7 +279,9 @@ const Header = () => {
                     ))}
 
                     <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "0.5rem" }}>
-                        <FormCTA location="mobile-menu" />
+                        {inCourses
+                            ? <Link to={courseCTAHref} className="btn-primary">Register Now</Link>
+                            : <FormCTA location="mobile-menu" />}
                         <button className="btn-secondary" data-cal-link={site.calLink} style={{ color: pastHero ? "var(--text)" : "#fff" }}>
                             Book a Call
                         </button>

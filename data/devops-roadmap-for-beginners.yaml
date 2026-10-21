@@ -1,0 +1,87 @@
+id: "devops-roadmap-for-beginners"
+title: "DevOps Roadmap for Beginners (2026): What to Learn, in What Order"
+seoTitle: "DevOps Roadmap 2026 for Beginners — Linux, Docker, CI/CD, AWS, Kubernetes"
+metaDescription: "A step-by-step DevOps roadmap for beginners and students in 2026: Linux, networking, Git, Docker, CI/CD, AWS, Terraform and Kubernetes, in the right order, with projects to build."
+date: "2026-10-21"
+author: "Vivek"
+excerpt: "DevOps looks like an endless list of tools. It isn't. Here's the order to learn it in, what to skip at first, and the projects that prove you can do the job."
+takeaways:
+  - "DevOps is about shipping software reliably: automating builds, tests, deployments and infrastructure."
+  - "Learn in order: Linux and networking, Git, Docker, CI/CD, one cloud (AWS), then Terraform and Kubernetes."
+  - "Don't start with Kubernetes; containers and CI/CD come first."
+  - "The best proof is a real app you've containerised and deployed to the cloud with an automated pipeline."
+  - "Use free-tier cloud services and billing alerts to keep practice costs near zero."
+coverImage: "/images/blog/devops-roadmap-for-beginners.png"
+category: "Careers"
+keywords: "DevOps roadmap 2026, DevOps for beginners, how to learn DevOps, DevOps course Shivamogga, Docker Kubernetes roadmap, AWS DevOps for freshers"
+locations: ["shivamogga"]
+content: |
+  Search "DevOps roadmap" and you'll find diagrams with 80 tools on them. That's overwhelming, and mostly unnecessary when you're starting out. Companies hiring for junior DevOps or cloud roles want a **solid core**, not every tool.
+
+  ## What DevOps actually is
+
+  DevOps is how teams **ship software reliably**: building, testing and deploying code automatically, running it on servers or in the cloud, and keeping it healthy. A DevOps engineer makes it possible for developers to release changes quickly without breaking things.
+
+  ## The roadmap, in order
+
+  ### 1. Linux (start here)
+  Most servers run Linux. Learn:
+  - Navigating the command line, files and permissions
+  - Processes, services and logs
+  - Basic **shell scripting** to automate tasks
+
+  ### 2. Networking basics
+  - IP addresses, ports, DNS
+  - HTTP and HTTPS, SSL certificates
+  - What a reverse proxy and a load balancer do
+
+  ### 3. Git and GitHub
+  - Branches, pull requests, merge conflicts
+  - How teams collaborate on code
+
+  ### 4. Docker (containers)
+  - Images vs containers
+  - Writing a **Dockerfile** for a real app
+  - Running multiple services with **Docker Compose**
+
+  ### 5. CI/CD
+  - Automatically testing and building code on every change
+  - **GitHub Actions** is a great place to start
+  - Deploying automatically when code is merged
+
+  ### 6. One cloud platform (AWS)
+  Don't try to learn every cloud. Pick one; AWS is the most common. Start with:
+  - **EC2** (servers), **S3** (storage), **IAM** (permissions), **VPC** basics
+  - Setting up **Nginx**, a domain and HTTPS
+  - **Billing alerts**, set up on day one
+
+  ### 7. Infrastructure as Code
+  - **Terraform** basics: creating cloud resources from code instead of clicking
+
+  ### 8. Kubernetes (now, not first)
+  - Pods, deployments, services
+  - Why it exists: running many containers reliably at scale
+
+  ### 9. Monitoring and logging
+  - Knowing when something breaks, and why
+
+  ## What to skip at first
+
+  Service meshes, advanced Kubernetes operators, multiple clouds and certifications for tools you haven't used. Learn them when a job needs them.
+
+  ## Projects that prove you can do the job
+
+  1. **Containerise a full-stack app** with Docker and Docker Compose
+  2. **Build a CI/CD pipeline** with GitHub Actions that tests and deploys it
+  3. **Deploy it to AWS** with Nginx, a domain and HTTPS, using Terraform for the infrastructure
+  4. **Bonus:** run it on a small Kubernetes cluster
+
+  Document each on GitHub with a README and an architecture diagram. In interviews, being able to explain *why* you made each choice matters more than the tools themselves.
+
+  ## Do you need to code to learn DevOps?
+
+  You need **basic programming and scripting**, not deep software engineering. It helps a lot to understand how web apps work, which is why many people learn a stack like MERN first. See [how to become a full stack developer from Shivamogga](/blog/full-stack-developer-from-shivamogga).
+
+  ## Learn DevOps live, from Shivamogga
+
+  Our [DevOps course](/courses/devops-course-shivamogga) follows this roadmap: Linux, Git, Docker, CI/CD with GitHub Actions, AWS, Terraform and Kubernetes basics, ending with a capstone app deployed to AWS. It's 30 days, live online with recordings, for **₹5,000**.

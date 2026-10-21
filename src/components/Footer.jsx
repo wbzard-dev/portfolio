@@ -5,6 +5,8 @@ import { site, whatsappUrl } from "../config/site";
 import { serviceList } from "../data/services";
 import FormCTA from "./FormCTA";
 import { locationList } from "../data/locations";
+import { shivamoggaServiceList } from "../data/shivamogga";
+import { courseList } from "../data/courses";
 
 const companyLinks = [
     { label: "About Us",               href: "/about" },
@@ -12,7 +14,6 @@ const companyLinks = [
     { label: "Our Work",               href: "/#work" },
     { label: "Blog & Guides",          href: "/blog" },
     { label: "FAQ",                    href: "/#contact" },
-    { label: "Cohort for Developers",  href: "/cohort/v1" },
 ];
 
 const headingStyle = { fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--text-muted-dark)", marginBottom: "1.25rem" };
@@ -73,6 +74,11 @@ const Footer = () => {
                         <p style={headingStyle}>Locations</p>
                         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                             {locationList.map(l => <FooterLink key={l.slug} href={l.href}>{l.city} ({l.altName})</FooterLink>)}
+                            {shivamoggaServiceList.map(s => <FooterLink key={s.slug} href={s.href}>{s.label} in Shivamogga</FooterLink>)}
+                        </div>
+                        <p style={{ ...headingStyle, marginTop: "2rem" }}>Courses</p>
+                        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                            {courseList.map(c => <FooterLink key={c.slug} href={c.href}>{c.short} Course (Online)</FooterLink>)}
                         </div>
                     </div>
 
