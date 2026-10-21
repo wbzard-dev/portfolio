@@ -11,7 +11,7 @@ import { courseList } from "../data/courses";
 const companyLinks = [
     { label: "About Us",               href: "/about" },
     { label: "Startup Launch Package", href: "/startup-launch-package" },
-    { label: "Our Work",               href: "/#work" },
+    { label: "Our Work",               href: "/work" },
     { label: "Blog & Guides",          href: "/blog" },
     { label: "FAQ",                    href: "/#contact" },
 ];

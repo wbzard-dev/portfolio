@@ -30,6 +30,7 @@ import ServicePage    from "./components/ServicePage";
 import LocationPage   from "./components/LocationPage";
 import LaunchPage     from "./components/LaunchPage";
 import AboutPage      from "./components/AboutPage";
+import WorkPage       from "./components/WorkPage";
 import CoursePage     from "./components/CoursePage";
 import CoursesIndex   from "./components/CoursesIndex";
 import LocalServicePage from "./components/LocalServicePage";
@@ -105,6 +106,7 @@ function App() {
                         <Route path="/locations/:city"         element={<LocationPage />} />
                         <Route path="/startup-launch-package"  element={<LaunchPage />} />
                         <Route path="/about"                   element={<AboutPage />} />
+                        <Route path="/work"                    element={<WorkPage />} />
                         <Route path="/shivamogga/:service"     element={<LocalServicePage />} />
                         <Route path="/courses"                 element={<CoursesIndex />} />
                         <Route path="/courses/thank-you"       element={<ThankYou variant="course" />} />

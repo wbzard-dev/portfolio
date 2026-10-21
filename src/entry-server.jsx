@@ -19,6 +19,7 @@ export const routes = [
     { path: "/",                        priority: "1.0", changefreq: "weekly",  lastmod: PAGES_UPDATED },
     { path: "/startup-launch-package",  priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED },
     { path: "/about",                   priority: "0.7", changefreq: "monthly", lastmod: PAGES_UPDATED },
+    { path: "/work",                    priority: "0.8", changefreq: "monthly", lastmod: PAGES_UPDATED },
     ...serviceList.map(s  => ({ path: s.href, priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED })),
     ...locationList.map(l => ({ path: l.href, priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED })),
     ...shivamoggaServiceList.map(s => ({ path: s.href, priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED })),

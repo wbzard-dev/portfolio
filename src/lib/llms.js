@@ -52,6 +52,7 @@ export function buildLlmsTxt() {
         "## Company",
         "",
         `- [About ${site.name}](${url("/about")}): who we are, how we work, founder and areas served`,
+        `- [Our work](${url("/work")}): case studies and results, e.g. ₹0 → ₹2L+ revenue in 3 weeks for a Shivamogga home-services business`,
         `- [Full site content for LLMs](${url("/llms-full.txt")}): every service, location, FAQ and guide in one file`,
         "",
         "## Optional",
@@ -68,8 +69,8 @@ export function buildLlmsFullTxt() {
 
         `## How we work\n\n${about.principles.map(p => `- **${p.title}:** ${p.desc}`).join("\n")}`,
 
-        `## Client work\n\n${works.filter(w => w.role !== "Personal Portfolio")
-            .map(w => `- **${w.title}** (${w.role})${w.href ? ` — ${w.href}` : ""}: ${w.desc}`).join("\n")}`,
+        `## Client work\n\nFull case studies: ${url("/work")}\n\n${works
+            .map(w => `- **${w.title}** (${w.role}, ${w.sector})${w.href ? ` — ${w.href}` : ""}${w.instagram ? ` — ${w.instagram}` : ""}: ${w.desc}${w.results?.length ? ` Results: ${w.results.map(r => `${r.value} ${r.label}`).join("; ")}.` : ""}`).join("\n")}`,
 
         ...serviceList.map(s => [
             `## Service: ${s.label}`,

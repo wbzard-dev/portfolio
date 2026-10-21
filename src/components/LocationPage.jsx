@@ -11,6 +11,8 @@ import { locations, locationList } from "../data/locations";
 import { serviceList } from "../data/services";
 import { shivamoggaServiceList } from "../data/shivamogga";
 import { posts } from "../data/posts";
+import { works } from "../data/work";
+import { asset } from "../lib/assets";
 import { site } from "../config/site";
 
 const fadeUp = (delay = 0) => ({
@@ -93,6 +95,45 @@ const LocationPage = () => {
                     </div>
                 </div>
             </section>
+
+            {/* ── Local success story ── */}
+            {works.filter(w => w.city === city).slice(0, 1).map(w => (
+                <section key={w.id} style={{ background: "var(--bg-dark)", color: "#fff", padding: "clamp(3.5rem, 8vw, 5.5rem) 0" }}>
+                    <div className="container">
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 380px), 1fr))", gap: "clamp(2rem, 6vw, 4rem)", alignItems: "center" }}>
+                            <motion.div {...fadeUp(0)}>
+                                <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "1.25rem" }}>
+                                    {l.city} Success Story
+                                </p>
+                                <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)", lineHeight: 1.15, marginBottom: "1rem" }}>{w.title}: from launch to paying customers.</h2>
+                                <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", marginBottom: "1.25rem" }}>
+                                    {w.results.map(r => (
+                                        <div key={r.label}>
+                                            <p style={{ fontFamily: "'Anton', Arial, sans-serif", fontSize: "clamp(2rem, 5vw, 2.8rem)", lineHeight: 1, color: "#93B4F8" }}>{r.value}</p>
+                                            <p style={{ fontSize: "0.82rem", color: "rgba(255,255,255,0.55)", marginTop: "0.35rem" }}>{r.label}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <p style={{ color: "rgba(255,255,255,0.6)", lineHeight: 1.75, marginBottom: "1.5rem" }}>{w.desc}</p>
+                                <Link to={`/work#${w.id}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontWeight: 700, color: "#93B4F8" }}>
+                                    See the creatives <ArrowRight size={14} />
+                                </Link>
+                            </motion.div>
+                            {w.cover && (
+                                <motion.img
+                                    {...fadeUp(0.1)}
+                                    src={asset(w.cover.src)}
+                                    alt={`${w.title} campaign creative`}
+                                    width={w.cover.size[0]}
+                                    height={w.cover.size[1]}
+                                    loading="lazy"
+                                    style={{ width: "100%", height: "auto", borderRadius: "var(--radius-lg)" }}
+                                />
+                            )}
+                        </div>
+                    </div>
+                </section>
+            ))}
 
             {/* ── Services ── */}
             <section style={{ background: "var(--bg)", padding: "var(--section-pad) 0" }}>

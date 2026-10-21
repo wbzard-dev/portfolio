@@ -10,7 +10,7 @@ import FormCTA from "./FormCTA";
 
 const navLinks = [
     { name: "Launch Package", href: "/startup-launch-package" },
-    { name: "Work",           href: "/#work" },
+    { name: "Work",           href: "/work" },
     { name: "Blog",           href: "/blog" },
 ];
 

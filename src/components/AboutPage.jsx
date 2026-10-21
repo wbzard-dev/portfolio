@@ -6,7 +6,7 @@ import SEO from "./SEO";
 import CTASection from "./CTASection";
 import FormCTA from "./FormCTA";
 import { about } from "../data/about";
-import { works } from "../data/work";
+import { works, team } from "../data/work";
 import { serviceList } from "../data/services";
 import { locationList } from "../data/locations";
 import { site } from "../config/site";
@@ -119,6 +119,36 @@ const AboutPage = () => (
                             <span style={{ fontSize: "0.68rem", fontWeight: 700, color: "var(--accent)", letterSpacing: "0.1em" }}>0{i + 1}</span>
                             <h3 style={{ fontSize: "1rem", lineHeight: 1.3 }}>{p.title}</h3>
                             <p style={{ fontSize: "0.875rem", color: "var(--text-muted)", lineHeight: 1.65 }}>{p.desc}</p>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* ── Team ── */}
+        <section style={{ background: "var(--bg)", padding: "0 0 var(--section-pad)" }}>
+            <div className="container">
+                <motion.p className="section-label" {...fadeUp(0)}>The Team</motion.p>
+                <motion.h2 {...fadeUp(0.05)} style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)", lineHeight: 1.15, marginBottom: "clamp(2rem, 5vw, 3rem)" }}>
+                    Small team. Hands-on work.
+                </motion.h2>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))", gap: "1.25rem" }}>
+                    {team.map((m, i) => (
+                        <motion.div key={m.name} {...fadeUp(i * 0.06)} className="card" style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                            <h3 style={{ fontSize: "1.1rem" }}>{m.name}</h3>
+                            <p style={{ fontSize: "0.875rem", color: "var(--text-muted)" }}>{m.role}</p>
+                            <div style={{ display: "flex", gap: "1.25rem", marginTop: "0.5rem" }}>
+                                {m.linkedin && (
+                                    <a href={m.linkedin} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", fontSize: "0.8rem", fontWeight: 700, color: "var(--accent)" }}>
+                                        <Linkedin size={13} /> LinkedIn
+                                    </a>
+                                )}
+                                {m.portfolio && (
+                                    <a href={m.portfolio} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem", fontSize: "0.8rem", fontWeight: 700, color: "var(--accent)" }}>
+                                        Portfolio <ArrowUpRight size={13} />
+                                    </a>
+                                )}
+                            </div>
                         </motion.div>
                     ))}
                 </div>
