@@ -1,8 +1,10 @@
 # robots.txt for https://www.wbzard.com
 User-agent: *
 Allow: /
-# Conversion page — not useful in search results
+# Conversion pages and the CMS dashboard — not useful in search results
 Disallow: /thank-you
+Disallow: /courses/thank-you
+Disallow: /admin/
 
 # Ad platform crawlers (Google Ads landing-page checks, Meta link previews)
 User-agent: AdsBot-Google
@@ -31,6 +33,8 @@ User-agent: meta-externalagent
 User-agent: DuckAssistBot
 Allow: /
 Disallow: /thank-you
+Disallow: /courses/thank-you
+Disallow: /admin/
 
 # Plain-text site summary for AI assistants: https://www.wbzard.com/llms.txt
 Sitemap: https://www.wbzard.com/sitemap.xml

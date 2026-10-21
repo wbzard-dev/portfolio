@@ -27,7 +27,7 @@ const BlogPost = () => {
         </div>
     );
 
-    const isGeneratedCover = post.coverImage?.startsWith("/images/blog/");
+    const isGeneratedCover = /^\/images\/(blog|og)\//.test(post.coverImage || "");   // text baked in — show whole, never crop
     const related = posts.filter(p => p.slug !== post.slug && p.category === post.category).slice(0, 2);
 
     return (

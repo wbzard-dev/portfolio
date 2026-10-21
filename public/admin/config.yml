@@ -1,0 +1,82 @@
+# Decap CMS — https://decapcms.org/docs/configuration-options/
+# Dashboard: https://www.wbzard.com/admin
+# Posts are saved as YAML in /data (same format as the hand-written ones), committed to GitHub,
+# and Cloudflare Pages rebuilds and publishes the site automatically.
+
+backend:
+  name: github
+  repo: wbzard-dev/portfolio
+  branch: main
+  base_url: https://www.wbzard.com     # OAuth handled by Cloudflare Pages Functions in /functions/api
+  auth_endpoint: api/auth
+  auth_scope: public_repo              # repo is public; switch to "repo" if it ever becomes private
+  commit_messages:
+    create: "Blog: add {{slug}}"
+    update: "Blog: update {{slug}}"
+    delete: "Blog: delete {{slug}}"
+    uploadMedia: "CMS: upload {{path}}"
+    deleteMedia: "CMS: delete {{path}}"
+
+# Drafts → In review → Ready → Publish. Drafts live on cms/* branches until published.
+publish_mode: editorial_workflow
+
+# `npx decap-server` + `npm run dev` lets you use the CMS locally without logging in to GitHub.
+local_backend: true
+
+site_url: https://www.wbzard.com
+display_url: https://www.wbzard.com
+logo_url: https://www.wbzard.com/images/final-logo.png
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    description: "Guides for founders, Shivamogga businesses and students. The file name becomes the URL: /blog/<slug>."
+    folder: data
+    extension: yaml
+    format: yaml
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{title}} · {{category}} · {{date}}"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - { label: "Shivamogga", field: locations, pattern: shivamogga }
+      - { label: "Bangalore",  field: locations, pattern: bangalore }
+      - { label: "Careers",    field: category,  pattern: Careers }
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { label: "Title", name: title, widget: string, hint: "Shown as the page heading. Aim for 50–70 characters and include the main keyword (e.g. 'Shivamogga')." }
+      - { label: "Publish date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, default: "{{now}}" }
+      - { label: "Updated date", name: updated, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false, hint: "Set this when you meaningfully update an older post." }
+      - { label: "Author", name: author, widget: string, default: "Vivek" }
+      - label: "Category"
+        name: category
+        widget: select
+        options: ["Websites", "Digital Marketing", "SEO", "Social Media", "Apps & MVPs", "Startups", "Careers"]
+        hint: "'Careers' posts are for students and only appear with the courses, not on business pages."
+      - label: "Show on city pages"
+        name: locations
+        widget: select
+        multiple: true
+        required: false
+        options: [{ label: "Bangalore", value: bangalore }, { label: "Shivamogga", value: shivamogga }]
+      - { label: "Excerpt", name: excerpt, widget: text, hint: "1–2 sentences shown on blog cards and in Google if no meta description is set." }
+      - { label: "Cover image", name: coverImage, widget: image, required: false, hint: "1200×630 works best. Leave empty to use the default Wbzard Labs image." }
+      - label: "Key takeaways"
+        name: takeaways
+        widget: list
+        required: false
+        hint: "3–5 short, standalone sentences. Shown at the top of the post and quoted by Google and AI assistants."
+        field: { label: "Takeaway", name: takeaway, widget: text }
+      - { label: "Body", name: content, widget: markdown, hint: "Use ## for section headings. Link to your pages like /shivamogga/website-design or /courses/mern-stack-course-shivamogga." }
+      - { label: "SEO title (optional)", name: seoTitle, widget: string, required: false, hint: "Overrides the title in Google results. Keep under ~60 characters." }
+      - { label: "Meta description (optional)", name: metaDescription, widget: text, required: false, hint: "~150 characters summary for Google results." }
+      - { label: "Keywords (optional)", name: keywords, widget: string, required: false, hint: "Comma-separated, e.g. 'website design Shivamogga, website cost Shimoga'." }
