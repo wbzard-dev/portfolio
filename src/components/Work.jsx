@@ -62,7 +62,7 @@ const Work = () => (
                     transition={{ duration: 0.7, delay: 0.05 }}
                     style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)", lineHeight: 1.1 }}
                 >
-                    Recent projects we've shipped.
+                    Brands we've helped launch and grow.
                 </motion.h2>
             </div>
 

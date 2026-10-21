@@ -1,2 +1,20 @@
-/getsanket/* /getsanket/index.html 200
-/* /index.html 200
+# Netlify / Cloudflare Pages rules. Prerendered pages are served as static files and never reach these.
+
+# Old service URLs from the previous positioning — permanent redirects keep links and rankings.
+/services/custom-software-development  /services/app-development  301
+/services/business-automation          /services/app-development  301
+/services/ai-solutions                 /services/app-development  301
+
+# Retired blog posts (pre-pivot)
+/blog/execution-context-call-stack     /blog  301
+/blog/var-let-const                    /blog  301
+/blog/hiring-freelancers-for-marketing /blog  301
+
+# Client-rendered side projects — serve the un-prerendered app shell.
+/getsanket/*   /getsanket/index.html  200
+/blokz         /app-shell.html        200
+/one-habit     /app-shell.html        200
+/cohort/*      /app-shell.html        200
+
+# Everything else is a real 404 (not a soft 404 serving the homepage).
+/*             /404.html              404

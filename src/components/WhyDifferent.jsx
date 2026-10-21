@@ -4,19 +4,23 @@ import { motion } from "framer-motion";
 const statements = [
     {
         number: "01",
-        text: "We understand your business before we recommend any solution.",
+        text: "One team for your website, app, social media, SEO and ads. No juggling five freelancers.",
     },
     {
         number: "02",
-        text: "We simplify technology. We don't add to it.",
+        text: "We build for enquiries and sales, not just for good looks.",
     },
     {
         number: "03",
-        text: "We focus on operational outcomes — not deliverables.",
+        text: "Every campaign is tracked, so you know which rupee brought which customer.",
     },
     {
         number: "04",
-        text: "Software should adapt to your business. Not the other way around.",
+        text: "You own everything: domain, code, ad accounts and pages. No lock-in.",
+    },
+    {
+        number: "05",
+        text: "Startup speed from Bangalore, with real local understanding of Shivamogga.",
     },
 ];
 
@@ -47,7 +51,7 @@ const WhyDifferent = () => (
                     transition={{ duration: 0.7, delay: 0.05 }}
                     style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)", lineHeight: 1.1 }}
                 >
-                    Not another traditional agency.
+                    Built for founders, not big brands.
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 16 }}
@@ -56,7 +60,7 @@ const WhyDifferent = () => (
                     transition={{ duration: 0.6, delay: 0.15 }}
                     style={{ marginTop: "1.25rem", fontSize: "1rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}
                 >
-                    Most agencies focus on deliverables. We focus on business outcomes. Here's what that actually means.
+                    Big agencies are built for big retainers. New businesses need speed, clarity and every rupee working hard. Here's what that means in practice.
                 </motion.p>
             </div>
 

@@ -1,47 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Calendar, User, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, User, ArrowLeft, ArrowRight, Share2 } from "lucide-react";
 import SEO from "./SEO";
+import { posts, getPost, formatDate, coverSrc } from "../data/posts";
+import { site } from "../config/site";
+import FormCTA from "./FormCTA";
+
+// Internal links inside markdown should use client-side routing; external ones open in a new tab.
+const MarkdownLink = ({ href = "", children }) =>
+    href.startsWith("/")
+        ? <Link to={href}>{children}</Link>
+        : <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>;
 
 const BlogPost = () => {
     const { id } = useParams();
-    const [post, setPost]       = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const loadPost = async () => {
-            const modules = import.meta.glob("../../data/*.yaml");
-            const entry = Object.entries(modules).find(([path]) =>
-                path.split("/").pop() === `${id}.yaml`
-            );
-            if (entry) {
-                const data = await entry[1]();
-                setPost(data.default || data);
-            }
-            setLoading(false);
-        };
-        loadPost();
-    }, [id]);
-
-    if (loading) return (
-        <div style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg)" }}>
-            <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
-                style={{ width: "32px", height: "32px", border: "2px solid var(--border)", borderTopColor: "var(--accent)", borderRadius: "50%" }}
-            />
-        </div>
-    );
+    const post = getPost(id);
 
     if (!post) return (
         <div style={{ height: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.5rem", background: "var(--bg)" }}>
-            <h2 style={{ fontSize: "1.5rem", color: "var(--text)" }}>Post not found</h2>
+            <SEO title="Post not found" noindex url={`/blog/${id}`} />
+            <h1 style={{ fontSize: "1.5rem", color: "var(--text)" }}>Post not found</h1>
             <Link to="/blog" className="btn-primary">Back to Blog</Link>
         </div>
     );
+
+    const isGeneratedCover = post.coverImage?.startsWith("/images/blog/");
+    const related = posts.filter(p => p.slug !== post.slug && p.category === post.category).slice(0, 2);
 
     return (
         <motion.article
@@ -51,23 +38,38 @@ const BlogPost = () => {
             style={{ background: "var(--bg)", paddingBottom: "8rem" }}
         >
             <SEO
-                title={post.title}
-                description={post.excerpt}
-                image={post.coverImage || "https://wbzard.com/images/final-logo.png"}
-                url={`https://wbzard.com/blog/${id}`}
+                title={post.seoTitle || post.title}
+                description={post.metaDescription || post.excerpt}
+                keywords={post.keywords}
+                image={post.coverImage || site.ogImage}
+                url={`/blog/${id}`}
                 type="article"
                 author={post.author}
                 datePublished={post.date}
+                dateModified={post.updated}
+                breadcrumbs={[{ name: "Blog", path: "/blog" }, { name: post.title, path: `/blog/${id}` }]}
             />
 
             {/* Cover image hero */}
-            <div style={{ height: "clamp(300px, 55vh, 520px)", position: "relative", overflow: "hidden" }}>
+            {/* Generated covers have the title baked in, so show them whole on a matching dark backdrop; photos fill the frame. */}
+            <div style={{
+                height: "clamp(300px, 55vh, 520px)",
+                position: "relative",
+                overflow: "hidden",
+                background: "var(--bg-dark)",
+                ...(isGeneratedCover ? { padding: "calc(64px + 1.5rem) var(--container-pad) 5.5rem", boxSizing: "border-box" } : {}),
+            }}>
                 <img
-                    src={post.coverImage}
+                    src={coverSrc(post)}
                     alt={post.title}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    width="1200"
+                    height="630"
+                    fetchpriority="high"
+                    style={{ width: "100%", height: "100%", objectFit: isGeneratedCover ? "contain" : "cover" }}
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.72) 100%)" }} />
+                {!isGeneratedCover && (
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.72) 100%)" }} />
+                )}
             </div>
 
             {/* Post header — overlaps image bottom */}
@@ -106,7 +108,7 @@ const BlogPost = () => {
                         )}
                         <span style={{ display: "flex", alignItems: "center", gap: "0.35rem", fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 500 }}>
                             <Calendar size={12} />
-                            {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                            {formatDate(post.date, "long")}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: "0.35rem", fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 500 }}>
                             <User size={12} />
@@ -128,7 +130,7 @@ const BlogPost = () => {
                     style={{ maxWidth: "820px", marginTop: "3rem" }}
                 >
                     <div className="blog-content">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: MarkdownLink }}>
                             {post.content}
                         </ReactMarkdown>
                     </div>
@@ -161,10 +163,43 @@ const BlogPost = () => {
                             <Share2 size={14} /> Share
                         </button>
                     </div>
+
+                    {/* Conversion box — blog readers are often founders mid-decision */}
+                    <div style={{ marginTop: "3rem", background: "var(--bg-dark)", color: "#fff", borderRadius: "var(--radius-lg)", padding: "clamp(1.75rem, 4vw, 2.5rem)" }}>
+                        <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.875rem" }}>
+                            {site.name}
+                        </p>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.75rem)", lineHeight: 1.2, marginBottom: "0.75rem" }}>
+                            Want this done for your business?
+                        </h2>
+                        <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.5rem", maxWidth: "520px" }}>
+                            We help founders in Bangalore and Shivamogga launch with a website, social media, SEO and ads that work together. Tell us about your business and get a free launch plan.
+                        </p>
+                        <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
+                            <FormCTA location="blog-post" className="btn-primary-dark" />
+                            <button className="btn-outline-dark" data-cal-link={site.calLink}>
+                                Book a Free Call
+                            </button>
+                        </div>
+                    </div>
+
+                    {related.length > 0 && (
+                        <div style={{ marginTop: "3rem" }}>
+                            <p className="section-label">Keep reading</p>
+                            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                                {related.map(r => (
+                                    <Link key={r.slug} to={`/blog/${r.slug}`} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", fontWeight: 600, color: "var(--accent)" }}>
+                                        {r.title} <ArrowRight size={14} />
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </motion.div>
             </div>
 
-            <style>{`
+            {/* Raw HTML, not a text child: SSR escapes the quotes in text children, which breaks hydration */}
+            <style dangerouslySetInnerHTML={{ __html: `
                 .blog-content { font-family: 'Satoshi', sans-serif; font-size: 1.05rem; line-height: 1.8; color: var(--text); }
                 .blog-content h1 { font-family: 'Anton', Arial, sans-serif; font-size: clamp(1.8rem, 4vw, 2.75rem); margin: 3.5rem 0 1.25rem; line-height: 1.05; letter-spacing: -0.01em; color: var(--text); }
                 .blog-content h2 { font-family: 'Satoshi', sans-serif; font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.75rem); margin: 3rem 0 1rem; line-height: 1.2; letter-spacing: -0.02em; color: var(--text); }
@@ -179,7 +214,10 @@ const BlogPost = () => {
                 .blog-content pre code { background: none; border: none; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
                 .blog-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
                 .blog-content img { width: 100%; border-radius: var(--radius-md); margin: 1.5rem 0; }
-            `}</style>
+                .blog-content table { width: 100%; border-collapse: collapse; margin-bottom: 1.65rem; font-size: 0.92rem; display: block; overflow-x: auto; }
+                .blog-content th, .blog-content td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+                .blog-content th { font-weight: 700; background: var(--bg-subtle); white-space: nowrap; }
+            ` }} />
         </motion.article>
     );
 };

@@ -2,47 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://wbzard.com/</loc>
-    <lastmod>2026-07-04</lastmod>
-    <priority>1.00</priority>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://wbzard.com/services/custom-software-development</loc>
-    <lastmod>2026-07-04</lastmod>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://wbzard.com/services/business-automation</loc>
-    <lastmod>2026-07-04</lastmod>
-    <priority>0.90</priority>
+    <loc>https://wbzard.com/startup-launch-package</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://wbzard.com/services/website-development</loc>
-    <lastmod>2026-07-04</lastmod>
-    <priority>0.90</priority>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://wbzard.com/services/ai-solutions</loc>
-    <lastmod>2026-07-04</lastmod>
-    <priority>0.90</priority>
+    <loc>https://wbzard.com/services/app-development</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/services/social-media-marketing</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/services/seo-services</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/services/digital-marketing</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/locations/bangalore</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/locations/shivamogga</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://wbzard.com/blog</loc>
-    <lastmod>2026-07-04</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wbzard.com/blog/hiring-freelancers-for-marketing</loc>
-    <lastmod>2026-01-15</lastmod>
-    <priority>0.70</priority>
+    <loc>https://wbzard.com/blog/digital-marketing-shivamogga-small-business-guide</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wbzard.com/blog/execution-context-call-stack</loc>
-    <lastmod>2026-02-01</lastmod>
-    <priority>0.70</priority>
+    <loc>https://wbzard.com/blog/google-business-profile-shivamogga-local-seo</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://wbzard.com/blog/var-let-const</loc>
-    <lastmod>2026-02-01</lastmod>
-    <priority>0.70</priority>
+    <loc>https://wbzard.com/blog/local-seo-bangalore-startups</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/blog/meta-ads-vs-google-ads-for-startups</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/blog/social-media-framework-for-new-business</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/blog/startup-launch-checklist-karnataka</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/blog/website-development-cost-bangalore-startups</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/blog/website-or-app-first-for-startups</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/privacy-policy</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  <url>
+    <loc>https://wbzard.com/terms</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
   </url>
 </urlset>

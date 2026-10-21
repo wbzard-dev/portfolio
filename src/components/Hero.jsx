@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { site } from "../config/site";
+import FormCTA from "./FormCTA";
 
-const cyclingWords = ["Simple.", "Efficient.", "Automated.", "Streamlined."];
+const cyclingWords = ["Online.", "Found.", "Noticed.", "Growing."];
 
 const Hero = () => {
     const [index, setIndex] = useState(0);
@@ -44,77 +45,63 @@ const Hero = () => {
 
             <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1000px" }}>
 
-                {/* Overline */}
-                {/* <motion.p
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    style={{
-                        fontFamily: "'Satoshi', sans-serif",
-                        fontSize: "0.68rem",
-                        fontWeight: 600,
-                        letterSpacing: "0.2em",
-                        textTransform: "uppercase",
-                        color: "rgba(255,255,255,0.35)",
-                        marginBottom: "2.5rem",
-                    }}
-                >
-                    Wbzard Labs
-                </motion.p> */}
+                {/* Page h1: static line + cycling word */}
+                <h1 style={{ fontSize: "inherit", lineHeight: "inherit", letterSpacing: "normal" }}>
+                    <motion.span
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                        style={{
+                            display: "block",
+                            fontFamily: "'Satoshi', sans-serif",
+                            fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
+                            fontWeight: 400,
+                            lineHeight: 1.7,
+                            color: "rgba(255,255,255,0.45)",
+                            letterSpacing: "0.01em",
+                            marginBottom: "0.25rem",
+                        }}
+                    >
+                        Starting a business? Let's get it
+                    </motion.span>
 
-                {/* Static line */}
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
-                    style={{
-                        fontFamily: "'Satoshi', sans-serif",
-                        fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
-                        fontWeight: 400,
-                        color: "rgba(255,255,255,0.45)",
-                        letterSpacing: "0.01em",
-                        marginBottom: "0.25rem",
-                    }}
-                >
-                    Keeping your business
-                </motion.p>
-
-                {/* Cycling word */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.35 }}
-                    style={{
-                        height: "clamp(5rem, 14vw, 12rem)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        overflow: "hidden",
-                        marginBottom: "2rem",
-                    }}
-                >
-                    <AnimatePresence mode="wait">
-                        <motion.span
-                            key={cyclingWords[index]}
-                            initial={{ y: "60%", opacity: 0 }}
-                            animate={{ y: "0%", opacity: 1 }}
-                            exit={{ y: "-60%", opacity: 0 }}
-                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                            style={{
-                                display: "block",
-                                fontFamily: "'Anton', Arial, sans-serif",
-                                fontWeight: 400,
-                                fontSize: "clamp(4.5rem, 13vw, 11rem)",
-                                lineHeight: 1,
-                                letterSpacing: "-0.01em",
-                                color: "#fff",
-                                whiteSpace: "nowrap",
-                            }}
-                        >
-                            {cyclingWords[index]}
-                        </motion.span>
-                    </AnimatePresence>
-                </motion.div>
+                    {/* Cycling word */}
+                    <motion.span
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.35 }}
+                        style={{
+                            height: "clamp(5rem, 14vw, 12rem)",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            overflow: "hidden",
+                            marginBottom: "2rem",
+                        }}
+                    >
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={cyclingWords[index]}
+                                initial={{ y: "60%", opacity: 0 }}
+                                animate={{ y: "0%", opacity: 1 }}
+                                exit={{ y: "-60%", opacity: 0 }}
+                                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                style={{
+                                    display: "block",
+                                    fontFamily: "'Anton', Arial, sans-serif",
+                                    fontWeight: 400,
+                                    fontSize: "clamp(4.5rem, 13vw, 11rem)",
+                                    lineHeight: 1,
+                                    letterSpacing: "-0.01em",
+                                    color: "#fff",
+                                    whiteSpace: "nowrap",
+                                }}
+                            >
+                                {cyclingWords[index]}
+                            </motion.span>
+                        </AnimatePresence>
+                    </motion.span>
+                </h1>
 
                 {/* Subheadline */}
                 <motion.p
@@ -126,12 +113,12 @@ const Hero = () => {
                         fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)",
                         fontWeight: 400,
                         color: "rgba(255,255,255,0.45)",
-                        maxWidth: "500px",
+                        maxWidth: "520px",
                         margin: "0 auto 2.25rem",
                         lineHeight: 1.7,
                     }}
                 >
-                    Custom software, automation, and digital systems built to eliminate manual work — starting with understanding your business.
+                    Website, app, social media, SEO and Meta &amp; Google Ads for founders and new businesses in Bangalore and Shivamogga. One team and one launch plan, from day zero.
                 </motion.p>
 
                 {/* CTAs */}
@@ -141,19 +128,17 @@ const Hero = () => {
                     transition={{ duration: 0.6, delay: 0.65 }}
                     style={{ display: "flex", gap: "0.875rem", justifyContent: "center", flexWrap: "wrap" }}
                 >
-                    <button
+                    <FormCTA
+                        location="hero"
                         className="btn-primary-dark"
-                        data-cal-link="vivek-g-ts38ii/30min"
-                        style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", fontSize: "0.875rem", padding: "0.875rem 1.75rem" }}
-                    >
-                        Book a Discovery Session <ArrowRight size={15} />
-                    </button>
+                        style={{ fontSize: "0.875rem", padding: "0.875rem 1.75rem" }}
+                    />
                     <button
                         className="btn-outline-dark"
+                        data-cal-link={site.calLink}
                         style={{ fontSize: "0.875rem", padding: "0.875rem 1.75rem" }}
-                        onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
                     >
-                        Explore Services
+                        Book a Free Call
                     </button>
                 </motion.div>
             </div>

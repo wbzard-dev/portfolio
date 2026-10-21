@@ -5,36 +5,52 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev        # Start dev server (Vite)
-npm run build      # Production build to dist/
+npm run dev        # Start dev server (Vite) — client-rendered, no prerendering
+npm run build      # scripts/build.mjs: client build → SSR build → prerender routes → sitemap.xml
 npm run preview    # Preview production build locally
-npm run deploy     # Build + deploy to GitHub Pages (gh-pages)
-npm run lint       # ESLint
+npm run deploy     # Build with base /portfolio/ + deploy to GitHub Pages (gh-pages)
+npm run og-images  # Render missing 1200×630 OG/blog cover PNGs via headless Chrome (--force to redo all)
+npm run lint       # ESLint (the `'motion' is defined but never used` errors are a pre-existing config false positive)
 ```
+
+## Business context
+
+Wbzard Labs is positioned as a launch partner for **founders and new businesses in Bangalore and Shivamogga**: websites/apps, social media framework, SEO and Meta & Google Ads. Keyword research, competitor analysis and the Search Console / ads setup checklist live in `docs/seo-strategy.md`.
 
 ## Stack
 
 - **React 18 + Vite** — component-per-section architecture
 - **Framer Motion** — all animations; scroll-driven effects via `useScroll`/`useTransform`
-- **Lenis (`@studio-freight/lenis`)** — smooth scroll, initialized in `App.jsx`, disabled on `/club-registration`
-- **React Router v7** — SPA routing; routes defined in `App.jsx`
-- **react-helmet-async** — SEO via `<SEO>` component wrapping `<Helmet>`
+- **Lenis (`@studio-freight/lenis`)** — smooth scroll, initialized in `App.jsx`
+- **React Router v7** — routes defined in `App.jsx`
+- **react-helmet-async** — SEO via `<SEO>` component; also collected server-side during prerender
 - **`@rollup/plugin-yaml`** — YAML files in `data/` importable as JS modules
 
 ## Architecture
 
-**Routing** (`App.jsx`): The homepage (`/`) renders a stack of section components in order. Other routes (`/blog`, `/blog/:id`, `/blokz`, `/one-habit`) are standalone pages. Header and Footer are rendered at the App level, suppressed on special routes.
+**Config** (`src/config/site.js`): brand, contact (email/phone/WhatsApp), Cal.com link, tracking IDs (GA4, Google Ads, Meta Pixel), verification tokens, Formspree lead-form endpoint and `formPath`. Empty values are skipped at runtime.
 
-**Blog system**: Posts live as YAML files in `data/`. `Blog.jsx` loads them all dynamically via `import.meta.glob("../../data/*.yaml")`, uses the filename (without `.yaml`) as the URL slug, and sorts by `date` descending. `BlogPost.jsx` renders the `content` field as Markdown via `react-markdown` + `remark-gfm`. YAML frontmatter fields: `id`, `title`, `date`, `author`, `excerpt`, `coverImage`, `category`, `content`.
+**Lead capture**: there is exactly one form (`LeadForm`, on `/startup-launch-package#get-started`). All primary CTAs use `FormCTA`, which links there; "Book a call" (Cal.com) and WhatsApp are secondary. `MobileCTABar` adds a sticky CTA on phones. Successful submissions go to `/thank-you` (use it as the ads conversion URL).
 
-**Styling**: Global CSS variables and base styles in `src/index.css` (dark theme: `--color-bg: #0a0a0a`, `--color-text: #ffffff`). Fonts: Inter (body), Syne (headings/logo). Components use inline styles for layout + scoped `<style>` tags for hover/media queries. Utility classes: `.container`, `.glass`, `.text-stroke`, `.reveal`.
+**Content data** (`src/data/`): `services.jsx` (service pages + legacy slug redirects), `locations.js` (Bangalore/Shivamogga pages), `posts.js` (eager blog loader), `faqs.js`. Pages and the sitemap are generated from these. Changing a slug changes a public URL; add a redirect.
 
-**SEO component** (`src/components/SEO.jsx`): Accepts `title`, `description`, `keywords`, `image`, `url`, `type`. Outputs `<title>`, Open Graph, Twitter Card, and JSON-LD structured data. Used at the top of each page-level component.
+**Routing** (`App.jsx`): `/` stacks homepage sections; `/services/:slug`, `/locations/:city`, `/startup-launch-package` (ads landing page with `LeadForm`), `/blog`, `/blog/:id`, `/thank-you` (conversion URL, noindex), `/privacy-policy`, `/terms`, catch-all `NotFound`. Side projects (`/blokz`, `/one-habit`, `/cohort/v1`) are `lazy()` and not prerendered.
 
-**Animation pattern**: Section components typically define `containerVariants` (stagger) + `itemVariants` (fade+slide), applied to a `<motion.div>` with `initial="initial" whileInView="animate" viewport={{ once: true }}`.
+**Prerendering** (`scripts/build.mjs` + `src/entry-server.jsx`): `entry-server` exports `routes` (with sitemap priority/lastmod) and `render(url)`. Each route is written to `dist/<route>/index.html` and `dist/<route>.html` with Helmet head tags; `<div id="root" data-prerendered-path>`. `main.jsx` hydrates only when that path matches the URL, otherwise it client-renders (fallback shells `404.html`, `app-shell.html`). Keep render output deterministic (no `window`/`Date.now()` in render). `<style>` blocks containing quotes must use `dangerouslySetInnerHTML` or hydration breaks.
 
-## Notes
+**Blog**: posts are YAML in `data/`; filename = slug. Fields: `title`, `seoTitle`, `metaDescription`, `date`, `updated`, `author`, `excerpt`, `coverImage` (`/images/blog/<slug>.png` → generated by `npm run og-images`), `category`, `keywords`, `locations` (`bangalore`/`shivamogga` — surfaces the post on that city page), `content` (Markdown; internal links like `/services/...` use client routing).
 
-- The site is being revamped from "Wbzard" branding to "Keeping Software Simple" agency identity. Docs in `../website-related-docs/` define the new brand, copy, and page structure.
+**Analytics** (`src/lib/analytics.js`): page views per route change, `generate_lead` + Google Ads conversion + Meta `Lead` on form submit or Cal.com booking, contact events on WhatsApp/phone/email clicks, first-touch UTM/gclid/fbclid capture attached to leads.
+
+**SEO component** (`src/components/SEO.jsx`): `title`, `description`, `keywords`, `image`, `url` (path), `type`, `breadcrumbs`, `jsonLd` (extra schema, e.g. `faqSchema()` from `src/lib/schema.js`), `noindex`. Always emits the `ProfessionalService` organisation schema.
+
+**Styling**: CSS variables and base styles in `src/index.css` (light `--bg: #F8F7F4`, dark `--bg-dark: #0F0F0F`, accent `#2563EB`). Fonts: Anton (h1/display), Satoshi (body/headings). Components use inline styles + scoped `<style>` tags. Utility classes: `.container`, `.card`, `.section-label`, `.btn-primary`, `.btn-secondary`, `.btn-primary-dark`, `.btn-outline-dark`, `.form-input`, `.chip`. Header nav collapses at 1024px (`.nav-desktop`/`.nav-mobile`).
+
+**Animation pattern**: elements use `initial`/`whileInView` with `viewport={{ once: true }}`.
+
+## Hosting notes
+
+- `public/_redirects` (Netlify/Cloudflare Pages): legacy 301s, app-shell rewrites for side projects, real 404s.
+- `public/robots.txt` is static; `public/sitemap.xml` is regenerated by every build.
+- GitHub Pages build uses `--base=/portfolio/`; canonical URLs always point to `https://wbzard.com`.
 - `lenis` package has replaced `@studio-freight/lenis` — update the import in `App.jsx` when convenient.
-- Deploy target is GitHub Pages; `vite.config.js` sets `base: "/"`.

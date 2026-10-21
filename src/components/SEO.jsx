@@ -1,97 +1,129 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { site } from "../config/site";
+
+const absolute = (pathOrUrl) =>
+    !pathOrUrl ? site.url : pathOrUrl.startsWith("http") ? pathOrUrl : `${site.url}${pathOrUrl === "/" ? "" : pathOrUrl}`;
+
+const organizationSchema = {
+    "@context":    "https://schema.org",
+    "@type":       "ProfessionalService",
+    "@id":         `${site.url}/#organization`,
+    "name":        site.name,
+    "description": site.description,
+    "url":         site.url,
+    "logo":        site.logo,
+    "image":       site.ogImage,
+    "email":       site.email,
+    ...(site.phone ? { "telephone": site.phone } : {}),
+    "priceRange":  "₹₹",
+    "founder":     { "@type": "Person", "name": site.founder, ...(site.social.linkedin ? { "sameAs": [site.social.linkedin] } : {}) },
+    "address": {
+        "@type":           "PostalAddress",
+        "addressRegion":   "Karnataka",
+        "addressCountry":  "IN",
+    },
+    "areaServed": [
+        { "@type": "City", "name": "Bengaluru", "alternateName": "Bangalore" },
+        { "@type": "City", "name": "Shivamogga", "alternateName": "Shimoga" },
+        { "@type": "State", "name": "Karnataka" },
+    ],
+    "knowsAbout": [
+        "Website development", "Mobile app development", "MVP development",
+        "Search engine optimisation", "Local SEO", "Social media marketing",
+        "Meta Ads", "Google Ads", "Performance marketing",
+    ],
+    // Company profiles only; the LinkedIn link is the founder's personal profile (attached to "founder" above).
+    "sameAs": [site.social.instagram].filter(Boolean),
+};
 
 const SEO = ({
-    title          = "Wbzard Labs — Keeping Software Simple",
-    description    = "Wbzard Labs helps businesses simplify operations through custom software, business automation, and practical digital systems built around how your business actually works.",
-    keywords       = "custom software development, business automation, workflow automation, software consulting, web application development, AI solutions, Wbzard Labs",
-    image          = "https://wbzard.com/images/final-logo.png",
-    url            = "https://wbzard.com",
+    title          = "Website, SEO & Digital Marketing for Startups in Bangalore & Shivamogga",
+    description    = site.description,
+    keywords       = "startup website development Bangalore, digital marketing agency Shivamogga, website development Shivamogga, SEO services Bangalore, social media marketing for startups, Meta ads agency Bangalore, Google ads agency Bangalore, app development for startups",
+    image          = site.ogImage,
+    url            = "/",
     type           = "website",
-    author         = "Vivek",
+    author         = site.founder,
     datePublished  = null,
+    dateModified   = null,
+    breadcrumbs    = null,     // [{ name, path }]
+    jsonLd         = [],       // extra schema.org objects (FAQPage, Service, …)
+    noindex        = false,
 }) => {
-    const siteName = "Wbzard Labs";
-    const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
-
+    const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+    const canonical = absolute(url);
+    const imageUrl  = absolute(image);
     const isArticle = type === "article";
 
-    const jsonLd = isArticle
-        ? {
+    const schemas = [organizationSchema];
+
+    if (isArticle) {
+        schemas.push({
             "@context":         "https://schema.org",
             "@type":            "BlogPosting",
-            "headline":         fullTitle,
+            "headline":         title,
             "description":      description,
-            "url":              url,
-            "image":            image,
+            "url":              canonical,
+            "mainEntityOfPage": canonical,
+            "image":            imageUrl,
             "datePublished":    datePublished,
-            "author": {
-                "@type": "Person",
-                "name":  author,
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name":  siteName,
-                "logo": {
-                    "@type": "ImageObject",
-                    "url":   "https://wbzard.com/images/final-logo.png",
-                },
-            },
-        }
-        : {
-            "@context":    "https://schema.org",
-            "@type":       "ProfessionalService",
-            "name":        siteName,
-            "description": description,
-            "url":         url,
-            "image":       image,
-            "email":       "vivekg.work@gmail.com",
-            "areaServed":  "Worldwide",
-            "serviceType": [
-                "Custom Software Development",
-                "Business Process Automation",
-                "Website Development",
-                "AI Solutions",
-            ],
-            "founder": {
-                "@type": "Person",
-                "name":  "Vivek",
-            },
-            "sameAs": [
-                "https://www.instagram.com/wbzard/",
-            ],
-            "address": {
-                "@type":          "PostalAddress",
-                "addressCountry": "IN",
-            },
-        };
+            "dateModified":     dateModified || datePublished,
+            "author":           { "@type": "Person", "name": author },
+            "publisher":        { "@id": `${site.url}/#organization` },
+            "inLanguage":       "en-IN",
+        });
+    }
+
+    if (breadcrumbs?.length) {
+        schemas.push({
+            "@context": "https://schema.org",
+            "@type":    "BreadcrumbList",
+            "itemListElement": [{ name: "Home", path: "/" }, ...breadcrumbs].map((b, i) => ({
+                "@type":    "ListItem",
+                "position": i + 1,
+                "name":     b.name,
+                "item":     absolute(b.path),
+            })),
+        });
+    }
+
+    schemas.push(...jsonLd);
 
     return (
         <Helmet>
+            <html lang="en-IN" />
             <title>{fullTitle}</title>
             <meta name="description"  content={description} />
             <meta name="keywords"     content={keywords} />
-            <link rel="canonical"     href={url} />
+            <meta name="robots"       content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"} />
+            <link rel="canonical"     href={canonical} />
 
             <meta property="og:type"        content={isArticle ? "article" : "website"} />
-            <meta property="og:url"         content={url} />
+            <meta property="og:url"         content={canonical} />
             <meta property="og:title"       content={fullTitle} />
             <meta property="og:description" content={description} />
-            <meta property="og:image"       content={image} />
-            <meta property="og:site_name"   content={siteName} />
-            {isArticle && datePublished && (
-                <meta property="article:published_time" content={datePublished} />
-            )}
+            <meta property="og:image"       content={imageUrl} />
+            <meta property="og:image:width"  content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:site_name"   content={site.name} />
+            <meta property="og:locale"      content="en_IN" />
+            {isArticle && datePublished && <meta property="article:published_time" content={datePublished} />}
 
             <meta name="twitter:card"        content="summary_large_image" />
-            <meta name="twitter:url"         content={url} />
             <meta name="twitter:title"       content={fullTitle} />
             <meta name="twitter:description" content={description} />
-            <meta name="twitter:image"       content={image} />
+            <meta name="twitter:image"       content={imageUrl} />
 
-            <script type="application/ld+json">
-                {JSON.stringify(jsonLd)}
-            </script>
+            <meta name="geo.region"    content="IN-KA" />
+            <meta name="geo.placename" content="Bengaluru; Shivamogga" />
+
+            {site.verification.google && <meta name="google-site-verification" content={site.verification.google} />}
+            {site.verification.meta   && <meta name="facebook-domain-verification" content={site.verification.meta} />}
+
+            {schemas.map((s, i) => (
+                <script key={i} type="application/ld+json">{JSON.stringify(s)}</script>
+            ))}
         </Helmet>
     );
 };

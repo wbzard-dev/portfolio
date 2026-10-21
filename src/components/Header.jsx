@@ -1,33 +1,90 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { serviceList } from "../data/services";
+import { locationList } from "../data/locations";
+import { site } from "../config/site";
+import FormCTA from "./FormCTA";
 
 const navLinks = [
-    { name: "Services", href: "/#services" },
-    { name: "About",    href: "/#about" },
-    { name: "Blog",     href: "/blog" },
-    { name: "Contact",  href: "/#contact" },
+    { name: "Launch Package", href: "/startup-launch-package" },
+    { name: "Work",           href: "/#work" },
+    { name: "Blog",           href: "/blog" },
+    { name: "Contact",        href: "/#contact" },
 ];
 
-const cohortLinks = [
-    { name: "Cohort v1", href: "/cohort/v1", badge: "New" },
+const dropdowns = [
+    { name: "Services",  items: serviceList.map(s => ({ name: s.label, href: s.href })) },
+    { name: "Locations", items: locationList.map(l => ({ name: l.city, href: l.href, desc: `Startups & businesses in ${l.city}` })) },
 ];
 
-const projectLinks = [
-    // { name: "Prformnce", href: "/prformnce", desc: "QR campaigns & lead tracking" },
-];
+const Dropdown = ({ menu, open, onToggle, textCol, textHover }) => (
+    <div style={{ position: "relative" }}>
+        <button
+            onClick={onToggle}
+            aria-expanded={open}
+            style={{
+                display: "flex", alignItems: "center", gap: "0.3rem",
+                fontFamily: "'Satoshi', sans-serif",
+                fontSize: "0.875rem", fontWeight: 500,
+                color: open ? textHover : textCol,
+                background: "none", border: "none", cursor: "pointer",
+                padding: 0, transition: "color 0.2s ease",
+            }}
+        >
+            {menu.name} <ChevronDown size={14} style={{ transition: "transform 0.2s ease", transform: open ? "rotate(180deg)" : "rotate(0deg)" }} />
+        </button>
+        {open && (
+            <motion.div
+                initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                    position: "absolute", top: "calc(100% + 0.75rem)", left: "50%",
+                    transform: "translateX(-50%)",
+                    background: "#fff",
+                    border: "1px solid var(--border)",
+                    borderRadius: "var(--radius-md)",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                    padding: "0.5rem",
+                    minWidth: "240px",
+                    zIndex: 100,
+                }}
+            >
+                {menu.items.map(item => (
+                    <Link
+                        key={item.href}
+                        to={item.href}
+                        style={{
+                            display: "flex", flexDirection: "column",
+                            padding: "0.6rem 0.875rem",
+                            borderRadius: "var(--radius-sm)",
+                            fontFamily: "'Satoshi', sans-serif",
+                            color: "var(--text)",
+                            transition: "background 0.15s ease",
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.background = "var(--bg-subtle)"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                    >
+                        <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>{item.name}</span>
+                        {item.desc && <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "0.15rem" }}>{item.desc}</span>}
+                    </Link>
+                ))}
+            </motion.div>
+        )}
+    </div>
+);
 
 const Header = () => {
-    const [scrollY, setScrollY]         = useState(0);
-    const [hidden, setHidden]           = useState(false);
-    const [lastY, setLastY]             = useState(0);
-    const [menuOpen, setMenuOpen]         = useState(false);
-    const [cohortOpen, setCohortOpen]     = useState(false);
-    const [projectsOpen, setProjectsOpen] = useState(false);
-    const cohortRef                       = useRef(null);
-    const projectsRef                     = useRef(null);
+    const [scrollY, setScrollY]   = useState(0);
+    const [hidden, setHidden]     = useState(false);
+    const [lastY, setLastY]       = useState(0);
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [openMenu, setOpenMenu] = useState(null);
+    const navRef                  = useRef(null);
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const onScroll = () => {
@@ -40,12 +97,11 @@ const Header = () => {
         return () => window.removeEventListener("scroll", onScroll);
     }, [lastY]);
 
-    useEffect(() => { setMenuOpen(false); setCohortOpen(false); setProjectsOpen(false); }, [location]);
+    useEffect(() => { setMenuOpen(false); setOpenMenu(null); }, [location]);
 
     useEffect(() => {
         const handler = (e) => {
-            if (cohortRef.current && !cohortRef.current.contains(e.target)) setCohortOpen(false);
-            if (projectsRef.current && !projectsRef.current.contains(e.target)) setProjectsOpen(false);
+            if (navRef.current && !navRef.current.contains(e.target)) setOpenMenu(null);
         };
         document.addEventListener("mousedown", handler);
         return () => document.removeEventListener("mousedown", handler);
@@ -65,12 +121,14 @@ const Header = () => {
             e.preventDefault();
             const id = href.slice(2);
             if (location.pathname !== "/") {
-                window.location.href = href;
+                navigate(href);
             } else {
                 document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
             }
         }
     };
+
+    const mutedLabel = { fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: pastHero ? "var(--text-muted)" : "rgba(255,255,255,0.35)", marginBottom: "0.75rem" };
 
     return (
         <>
@@ -94,10 +152,12 @@ const Header = () => {
                 <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "64px" }}>
 
                     {/* Logo */}
-                    <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+                    <Link to="/" style={{ display: "flex", alignItems: "center" }} aria-label={`${site.name} home`}>
                         <img
                             src={`${import.meta.env.BASE_URL}images/final-logo.png`}
-                            alt="Wbzard Labs"
+                            alt={site.name}
+                            width="140"
+                            height="70"
                             style={{
                                 height: "70px",
                                 width: "auto",
@@ -108,7 +168,17 @@ const Header = () => {
                     </Link>
 
                     {/* Desktop nav */}
-                    <nav className="hide-mobile" style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+                    <nav ref={navRef} className="nav-desktop" style={{ display: "flex", alignItems: "center", gap: "1.75rem" }}>
+                        {dropdowns.map(menu => (
+                            <Dropdown
+                                key={menu.name}
+                                menu={menu}
+                                open={openMenu === menu.name}
+                                onToggle={() => setOpenMenu(o => o === menu.name ? null : menu.name)}
+                                textCol={textCol}
+                                textHover={textHover}
+                            />
+                        ))}
                         {navLinks.map(link => (
                             <a
                                 key={link.name}
@@ -128,141 +198,18 @@ const Header = () => {
                             </a>
                         ))}
 
-                        {/* Projects dropdown */}
-                        {/* <div ref={projectsRef} style={{ position: "relative" }}>
-                            <button
-                                onClick={() => setProjectsOpen(o => !o)}
-                                style={{
-                                    display: "flex", alignItems: "center", gap: "0.3rem",
-                                    fontFamily: "'Satoshi', sans-serif",
-                                    fontSize: "0.875rem", fontWeight: 500,
-                                    color: projectsOpen ? textHover : textCol,
-                                    background: "none", border: "none", cursor: "pointer",
-                                    padding: 0, transition: "color 0.2s ease",
-                                }}
-                            >
-                                Projects <ChevronDown size={14} style={{ transition: "transform 0.2s ease", transform: projectsOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-                            </button>
-                            {projectsOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                                    style={{
-                                        position: "absolute", top: "calc(100% + 0.75rem)", left: "50%",
-                                        transform: "translateX(-50%)",
-                                        background: "#fff",
-                                        border: "1px solid var(--border)",
-                                        borderRadius: "var(--radius-md)",
-                                        boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-                                        padding: "0.5rem",
-                                        minWidth: "220px",
-                                        zIndex: 100,
-                                    }}
-                                >
-                                    {projectLinks.map(pl => (
-                                        <Link
-                                            key={pl.name}
-                                            to={pl.href}
-                                            style={{
-                                                display: "flex", flexDirection: "column",
-                                                padding: "0.6rem 0.875rem",
-                                                borderRadius: "var(--radius-sm)",
-                                                fontFamily: "'Satoshi', sans-serif",
-                                                color: "var(--text)",
-                                                transition: "background 0.15s ease",
-                                            }}
-                                            onMouseEnter={e => e.currentTarget.style.background = "var(--bg-subtle)"}
-                                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                                        >
-                                            <span style={{ fontSize: "0.85rem", fontWeight: 600 }}>{pl.name}</span>
-                                            {pl.desc && <span style={{ fontSize: "0.75rem", color: "var(--text-muted)", marginTop: "0.15rem" }}>{pl.desc}</span>}
-                                        </Link>
-                                    ))}
-                                </motion.div>
-                            )}
-                        </div> */}
-
-                        {/* Cohort dropdown */}
-                        <div ref={cohortRef} style={{ position: "relative" }}>
-                            <button
-                                onClick={() => setCohortOpen(o => !o)}
-                                style={{
-                                    display: "flex", alignItems: "center", gap: "0.3rem",
-                                    fontFamily: "'Satoshi', sans-serif",
-                                    fontSize: "0.875rem", fontWeight: 500,
-                                    color: cohortOpen ? textHover : textCol,
-                                    background: "none", border: "none", cursor: "pointer",
-                                    padding: 0, transition: "color 0.2s ease",
-                                }}
-                            >
-                                Cohort <ChevronDown size={14} style={{ transition: "transform 0.2s ease", transform: cohortOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
-                            </button>
-                            {cohortOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                                    style={{
-                                        position: "absolute", top: "calc(100% + 0.75rem)", left: "50%",
-                                        transform: "translateX(-50%)",
-                                        background: "#fff",
-                                        border: "1px solid var(--border)",
-                                        borderRadius: "var(--radius-md)",
-                                        boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-                                        padding: "0.5rem",
-                                        minWidth: "180px",
-                                        zIndex: 100,
-                                    }}
-                                >
-                                    {cohortLinks.map(cl => (
-                                        <Link
-                                            key={cl.name}
-                                            to={cl.href}
-                                            style={{
-                                                display: "flex", alignItems: "center", justifyContent: "space-between",
-                                                padding: "0.6rem 0.875rem",
-                                                borderRadius: "var(--radius-sm)",
-                                                fontFamily: "'Satoshi', sans-serif",
-                                                fontSize: "0.85rem", fontWeight: 500,
-                                                color: "var(--text)",
-                                                transition: "background 0.15s ease",
-                                            }}
-                                            onMouseEnter={e => e.currentTarget.style.background = "var(--bg-subtle)"}
-                                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                                        >
-                                            {cl.name}
-                                            {cl.badge && (
-                                                <span style={{
-                                                    fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em",
-                                                    textTransform: "uppercase", color: "#fff",
-                                                    background: "var(--accent)", borderRadius: "4px",
-                                                    padding: "0.1rem 0.4rem",
-                                                }}>
-                                                    {cl.badge}
-                                                </span>
-                                            )}
-                                        </Link>
-                                    ))}
-                                </motion.div>
-                            )}
-                        </div>
-
-                        <button
-                            className="btn-primary"
-                            data-cal-link="vivek-g-ts38ii/30min"
-                            style={{ fontSize: "0.8rem", padding: "0.6rem 1.2rem" }}
-                        >
-                            Book a Call
-                        </button>
+                        <FormCTA location="header" arrow={false} style={{ fontSize: "0.8rem", padding: "0.6rem 1.2rem" }}>
+                            Free Launch Plan
+                        </FormCTA>
                     </nav>
 
                     {/* Mobile toggle */}
                     <button
-                        className="hide-desktop"
+                        className="nav-mobile"
                         onClick={() => setMenuOpen(o => !o)}
                         style={{ background: "none", border: "none", cursor: "pointer", color: logoCol, padding: "0.5rem", transition: "color 0.4s ease" }}
                         aria-label="Toggle menu"
+                        aria-expanded={menuOpen}
                     >
                         {menuOpen ? <X size={22} /> : <Menu size={22} />}
                     </button>
@@ -275,12 +222,14 @@ const Header = () => {
                     initial={{ opacity: 0, y: -8 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="hide-desktop"
+                    className="nav-mobile"
                     style={{
                         position: "fixed",
                         top: "64px",
                         left: 0,
                         right: 0,
+                        maxHeight: "calc(100vh - 64px)",
+                        overflowY: "auto",
                         zIndex: 999,
                         background: pastHero ? "var(--bg)" : "var(--bg-dark)",
                         borderBottom: `1px solid ${borderCol}`,
@@ -301,51 +250,27 @@ const Header = () => {
                         </a>
                     ))}
 
-                    {/* Mobile projects links */}
-                    <div style={{ borderTop: `1px solid ${borderCol}`, paddingTop: "1rem" }}>
-                        <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: pastHero ? "var(--text-muted)" : "rgba(255,255,255,0.35)", marginBottom: "0.75rem" }}>
-                            Projects
-                        </p>
-                        {projectLinks.map(pl => (
-                            <Link
-                                key={pl.name}
-                                to={pl.href}
-                                style={{ display: "flex", flexDirection: "column", marginBottom: "0.75rem" }}
-                            >
-                                <span style={{ fontSize: "1rem", fontWeight: 500, color: pastHero ? "var(--text)" : "#fff" }}>{pl.name}</span>
-                                {pl.desc && <span style={{ fontSize: "0.8rem", color: pastHero ? "var(--text-muted)" : "rgba(255,255,255,0.5)" }}>{pl.desc}</span>}
-                            </Link>
-                        ))}
-                    </div>
+                    {dropdowns.map(menu => (
+                        <div key={menu.name} style={{ borderTop: `1px solid ${borderCol}`, paddingTop: "1rem" }}>
+                            <p style={mutedLabel}>{menu.name}</p>
+                            {menu.items.map(item => (
+                                <Link
+                                    key={item.href}
+                                    to={item.href}
+                                    style={{ display: "block", fontSize: "1rem", fontWeight: 500, color: pastHero ? "var(--text)" : "#fff", marginBottom: "0.6rem" }}
+                                >
+                                    {item.name}
+                                </Link>
+                            ))}
+                        </div>
+                    ))}
 
-                    {/* Mobile cohort links */}
-                    <div style={{ borderTop: `1px solid ${borderCol}`, paddingTop: "1rem" }}>
-                        <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: pastHero ? "var(--text-muted)" : "rgba(255,255,255,0.35)", marginBottom: "0.75rem" }}>
-                            Cohort
-                        </p>
-                        {cohortLinks.map(cl => (
-                            <Link
-                                key={cl.name}
-                                to={cl.href}
-                                style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "1rem", fontWeight: 500, color: pastHero ? "var(--text)" : "#fff", marginBottom: "0.5rem" }}
-                            >
-                                {cl.name}
-                                {cl.badge && (
-                                    <span style={{ fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#fff", background: "var(--accent)", borderRadius: "4px", padding: "0.1rem 0.4rem" }}>
-                                        {cl.badge}
-                                    </span>
-                                )}
-                            </Link>
-                        ))}
+                    <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginTop: "0.5rem" }}>
+                        <FormCTA location="mobile-menu" />
+                        <button className="btn-secondary" data-cal-link={site.calLink} style={{ color: pastHero ? "var(--text)" : "#fff" }}>
+                            Book a Call
+                        </button>
                     </div>
-
-                    <button
-                        className="btn-primary"
-                        data-cal-link="vivek-g-ts38ii/30min"
-                        style={{ alignSelf: "flex-start", marginTop: "0.5rem" }}
-                    >
-                        Book a Call
-                    </button>
                 </motion.div>
             )}
         </>

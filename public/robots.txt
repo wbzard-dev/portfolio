@@ -1,4 +1,18 @@
+# robots.txt for https://wbzard.com
 User-agent: *
+Allow: /
+
+# Conversion page — not useful in search results
+Disallow: /thank-you
+
+# Allow ad platform crawlers to check landing pages (Google Ads, Meta link previews)
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+User-agent: facebookexternalhit
 Allow: /
 
 Sitemap: https://wbzard.com/sitemap.xml

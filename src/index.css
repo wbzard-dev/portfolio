@@ -212,3 +212,68 @@ section {
 @media (min-width: 769px) {
     .hide-desktop { display: none !important; }
 }
+
+/* --- Forms (lead form) --- */
+.form-input {
+    width: 100%;
+    padding: 0.8rem 0.95rem;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    resize: vertical;
+}
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+.chip {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.45rem 0.9rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.chip:hover { border-color: var(--text-muted); }
+.chip-on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip-on:hover { border-color: var(--accent); }
+
+/* Header nav has more items than other layouts, so it collapses earlier */
+@media (max-width: 1024px) {
+    .nav-desktop { display: none !important; }
+}
+@media (min-width: 1025px) {
+    .nav-mobile { display: none !important; }
+}
+
+/* Sticky mobile CTA bar */
+.mobile-cta-bar, .mobile-cta-spacer { display: none; }
+@media (max-width: 768px) {
+    .mobile-cta-spacer { display: block; height: 76px; background: var(--bg-dark); }
+    .mobile-cta-bar {
+        display: flex;
+        gap: 0.6rem;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 998;
+        padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+        background: rgba(15, 15, 15, 0.92);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mobile-cta-wa {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 52px; flex-shrink: 0;
+        border-radius: var(--radius-md);
+        background: #25D366; color: #fff;
+    }
+}

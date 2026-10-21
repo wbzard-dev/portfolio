@@ -2,12 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const painPoints = [
-    "Managing leads and customer data manually",
-    "Relying on spreadsheets for critical operations",
-    "Switching between multiple disconnected tools",
-    "Repeating the same tasks every single day",
-    "Paying for subscriptions they barely use",
-    "No visibility into what's actually happening in the business",
+    "You've launched, but customers can't find you on Google or Maps",
+    "Your Instagram has a few hundred followers and no real plan",
+    "You're juggling separate freelancers for the website, design, posts and ads",
+    "Ad money gets spent, but nobody can say which rupee brought a customer",
+    "Your website looks fine but doesn't bring enquiries",
+    "You're not sure what to do first: app, website, SEO or ads?",
 ];
 
 const ProblemSection = () => (
@@ -37,7 +37,7 @@ const ProblemSection = () => (
                         transition={{ duration: 0.7, delay: 0.05 }}
                         style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)", lineHeight: 1.1, marginBottom: "1.5rem" }}
                     >
-                        Technology should make business simpler.
+                        Building the business is hard enough.
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 16 }}
@@ -46,7 +46,7 @@ const ProblemSection = () => (
                         transition={{ duration: 0.6, delay: 0.15 }}
                         style={{ fontSize: "1.1rem", color: "var(--text-muted)", lineHeight: 1.7 }}
                     >
-                        So why does it often feel like the opposite?
+                        Getting it seen online shouldn't be a second full-time job.
                     </motion.p>
 
                     <motion.p
@@ -56,9 +56,9 @@ const ProblemSection = () => (
                         transition={{ duration: 0.6, delay: 0.6 }}
                         style={{ marginTop: "2.5rem", fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.75, maxWidth: "400px", borderLeft: "2px solid var(--border)", paddingLeft: "1.25rem" }}
                     >
-                        As businesses grow, these inefficiencies become expensive. Most agencies respond by selling another service.
+                        Most founders end up stitching together a web developer, a designer, a social media freelancer and an ads person, with nobody owning the result.
                         <br /><br />
-                        <strong style={{ color: "var(--text)", fontWeight: 600, fontStyle: "normal" }}>We respond by understanding the business first.</strong>
+                        <strong style={{ color: "var(--text)", fontWeight: 600, fontStyle: "normal" }}>We give you one launch plan, and one team that carries it out.</strong>
                     </motion.p>
                 </div>
 

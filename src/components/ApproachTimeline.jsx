@@ -4,28 +4,28 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const steps = [
     {
         number: "01",
-        title:  "Understand",
-        desc:   "We learn how your business operates — how information flows, how your team works, and where the friction lives.",
+        title:  "Discover",
+        desc:   "Your idea, your customers, your competitors in Bangalore or Shivamogga, and what success looks like in the first 90 days.",
     },
     {
         number: "02",
-        title:  "Analyze",
-        desc:   "We map your workflows, identify manual tasks, audit your software stack, and find real opportunities to improve.",
+        title:  "Build the foundation",
+        desc:   "Website or app, Google Business Profile, analytics, Meta Pixel and conversion tracking, set up properly from day one.",
     },
     {
         number: "03",
-        title:  "Recommend",
-        desc:   "No predefined packages. No unnecessary tools. Only recommendations that are directly aligned with your business goals.",
+        title:  "Launch",
+        desc:   "Your social media framework, content calendar and SEO foundations go live, so people can find you, follow you and trust you.",
     },
     {
         number: "04",
-        title:  "Build",
-        desc:   "We develop software, automation, and digital systems designed around your workflows — not the other way around.",
+        title:  "Grow",
+        desc:   "Meta and Google Ads campaigns with dedicated landing pages, tested on a small budget first and scaled on what converts.",
     },
     {
         number: "05",
-        title:  "Improve",
-        desc:   "As your business evolves, your systems evolve with it. We provide ongoing support and continuous improvement.",
+        title:  "Measure & improve",
+        desc:   "Monthly reviews of leads, cost per lead and what's working. We double down on the channels that bring customers.",
     },
 ];
 
@@ -53,7 +53,7 @@ const ApproachTimeline = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        Our Approach
+                        The Launch Roadmap
                     </motion.p>
                     <motion.h2
                         initial={{ opacity: 0, y: 24 }}
@@ -62,7 +62,7 @@ const ApproachTimeline = () => {
                         transition={{ duration: 0.7, delay: 0.05 }}
                         style={{ fontSize: "clamp(1.8rem, 5vw, 3rem)", lineHeight: 1.1 }}
                     >
-                        We start by understanding your business.
+                        From idea to first customers, in five steps.
                     </motion.h2>
                 </div>
 

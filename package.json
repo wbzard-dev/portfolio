@@ -5,18 +5,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "vite build --base=/portfolio/",
+    "predeploy": "node scripts/build.mjs --base=/portfolio/",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "og-images": "node scripts/generate-og-images.mjs"
   },
   "dependencies": {
-    "@pdfme/common": "^6.1.11",
-    "@pdfme/generator": "^6.1.11",
-    "@pdfme/schemas": "^6.1.11",
-    "@pdfme/ui": "^6.1.11",
     "@rollup/plugin-yaml": "^4.1.2",
     "@studio-freight/lenis": "^1.0.42",
     "framer-motion": "^12.42.2",
@@ -28,7 +25,6 @@
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.11.0",
-    "recharts": "^3.9.2",
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
