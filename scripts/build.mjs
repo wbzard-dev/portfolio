@@ -1,13 +1,14 @@
 // Production build: client bundle → SSR bundle → prerender every marketing route to static HTML,
 // then write sitemap.xml from the same route list.
-//   node scripts/build.mjs                  (wbzard.com, base "/")
+//   node scripts/build.mjs                  (www.wbzard.com, base "/")
 //   node scripts/build.mjs --base=/portfolio/   (GitHub Pages project site)
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { build } from "vite";
+import { site } from "../src/config/site.js";
 
-const SITE_URL = "https://wbzard.com";
+const SITE_URL = site.url;   // single source of truth for canonical URLs
 const root   = process.cwd();
 const base   = (process.argv.find(a => a.startsWith("--base="))?.split("=")[1]) || "/";
 const dist   = path.join(root, "dist");

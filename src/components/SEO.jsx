@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { site } from "../config/site";
 
 const absolute = (pathOrUrl) =>
-    !pathOrUrl ? site.url : pathOrUrl.startsWith("http") ? pathOrUrl : `${site.url}${pathOrUrl === "/" ? "" : pathOrUrl}`;
+    !pathOrUrl ? `${site.url}/` : pathOrUrl.startsWith("http") ? pathOrUrl : `${site.url}${pathOrUrl}`;
 
 const organizationSchema = {
     "@context":    "https://schema.org",

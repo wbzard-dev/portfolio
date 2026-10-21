@@ -141,9 +141,9 @@ Old URLs `/services/custom-software-development`, `/business-automation` and `/a
 1. Deploy the new build (`npm run build`, then publish `dist/`).
 2. Go to [search.google.com/search-console](https://search.google.com/search-console) → **Add property** → choose **Domain** → `wbzard.com` → verify with the DNS TXT record at your domain registrar.
    _(Alternative: URL-prefix property + HTML tag. Paste the token into `site.verification.google` in `src/config/site.js` and rebuild.)_
-3. **Sitemaps** → submit `https://wbzard.com/sitemap.xml`.
+3. **Sitemaps** → submit `https://www.wbzard.com/sitemap.xml`.
 4. **URL Inspection** → request indexing for the priority pages, in this order: `/`, `/locations/shivamogga`, `/locations/bangalore`, `/startup-launch-package`, then the five service pages.
-5. Check `https://wbzard.com/robots.txt` loads and `https://wbzard.com/thank-you` shows as "Excluded by noindex" (expected).
+5. Check `https://www.wbzard.com/robots.txt` loads and `https://www.wbzard.com/thank-you` shows as "Excluded by noindex" (expected).
 6. Repeat for **Bing Webmaster Tools** (you can import directly from Search Console).
 7. After 2–4 weeks: review **Performance → Queries** and feed real queries back into page copy and new posts.
 

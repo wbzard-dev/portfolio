@@ -3,11 +3,11 @@
 
 export const site = {
     name:        "Wbzard Labs",
-    url:         "https://wbzard.com",
+    url:         "https://www.wbzard.com",   // canonical host — wbzard.com 301s here (Cloudflare)
     tagline:     "Launch partner for new businesses & startups",
     description: "Wbzard Labs helps founders and new businesses in Bangalore and Shivamogga launch and grow online — websites, apps, social media, SEO and Meta & Google Ads under one roof.",
-    logo:        "https://wbzard.com/images/final-logo.png",
-    ogImage:     "https://wbzard.com/images/og/default.png",
+    logo:        "https://www.wbzard.com/images/final-logo.png",
+    ogImage:     "https://www.wbzard.com/images/og/default.png",
     founder:     "Vivek",
 
     // Contact — used in the footer, schema.org markup and lead CTAs.

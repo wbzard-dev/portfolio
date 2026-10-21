@@ -1,4 +1,4 @@
-# robots.txt for https://wbzard.com
+# robots.txt for https://www.wbzard.com
 User-agent: *
 Allow: /
 
@@ -15,4 +15,4 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-Sitemap: https://wbzard.com/sitemap.xml
+Sitemap: https://www.wbzard.com/sitemap.xml
