@@ -1,0 +1,97 @@
+id: "developer-portfolio-projects-get-hired"
+title: "Portfolio Projects That Get Freshers Hired: A Guide for Shivamogga Developers"
+seoTitle: "Developer Portfolio Projects That Get You Hired — Fresher Guide (Shivamogga 2026)"
+metaDescription: "Which projects should a fresher developer build to get hired? Project ideas by level, how to deploy them, write a good README and present them on your resume, for students in Shivamogga (Shimoga) and beyond."
+date: "2026-10-22"
+author: "Vivek"
+excerpt: "A to-do app and a weather app won't make you stand out. Here's how to choose, build, deploy and present portfolio projects that get freshers shortlisted for developer jobs."
+takeaways:
+  - "Two or three solid, deployed projects beat ten unfinished tutorial clones."
+  - "The best projects solve a real problem, ideally for a real user like a local shop, coaching centre or college club."
+  - "Every project should have a live link, clean GitHub code and a README explaining what it does, the tech stack and how to run it."
+  - "Include features interviewers ask about: authentication, a database, an API, error handling and deployment."
+  - "Be ready to explain every decision in your project, since that's what interviewers test."
+coverImage: "/images/blog/developer-portfolio-projects-get-hired.png"
+category: "Careers"
+keywords: "portfolio projects for freshers, developer portfolio, MERN project ideas, full stack project ideas, projects for resume software developer, GitHub portfolio freshers India"
+locations: ["shivamogga"]
+content: |
+  Every fresher resume lists the same skills. Projects are where you prove them. But most student portfolios look identical: a to-do app, a weather app and a calculator, copied from tutorials and running only on localhost.
+
+  Here's how to build projects that actually get you shortlisted.
+
+  ## The rule: fewer, deeper, deployed
+
+  Recruiters and interviewers would rather see **two or three solid projects** than ten half-finished ones. A strong project is:
+
+  - **Deployed**: a live link anyone can open
+  - **Complete**: it works end to end, not just a pretty homepage
+  - **Yours**: you made the decisions and can explain them
+  - **Documented**: a clear README on GitHub
+
+  ## Build for a real user
+
+  The fastest way to stand out is to build something for a **real person or business**. Shivamogga is full of opportunities:
+
+  - A **booking system** for a local salon, clinic or turf
+  - A **WhatsApp-linked catalogue** for a shop in Gandhi Bazaar
+  - An **attendance and fee tracker** for a coaching centre
+  - An **event registration site** for your college fest or club
+  - A **homestay availability and enquiry site** near Agumbe or Jog Falls
+
+  Saying "This is used by a real coaching centre with 80 students" in an interview is far more powerful than "I followed a tutorial".
+
+  ## Project ideas by level
+
+  **Level 1: foundations**
+
+  - A personal portfolio website, fast and mobile-friendly, with your projects and contact details
+  - A multi-page site for a local business, with a working contact form
+
+  **Level 2: full stack**
+
+  - A **notes or task app with user accounts**: signup, login, protected routes, CRUD with a database
+  - A **blog or recipe platform** with authors, comments and image uploads
+  - An **expense tracker** with charts and filters
+
+  **Level 3: stand-out**
+
+  - A **booking or appointment system** with time slots, admin dashboard and email or WhatsApp notifications
+  - A **mini e-commerce store** with cart, payments in test mode and order management
+  - A **real-time app**: chat, live polls or a collaborative board using WebSockets
+  - A **SaaS-style dashboard** with roles (admin, staff, user) and analytics
+
+  ## Features interviewers love to ask about
+
+  Include at least some of these, and be ready to explain how they work:
+
+  - **Authentication** (JWT or sessions) and password hashing
+  - **Database design**: why you structured your data that way
+  - **REST API design**, including error handling and validation
+  - **Environment variables** and keeping secrets out of GitHub
+  - **Deployment**: frontend and backend live, with a custom domain if possible
+  - **Responsive design** that works on a phone
+  - Bonus: **CI/CD** with GitHub Actions, or a **Docker** setup. See the [DevOps roadmap](/blog/devops-roadmap-for-beginners)
+
+  ## Write a README that sells the project
+
+  Your README is often read before your code. Include:
+
+  1. **What it is** in one sentence, and who it's for
+  2. **Live link** and a screenshot or short GIF
+  3. **Tech stack**
+  4. **Key features**
+  5. **How to run it locally**
+  6. **What you learned** or what you'd improve next
+
+  ## Put projects on your resume properly
+
+  For each project, write one line on what it does and one or two on what you built, with the live and GitHub links. For example:
+
+  > **Clinic Booking App** (React, Node.js, Express, MongoDB): appointment booking for a Shivamogga dental clinic with slot management, admin dashboard and WhatsApp reminders. *Live link · GitHub*
+
+  Then pin your best projects on **GitHub** and feature them on **LinkedIn**.
+
+  ## Build 3 deployed projects with mentoring
+
+  Our live online [MERN Stack Course](/courses/mern-stack-course-shivamogga) (₹5,000, 45 days) is built around **three full-stack projects that you deploy live**, with code reviews, mock interviews and resume help. Read the [full stack roadmap for Shivamogga students](/blog/full-stack-developer-from-shivamogga) or [see all courses](/courses).

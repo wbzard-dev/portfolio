@@ -1,0 +1,94 @@
+id: "domain-hosting-business-email-guide-shivamogga"
+title: "Domain, Hosting and Business Email: A Plain Guide for Shivamogga Business Owners"
+seoTitle: "Domain, Hosting & Business Email Explained — Guide for Shivamogga (Shimoga) Businesses"
+metaDescription: "What are a domain, hosting and business email, what do they cost each year, and how do you make sure you own them? A plain-language guide for business owners in Shivamogga (Shimoga)."
+date: "2026-10-22"
+author: "Vivek"
+excerpt: "Your domain is your address, hosting is the land, and your website is the building. Here's what each one is, what it costs, and how to make sure your designer doesn't own them."
+takeaways:
+  - "A domain is your website's address, hosting is where the files live, and business email uses your domain, like you@yourbusiness.in."
+  - "Always register the domain and hosting in your own name and email, with login details you control."
+  - "Turn on auto-renew for your domain, because an expired domain can be bought by someone else."
+  - "A business email on your own domain looks more trustworthy to customers, suppliers and banks than a Gmail address."
+  - "Keep a simple record of where your domain, hosting, email and website logins are and when each renews."
+coverImage: "/images/blog/domain-hosting-business-email-guide-shivamogga.png"
+category: "Websites"
+keywords: "domain and hosting Shivamogga, business email Shivamogga, domain registration Shimoga, website hosting Shivamogga, Google Workspace small business, what is web hosting"
+locations: ["shivamogga"]
+content: |
+  We regularly meet Shivamogga business owners who can't update their own website because **the old designer owns the domain**, or whose email stopped working because a renewal went to someone else's inbox. These problems are completely avoidable once you understand the three pieces.
+
+  ## The simple explanation
+
+  - **Domain** = your address. `yourbusiness.in` is what people type to find you.
+  - **Hosting** = the land. A server where your website's files live, online 24/7.
+  - **Website** = the building. The pages, text and images people see.
+  - **Business email** = a mailbox at your address, like `hello@yourbusiness.in`.
+
+  You rent the domain and hosting by the year. You should **own** the website files and content.
+
+  ## Domains: which ending to choose?
+
+  - **`.com`** is the most recognised worldwide
+  - **`.in`** is clearly Indian and often cheaper. A great choice for local businesses
+  - **`.co.in`**, **`.shop`**, **`.store`** and others are fine if your first choice is taken
+
+  Keep it short, easy to say on the phone, and avoid hyphens or numbers. See [choosing a brand name and domain](/blog/brand-name-logo-domain-new-business-shivamogga).
+
+  **Rules for owning your domain:**
+
+  1. Register it with a reputable registrar, **in your name and with your email**
+  2. Turn on **auto-renew** with a payment method that won't expire
+  3. Turn on **two-factor authentication** on the registrar account
+  4. If someone else registers it for you, make sure you get the **login**, not just a promise
+
+  ## Hosting: what kind do you need?
+
+  | Type | Good for |
+  |---|---|
+  | **Shared hosting** | Small WordPress sites with low traffic; cheap but can be slow |
+  | **Managed WordPress hosting** | WordPress sites that need speed, backups and security handled for you |
+  | **Static / edge hosting** (e.g. Cloudflare Pages, Netlify, Vercel) | Fast, modern custom-built websites; often very low cost |
+  | **Cloud servers** (e.g. AWS, DigitalOcean) | Web apps, portals and stores with custom needs |
+  | **Hosted platforms** (e.g. Shopify) | Hosting is included in the subscription |
+
+  For most small business websites, what matters is **speed, uptime, backups and a free SSL certificate** (the padlock in the browser). See [WordPress vs custom websites](/blog/wordpress-vs-custom-website-shivamogga).
+
+  ## Business email: why it's worth it
+
+  `ravi@ravitextiles.in` looks more trustworthy than `ravitextiles123@gmail.com`, to customers, suppliers, banks and government offices. Common options:
+
+  - **Google Workspace**: Gmail with your own domain, plus Drive and Calendar
+  - **Microsoft 365**: Outlook with your domain, plus Office apps
+  - **Email included with hosting**: cheaper, but usually less reliable and with more spam problems
+
+  Both Google Workspace and Microsoft 365 charge per user per month. Many small businesses start with one or two mailboxes and add aliases like `sales@` and `info@` that forward to them.
+
+  Set up **SPF, DKIM and DMARC** records (your web person can do it in minutes). They stop your emails landing in spam and stop scammers sending fake emails in your name.
+
+  ## What it all costs each year
+
+  Expect yearly costs for:
+
+  - **Domain renewal**: usually a few hundred to a couple of thousand rupees
+  - **Hosting**: from very little for a static site to more for managed or cloud hosting
+  - **Business email**: per user, per month
+  - **Maintenance** (optional): updates, backups and small changes
+
+  Ask your designer to list these separately so you know what you're renewing. More detail in [website design cost in Shivamogga](/blog/website-design-cost-shivamogga).
+
+  ## Keep a one-page "website file"
+
+  Write down, and store safely:
+
+  - Domain registrar, login email, renewal date
+  - Hosting provider, login email, renewal date
+  - Email provider and admin login
+  - Website CMS or admin login
+  - Google Analytics, Search Console and Google Business Profile access
+
+  If you ever change designers or staff, this one page saves weeks of trouble.
+
+  ## Want it set up properly?
+
+  We set up domains, hosting, business email and websites for [Shivamogga businesses](/shivamogga/website-design), always in your name, with a handover document of every login. [Get a free plan](/startup-launch-package).
