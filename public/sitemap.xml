@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.wbzard.com/</loc>
     <lastmod>2026-10-21</lastmod>
@@ -117,348 +117,406 @@
   <url>
     <loc>https://www.wbzard.com/blog/brand-name-logo-domain-new-business-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/brand-name-logo-domain-new-business-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/clinic-doctor-marketing-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/clinic-doctor-marketing-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/developer-portfolio-projects-get-hired</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/developer-portfolio-projects-get-hired.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/digital-marketing-budget-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/digital-marketing-budget-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/domain-hosting-business-email-guide-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/domain-hosting-business-email-guide-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/ecommerce-website-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/ecommerce-website-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/first-100-customers-shivamogga-business</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/first-100-customers-shivamogga-business.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-launch-a-saas-startup-from-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-launch-a-saas-startup-from-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-open-a-clinic-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-open-a-clinic-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-business-in-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-business-in-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-cafe-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-cafe-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-clothing-brand-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-clothing-brand-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-cloud-kitchen-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-cloud-kitchen-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-coaching-centre-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-coaching-centre-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-consulting-business-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-consulting-business-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-d2c-brand-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-d2c-brand-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-gym-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-gym-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-home-bakery-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-home-bakery-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-home-services-business-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-home-services-business-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-pet-business-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-pet-business-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-preschool-daycare-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-preschool-daycare-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-a-salon-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-a-salon-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-an-event-management-business-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-an-event-management-business-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-an-interior-design-business-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-an-interior-design-business-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/how-to-start-an-online-course-business-in-india</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/how-to-start-an-online-course-business-in-india.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/it-jobs-for-freshers-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/it-jobs-for-freshers-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/kannada-bilingual-website-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/kannada-bilingual-website-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/launch-a-new-business-online-in-bangalore</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/launch-a-new-business-online-in-bangalore.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/mern-vs-devops-which-course-to-choose</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/mern-vs-devops-which-course-to-choose.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/mvp-development-cost-india</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/mvp-development-cost-india.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/real-estate-marketing-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/real-estate-marketing-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/restaurant-cafe-marketing-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/restaurant-cafe-marketing-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/retail-shop-sell-online-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/retail-shop-sell-online-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/small-business-ideas-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/small-business-ideas-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/startup-funding-schemes-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/startup-funding-schemes-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/validate-business-idea-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/validate-business-idea-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/web-development-course-fees-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/web-development-course-fees-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/website-not-getting-enquiries-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/website-not-getting-enquiries-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/what-to-do-after-registering-a-company-in-india</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/what-to-do-after-registering-a-company-in-india.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/wordpress-vs-custom-website-shivamogga</loc>
     <lastmod>2026-10-22</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/wordpress-vs-custom-website-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/best-digital-marketing-agency-shivamogga</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/best-digital-marketing-agency-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/coaching-centre-marketing-shivamogga</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/coaching-centre-marketing-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/devops-roadmap-for-beginners</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/devops-roadmap-for-beginners.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/digital-marketing-shivamogga-small-business-guide</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/digital-marketing-shivamogga-small-business-guide.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/full-stack-developer-from-shivamogga</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/full-stack-developer-from-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/google-ads-shivamogga-guide</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/google-ads-shivamogga-guide.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/google-business-profile-shivamogga-local-seo</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/google-business-profile-shivamogga-local-seo.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/homestay-marketing-jog-falls-agumbe</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/homestay-marketing-jog-falls-agumbe.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/instagram-whatsapp-marketing-shivamogga</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/instagram-whatsapp-marketing-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/local-seo-bangalore-startups</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/local-seo-bangalore-startups.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/meta-ads-vs-google-ads-for-startups</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/meta-ads-vs-google-ads-for-startups.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/shimoga-vs-shivamogga-seo</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/shimoga-vs-shivamogga-seo.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/social-media-framework-for-new-business</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/social-media-framework-for-new-business.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/startup-launch-checklist-karnataka</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/startup-launch-checklist-karnataka.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/website-design-cost-shivamogga</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/website-design-cost-shivamogga.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/website-development-cost-bangalore-startups</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/website-development-cost-bangalore-startups.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/website-or-app-first-for-startups</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/website-or-app-first-for-startups.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.wbzard.com/blog/what-is-mern-stack</loc>
     <lastmod>2026-10-21</lastmod>
+    <image:image><image:loc>https://www.wbzard.com/images/blog/what-is-mern-stack.png</image:loc></image:image>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

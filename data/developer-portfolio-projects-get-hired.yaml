@@ -1,7 +1,7 @@
 id: "developer-portfolio-projects-get-hired"
 title: "Portfolio Projects That Get Freshers Hired: A Guide for Shivamogga Developers"
-seoTitle: "Developer Portfolio Projects That Get You Hired — Fresher Guide (Shivamogga 2026)"
-metaDescription: "Which projects should a fresher developer build to get hired? Project ideas by level, how to deploy them, write a good README and present them on your resume, for students in Shivamogga (Shimoga) and beyond."
+seoTitle: "Portfolio Projects That Get Freshers Hired (2026 Guide)"
+metaDescription: "Which projects should a fresher developer build? Project ideas by level, deployment, README tips and how to present them on your resume to get hired."
 date: "2026-10-22"
 author: "Vivek"
 excerpt: "A to-do app and a weather app won't make you stand out. Here's how to choose, build, deploy and present portfolio projects that get freshers shortlisted for developer jobs."
@@ -12,6 +12,7 @@ takeaways:
   - "Include features interviewers ask about: authentication, a database, an API, error handling and deployment."
   - "Be ready to explain every decision in your project, since that's what interviewers test."
 coverImage: "/images/blog/developer-portfolio-projects-get-hired.png"
+coverIcon: "FolderGit2"
 category: "Careers"
 keywords: "portfolio projects for freshers, developer portfolio, MERN project ideas, full stack project ideas, projects for resume software developer, GitHub portfolio freshers India"
 locations: ["shivamogga"]

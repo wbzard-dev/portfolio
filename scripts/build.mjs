@@ -62,10 +62,11 @@ for (const route of routes) {
 }
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${routes.filter(r => r.sitemap !== false).map(r => `  <url>
     <loc>${SITE_URL}${r.path === "/" ? "/" : r.path}</loc>
-    <lastmod>${r.lastmod}</lastmod>
+    <lastmod>${r.lastmod}</lastmod>${r.image ? `
+    <image:image><image:loc>${r.image.startsWith("http") ? r.image : SITE_URL + r.image}</image:loc></image:image>` : ""}
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
   </url>`).join("\n")}

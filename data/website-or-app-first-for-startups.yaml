@@ -1,7 +1,7 @@
 id: "website-or-app-first-for-startups"
 title: "Website or App First? A Founder's Guide to Building Your MVP"
-seoTitle: "Website or App First? MVP Development Guide for Bangalore Startups"
-metaDescription: "Should your startup build a website, a web app or a mobile app first? A practical MVP guide for founders in Bangalore and Shivamogga covering costs, timelines and how to decide."
+seoTitle: "Website or App First? MVP Guide for Startups"
+metaDescription: "Should your startup build a website, web app or mobile app first? How to decide, what each costs, and how Bangalore founders launch an MVP faster."
 date: "2026-10-21"
 author: "Vivek"
 excerpt: "Many first-time founders jump straight to 'we need an app'. Often the fastest route to paying customers is a website plus a lean web app. Here's how to decide."
@@ -12,6 +12,7 @@ takeaways:
   - "Custom web applications in India typically cost ₹2–15 lakh+; cutting the MVP scope is the biggest lever on cost."
   - "Always own the code repository and app-store accounts, and plan launch marketing alongside the build."
 coverImage: "/images/blog/website-or-app-first-for-startups.png"
+coverIcon: "Smartphone"
 category: "Apps & MVPs"
 keywords: "MVP development Bangalore, website or app first, app development for startups, mobile app development Bangalore, web app vs mobile app, MVP development India, startup app developers Shivamogga"
 locations: ["bangalore"]

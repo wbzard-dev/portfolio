@@ -1,7 +1,7 @@
 id: "devops-roadmap-for-beginners"
 title: "DevOps Roadmap for Beginners (2026): What to Learn, in What Order"
-seoTitle: "DevOps Roadmap 2026 for Beginners — Linux, Docker, CI/CD, AWS, Kubernetes"
-metaDescription: "A step-by-step DevOps roadmap for beginners and students in 2026: Linux, networking, Git, Docker, CI/CD, AWS, Terraform and Kubernetes, in the right order, with projects to build."
+seoTitle: "DevOps Roadmap for Beginners 2026: Linux to Kubernetes"
+metaDescription: "A step-by-step DevOps roadmap for beginners: Linux, networking, Git, Docker, CI/CD, AWS, Terraform and Kubernetes, with projects to build at each stage."
 date: "2026-10-21"
 author: "Vivek"
 excerpt: "DevOps looks like an endless list of tools. It isn't. Here's the order to learn it in, what to skip at first, and the projects that prove you can do the job."
@@ -12,6 +12,7 @@ takeaways:
   - "The best proof is a real app you've containerised and deployed to the cloud with an automated pipeline."
   - "Use free-tier cloud services and billing alerts to keep practice costs near zero."
 coverImage: "/images/blog/devops-roadmap-for-beginners.png"
+coverIcon: "Infinity"
 category: "Careers"
 keywords: "DevOps roadmap 2026, DevOps for beginners, how to learn DevOps, DevOps course Shivamogga, Docker Kubernetes roadmap, AWS DevOps for freshers"
 locations: ["shivamogga"]

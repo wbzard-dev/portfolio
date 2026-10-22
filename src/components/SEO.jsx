@@ -51,11 +51,19 @@ const SEO = ({
     jsonLd         = [],       // extra schema.org objects (FAQPage, Service, …)
     noindex        = false,
     abstract       = null,     // article summary (key takeaways)
+    imageAlt       = null,
+    section        = null,     // article category
+    tags           = null,     // comma-separated keywords → article:tag
+    wordCount      = null,
+    places         = [],       // city names the article is about
 }) => {
-    const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+    const isArticle = type === "article";
+    // Articles carry long, keyword-led titles: only add the brand when it still fits Google's ~60-character display.
+    const branded   = `${title} | ${site.name}`;
+    const fullTitle = title.includes(site.name) || (isArticle && branded.length > 60) ? title : branded;
     const canonical = absolute(url);
     const imageUrl  = absolute(image);
-    const isArticle = type === "article";
+    const tagList   = tags ? tags.split(",").map(t => t.trim()).filter(Boolean) : [];
 
     const schemas = [organizationSchema];
 
@@ -67,7 +75,7 @@ const SEO = ({
             "description":      description,
             "url":              canonical,
             "mainEntityOfPage": canonical,
-            "image":            imageUrl,
+            "image":            { "@type": "ImageObject", "url": imageUrl, "width": 1200, "height": 630 },
             "datePublished":    datePublished,
             "dateModified":     dateModified || datePublished,
             "author":           author === site.founder
@@ -75,7 +83,12 @@ const SEO = ({
                 : { "@type": "Person", "name": author },
             "publisher":        { "@id": `${site.url}/#organization` },
             "inLanguage":       "en-IN",
+            "isPartOf":         { "@type": "Blog", "@id": `${site.url}/blog#blog`, "name": `${site.name} Blog`, "url": `${site.url}/blog` },
             ...(abstract ? { "abstract": abstract } : {}),
+            ...(section ? { "articleSection": section } : {}),
+            ...(tagList.length ? { "keywords": tagList.join(", ") } : {}),
+            ...(wordCount ? { "wordCount": wordCount } : {}),
+            ...(places.length ? { "contentLocation": places.map(name => ({ "@type": "City", "name": name })) } : {}),
         });
     }
 
@@ -110,14 +123,20 @@ const SEO = ({
             <meta property="og:image"       content={imageUrl} />
             <meta property="og:image:width"  content="1200" />
             <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt"   content={imageAlt || title} />
             <meta property="og:site_name"   content={site.name} />
             <meta property="og:locale"      content="en_IN" />
             {isArticle && datePublished && <meta property="article:published_time" content={datePublished} />}
+            {isArticle && datePublished && <meta property="article:modified_time" content={dateModified || datePublished} />}
+            {isArticle && section && <meta property="article:section" content={section} />}
+            {isArticle && tagList.slice(0, 6).map(t => <meta key={t} property="article:tag" content={t} />)}
 
             <meta name="twitter:card"        content="summary_large_image" />
             <meta name="twitter:title"       content={fullTitle} />
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image"       content={imageUrl} />
+            <meta name="twitter:image:alt"   content={imageAlt || title} />
+            {isArticle && author && <meta name="author" content={author} />}
 
             <meta name="geo.region"    content="IN-KA" />
             <meta name="geo.placename" content="Bengaluru; Shivamogga" />

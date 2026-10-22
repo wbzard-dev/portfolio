@@ -1,7 +1,7 @@
 id: "what-is-mern-stack"
 title: "What Is the MERN Stack? A Beginner's Guide for Students"
-seoTitle: "What Is the MERN Stack? Beginner's Guide (MongoDB, Express, React, Node.js)"
-metaDescription: "What is the MERN stack? A simple explanation of MongoDB, Express, React and Node.js, how they work together, what you can build, how long it takes to learn, and how to start, for students and freshers."
+seoTitle: "What Is the MERN Stack? A Beginner's Guide"
+metaDescription: "The MERN stack explained for beginners: MongoDB, Express, React and Node.js, how they work together, what you can build and how to start learning it."
 date: "2026-10-21"
 author: "Vivek"
 excerpt: "MongoDB, Express, React and Node.js, explained simply: what each one does, how they fit together, and why MERN is a popular first stack for new developers."
@@ -12,6 +12,7 @@ takeaways:
   - "With focused daily practice, a beginner can build and deploy a basic full-stack MERN app in about 6–8 weeks."
   - "Start with JavaScript fundamentals and Git, then React, then Node, Express and MongoDB, then deployment."
 coverImage: "/images/blog/what-is-mern-stack.png"
+coverIcon: "Layers"
 category: "Careers"
 keywords: "what is MERN stack, MERN stack explained, MERN stack for beginners, MongoDB Express React Node, MERN stack course Shivamogga, learn MERN stack"
 locations: ["shivamogga"]

@@ -26,7 +26,7 @@ export const routes = [
     { path: "/courses",                 priority: "0.8", changefreq: "monthly", lastmod: PAGES_UPDATED },
     ...courseList.map(c => ({ path: c.href, priority: "0.9", changefreq: "monthly", lastmod: PAGES_UPDATED })),
     { path: "/blog",                    priority: "0.8", changefreq: "weekly",  lastmod: posts[0]?.date || PAGES_UPDATED },
-    ...posts.map(p => ({ path: `/blog/${p.slug}`, priority: "0.7", changefreq: "yearly", lastmod: p.updated || p.date })),
+    ...posts.map(p => ({ path: `/blog/${p.slug}`, priority: "0.7", changefreq: "yearly", lastmod: p.updated || p.date, image: p.coverImage })),
     { path: "/privacy-policy",          priority: "0.2", changefreq: "yearly",  lastmod: PAGES_UPDATED },
     { path: "/terms",                   priority: "0.2", changefreq: "yearly",  lastmod: PAGES_UPDATED },
     // Rendered but kept out of the sitemap (noindex pages)

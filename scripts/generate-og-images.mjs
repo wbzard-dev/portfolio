@@ -8,6 +8,9 @@ import os from "node:os";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import yaml from "js-yaml";
+import React from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import * as icons from "lucide-react";
 
 const root  = path.resolve(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), "..");
 const force = process.argv.includes("--force");
@@ -40,15 +43,31 @@ const images = [
     { out: "og/courses.png",                      label: "Courses · Shivamogga",  title: "Developer courses: MERN Stack & DevOps." },
 ];
 
+const categoryIcons = {
+    "Startups": "Rocket", "Websites": "Globe", "Digital Marketing": "Megaphone", "SEO": "Search",
+    "Social Media": "Instagram", "Careers": "GraduationCap", "Apps & MVPs": "Smartphone",
+};
+
 for (const file of fs.readdirSync(path.join(root, "data")).filter(f => f.endsWith(".yaml"))) {
     const post = yaml.load(fs.readFileSync(path.join(root, "data", file), "utf8"));
     if (!post.coverImage?.startsWith("/images/blog/")) continue;   // external covers are left alone
-    images.push({ out: post.coverImage.replace("/images/", ""), label: post.category || "Guide", title: post.title });
+    images.push({ out: post.coverImage.replace("/images/", ""), label: post.category || "Guide", title: post.title,
+                  icon: post.coverIcon || categoryIcons[post.category] || "FileText" });
 }
 
 const escape = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
 
-const html = ({ label, title }) => `<!doctype html><html><head><meta charset="utf-8">
+// Minimal line icon (lucide, same set as the site UI) on the right of blog covers. `coverIcon` in the post YAML
+// picks it; otherwise the category decides.
+const iconSvg = (name) => {
+    if (!name) return "";
+    if (!icons[name]) { console.warn(`  ! unknown icon "${name}", skipped`); return ""; }
+    return renderToStaticMarkup(React.createElement(icons[name], { size: 210, strokeWidth: 1, color: "#93B4F8" }));
+};
+
+const html = ({ label, title, icon }) => {
+    const art = iconSvg(icon);
+    return `<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@500;700&display=block" rel="stylesheet">
 <style>
   * { margin: 0; box-sizing: border-box; }
@@ -56,7 +75,12 @@ const html = ({ label, title }) => `<!doctype html><html><head><meta charset="ut
          background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0); background-size: 36px 36px; }
   .wrap { position: absolute; inset: 0; padding: 64px 72px; display: flex; flex-direction: column; }
   .label { font-size: 22px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #93B4F8; }
-  .title { margin-top: auto; font-family: Anton, Impact, sans-serif; font-size: ${title.length > 60 ? 70 : title.length > 40 ? 84 : 100}px; line-height: 1.04; max-width: 1000px; }
+  .title { margin-top: auto; font-family: Anton, Impact, sans-serif; line-height: 1.04;
+           ${art ? `font-size: ${title.length > 60 ? 62 : title.length > 40 ? 74 : 90}px; max-width: 780px;`
+                 : `font-size: ${title.length > 60 ? 70 : title.length > 40 ? 84 : 100}px; max-width: 1000px;`} }
+  .art { position: absolute; top: 64px; right: 72px; width: 260px; height: 260px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+         background: radial-gradient(circle, rgba(37,99,235,0.16) 0%, rgba(37,99,235,0.04) 70%); border: 1px solid rgba(147,180,248,0.22); }
+  .art svg { width: 150px; height: 150px; }
   .bar { width: 96px; height: 6px; background: #2563EB; border-radius: 3px; margin: 36px 0 28px; }
   .foot { display: flex; align-items: center; justify-content: space-between; font-size: 22px; color: rgba(255,255,255,0.55); font-weight: 500; }
   .foot img { height: 64px; filter: brightness(0) invert(1); }
@@ -65,7 +89,8 @@ const html = ({ label, title }) => `<!doctype html><html><head><meta charset="ut
   <div class="title">${escape(title)}</div>
   <div class="bar"></div>
   <div class="foot"><span>wbzard.com · Bangalore &amp; Shivamogga</span><img src="${logo}" alt=""></div>
-</div></body></html>`;
+</div>${art ? `<div class="art">${art}</div>` : ""}</body></html>`;
+};
 
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "og-"));
 let made = 0;

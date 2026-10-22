@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Calendar, User, ArrowLeft, ArrowRight, Share2 } from "lucide-react";
+import { Calendar, User, Clock, ArrowLeft, ArrowRight, Share2 } from "lucide-react";
 import SEO from "./SEO";
 import { posts, getPost, formatDate, coverSrc } from "../data/posts";
 import { site } from "../config/site";
@@ -28,7 +28,17 @@ const BlogPost = () => {
     );
 
     const isGeneratedCover = /^\/images\/(blog|og)\//.test(post.coverImage || "");   // text baked in — show whole, never crop
-    const related = posts.filter(p => p.slug !== post.slug && p.category === post.category).slice(0, 2);
+    // Same category first, preferring posts for the same city, then same-city posts from other categories.
+    const sharesCity = p => p.locations.some(l => post.locations.includes(l));
+    const others     = posts.filter(p => p.slug !== post.slug);
+    const related    = [
+        ...others.filter(p => p.category === post.category && sharesCity(p)),
+        ...others.filter(p => p.category === post.category && !sharesCity(p)),
+        ...others.filter(p => p.category !== post.category && sharesCity(p)),
+    ].slice(0, 3);
+    const wordCount   = post.content.split(/\s+/).filter(Boolean).length;
+    const readMinutes = Math.max(1, Math.round(wordCount / 220));
+    const places      = post.locations.map(l => ({ bangalore: "Bengaluru", shivamogga: "Shivamogga" }[l])).filter(Boolean);
 
     return (
         <motion.article
@@ -48,6 +58,11 @@ const BlogPost = () => {
                 datePublished={post.date}
                 dateModified={post.updated}
                 abstract={post.takeaways?.join(" ")}
+                imageAlt={post.title}
+                section={post.category}
+                tags={post.keywords}
+                wordCount={wordCount}
+                places={places}
                 breadcrumbs={[{ name: "Blog", path: "/blog" }, { name: post.title, path: `/blog/${id}` }]}
             />
 
@@ -114,6 +129,10 @@ const BlogPost = () => {
                         <span style={{ display: "flex", alignItems: "center", gap: "0.35rem", fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 500 }}>
                             <User size={12} />
                             {post.author}
+                        </span>
+                        <span style={{ display: "flex", alignItems: "center", gap: "0.35rem", fontSize: "0.75rem", color: "var(--text-muted)", fontWeight: 500 }}>
+                            <Clock size={12} />
+                            {readMinutes} min read
                         </span>
                     </div>
 

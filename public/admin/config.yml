@@ -70,6 +70,7 @@ collections:
         options: [{ label: "Bangalore", value: bangalore }, { label: "Shivamogga", value: shivamogga }]
       - { label: "Excerpt", name: excerpt, widget: text, hint: "1–2 sentences shown on blog cards and in Google if no meta description is set." }
       - { label: "Cover image", name: coverImage, widget: image, required: false, hint: "1200×630 works best. Leave empty to use the default Wbzard Labs image." }
+      - { label: "Cover icon", name: coverIcon, widget: string, required: false, hint: "Lucide icon name (e.g. Coffee, ChefHat, Rocket — see lucide.dev/icons) drawn on generated covers by `npm run og-images`. Leave empty to use the category's icon." }
       - label: "Key takeaways"
         name: takeaways
         widget: list
