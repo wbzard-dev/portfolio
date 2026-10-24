@@ -1,0 +1,103 @@
+id: "git-and-github-for-beginners"
+title: "Git and GitHub for Beginners: The Commands and Habits Every Fresher Needs"
+seoTitle: "Git and GitHub for Beginners: A Fresher's Guide"
+metaDescription: "Learn Git and GitHub from scratch: version control basics, the commands you use daily, branches, pull requests and a GitHub profile that gets interviews."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Every software job uses Git, and recruiters look at your GitHub before your resume. Here's what you need to know as a beginner, without the confusing parts."
+takeaways:
+  - "Git is a version control tool that tracks changes to code; GitHub is a website that hosts Git repositories and enables collaboration."
+  - "A handful of commands covers daily work: clone, status, add, commit, push, pull, branch and checkout or switch."
+  - "Work on a separate branch for each feature and merge through a pull request."
+  - "Commit small changes often, with clear messages that explain what changed and why."
+  - "A clean GitHub profile with a few well-documented projects helps freshers get interviews."
+coverImage: "/images/blog/git-and-github-for-beginners.png"
+coverIcon: "GitBranch"
+category: "Careers"
+keywords: "Git for beginners, GitHub for beginners, Git commands, learn Git, Git tutorial, GitHub profile for freshers, version control basics, Git and GitHub Shivamogga"
+locations: ["shivamogga"]
+content: |
+  In college, you might share code over WhatsApp or keep folders called `project-final-v3-REAL`. In a job, every team uses **Git**. It's one of the first things interviewers and senior developers expect you to know, whether you're a MERN developer or a DevOps engineer.
+
+  ## Git vs GitHub
+
+  - **Git** is a tool on your computer that records every change to your code. You can go back to any earlier version, try ideas safely and merge work from other people.
+  - **GitHub** is a website that stores Git repositories online. Teams use it to review code, track issues and deploy. (GitLab and Bitbucket do similar jobs.)
+
+  ## Setting up
+
+  1. Install Git from the official website (on Windows this includes Git Bash)
+  2. Set your name and email:
+
+  ```bash
+  git config --global user.name "Your Name"
+  git config --global user.email "you@example.com"
+  ```
+
+  3. Create a free GitHub account with a professional username (your name, not `coolboy_2005`)
+  4. Set up authentication with GitHub (an SSH key, or sign in through Git Credential Manager)
+
+  ## The commands you'll use every day
+
+  | Command | What it does |
+  |---|---|
+  | `git init` | Start tracking a folder with Git |
+  | `git clone <url>` | Download a repository from GitHub |
+  | `git status` | See what's changed |
+  | `git add <file>` / `git add .` | Stage changes for the next commit |
+  | `git commit -m "message"` | Save a snapshot with a message |
+  | `git log --oneline` | See commit history |
+  | `git push` | Upload your commits to GitHub |
+  | `git pull` | Download and merge others' changes |
+  | `git branch` | List or create branches |
+  | `git switch <branch>` (or `git checkout`) | Move to another branch |
+  | `git switch -c <branch>` | Create a branch and move to it |
+  | `git merge <branch>` | Merge another branch into the current one |
+  | `git diff` | See exactly what changed |
+
+  ## How teams actually work
+
+  1. **Pull** the latest `main` branch
+  2. **Create a branch** for your task: `git switch -c feature/login-form`
+  3. Make changes, **commit** in small steps
+  4. **Push** the branch to GitHub
+  5. Open a **pull request (PR)** describing what you did
+  6. A teammate **reviews**, you fix comments, the PR is **merged**
+  7. Delete the branch and start the next task
+
+  Practise this flow on your own projects. Interviewers often ask how you'd handle a merge conflict or a code review.
+
+  ## Writing good commit messages
+
+  - Bad: `changes`, `fixed`, `final`
+  - Good: `Add login form validation`, `Fix cart total when coupon is removed`
+
+  One logical change per commit. Present tense. Short first line.
+
+  ## Things that trip beginners up
+
+  - **Committing secrets.** Never commit passwords, API keys or `.env` files. Add them to `.gitignore`. If you commit one by accident, change the key immediately; deleting the file isn't enough.
+  - **Committing `node_modules`.** Add it to `.gitignore`.
+  - **Merge conflicts.** Git shows both versions in the file. Choose the right code, remove the markers, then commit.
+  - **Working directly on main.** Use branches, even on solo projects, to build the habit.
+  - **Being afraid to experiment.** That's what Git is for. Commit, then try.
+
+  ## Make your GitHub profile work for you
+
+  - A **profile README** with a one-line intro, skills and links
+  - **Pinned repositories:** your best 4–6 projects
+  - Each project with a **README**: what it does, screenshots, tech stack, how to run it, a live link
+  - **Regular commits** over months rather than everything on one day
+
+  Which projects to build: [portfolio projects that get freshers hired](/blog/developer-portfolio-projects-get-hired).
+
+  ## Where to go next
+
+  Git is a foundation. Next steps depend on your path:
+
+  - **Web development:** build and deploy full-stack apps. See [what is the MERN stack](/blog/what-is-mern-stack)
+  - **DevOps:** Git triggers CI/CD pipelines. See the [DevOps roadmap](/blog/devops-roadmap-for-beginners) and [Docker for beginners](/blog/docker-for-beginners)
+
+  ## Learn it with us
+
+  Both our live online courses for Shivamogga students use Git and GitHub from the first week, on real projects with code reviews: the [MERN stack course](/courses/mern-stack-course-shivamogga) and the [DevOps course](/courses/devops-course-shivamogga). See [all courses](/courses).

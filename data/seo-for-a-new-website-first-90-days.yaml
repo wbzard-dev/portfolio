@@ -1,0 +1,93 @@
+id: "seo-for-a-new-website-first-90-days"
+title: "SEO for a New Website: What to Do in the First 90 Days"
+seoTitle: "SEO for a New Website: Your First 90 Days Plan"
+metaDescription: "A 90-day SEO plan for a brand-new business website: technical setup, Search Console, local pages, content, Google Business Profile and what results to expect."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "A new website starts with zero trust from Google. That's normal. Here's what to do in the first 90 days so it gets indexed, ranks for local searches and starts bringing enquiries."
+takeaways:
+  - "A new website usually takes weeks to get indexed properly and a few months to rank for competitive searches."
+  - "The first month is technical: Search Console, sitemap, page speed, titles and one clear page per service."
+  - "Local businesses get the quickest wins from a complete Google Business Profile and service-plus-city pages."
+  - "Content that answers real customer questions builds rankings for long-tail searches over months."
+  - "Measure enquiries from organic search, not just rankings or traffic."
+coverImage: "/images/blog/seo-for-a-new-website-first-90-days.png"
+coverIcon: "TrendingUp"
+category: "SEO"
+keywords: "SEO for new website, new website not ranking, how long does SEO take, SEO checklist new website, SEO plan 90 days, SEO for startups India, SEO Shivamogga, SEO Bangalore"
+locations: ["bangalore", "shivamogga"]
+content: |
+  You've launched a website and searched for your business on Google. Nothing. Or it shows up on page 4. This is normal for a new domain. Google needs time to discover the site, understand it and trust it.
+
+  What you do in the first 90 days decides whether that takes three months or a year.
+
+  ## What to expect
+
+  - **Days 1–14:** Google discovers and indexes your pages (faster if you submit a sitemap)
+  - **Weeks 3–8:** your brand name ranks; some long-tail searches start showing impressions
+  - **Months 2–4:** local and specific searches ("website design Shimoga", "physiotherapist in HSR Layout") start ranking if the pages are good
+  - **Month 6+:** competitive searches, with steady content and links
+
+  Low-competition local searches, like many in Shivamogga, move faster. Head terms in Bangalore take much longer.
+
+  ## Days 1–30: Get the foundation right
+
+  **Set up Google Search Console** and submit your sitemap. It's free and shows exactly what Google sees. Step by step: [Google Search Console setup guide](/blog/google-search-console-setup-guide).
+
+  **One page per service.** If you offer three services, you need three pages, not one page listing all three. Each page targets one main search.
+
+  **Write proper titles and descriptions.** Each page needs a unique title (around 50–60 characters) with the service and city, for example *"Physiotherapy Clinic in Shivamogga | [Brand]"*.
+
+  **Check the technical basics:**
+
+  - Site works on HTTPS and on one version (www or not, with the other redirecting)
+  - Pages load fast on mobile. See [website speed for small businesses](/blog/website-speed-core-web-vitals-small-business)
+  - No important pages blocked by `robots.txt` or a "noindex" tag
+  - Clear headings (one H1 per page) and descriptive image alt text
+  - Your name, address and phone number match your Google Business Profile exactly
+
+  **Set up your Google Business Profile** if you serve local customers. For many businesses it brings more calls than the website itself. See the [Google Business Profile checklist](/blog/google-business-profile-shivamogga-local-seo).
+
+  ## Days 31–60: Local relevance and trust
+
+  - **Location pages** for the areas you genuinely serve (only where you have something specific to say)
+  - **Listings** on Justdial, Sulekha, IndiaMART and industry directories with identical name, phone and website
+  - **Reviews:** start a steady habit. See [how to get your first 50 Google reviews](/blog/how-to-get-more-google-reviews)
+  - **Internal links:** link service pages to each other and from the homepage
+  - **Structured data:** LocalBusiness or ProfessionalService schema, plus FAQ content where it helps
+
+  ## Days 61–90: Content that answers questions
+
+  Write down the questions customers ask on calls and WhatsApp. Each good question is a page or blog post:
+
+  - "How much does [service] cost in [city]?"
+  - "[Option A] vs [Option B]: which is right for me?"
+  - "How long does [process] take?"
+  - "What to check before choosing a [provider]"
+
+  Answer clearly and honestly, with your real experience. Two useful posts a month beat ten thin ones.
+
+  **Earn a few real links:** local news, associations, partners, suppliers and event pages. A handful of relevant local links is worth more than hundreds of spammy ones.
+
+  ## What to measure
+
+  - **Search Console:** impressions, clicks and the queries you appear for
+  - **Indexed pages:** are all your important pages indexed?
+  - **Enquiries:** calls, WhatsApp clicks and form submissions from organic search ([set up tracking](/blog/ga4-conversion-tracking-setup))
+
+  Rankings are a means. Enquiries are the goal.
+
+  ## Mistakes that slow new sites down
+
+  1. One long page for everything
+  2. Copying text from other websites, or publishing AI text without editing it
+  3. Changing URLs after launch without redirects
+  4. Buying cheap backlinks
+  5. Ignoring the Google Business Profile
+  6. Giving up at week six
+
+  ## Where we fit
+
+  We build websites that are ready for search from day one, with clean code, fast pages, structured data and one page per service, then run the 90-day plan with you. See our [SEO services](/services/seo-services) or, in Shivamogga, [local SEO services](/shivamogga/seo-services).
+
+  Launching a new site? [Get a free launch plan](/startup-launch-package) with an SEO roadmap.

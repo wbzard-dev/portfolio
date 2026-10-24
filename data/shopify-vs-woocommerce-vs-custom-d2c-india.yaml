@@ -1,0 +1,87 @@
+id: "shopify-vs-woocommerce-vs-custom-d2c-india"
+title: "Shopify vs WooCommerce vs Custom: Choosing an E-commerce Platform for an Indian D2C Brand"
+seoTitle: "Shopify vs WooCommerce vs Custom for Indian D2C Brands"
+metaDescription: "Comparing Shopify, WooCommerce and custom e-commerce for Indian D2C startups: costs, payments, COD, shipping, GST invoices, speed, SEO and when to switch."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Your store platform affects launch speed, monthly costs, checkout conversion and how easily you can grow. Here's an honest comparison for Indian D2C founders."
+takeaways:
+  - "Shopify is usually the fastest way for a D2C brand to launch, with hosting, security and checkout handled for you."
+  - "WooCommerce runs on WordPress and gives more control at lower software cost, but needs more maintenance."
+  - "A custom or headless store makes sense once you need unique features, subscriptions logic, very high performance or deep integrations."
+  - "For India, check UPI and Razorpay or similar gateways, COD handling, shipping aggregator integrations and GST invoicing on any platform."
+  - "Total cost includes apps, plugins, transaction fees, themes and developer time, not just the plan price."
+coverImage: "/images/blog/shopify-vs-woocommerce-vs-custom-d2c-india.png"
+coverIcon: "CreditCard"
+category: "Websites"
+keywords: "Shopify vs WooCommerce India, best ecommerce platform India, D2C website development, Shopify India, WooCommerce India, custom ecommerce website, headless ecommerce India, D2C brand Bangalore"
+locations: ["bangalore"]
+content: |
+  Every D2C founder hits this decision early: Shopify, WooCommerce, or build something custom? The wrong choice doesn't kill a brand, but it can cost months and lakhs to fix later.
+
+  If you're still at the idea stage, start with [how to start a D2C brand in Bangalore](/blog/how-to-start-a-d2c-brand-in-bangalore).
+
+  ## The short answer
+
+  - **Launching your first products, small team:** Shopify
+  - **Content-heavy brand, tight budget, someone technical on hand:** WooCommerce
+  - **Proven demand, unique buying experience or complex logic:** custom or headless
+
+  ## Comparison
+
+  | | Shopify | WooCommerce | Custom / headless |
+  |---|---|---|---|
+  | Launch speed | Fastest | Medium | Slowest |
+  | Hosting and security | Included | You manage (or managed WordPress hosting) | You or your developer manage |
+  | Monthly cost | Plan + apps + possible transaction fees | Hosting + premium plugins | Hosting + ongoing development |
+  | Flexibility | High within Shopify's rules | Very high (open source) | Unlimited |
+  | Maintenance | Low | Medium to high (updates, plugin conflicts) | Depends on the build |
+  | Performance | Good with a light theme | Varies widely by hosting and plugins | Can be the fastest |
+  | Best for | Most new D2C brands | Content and SEO-led brands | Scaling brands with specific needs |
+
+  Plan prices change. Compare current pricing for your expected order volume, including app and gateway fees.
+
+  ## India-specific checks (on any platform)
+
+  - **Payments:** UPI, cards, net banking and wallets through gateways such as Razorpay, PayU, Cashfree or PhonePe. Check settlement times and fees.
+  - **Cash on delivery:** COD is still common. Look for COD verification (OTP or WhatsApp confirmation) and partial-prepaid options to cut return-to-origin losses.
+  - **Shipping:** integrations with aggregators such as Shiprocket, Delhivery or others, pincode serviceability checks and tracking updates.
+  - **GST:** correct tax setup and GST-compliant invoices. Talk to your CA.
+  - **WhatsApp:** order confirmations, abandoned-cart reminders and support. See [WhatsApp Business app vs API](/blog/whatsapp-business-app-vs-api).
+  - **Mobile checkout:** most Indian D2C traffic is on phones. Test the checkout on a mid-range Android phone on mobile data.
+
+  ## When Shopify is the right call
+
+  - You want to sell in weeks, not months
+  - Nobody on the team wants to manage servers or plugin updates
+  - Your products and checkout are fairly standard
+  - You'll rely on apps for reviews, subscriptions, upsells and loyalty
+
+  **Watch out for:** app costs that add up month after month, heavy themes slowing the site, and transaction fees if you don't use Shopify's preferred payment setup.
+
+  ## When WooCommerce is the right call
+
+  - You already have a WordPress site with content that ranks
+  - You want full ownership of the code and data
+  - You or a developer can handle updates, backups and security
+
+  **Watch out for:** cheap hosting, too many plugins and slow mobile pages. See [WordPress vs custom websites](/blog/wordpress-vs-custom-website-shivamogga).
+
+  ## When to go custom or headless
+
+  - You've validated demand and the store is now a bottleneck
+  - You need unique features: product configurators, complex subscriptions, B2B pricing, marketplace logic
+  - Speed and Core Web Vitals are a competitive advantage ([why speed matters](/blog/website-speed-core-web-vitals-small-business))
+  - You want to integrate deeply with your ERP, warehouse or app
+
+  **Headless** keeps a platform like Shopify for products, orders and checkout, with a custom front end on top. It's often the best of both, but costs more to build and maintain.
+
+  ## Don't forget the launch
+
+  The platform is maybe a third of the work. The rest is product photography, a clear brand story, SEO-friendly category and product pages, tracking, and the first [Meta and Google Ads](/blog/meta-ads-vs-google-ads-for-startups) campaigns.
+
+  ## Where we fit
+
+  We help D2C founders pick the right platform for their stage, then build and launch the store: product pages, payments, COD and shipping setup, tracking, and launch campaigns. See [website development](/services/website-development) and our [e-commerce guide](/blog/ecommerce-website-shivamogga).
+
+  Launching a D2C brand? [Get a free launch plan](/startup-launch-package).

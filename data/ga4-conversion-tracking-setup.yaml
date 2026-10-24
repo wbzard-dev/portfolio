@@ -1,0 +1,102 @@
+id: "ga4-conversion-tracking-setup"
+title: "Conversion Tracking for Small Businesses: Track Calls, WhatsApp Clicks and Forms in GA4"
+seoTitle: "GA4 Conversion Tracking: Calls, WhatsApp & Forms"
+metaDescription: "How to track enquiries in Google Analytics 4: key events for calls, WhatsApp clicks and form submissions, Google Ads and Meta conversions, and UTM links."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "If you can't see which ad, post or search brought an enquiry, you can't tell what's working. Here's how to track calls, WhatsApp clicks and form submissions properly."
+takeaways:
+  - "Google Analytics 4 counts enquiries as key events, such as a form submission, a call tap or a WhatsApp click."
+  - "A thank-you page after a form is the simplest and most reliable thing to track as a conversion."
+  - "Google Ads and Meta Ads need their own conversion tracking so they can optimise for enquiries, not clicks."
+  - "UTM parameters on every link you share show which campaign or post brought each visitor."
+  - "Test every conversion yourself before spending money on ads."
+coverImage: "/images/blog/ga4-conversion-tracking-setup.png"
+coverIcon: "Activity"
+category: "Digital Marketing"
+keywords: "GA4 conversion tracking, track WhatsApp clicks Google Analytics, track phone calls GA4, Google Ads conversion tracking, Meta Pixel setup, key events GA4, UTM parameters"
+locations: ["bangalore", "shivamogga"]
+content: |
+  Most small business websites have Google Analytics installed and nobody looks at it. The reason is simple: page views don't tell you much. What you want to know is **which source brings enquiries**. That needs conversion tracking.
+
+  ## What to track
+
+  For most local businesses and early startups, three actions matter:
+
+  1. **Form submissions** (enquiry, booking, admission, quote request)
+  2. **Call clicks** (taps on a `tel:` link on mobile)
+  3. **WhatsApp clicks** (taps on a `wa.me` link or WhatsApp button)
+
+  Optionally: booking completions (Cal.com, Calendly), email clicks, brochure downloads.
+
+  ## Step 1: Use a thank-you page for forms
+
+  After a successful form submission, send people to a page like `/thank-you`. This is the most reliable conversion because:
+
+  - It's easy to track in GA4, Google Ads and Meta
+  - It only fires when the form actually succeeded
+  - It works the same for every tool
+
+  Mark the thank-you page as **noindex** so it doesn't appear in Google search.
+
+  ## Step 2: Set up key events in GA4
+
+  In Google Analytics 4, conversions are called **key events**.
+
+  - **Thank-you page:** create an event for page views where the page path is `/thank-you`, then mark it as a key event.
+  - **Call and WhatsApp clicks:** send an event when someone taps the link. You can do this in the website code (for example `gtag('event', 'contact', { method: 'whatsapp' })`) or with Google Tag Manager using a click trigger on links containing `tel:` or `wa.me`.
+  - Mark `generate_lead` (forms) and your contact events as **key events** in Admin → Events.
+
+  Use GA4's **DebugView** or Tag Assistant to check the events fire when you test.
+
+  ## Step 3: Google Ads conversions
+
+  Google Ads needs to know what a conversion is, or it optimises for cheap clicks.
+
+  - Create conversion actions in Google Ads for leads (form), calls from the website and WhatsApp clicks
+  - Either import GA4 key events into Google Ads, or install the Google Ads tag with the conversion ID and label
+  - Turn on **call reporting** if you use call ads or call extensions
+  - Set **primary** conversions to the ones that really matter (usually forms and calls)
+
+  ## Step 4: Meta Pixel and Conversions API
+
+  For Facebook and Instagram ads:
+
+  - Install the **Meta Pixel** on every page
+  - Fire a **Lead** event on the thank-you page, and a **Contact** event on call and WhatsApp clicks
+  - Where possible, add the **Conversions API**, which sends events from the server and is less affected by browser privacy blocking
+  - Verify your domain in Meta Business settings
+
+  More on Meta lead quality: [Meta lead ads guide](/blog/meta-lead-ads-guide-small-business).
+
+  ## Step 5: UTM links for everything you share
+
+  Add UTM parameters to links in Instagram bios, WhatsApp broadcasts, emails and QR codes, so GA4 can tell them apart:
+
+  `https://yourdomain.com/?utm_source=instagram&utm_medium=bio&utm_campaign=diwali-offer`
+
+  - **utm_source:** where (instagram, whatsapp, google, newsletter)
+  - **utm_medium:** what type (bio, broadcast, cpc, qr)
+  - **utm_campaign:** which campaign
+
+  Keep a simple spreadsheet of the links you create so naming stays consistent.
+
+  ## Step 6: Test before spending
+
+  - Submit your own form and check the thank-you page loads
+  - Tap call and WhatsApp buttons on your phone
+  - Check GA4 real-time reports, Google Ads tag diagnostics and Meta Events Manager
+  - Do this again after any website change
+
+  ## What to look at each month
+
+  - Key events by **source / medium**: which channels bring enquiries
+  - Key events by **landing page**: which pages convert
+  - Cost per lead per campaign, from Google Ads and Meta
+  - Organic search enquiries, alongside [Search Console](/blog/google-search-console-setup-guide)
+
+  ## Where we fit
+
+  Every site and campaign we launch has form, call and WhatsApp tracking in GA4, Google Ads and Meta from day one, with first-touch source attached to each lead. See our [website development](/services/website-development) and [ads management](/services/digital-marketing).
+
+  Not sure your tracking works? [Get a free launch plan](/startup-launch-package) and we'll check it.

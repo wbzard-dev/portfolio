@@ -1,0 +1,84 @@
+id: "website-speed-core-web-vitals-small-business"
+title: "Why Your Website Is Slow (and How to Fix It): Core Web Vitals for Small Businesses"
+seoTitle: "Website Speed & Core Web Vitals for Small Businesses"
+metaDescription: "Why website speed matters for enquiries and rankings, Core Web Vitals (LCP, INP, CLS) in plain English, and the fixes that help most."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "A slow website loses customers before they read a word, especially on mobile data. Here's what Google's Core Web Vitals mean in plain English and the fixes that matter most."
+takeaways:
+  - "Most local customers visit on phones, often on mobile data, so slow pages directly cost enquiries."
+  - "Core Web Vitals measure loading (LCP), responsiveness (INP) and visual stability (CLS)."
+  - "Google's 'good' thresholds are LCP under 2.5 seconds, INP under 200 milliseconds and CLS under 0.1."
+  - "Oversized images, heavy themes, too many plugins and third-party scripts cause most slow sites."
+  - "Check your site for free with PageSpeed Insights and the Core Web Vitals report in Search Console."
+coverImage: "/images/blog/website-speed-core-web-vitals-small-business.png"
+coverIcon: "Gauge"
+category: "Websites"
+keywords: "website speed, slow website fix, Core Web Vitals, PageSpeed Insights, improve website speed, LCP INP CLS, website loading time, website speed small business India"
+locations: ["bangalore", "shivamogga"]
+content: |
+  Open your website on your phone, on mobile data, away from Wi-Fi. Count the seconds until you can see something useful. If it's more than three, you're losing people, and paying for it if you run ads.
+
+  ## Why speed matters
+
+  - **Enquiries:** people leave slow pages, especially when they came from an ad or a search with three other options.
+  - **Ads:** landing page experience affects Google Ads Quality Score and cost per click.
+  - **SEO:** page experience, including Core Web Vitals, is part of how Google evaluates pages.
+  - **Real conditions:** many customers browse on mid-range Android phones on patchy 4G.
+
+  ## Core Web Vitals in plain English
+
+  | Metric | What it measures | Good |
+  |---|---|---|
+  | **LCP** (Largest Contentful Paint) | How fast the main content (usually the hero image or heading) appears | Under 2.5 seconds |
+  | **INP** (Interaction to Next Paint) | How quickly the page responds when you tap something | Under 200 ms |
+  | **CLS** (Cumulative Layout Shift) | How much things jump around while loading | Under 0.1 |
+
+  Google measures these from real Chrome users visiting your site, where there's enough data.
+
+  ## How to check your site (free)
+
+  1. **PageSpeed Insights:** enter your URL. Look at the mobile result and the "Diagnose performance issues" list.
+  2. **Search Console → Core Web Vitals:** shows which groups of pages are poor, need improvement or are good. See the [Search Console guide](/blog/google-search-console-setup-guide).
+  3. **Your own phone on mobile data.** The simplest test is still the most honest.
+
+  ## The fixes that matter most
+
+  **1. Compress and resize images.** The most common problem by far. A 4 MB photo straight from a phone or camera doesn't belong on a web page. Resize to the size it's displayed at, use modern formats like WebP or AVIF, and lazy-load images below the fold.
+
+  **2. Cut heavy sliders and background videos.** A hero slider with five large images loads all five. One strong image or a short, compressed video poster is faster and usually converts better.
+
+  **3. Remove plugins and scripts you don't use.** Every chat widget, popup tool, animation library and tracking script adds weight. Keep what you measure and use.
+
+  **4. Use good hosting.** Very cheap shared hosting is often the bottleneck for WordPress sites. A server close to India or a CDN makes a visible difference.
+
+  **5. Load fonts sensibly.** Use one or two font families, with only the weights you need.
+
+  **6. Reserve space for images and embeds.** Setting width and height stops content jumping around (better CLS).
+
+  **7. Defer non-essential JavaScript.** Analytics, chat and social embeds can load after the main content.
+
+  **8. Cache and use a CDN.** Services like Cloudflare serve your site from locations near your visitors.
+
+  ## Builders, WordPress and custom sites
+
+  - **Website builders (Wix, Squarespace and others):** convenient, but you have limited control over speed.
+  - **WordPress:** can be fast with a light theme, few plugins and good hosting; often slow without them.
+  - **Custom or static sites:** usually the fastest, because only what's needed is loaded.
+
+  More: [WordPress vs Wix vs custom websites](/blog/wordpress-vs-custom-website-shivamogga).
+
+  ## A quick self-check
+
+  - [ ] Mobile PageSpeed score checked and the main issues noted
+  - [ ] Images resized and compressed
+  - [ ] Unused plugins and scripts removed
+  - [ ] Hero section loads in under 2.5 seconds on mobile data
+  - [ ] Call and WhatsApp buttons work immediately on tap
+  - [ ] Nothing jumps around while the page loads
+
+  ## Where we fit
+
+  We build fast websites by default: prerendered pages, optimised images, minimal scripts and a CDN, so they load quickly on phones and rank better. If your current site is slow, we can audit it and fix the biggest issues first. See [website development](/services/website-development) or [website design in Shivamogga](/shivamogga/website-design), and [why websites don't get enquiries](/blog/website-not-getting-enquiries-shivamogga).
+
+  Is your site slow on mobile? [Get a free launch plan](/startup-launch-package).

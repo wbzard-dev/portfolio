@@ -1,0 +1,88 @@
+id: "no-code-vs-custom-mvp"
+title: "No-Code vs Custom Code for Your MVP: How Founders Should Decide"
+seoTitle: "No-Code vs Custom MVP: How Founders Should Decide"
+metaDescription: "When to build your startup MVP with no-code tools like Bubble, Glide or Webflow, when to write custom code, the hidden costs of each and how to switch later."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "No-code can get a product in front of users in days. Custom code gives you control and room to scale. The right choice depends on what you're trying to learn, not on what's fashionable."
+takeaways:
+  - "No-code tools are ideal for testing demand quickly with simple workflows, internal tools and prototypes."
+  - "Custom code fits products with complex logic, heavy data, performance needs, unusual integrations or strict data requirements."
+  - "No-code costs can rise with users, and moving off a platform later usually means rebuilding."
+  - "AI coding tools have made custom MVPs faster to build, but they still need experienced developers to review architecture and security."
+  - "Choose the approach that tests your riskiest assumption fastest, and plan the exit before you start."
+coverImage: "/images/blog/no-code-vs-custom-mvp.png"
+coverIcon: "Boxes"
+category: "Apps & MVPs"
+keywords: "no-code vs custom code, no-code MVP, Bubble vs custom development, build MVP without code, MVP development Bangalore, startup MVP India, Webflow vs custom"
+locations: ["bangalore"]
+content: |
+  "Should we build this in Bubble first?" is one of the most common questions founders ask before an MVP. Sometimes the answer is yes, and it saves months. Sometimes it creates a product that has to be thrown away the moment it works.
+
+  ## What an MVP is for
+
+  An MVP exists to **test your riskiest assumption** with real users: will people sign up, use it weekly, pay for it? The best build approach is the one that gets that answer fastest at acceptable quality. Read [MVP development cost in India](/blog/mvp-development-cost-india) for scoping.
+
+  ## What counts as no-code
+
+  - **Websites and landing pages:** Webflow, Framer, Wix
+  - **Web apps:** Bubble, Softr, WeWeb
+  - **Mobile apps:** Glide, Adalo, FlutterFlow (low-code)
+  - **Automation:** Zapier, Make, n8n
+  - **Databases and back offices:** Airtable, Google Sheets, Notion
+
+  ## Side by side
+
+  | | No-code | Custom code |
+  |---|---|---|
+  | Time to first version | Days to weeks | Weeks |
+  | Upfront cost | Lower | Higher |
+  | Running cost at scale | Can rise steeply with users, records or workflows | Mostly hosting; usually predictable |
+  | Complex logic | Gets messy quickly | Handled cleanly |
+  | Performance | Limited by the platform | You control it |
+  | Integrations | Good for popular tools | Anything with an API |
+  | Ownership | Your app lives on someone else's platform | You own the code |
+  | Investor and hiring perception | Fine for validation | Expected after traction |
+
+  ## No-code is the right call when
+
+  - You're testing whether anyone wants this at all
+  - The workflow is simple: forms, lists, bookings, dashboards, approvals
+  - It's an internal tool or a back office
+  - You need something in front of users this month on a small budget
+  - A **concierge MVP** (you doing the work manually behind a simple front end) would answer the question
+
+  ## Custom code is the right call when
+
+  - The core value is in the software itself: algorithms, real-time features, complex data
+  - You handle sensitive data (health, finance, children) and need control over storage and security
+  - You need specific integrations: payment flows, hardware, government or banking APIs
+  - Performance and mobile experience are part of the product
+  - You've already validated demand and need a foundation you can scale
+
+  ## The hidden costs
+
+  **No-code:** per-user or usage-based pricing, plugin subscriptions, platform limits you discover late, and a rebuild when you outgrow it. Your data model and logic don't transfer.
+
+  **Custom:** more upfront time, a need for code review and maintenance, and the temptation to build too much. Scope discipline matters more than the tech choice.
+
+  ## What about AI coding tools?
+
+  AI tools have made custom code much faster to write. That shrinks the speed gap with no-code. But generated code still needs someone who understands architecture, data, security and deployment, otherwise you get a fast prototype that's fragile in production.
+
+  ## A practical middle path
+
+  Many successful startups combine both:
+
+  1. **Landing page and waitlist** on a fast site to test demand
+  2. **Concierge or no-code prototype** to test the workflow with 10–20 users
+  3. **Custom MVP** of the core workflow once people are using and paying
+  4. **No-code tools for the back office** (Sheets, Airtable, Zapier) until it hurts
+
+  Plan the exit before you start: export your data regularly, document the workflows, and keep the brand, domain and accounts in your name.
+
+  ## Where we fit
+
+  We help founders choose honestly. Sometimes that means a no-code prototype first. When it's time for a real product, we build a [custom MVP](/services/app-development) with a fixed, itemised scope, plus the website, tracking and launch campaigns. See also [how to launch a SaaS startup from Bangalore](/blog/how-to-launch-a-saas-startup-from-bangalore).
+
+  Not sure which way to build? [Get a free scoping call](/startup-launch-package).

@@ -1,0 +1,91 @@
+id: "google-search-console-setup-guide"
+title: "Google Search Console for Small Businesses: Setup, Sitemaps and the Reports That Matter"
+seoTitle: "Google Search Console Setup Guide for Small Businesses"
+metaDescription: "How to set up Google Search Console, verify your domain, submit a sitemap, fix indexing issues and read the Performance report to grow organic enquiries."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Search Console is Google telling you, for free, how it sees your website. Most small businesses never set it up. Here's how to do it in 20 minutes and which reports to check every month."
+takeaways:
+  - "Google Search Console is a free tool that shows which searches your site appears for, how many clicks it gets and any indexing problems."
+  - "A Domain property verified through DNS covers every version of your site: www, non-www, http and https."
+  - "Submitting a sitemap helps Google discover and index all your important pages."
+  - "Queries with many impressions but few clicks are quick wins: rewrite the page title and description to match the search."
+  - "Check the Pages report monthly to make sure important pages are indexed."
+coverImage: "/images/blog/google-search-console-setup-guide.png"
+coverIcon: "SearchCheck"
+category: "SEO"
+keywords: "Google Search Console setup, how to use Google Search Console, submit sitemap to Google, website not indexed, Search Console for small business, Google indexing"
+locations: ["bangalore", "shivamogga"]
+content: |
+  If you have a website and haven't set up Google Search Console, you're guessing. Search Console shows what people searched before they found you, which pages Google has indexed and what's broken. It's free, and it's the first thing we set up on every site we launch.
+
+  ## Step 1: Add your website
+
+  Go to Google Search Console and sign in with the Google account you use for the business (not a staff member's personal account).
+
+  You'll see two property types:
+
+  - **Domain property** (recommended): covers `www`, non-`www`, `http` and `https` together. Verified by adding a **TXT record** in your domain's DNS settings.
+  - **URL prefix property:** covers one exact version of the site. Verified with an HTML file, a meta tag or Google Analytics.
+
+  Choose **Domain** if you can access your domain provider's DNS settings (GoDaddy, Hostinger, Cloudflare and so on). Copy the TXT record Google gives you, add it in DNS, wait a few minutes and click Verify.
+
+  ## Step 2: Submit your sitemap
+
+  A sitemap is a file listing your site's pages, usually at `yourdomain.com/sitemap.xml`. Most website builders and frameworks generate one automatically.
+
+  In Search Console, open **Sitemaps**, enter `sitemap.xml` and submit. Within a few days you'll see how many pages Google discovered.
+
+  **Common issue:** if your site redirects `example.com` to `www.example.com`, the sitemap must list the `www` URLs. Listing URLs that redirect causes fetch errors and indexing warnings.
+
+  ## Step 3: Check indexing
+
+  Open **Pages** (under Indexing). You'll see pages that are indexed and pages that aren't, with reasons:
+
+  | Reason | What it usually means | What to do |
+  |---|---|---|
+  | Discovered, currently not indexed | Google knows the page but hasn't crawled it yet | Normal for new sites; improve internal links |
+  | Crawled, currently not indexed | Google saw it and chose not to index it | Make the page more useful and distinct |
+  | Page with redirect | The URL redirects elsewhere | Fine, if intended |
+  | Excluded by 'noindex' tag | The page tells Google not to index it | Fine for thank-you pages; fix if it's a real page |
+  | Not found (404) | Broken URL | Redirect old URLs or fix the links |
+  | Duplicate, Google chose different canonical | Two pages look the same | Set canonical tags or merge pages |
+
+  For a new or updated page, paste its URL into the **URL Inspection** bar at the top and click **Request indexing**.
+
+  ## Step 4: Read the Performance report
+
+  This is the report that grows your business. It shows:
+
+  - **Queries:** what people typed into Google
+  - **Pages:** which of your pages appeared
+  - **Impressions, clicks, CTR and average position**
+
+  Three things to look for each month:
+
+  1. **High impressions, low clicks:** your page appears but people don't click. Rewrite the title and meta description to match the search better.
+  2. **Position 8–20:** you're close to page one. Improve that page's content and add internal links to it.
+  3. **Queries you didn't expect:** these are content ideas, and sometimes service ideas.
+
+  Compare the last 3 months with the previous 3 to see real trends rather than daily noise.
+
+  ## Step 5: Other reports worth a glance
+
+  - **Core Web Vitals:** speed and stability on mobile and desktop. See [website speed for small businesses](/blog/website-speed-core-web-vitals-small-business)
+  - **Links:** which sites link to you, and your most-linked pages
+  - **Manual actions and security issues:** should always say "no issues"
+
+  Also **link Search Console to Google Analytics** so you can see search data alongside enquiries.
+
+  ## Your monthly 15-minute routine
+
+  - Check **Pages** for new errors
+  - Check **Performance**: top queries, pages near page one, low-CTR titles
+  - Request indexing for new or updated pages
+  - Note one improvement to make this month
+
+  ## Where we fit
+
+  Every site we build launches with Search Console verified, a clean sitemap, correct canonical URLs and tracking in place. If you already have a site and aren't sure what Google sees, we can review it. See our [SEO services](/services/seo-services) and the [first 90 days SEO plan](/blog/seo-for-a-new-website-first-90-days).
+
+  Want a second pair of eyes on your site? [Get a free launch plan](/startup-launch-package).
