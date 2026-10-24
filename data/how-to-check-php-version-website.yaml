@@ -1,0 +1,118 @@
+id: "how-to-check-php-version-website"
+title: "How to Check Your Website's PHP Version (WordPress, cPanel, Hostinger, Command Line)"
+seoTitle: "How to Check Your Website's PHP Version (5 Easy Ways)"
+metaDescription: "Five ways to check your website's PHP version: WordPress Site Health, cPanel, Hostinger hPanel, phpinfo() and the command line."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "After PHP2Shell, everyone needs to know which PHP version their website runs. Here are five simple ways to check, from the WordPress dashboard to the server command line, and why the version number alone can mislead you."
+takeaways:
+  - "WordPress shows your PHP version under Tools, Site Health, Info, Server."
+  - "cPanel shows it under MultiPHP Manager or Select PHP Version; Hostinger hPanel shows it under PHP Configuration."
+  - "The command line version from php -v can differ from the version your website actually uses."
+  - "Some hosts and Linux distributions patch PHP without changing the version number, so also check the build date or the package version."
+  - "Delete any temporary phpinfo file after use, because it reveals details about your server."
+coverImage: "/images/blog/how-to-check-php-version-website.png"
+coverIcon: "SearchCode"
+category: "Websites"
+keywords: "how to check PHP version, check PHP version WordPress, PHP version cPanel, Hostinger PHP version, phpinfo, php -v, what PHP version is my website using, PHP build date"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  "Which PHP version is my site on?" became one of the most-asked questions on the internet this week, after the **PHP2Shell** vulnerabilities were patched on 21 October 2026. The fixed versions are **8.5.12, 8.4.27, 8.3.36 and 8.2.35** ([background](/blog/php2shell-cve-2026-109618-explained)).
+
+  Here are five ways to check, from easiest to most technical.
+
+  ## Method 1: WordPress Site Health (easiest)
+
+  1. Log in to WordPress
+  2. Go to **Tools → Site Health**
+  3. Open the **Info** tab
+  4. Expand **Server**
+  5. Read **PHP version**
+
+  Site Health may also show a warning if your PHP version is outdated. If you use WooCommerce, **WooCommerce → Status** shows the PHP version too.
+
+  ## Method 2: cPanel
+
+  Many Indian hosts use cPanel. Depending on the setup:
+
+  - **MultiPHP Manager:** lists each domain and its PHP version
+  - **Select PHP Version** (on CloudLinux servers): shows the current version and lets you switch
+  - **Server information** in the sidebar: may show the default PHP version for the account
+
+  ## Method 3: Hostinger hPanel and other hosting dashboards
+
+  - **Hostinger:** open your website in hPanel, then **Advanced → PHP Configuration**. Hostinger says managed hosting customers can confirm the PHP2Shell fix by checking that the **PHP Info build date is 21 October 2026 or later**.
+  - **GoDaddy, Bluehost, SiteGround, others:** look for "PHP version", "PHP settings" or "PHP manager" in the hosting dashboard or site tools.
+
+  ## Method 4: A temporary phpinfo() page
+
+  This shows exactly what your **website** uses, including the build date:
+
+  1. Create a file called something unguessable, like `check-8f3k2.php`, in your site's root folder
+  2. Put this inside: `<?php phpinfo();`
+  3. Open `https://yourdomain.com/check-8f3k2.php`
+  4. Note the **PHP Version** at the top and the **Build Date** below it
+  5. **Delete the file immediately**
+
+  phpinfo reveals a lot about your server, which helps attackers. Never leave it online.
+
+  ## Method 5: Command line (VPS and servers)
+
+  If you have SSH access:
+
+  ```bash
+  php -v
+  ```
+
+  **But be careful:** the command line PHP and the PHP serving your website can be **different**. A server might have PHP 8.3 for the CLI while the site uses PHP 8.1 through PHP-FPM. Check the web side too:
+
+  ```bash
+  # list PHP-FPM services (Debian/Ubuntu)
+  systemctl list-units --type=service | grep php
+
+  # installed PHP packages and their versions
+  apt list --installed 2>/dev/null | grep -E '^php[0-9.]+-(fpm|cli|common)'
+
+  # RHEL, AlmaLinux, Rocky
+  rpm -qa | grep -i php
+  ```
+
+  ## Why the version number can mislead you
+
+  **Backported fixes.** Linux distributions like Ubuntu, Debian and Red Hat often patch security bugs **without changing the PHP version number**. Your server may say `8.1.2` and still have the PHP2Shell fix, because the **package** version changed (for example a new `-ubuntu` suffix). Check your distribution's security notice for the patched package version.
+
+  **Host-built PHP.** Hosts such as Hostinger, cPanel (EasyApache 4) and CloudLinux have released patched builds for older branches like 7.4, 8.0 and 8.1. Again, the **build date** or the host's announcement tells you more than the number.
+
+  **Multiple sites, multiple versions.** On one hosting account, each domain or subdomain can use a different PHP version. Check each site.
+
+  ## What your result means
+
+  | Version | Action |
+  |---|---|
+  | 8.3.36+, 8.4.27+, 8.5.12+ | Patched and supported. Nothing urgent |
+  | 8.2.35+ | Patched, but **support ends 31 Dec 2026**: plan an upgrade ([why](/blog/php-8-2-end-of-life-december-2026)) |
+  | Older 8.2–8.5 numbers | Check build date or host notice; update if not patched |
+  | 7.4, 8.0, 8.1 | End of life: confirm a patched build with your host and **upgrade soon** |
+  | 7.3 or lower | End of life with no fix: **upgrade urgently** |
+
+  All support dates: [PHP supported versions and end-of-life dates](/blog/php-supported-versions-end-of-life-dates).
+
+  ## Next steps
+
+  - **Need to change versions?** [How to change PHP version in cPanel and Hostinger](/blog/how-to-change-php-version-cpanel-hostinger)
+  - **On WordPress?** [Upgrade to PHP 8.3 safely](/blog/upgrade-wordpress-php-version-safely)
+  - **Running a VPS?** [Patch PHP2Shell on Ubuntu and PHP-FPM](/blog/php2shell-patch-vps-ubuntu-php-fpm)
+
+  ## Where we fit
+
+  We look after websites for businesses in Bangalore and Shivamogga: PHP versions, updates, backups and security, so you don't have to think about any of this. See [website development](/services/website-development).
+
+  Not sure what you're looking at? [Send us your site for a free check](/startup-launch-package).
+
+  ## Sources
+
+  - [Hostinger: Protections against php2shell](https://www.hostinger.com/blog/protecting-php2shell/)
+  - [Wordify: How to check your WordPress PHP version](https://wordify.com/blog/php-security-vulnerability-wordpress-october-2026/)
+  - [Welcomattic: where to get the patched PHP for your setup](https://blog.welcomattic.com/blog/2026-10-22-php2shell-where-to-get-the-patched-php/)

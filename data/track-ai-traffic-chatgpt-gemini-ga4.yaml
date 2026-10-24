@@ -1,0 +1,116 @@
+id: "track-ai-traffic-chatgpt-gemini-ga4"
+title: "How to Track Traffic from ChatGPT, Gemini and Perplexity in GA4 (2026 Guide)"
+seoTitle: "Track ChatGPT, Gemini & Perplexity Traffic in GA4"
+metaDescription: "Much AI traffic shows as Direct in GA4. How to track visits from ChatGPT, Gemini and Perplexity, including Gemini's new UTM tags."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "People increasingly find businesses through ChatGPT, Gemini and Perplexity, but GA4 often hides that traffic as 'Direct'. Here's how to see it properly, including Gemini's new UTM tags spotted in October 2026."
+takeaways:
+  - "AI assistants such as ChatGPT, Gemini, Perplexity, Copilot and Claude now send referral traffic to websites."
+  - "Much AI traffic is misattributed as Direct because mobile apps and in-app browsers often strip the referrer."
+  - "Since around 30 September 2026, Gemini has been seen adding UTM parameters to some outbound links; Google hasn't documented the details."
+  - "A custom channel group in GA4 that matches AI assistant domains separates AI traffic from other referrals."
+  - "Measure AI visitors by enquiries and conversions, not just sessions."
+coverImage: "/images/blog/track-ai-traffic-chatgpt-gemini-ga4.png"
+coverIcon: "Radar"
+category: "Digital Marketing"
+keywords: "track ChatGPT traffic GA4, Gemini referral traffic, AI traffic Google Analytics, Perplexity referral GA4, AI assistant channel GA4, Gemini UTM parameters, LLM traffic tracking"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  A founder in Bangalore asks ChatGPT for "the best way to build an MVP on a budget". A student in Shivamogga asks Gemini "which DevOps course is good for beginners". Both get an answer with links, and some of them click.
+
+  That's real, high-intent traffic. The problem: Google Analytics 4 often can't tell you it happened.
+
+  ## Why AI traffic hides in "Direct"
+
+  When someone clicks a link, the browser usually sends a **referrer** telling your site where the visitor came from. AI traffic often loses it:
+
+  - **Mobile apps** (ChatGPT, Gemini) open links in in-app browsers that may not pass a referrer
+  - **Assistants built into phones** can strip it entirely
+  - **Copy-pasted links** arrive with no source at all
+
+  GA4 then files the visit as **Direct**, which looks like someone typed your URL. Your "Direct" traffic growing for no obvious reason is often a sign of AI referrals.
+
+  ## The October 2026 change: Gemini adds UTM tags
+
+  From around **30 September 2026**, people noticed **Gemini adding UTM parameters** to some outbound links. A Reddit user spotted it and Google's John Mueller acknowledged seeing the tags too. Unlike a referrer, a UTM tag survives in-app browsers and server logs, so these visits can be attributed even when the referrer is lost.
+
+  The caveats:
+
+  - Google **hasn't documented** which links get tags or the full set of values
+  - Coverage appears **partial**; not every Gemini link is tagged
+  - One early sample found **AI Overviews and AI Mode links largely untagged**; those clicks usually show as Google organic traffic anyway
+
+  So: helpful, but not a complete solution.
+
+  ## Step 1: See what you already get
+
+  In GA4, go to **Reports → Acquisition → Traffic acquisition**, change the dimension to **Session source / medium**, and look for:
+
+  - `chatgpt.com` / `chat.openai.com`
+  - `gemini.google.com`
+  - `perplexity.ai`
+  - `copilot.microsoft.com`
+  - `claude.ai`
+
+  Also search for `gemini` in **Session source** and **Session campaign** to spot UTM-tagged Gemini visits.
+
+  ## Step 2: Create an "AI assistants" channel
+
+  GA4's default channel groups may or may not separate AI traffic in your property. To be sure, create your own:
+
+  1. **Admin → Data display → Channel groups → Create new channel group**
+  2. Copy the default group, then **add a new channel** called "AI assistants"
+  3. Condition: **Session source** *matches regex*:
+
+  ```
+  .*(chatgpt|openai|gemini\.google|bard\.google|perplexity|copilot\.microsoft|claude\.ai|you\.com|meta\.ai).*
+  ```
+
+  4. Also add a condition for **Session source contains "gemini"** to catch UTM-tagged visits
+  5. **Move "AI assistants" above "Referral"** in the list, so it's matched first
+  6. Save, then use this channel group in your reports and explorations
+
+  Channel groups apply to historical data too, so you'll see past AI visits immediately.
+
+  ## Step 3: Tag your own links in AI-friendly places
+
+  You can't control how ChatGPT links to you, but you can tag links you place yourself:
+
+  - Links in your **llms.txt**, press kits and partner pages
+  - Links you share in communities that AI tools learn from
+  - Paid placements, such as [ChatGPT ads](/blog/chatgpt-ads-india-guide), with `utm_source=chatgpt&utm_medium=cpc`
+
+  Keep naming consistent. Our [GA4 conversion tracking guide](/blog/ga4-conversion-tracking-setup) covers UTM conventions.
+
+  ## Step 4: Measure what matters
+
+  Sessions from AI assistants are interesting. Enquiries are what count. Build a simple exploration:
+
+  - **Rows:** your AI assistants channel, by session source
+  - **Values:** sessions, engaged sessions, **key events** (form submissions, WhatsApp clicks, calls)
+  - **Compare** conversion rate with Google organic and paid
+
+  AI-referred visitors have usually already read a summary of your topic before they click, so they may arrive closer to a decision. Compare their conversion rate with other channels in your own data before deciding how much to invest.
+
+  ## Step 5: Check server logs (optional, for technical teams)
+
+  Hosting logs or tools like Cloudflare analytics record UTM parameters and user agents even when GA4 misses visits (for example, when cookie consent is declined). They also show **AI crawlers** (GPTBot, OAI-SearchBot, PerplexityBot, Google-Extended) reading your site, a leading indicator that you may be cited.
+
+  ## Why this matters for small businesses
+
+  AI assistants are becoming a front door for research, especially for considered purchases: courses, software, home interiors, travel, healthcare. If you can't measure the traffic, you can't tell whether your [Generative Engine Optimisation](/blog/generative-engine-optimization-guide-india) work is paying off, or whether to invest more in it.
+
+  ## Where we fit
+
+  Every site we launch gets GA4 with key events for forms, calls and WhatsApp, an AI assistants channel, and an llms.txt file so AI tools can read your business details accurately. Our own site publishes an llms.txt generated from the same data as its pages. See [website development](/services/website-development) and [digital marketing](/services/digital-marketing).
+
+  Want your analytics set up properly? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [Search Engine Journal: Google Gemini adds UTM parameters for referral attribution (1 Oct 2026)](https://www.searchenginejournal.com/google-gemini-adds-utm-parameters-for-referral-attribution/591754/)
+  - [IndexLab: Gemini adds UTM parameters, Google hasn't documented when](https://www.indexlab.ai/blog/gemini-adds-utm-parameters-referral-attribution)
+  - [Derivatex: Gemini UTM parameters in GA4](https://derivatex.agency/blog/gemini-utm-parameters-ga4/)

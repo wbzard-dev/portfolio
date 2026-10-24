@@ -1,0 +1,95 @@
+id: "cert-in-php2shell-advisory-india"
+title: "CERT-In's PHP2Shell Advisory (CIVN-2026-0510): What Indian Businesses and Website Owners Must Do"
+seoTitle: "CERT-In PHP2Shell Advisory: What Indian Websites Must Do"
+metaDescription: "CERT-In rated PHP2Shell critical on 21 October 2026. What the advisory says, which Indian websites are at risk and what to do now."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "India's cyber security agency CERT-In rated the PHP2Shell flaws critical and urged urgent patching. PHP runs a huge share of Indian websites, from small shops to college portals. Here's what the advisory means for you."
+takeaways:
+  - "CERT-In published vulnerability note CIVN-2026-0510 on PHP2Shell on 21 October 2026, rating the flaws critical."
+  - "The advisory covers CVE-2026-109618 and CVE-2026-109619, which can allow code execution and system compromise through specially crafted requests."
+  - "CERT-In's recommendations include patching, restricting access, using web application firewalls, monitoring logs and checking backups."
+  - "No Indian victims had been publicly named as of the advisory, and there is no official count of vulnerable Indian sites."
+  - "Indian organisations should also know CERT-In's rules on reporting cyber incidents within six hours."
+coverImage: "/images/blog/cert-in-php2shell-advisory-india.png"
+coverIcon: "Siren"
+category: "Websites"
+keywords: "CERT-In PHP2Shell, CERT-In advisory PHP, CIVN-2026-0510, PHP vulnerability India, CERT-In advisory October 2026, Indian websites PHP security, CERT-In incident reporting"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. This is a practical summary, not legal advice. Read CERT-In's advisory on cert-in.org.in for the authoritative text.*
+
+  On **21 October 2026**, the same day PHP released emergency fixes for **PHP2Shell** ([explained](/blog/php2shell-cve-2026-109618-explained)), India's national cyber security agency **CERT-In** published a vulnerability note rating the flaws **critical**. The US NSA and agencies in the UK, Australia, Canada and South Korea also issued warnings.
+
+  Here's what the advisory means for businesses and website owners in India.
+
+  ## What CERT-In said
+
+  - **Advisory:** vulnerability note **CIVN-2026-0510**, published 21 October 2026
+  - **Severity:** critical
+  - **Vulnerabilities:** **CVE-2026-109618** and **CVE-2026-109619**, described as memory corruption and improper resource control flaws in PHP, triggered by a specially crafted request
+  - **Impact:** a remote attacker could achieve **code execution and system compromise**
+  - **Recommendations** (as reported): apply the updates, **restrict access**, use **web application firewalls**, **monitor logs** and **check backups**
+
+  Some reports say CERT-In referred to large-scale exploitation; others were more cautious. Globally, mass scanning and exploit attempts have been widely reported, while confirmed successful compromises have been limited so far.
+
+  ## Which Indian websites are at risk?
+
+  PHP runs a very large share of websites whose server language is known worldwide, and in India it powers:
+
+  - **WordPress sites** for small businesses, clinics, schools, coaching centres, homestays and startups
+  - **Small online shops** (WooCommerce, OpenCart, Magento)
+  - **College, university and government portals**, many built years ago
+  - **Older enterprise and ERP systems** written in PHP
+  - Thousands of sites on **shared hosting** from Indian and international hosts
+
+  As reported, **no Indian victims had been named** and there's no official count of vulnerable Indian sites. **Being exposed is not the same as being hacked**, but every unpatched PHP site is exposed.
+
+  ## What to do: a checklist for Indian organisations
+
+  **Today**
+
+  - [ ] **Identify every website and app** that uses PHP, including old microsites, campaign pages and portals built by past vendors
+  - [ ] **Check PHP versions** ([how](/blog/how-to-check-php-version-website)). Fixed: **8.5.12, 8.4.27, 8.3.36, 8.2.35**
+  - [ ] **Shared hosting:** confirm your host patched ([status of major hosts](/blog/php2shell-hosting-providers-patch-status))
+  - [ ] **Own servers / VPS:** patch and restart PHP ([guide](/blog/php2shell-patch-vps-ubuntu-php-fpm))
+  - [ ] **Can't patch?** Apply interim mitigations, put a WAF in front, or take the system offline (CISA's advice for PHP 8.1 and older)
+
+  **This week**
+
+  - [ ] **Review logs** for suspicious activity since 17 October ([signs of compromise](/blog/php2shell-was-my-site-hacked))
+  - [ ] **Check backups** exist, are recent and can be restored
+  - [ ] **Restrict access** to admin panels (IP allowlists, VPN, strong passwords and 2FA)
+  - [ ] **Plan upgrades** from PHP 8.2 and older ([PHP 8.2 ends 31 Dec 2026](/blog/php-8-2-end-of-life-december-2026))
+
+  ## Reporting incidents to CERT-In
+
+  Indian organisations should know CERT-In's **2022 directions** on cyber security incidents, which require specified incidents (including compromise of systems, website defacement, and unauthorised access) to be **reported to CERT-In within six hours** of noticing them. They also set expectations on log retention.
+
+  If your website or server was compromised through PHP2Shell, check whether these directions apply to you and report through CERT-In's incident reporting channels. If personal data was affected, India's **DPDP Rules** add breach notification duties as they phase in ([DPDP checklist](/blog/dpdp-act-compliance-small-business-website)).
+
+  ## For colleges, schools and institutions
+
+  Many educational portals in Karnataka and across India run on old PHP and are maintained by vendors who built them years ago. Ask your vendor in writing:
+
+  1. Which PHP version does each portal use?
+  2. Has it been patched for CVE-2026-109618 and CVE-2026-109619?
+  3. When will it move to a supported PHP version?
+  4. Where are backups stored, and when was a restore last tested?
+
+  ## For small businesses
+
+  You don't need a security team. You need to know **who hosts your website** and **who maintains it**. If the answer is "a freelancer who built it in 2019", now is the time to get it checked. Our [security checklist for small business websites](/blog/website-security-checklist-small-business) covers the essentials.
+
+  ## Where we fit
+
+  We help businesses and institutions in Bangalore, Shivamogga and across Karnataka check, patch and upgrade PHP websites, set up backups and monitoring, and rebuild old sites on maintained platforms. See [website development](/services/website-development) and [our Shivamogga page](/locations/shivamogga).
+
+  Need your website checked after the CERT-In advisory? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [Free Press Journal: PHP security flaw, which Indian websites are affected](https://www.freepressjournal.in/tech/php-security-flaw-which-indian-websites-are-affected)
+  - [Bombay Samachar: PHP2Shell flaw, CERT-In alert](https://english.bombaysamachar.com/technology/php2shell-flaw-cert-in-alert-indian-websites-affected/)
+  - [NewsBytes: US NSA and India's CERT-In flag PHP2Shell](https://www.newsbytesapp.com/news/science/us-nsa-and-indias-cert-in-flag-php2shell-web-risk/tldr)
+  - [CISA alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching)

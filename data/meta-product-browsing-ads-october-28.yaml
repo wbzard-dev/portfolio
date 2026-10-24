@@ -1,0 +1,91 @@
+id: "meta-product-browsing-ads-october-28"
+title: "Meta Is Turning On 'Product Browsing' in Your Ads on 28 October: What It Does and How to Opt Out"
+seoTitle: "Meta Product Browsing Ads (28 Oct): How to Opt Out"
+metaDescription: "Meta switches on product browsing in existing Facebook and Instagram ads on 28 October 2026. What changes, who should keep it and how to opt out."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Unless you opt out, Meta will start sending some people who tap your ads to an in-app product page instead of your website from 28 October 2026. Here's what that means and how to decide."
+takeaways:
+  - "Meta is switching on product browsing for existing Facebook and Instagram ads on 28 October 2026 unless advertisers opt out."
+  - "Product browsing can show people an in-app page with product information and personalised suggestions instead of sending them straight to your website."
+  - "You can opt out from the notice before 28 October, or turn it off per ad in Advantage+ Creative and Destination settings."
+  - "Meta cites a 3% conversion lift from tests, but hasn't published the method, so judge it on your own data."
+  - "Lead-generation and service businesses that rely on landing pages and tracking should review every active ad before the date."
+coverImage: "/images/blog/meta-product-browsing-ads-october-28.png"
+coverIcon: "ToggleRight"
+category: "Digital Marketing"
+keywords: "Meta product browsing ads, Meta ads October 28 2026, Advantage+ creative opt out, Facebook ads update October 2026, Instagram ads product browsing, Meta ads changes 2026"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Time-sensitive: the change takes effect on 28 October 2026.*
+
+  If you run Facebook or Instagram ads, you may have seen a notice in Ads Manager: **product browsing** will be turned on for your **existing ads** on **28 October 2026** unless you opt out.
+
+  It sounds minor. It isn't, especially for businesses that depend on their own landing pages and tracking.
+
+  ## What product browsing is
+
+  Normally, when someone taps your ad, they go to your **website** (or WhatsApp, or a lead form). With product browsing on, Meta can instead show some people an **in-app page** on Facebook or Instagram with **product information and personalised suggestions**, to help them "learn more about your products quickly".
+
+  The feature already existed as an **Advantage+ creative** option. What's changing is the **default**: it will be switched on for existing ads unless you act.
+
+  ## Why Meta is doing it
+
+  Keeping people inside the app reduces load times and drop-off. Meta reports a **3% conversion improvement** from tests across about 117,700 advertisers, mostly in e-commerce, consumer goods and retail. Critics point out that Meta hasn't defined the metric or method behind that number, so it's hard to know whether it applies to your business.
+
+  ## Who should be careful
+
+  | Business type | Risk if product browsing is on | Suggested action |
+  |---|---|---|
+  | **E-commerce / D2C with a product catalogue** | Low to medium: may help mobile shoppers | Keep on for some ads, compare results |
+  | **Lead generation (coaching, real estate, interiors, clinics)** | Medium to high: visitors may never reach your landing page or form | Review and likely turn off |
+  | **Service businesses sending ads to WhatsApp** | Depends on ad setup | Check each ad's destination |
+  | **Businesses relying on website tracking and retargeting** | High: fewer site visits means less Pixel data | Turn off or test carefully |
+  | **Agencies managing many accounts** | Workload: the notice may not show which account it refers to | Audit every account before 28 Oct |
+
+  If you've invested in a [high-converting landing page](/blog/landing-page-for-ads-that-converts) and [conversion tracking](/blog/ga4-conversion-tracking-setup), an in-app page you don't control can undermine both.
+
+  ## How to opt out
+
+  **Option 1: Before 28 October.** Use the **Opt out** button in the Ads Manager notice. It's not fully clear whether this covers one ad account or several, so check each account you manage.
+
+  **Option 2: Per ad, any time.** Open the ad → **Advantage+ Creative** settings and the **Destination** section → turn **product browsing** off. This works for individual ads, so for many ads, use bulk editing where possible.
+
+  After the date, check a sample of ads to confirm the setting is what you expect. New ads may also default to on; review the setting every time you create one.
+
+  ## A smarter approach: test it
+
+  Rather than switching it off everywhere, run a simple test if you sell products:
+
+  1. Duplicate one well-performing ad set
+  2. Turn product browsing **on** in one and **off** in the other
+  3. Run both with the same budget for 1–2 weeks
+  4. Compare **purchases or qualified leads** and **cost per result**, not clicks
+  5. Keep the winner
+
+  For lead generation, measure leads that actually pick up and convert. See our [Meta lead ads guide](/blog/meta-lead-ads-guide-small-business).
+
+  ## The bigger trend: Meta wants more control
+
+  This is one of several October 2026 changes in which Meta's automation takes on more decisions: AI agents in Ads Manager, automatic video from images, lifecycle targeting. We cover them in [Meta's October 2026 AI ad updates](/blog/meta-ads-ai-updates-october-2026).
+
+  Automation often helps. But defaults are set for Meta's average advertiser, not your business. The habit worth building: **read every Ads Manager notice, and test before accepting a new default.**
+
+  ## Your checklist before 28 October
+
+  - [ ] Check every ad account for the product browsing notice
+  - [ ] Decide on, or off, or test for each campaign type
+  - [ ] Opt out where needed, or switch the setting per ad
+  - [ ] Note the date in your reporting so you can explain any change in results
+  - [ ] Re-check a sample of ads after 28 October
+
+  ## Where we fit
+
+  We manage Meta and Google Ads for founders and local businesses in Bangalore and Shivamogga, including reviewing changes like this before they affect your results. See [Meta and Google Ads](/services/digital-marketing) or [ads in Shivamogga](/shivamogga/google-meta-ads).
+
+  Not sure how this affects your ads? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [PPC Land: Meta will turn on product browsing in existing ads on October 28](https://ppc.land/meta-will-turn-on-product-browsing-in-existing-ads-on-october-28/)
+  - [SocialBee: Meta and Facebook updates (October 2026)](https://socialbee.com/blog/meta-facebook-updates-news/)

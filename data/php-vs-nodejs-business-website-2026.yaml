@@ -1,0 +1,108 @@
+id: "php-vs-nodejs-business-website-2026"
+title: "PHP or Node.js for Your Business Website in 2026? What PHP2Shell Teaches Founders About Choosing a Stack"
+seoTitle: "PHP vs Node.js for Business Websites in 2026"
+metaDescription: "Should your business website or MVP use PHP (WordPress, Laravel) or Node.js (Next.js)? An honest comparison of cost, hosting, security, maintenance and hiring."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "After PHP2Shell, some founders are asking whether to avoid PHP altogether. The real lesson is different: the safest stack is the one someone will keep updated. Here's how to choose between PHP and Node.js for your website or MVP."
+takeaways:
+  - "No stack is immune to vulnerabilities; Node.js, PHP and every other platform need regular security updates."
+  - "PHP (WordPress) is usually fastest and cheapest for content-heavy business websites that non-technical teams update."
+  - "Laravel (PHP) and Node.js (for example Next.js or Express) are both strong for custom web apps and MVPs."
+  - "Static or prerendered sites have far less server-side code exposed to the internet, which reduces the impact of runtime bugs like PHP2Shell."
+  - "Choose based on who will maintain the site, how often content changes, and what you're building, then budget for maintenance."
+coverImage: "/images/blog/php-vs-nodejs-business-website-2026.png"
+coverIcon: "GitCompare"
+category: "Websites"
+keywords: "PHP vs Node.js, PHP or Node.js for website, WordPress vs Next.js, Laravel vs Node.js, best tech stack for business website, PHP security vs Node, website stack for startups India"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  **PHP2Shell** ([explained](/blog/php2shell-cve-2026-109618-explained)) made founders and business owners ask a reasonable question: *should we avoid PHP for our next website or product?*
+
+  The honest answer: **PHP2Shell isn't a reason to switch stacks. It's a reason to plan maintenance.** Here's how to choose.
+
+  ## No stack is "safe" by default
+
+  - **PHP** had PHP2Shell in October 2026
+  - **Node.js** has regular security releases, and the npm ecosystem has seen many malicious or compromised packages
+  - **Java** had Log4Shell; **Python**, **Ruby**, **.NET** all ship security fixes regularly
+
+  What separates safe sites from compromised ones is almost always **how quickly they're updated**, not which language they use.
+
+  ## The real options for a business website or MVP
+
+  | Option | Stack | Best for | Maintenance |
+  |---|---|---|---|
+  | **WordPress** | PHP + MySQL | Content-heavy business sites, blogs, simple shops; non-technical teams editing | PHP, core, plugin and theme updates; backups |
+  | **Laravel app** | PHP | Custom web apps, portals, admin-heavy MVPs | PHP, framework and package updates |
+  | **Next.js / React app** | Node.js + JavaScript | Interactive web apps, SaaS, fast marketing sites | Node, framework and npm package updates |
+  | **Static or prerendered site** | Built with Node, served as static files | Marketing sites, landing pages, content sites | Very little server-side code to patch |
+  | **Website builder** | Hosted (Wix, Squarespace and others) | Very small sites, DIY | Platform handles it; limited control |
+
+  ## When PHP (WordPress or Laravel) is the better choice
+
+  - Your team needs to **edit content often** without a developer
+  - You need **plugins** for bookings, memberships, multilingual or SEO quickly
+  - You want **low-cost hosting** available everywhere in India
+  - You're building an **admin-heavy business app** where Laravel's conventions save time
+  - You'll hire **local freelancers or agencies**, where PHP and WordPress skills are common
+
+  ## When Node.js is the better choice
+
+  - You're building a **web app or SaaS** with a lot of interactivity
+  - You want **one language** (JavaScript or TypeScript) across frontend and backend
+  - You need **real-time features** (chat, live updates)
+  - You'll hire from the **startup talent pool** in Bangalore, which leans JavaScript
+  - You want a **prerendered marketing site** with excellent speed
+
+  ## The option many businesses overlook: prerendered sites
+
+  A **prerendered or static** website is generated once and served as plain files from a CDN. There's no PHP or Node process answering each request on a public server, so runtime bugs like PHP2Shell have **far less to attack**. These sites are also very fast ([why speed matters](/blog/website-speed-core-web-vitals-small-business)).
+
+  Our own website works this way: a React site prerendered at build time, with forms handled by a separate service. Content still needs updating, but there's very little server-side software to patch.
+
+  Trade-offs: editing usually needs a developer or a headless CMS, and dynamic features (logins, carts) need separate services.
+
+  ## Questions to decide your stack
+
+  1. **Who will update content**, and how often?
+  2. **Who will apply security updates**, and how fast? (Name a person or company)
+  3. Is this a **website** (information, leads) or an **app** (logins, workflows, data)?
+  4. What's your **budget for maintenance**, not just the build?
+  5. Who will you **hire** to extend it in two years?
+
+  If you can't answer question 2, choose **managed hosting** or a **static site**, whatever the language.
+
+  ## Maintenance budget: the part most quotes leave out
+
+  Whatever you choose, budget for:
+
+  - **Security and version updates** (PHP or Node, framework, plugins or packages)
+  - **Backups** and occasional restore tests
+  - **Monitoring** (uptime, errors)
+  - **Hosting** that patches quickly ([what hosts did for PHP2Shell](/blog/php2shell-hosting-providers-patch-status))
+
+  Ask any developer how they'll handle this before you sign: see [15 questions to ask before hiring a website developer](/blog/how-to-hire-a-website-developer-questions).
+
+  ## Our recommendation by business type
+
+  | Business | Typical best fit |
+  |---|---|
+  | Clinic, coaching centre, salon, homestay | Managed WordPress or a prerendered site with a simple CMS |
+  | Local shop selling online | Shopify or WooCommerce ([comparison](/blog/shopify-vs-woocommerce-vs-custom-d2c-india)) |
+  | Startup marketing site | Prerendered Next.js/React or similar |
+  | MVP / SaaS | Node.js (Next.js, Express) or Laravel, depending on the team ([no-code vs custom](/blog/no-code-vs-custom-mvp)) |
+  | Content-heavy publication | WordPress or a headless CMS |
+
+  ## Where we fit
+
+  We build with whichever stack fits your business, from WordPress and Laravel to React, Next.js and prerendered sites, and we plan maintenance from day one so the next PHP2Shell is a routine update. See [website development](/services/website-development), [app development](/services/app-development) and [website development cost in Bangalore](/blog/website-development-cost-bangalore-startups).
+
+  Not sure which stack suits you? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [Tenable: php2shell FAQ](https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote)
+  - [Help Net Security: PHP2Shell patched](https://www.helpnetsecurity.com/2026/10/21/php2shell-php-vulnerabilities-patched-cve-2026-109618-cve-2026-109619/)

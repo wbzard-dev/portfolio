@@ -1,0 +1,100 @@
+id: "laravel-13-php-requirements"
+title: "Laravel 13 PHP Requirements and Upgrade Guide: PHP 8.3 Minimum, What's New and PHP2Shell Patching"
+seoTitle: "Laravel 13 PHP Requirements: PHP 8.3+ and Upgrade Tips"
+metaDescription: "Laravel 13 requires PHP 8.3 or newer. Key new features, how to upgrade from Laravel 11 or 12, and the PHP2Shell versions you need."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Laravel 13, released in March 2026, requires PHP 8.3 or newer. After PHP2Shell, that means Laravel apps need at least PHP 8.3.36. Here's what's new, how to upgrade, and what to check on your servers."
+takeaways:
+  - "Laravel 13 was released in March 2026 and requires PHP 8.3 or newer."
+  - "Some Laravel 13 dependencies, such as Symfony 8 components, may effectively need PHP 8.4 in later minor versions, so check composer constraints."
+  - "After PHP2Shell, Laravel apps should run at least PHP 8.3.36, 8.4.27 or 8.5.12."
+  - "Reported Laravel 13 highlights include wider use of PHP attributes, a first-party AI SDK and passkey support; confirm details in the official release notes."
+  - "Upgrade by moving PHP first, then Laravel, with tests and a staging deploy."
+coverImage: "/images/blog/laravel-13-php-requirements.png"
+coverIcon: "Layers"
+category: "Apps & MVPs"
+keywords: "Laravel 13 PHP requirements, Laravel 13 PHP version, Laravel 13 upgrade guide, Laravel 13 features, Laravel PHP 8.3, upgrade Laravel 12 to 13, Laravel PHP2Shell"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Confirm details in Laravel's official release notes and upgrade guide.*
+
+  **Laravel** is one of the most popular ways to build web apps and MVPs in India, including many startup products in Bangalore. **Laravel 13** arrived in **March 2026**, and the **PHP2Shell** emergency in October ([explained](/blog/php2shell-cve-2026-109618-explained)) made its PHP requirements a live topic again.
+
+  ## Laravel 13's PHP requirement
+
+  - **Minimum: PHP 8.3**
+  - Some guides note that later Laravel 13 minor versions can **effectively require PHP 8.4** because of dependencies like **Symfony 8** components. Check what Composer resolves for your project
+  - **After PHP2Shell:** run at least **8.3.36**, **8.4.27** or **8.5.12**
+
+  ## Laravel and PHP version matrix (current branches)
+
+  | Laravel | Minimum PHP | Recommended PHP in late 2026 |
+  |---|---|---|
+  | Laravel 13 | 8.3 | **8.4** (patched: 8.4.27+) |
+  | Laravel 12 | 8.2 | 8.3 or 8.4 (PHP 8.2 ends 31 Dec 2026) |
+  | Laravel 11 | 8.2 | Upgrade Laravel and PHP |
+  | Laravel 10 and older | 8.1 or lower | **Upgrade**: framework and PHP are both out of support |
+
+  PHP support dates: [PHP supported versions and end-of-life dates](/blog/php-supported-versions-end-of-life-dates).
+
+  ## What's new in Laravel 13 (as reported)
+
+  Third-party coverage highlights:
+
+  - **PHP attributes** across more of the framework, as an alternative to class properties for configuration
+  - A **first-party AI SDK** for working with AI models
+  - **Passkey authentication** support
+  - **Semantic / vector search** capabilities
+  - Smaller additions such as `Cache::touch()` and a database driver for **Reverb**
+  - A focus on **stability** with few breaking changes
+
+  Sources disagree on some specifics, so read Laravel's official release notes before planning around any feature.
+
+  ## How to upgrade to Laravel 13
+
+  **1. Upgrade PHP first.** Move your servers, CI and local environment to **PHP 8.4** (or 8.3.36+). On Docker, pin `php:8.4.27-fpm` or newer and rebuild with `--pull` ([Docker and Laravel PHP2Shell guide](/blog/php2shell-docker-laravel-patch)).
+
+  **2. Get your test suite green on the new PHP** with your current Laravel version.
+
+  **3. Update `composer.json`:**
+
+  ```json
+  "require": {
+      "php": "^8.3",
+      "laravel/framework": "^13.0"
+  }
+  ```
+
+  Update first-party packages (Sanctum, Horizon, Octane, Telescope and others) to their Laravel 13-compatible versions, then run `composer update` and resolve conflicts.
+
+  **4. Follow the official upgrade guide** for each change listed, and consider automated tools (such as Laravel Shift) for large codebases.
+
+  **5. Test thoroughly:** automated tests, queues and scheduled jobs, auth flows, file uploads, payments and emails.
+
+  **6. Deploy to staging**, then production, and **restart workers** (`php artisan queue:restart`, Horizon, Octane).
+
+  ## PHP2Shell checklist for Laravel apps
+
+  - [ ] PHP is a fixed version on **every** server and container (web, workers, scheduler)
+  - [ ] PHP-FPM, Apache, Octane, FrankenPHP and queue workers **restarted**
+  - [ ] Forge servers updated; Vapor custom and Docker runtimes **rebuilt and redeployed**
+  - [ ] `session.upload_progress.enabled = 0` set as an interim measure where patching was delayed ([why](/blog/cve-2026-115560-session-upload-progress))
+  - [ ] Logs checked for suspicious activity; secrets in `.env` rotated if in doubt ([checklist](/blog/php2shell-was-my-site-hacked))
+
+  ## Laravel, Node.js or no-code for your MVP?
+
+  Laravel remains an excellent choice for MVPs with admin panels, payments and complex business logic. We compare options in [no-code vs custom MVPs](/blog/no-code-vs-custom-mvp) and [PHP vs Node.js](/blog/php-vs-nodejs-business-website-2026). For budgeting, see [MVP development cost in India](/blog/mvp-development-cost-india).
+
+  ## Where we fit
+
+  We build and maintain web apps and MVPs for startups in Bangalore and beyond, keeping frameworks, PHP and infrastructure up to date with CI/CD. See [MVP and app development](/services/app-development).
+
+  Need a Laravel upgrade or a security review? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [Laravel News: What we know about Laravel 13](https://laravel-news.com/laravel-13)
+  - [Cloudways: Laravel 13 release](https://www.cloudways.com/blog/laravel-13/)
+  - [itmarkerz: Laravel PHP compatibility matrix](https://itmarkerz.co.in/blog/laravel-php-compatibility-matrix)
+  - [DEV Community: PHP2Shell for WordPress, Laravel and PHP sites](https://dev.to/arifulislamat/php2shell-is-your-wordpress-laravel-or-php-site-affected-how-to-patch-today-3jla)

@@ -1,0 +1,148 @@
+id: "php2shell-patch-vps-ubuntu-php-fpm"
+title: "How to Patch PHP2Shell on a VPS: Ubuntu, Debian, RHEL and PHP-FPM Step by Step"
+seoTitle: "Patch PHP2Shell on a VPS: Ubuntu, Debian & PHP-FPM Guide"
+metaDescription: "Patch PHP2Shell on your VPS: update PHP on Ubuntu, Debian or RHEL, restart PHP-FPM and Apache, apply php.ini mitigations and verify."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "If your website runs on a VPS from DigitalOcean, AWS, Azure, Hostinger VPS or similar, nobody is patching PHP2Shell for you. Here's how to update PHP, restart the right services and verify the fix."
+takeaways:
+  - "On a VPS or dedicated server you are responsible for updating PHP; hosts patch shared plans, not self-managed servers."
+  - "Update PHP through your package source (distribution repositories, Ondřej Surý's PPA on Ubuntu, or Remi on RHEL-family systems) to a patched build."
+  - "Restart every PHP process after updating, including PHP-FPM, Apache with mod_php, queue workers and long-running app servers."
+  - "If you cannot patch at once, set session.upload_progress.enabled to 0 and an unoverridable memory_limit in php.ini or the FPM pool, then restart."
+  - "Distribution packages may keep the old version number with the fix backported, so verify using the package version and vendor advisory."
+coverImage: "/images/blog/php2shell-patch-vps-ubuntu-php-fpm.png"
+coverIcon: "Terminal"
+category: "Websites"
+keywords: "patch PHP2Shell Ubuntu, PHP2Shell VPS, update PHP Ubuntu PPA ondrej, PHP-FPM restart, PHP2Shell Debian, PHP2Shell RHEL Remi, session.upload_progress.enabled, CVE-2026-109618 fix"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Commands are examples for common setups; adapt them to your server and test carefully. Take a snapshot before changing a production server.*
+
+  Startups and agencies often host sites on a VPS: DigitalOcean, AWS EC2 or Lightsail, Azure, Google Cloud, Linode, Hostinger VPS, or a local data centre. If that's you, **PHP2Shell is your job to patch**, not your provider's. Hostinger and GoDaddy, for example, both said VPS customers must update PHP themselves.
+
+  Background: [PHP2Shell explained](/blog/php2shell-cve-2026-109618-explained).
+
+  ## Step 0: Snapshot and inventory
+
+  1. **Take a VPS snapshot or backup** in your cloud console
+  2. **List every PHP version installed** (servers often have several):
+
+  ```bash
+  ls /etc/php/ 2>/dev/null          # Debian/Ubuntu: one folder per version
+  php -v                            # CLI version (may differ from web)
+  systemctl list-units --type=service | grep -i php
+  ```
+
+  3. **Find which version each site uses**: check your Nginx/Apache configs for the FPM socket (for example `php8.3-fpm.sock`) or `SetHandler`
+
+  ## Ubuntu and Debian
+
+  **Using distribution packages** (for example Ubuntu 24.04 ships PHP 8.3):
+
+  ```bash
+  sudo apt update
+  apt list --upgradable 2>/dev/null | grep -i php
+  sudo apt install --only-upgrade 'php*'
+  ```
+
+  Distribution packages usually **backport** the fix: the PHP version might still say `8.3.6`, but the **package version** changes. Check the Ubuntu Security Notice or Debian Security Advisory for PHP2Shell to confirm the patched package version.
+
+  Ubuntu 20.04 users: reports say the fix for PHP 7.4 is available through **Ubuntu Pro** (ESM). Without Pro, plan an OS and PHP upgrade.
+
+  **Using Ondřej Surý's PPA** (common for newer PHP on Ubuntu):
+
+  ```bash
+  sudo apt update
+  apt policy php8.3-fpm             # check candidate version
+  sudo apt install --only-upgrade php8.3-*
+  ```
+
+  You want the candidate to be **8.3.36 or later** (or 8.4.27, 8.5.12, 8.2.35 for other branches). If the candidate is still the old version, the repository hasn't published the fix yet, and running the upgrade changes nothing. Apply the interim mitigations below and check again later.
+
+  ## RHEL, AlmaLinux, Rocky, CentOS Stream
+
+  ```bash
+  sudo dnf check-update 'php*'
+  sudo dnf upgrade 'php*'
+  ```
+
+  If you use **Remi's repository**, make sure the module stream you're on (for example `php:remi-8.3`) has the patched build. Red Hat's own AppStream packages get backported fixes; check Red Hat's security advisory for the patched package.
+
+  ## Restart everything that runs PHP
+
+  Patched files on disk don't help until **old processes stop**. Restart all of them:
+
+  ```bash
+  # PHP-FPM (repeat for each installed version)
+  sudo systemctl restart php8.3-fpm
+
+  # Apache with mod_php
+  sudo systemctl restart apache2     # Debian/Ubuntu
+  sudo systemctl restart httpd       # RHEL family
+
+  # Nginx only needs a reload if config changed
+  sudo systemctl reload nginx
+  ```
+
+  Also restart **long-running PHP processes**: Laravel queue workers (`php artisan queue:restart`), Supervisor programs, Laravel Octane, FrankenPHP, RoadRunner, Swoole, cron daemons running PHP. See [PHP2Shell for Docker and Laravel](/blog/php2shell-docker-laravel-patch).
+
+  ## Interim mitigations (if you can't patch yet)
+
+  Set these in **`php.ini` or the FPM pool config**, not with `ini_set()` in code:
+
+  ```ini
+  ; PHP-FPM pool, e.g. /etc/php/8.3/fpm/pool.d/www.conf
+  php_admin_flag[session.upload_progress.enabled] = off
+  php_admin_value[memory_limit] = -1
+  ; PHP 8.5 only:
+  ; php_admin_flag[fatal_error_backtraces] = off
+  ```
+
+  `php_admin_*` values can't be overridden by application code. Then restart PHP-FPM.
+
+  Notes:
+
+  - `session.upload_progress.enabled = 0` is PHP's recommended mitigation for CVE-2026-109619 and also covers the follow-up [CVE-2026-115560](/blog/cve-2026-115560-session-upload-progress)
+  - `memory_limit = -1` (unlimited) is the mitigation for CVE-2026-109618. It removes a protection against runaway scripts, so watch server memory and **remove it after patching**
+  - A container or cgroup memory cap protects availability but is **not** a full mitigation
+  - Put the site behind a **WAF** (Cloudflare deployed rules for all plans) as an additional layer
+
+  ## Verify
+
+  ```bash
+  php -v                                     # CLI
+  php-fpm8.3 -v                              # FPM binary (name varies)
+  apt list --installed 2>/dev/null | grep php8.3-fpm
+  ```
+
+  For the web side, use a temporary `phpinfo()` page, check **PHP Version** and **Build Date**, then **delete it**. See [how to check your PHP version](/blog/how-to-check-php-version-website).
+
+  Also confirm the mitigation values in phpinfo (`session.upload_progress.enabled` should show **Off** if you set it).
+
+  ## If you're on PHP 8.1 or older
+
+  PHP itself doesn't release 8.1 or older anymore. Options:
+
+  - Use a vendor that backports fixes (Ubuntu Pro, some LTS vendors, CloudLinux), or
+  - **Upgrade to PHP 8.3 or 8.4** (recommended). Test the app on the new version first
+  - CISA advises taking PHP 8.1-or-older internet-facing systems **offline** until patched or upgraded
+
+  Version support: [PHP end-of-life dates](/blog/php-supported-versions-end-of-life-dates).
+
+  ## After patching: check for compromise
+
+  Exploit attempts were seen from 17 October. Look for new PHP files in web roots and upload folders, PHP-FPM or Apache processes spawning shells (`sh`, `bash`, `curl`, `wget`), new cron jobs and unknown SSH keys. Full checklist: [was my website hacked through PHP2Shell?](/blog/php2shell-was-my-site-hacked)
+
+  ## Where we fit
+
+  We set up and maintain servers for startups and businesses: patched PHP, automatic security updates, monitoring, backups and documented restarts, or we move you to managed hosting if you'd rather not run a server. See [website development](/services/website-development) and [app development](/services/app-development). Students can learn this hands-on in our [DevOps course](/courses/devops-course-shivamogga).
+
+  Need help patching a server? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [Tenable: php2shell FAQ (mitigations and versions)](https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote)
+  - [Welcomattic: where to get the patched PHP for your setup](https://blog.welcomattic.com/blog/2026-10-22-php2shell-where-to-get-the-patched-php/)
+  - [Pasquale Pillitteri: php2shell on PHP 7.4 and Ubuntu 20.04 Pro](https://pasqualepillitteri.it/en/news/26862/php2shell-php-74-patch-ubuntu-20-04-pro-hosting)
+  - [CISA alert](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching)

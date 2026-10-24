@@ -1,0 +1,86 @@
+id: "google-ai-mode-links-update-october-2026"
+title: "Google's October 2026 AI Mode Update: More Links, an 'Official Websites' Section and What It Means for Your Traffic"
+seoTitle: "Google AI Mode Links Update (Oct 2026): What Changed"
+metaDescription: "On 15 October 2026 Google added more links to AI Mode and AI Overviews and began testing an official websites section. What it means for you."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Google is putting more links back into its AI answers, and testing a section that highlights official websites. For small businesses that lost clicks to AI Overviews, this is the most useful change in months."
+takeaways:
+  - "On 15 October 2026 Google announced more inline links, placed higher, in AI Mode and AI Overviews."
+  - "Google is testing a dedicated section at the top of some AI answers for official websites when a task has only one or two official sources."
+  - "News carousels in AI features are rolling out to more countries and languages, and highlight users' Preferred Sources."
+  - "Google says use of its Preferred Sources feature has grown more than 7x since the start of 2026."
+  - "Clear, specific pages that answer one question well are the ones most likely to be linked from AI answers."
+coverImage: "/images/blog/google-ai-mode-links-update-october-2026.png"
+coverIcon: "Sparkles"
+category: "SEO"
+keywords: "Google AI Mode update October 2026, AI Overviews links, Google AI Mode official websites, AI Mode SEO, AI Overviews traffic, Google search update 2026, Preferred Sources Google"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  Since AI Overviews and AI Mode arrived, many website owners have seen the same pattern in Search Console: impressions up, clicks flat or down. People get the answer from Google's AI summary and never visit a site.
+
+  On **15 October 2026**, Google announced a set of changes aimed squarely at that complaint. Here's what was announced, what's live versus in testing, and what a business in Bangalore or Shivamogga should actually do.
+
+  ## What Google announced
+
+  | Change | What it does | Status |
+  |---|---|---|
+  | **More inline links** | More links inside AI responses, shown higher up and more often | Google says it has made "substantial increases" and is launching higher placement |
+  | **Official websites section** | A section at the top of some AI answers that highlights the official site(s) for a task, with context on why each helps | **Testing** |
+  | **News carousels** | Carousels of timely articles in AI features expanding to more locations and languages; highlights Preferred Sources | Starting to roll out |
+  | **Image thumbnails on related links** | Links at the end of some AI responses become more visual | Announced; timing not specified |
+  | **Clickable creator names on video results** | Creator and publisher names in AI Mode video results link to their Search profiles | **Testing** |
+
+  Google also said the number of people using **Preferred Sources** (which lets users choose news sites they want to see more of) has grown **more than 7x** since the start of the year.
+
+  ## The "official websites" test, explained
+
+  Some tasks have only one or two genuinely official sources: renewing a passport, paying a property tax, checking an exam result, or booking with a specific business. Google is testing a dedicated section at the **top** of AI answers for those cases, so users can go straight to the right site.
+
+  Google hasn't explained how it decides which sites count as "official". Sensibly, you should expect it to lean on signals Google already uses to understand entities:
+
+  - Your **brand name** matching your domain and your Google Business Profile
+  - Consistent **name, address and phone** across the web
+  - Clear **Organisation or LocalBusiness structured data**
+  - An **About page** that states who you are, where you operate and what you do
+  - Other trusted sites (directories, news, partners) linking to you as the official site
+
+  For a local business, this is a chance to make sure that when someone asks AI Mode about *your* business, *your* website is the one Google points to, not a directory listing or an aggregator.
+
+  ## What this means for different businesses
+
+  **Local service businesses (clinics, salons, coaching, homestays).** Most of your discovery still happens in the map pack. But questions like "does [your clinic] open on Sunday?" or "fees for [your coaching centre]" increasingly get answered by AI. Make sure those answers exist on your site and your profile. See [AI Overviews and AI Mode for local businesses](/blog/ai-overviews-ai-mode-local-business).
+
+  **Startups and SaaS.** Comparison and "how to" queries are where AI answers dominate. Inline links reward pages that answer one specific question clearly, with evidence. Thin listicles don't get cited.
+
+  **Publishers and blogs.** The expanded news carousels and Preferred Sources reward sites that readers actively choose. Ask your loyal readers to add you as a preferred source.
+
+  ## What to do this month
+
+  1. **Check your branded answers.** Search your business name in AI Mode (and ask "what does [business] do", "[business] timings", "[business] price"). Note what's wrong or missing.
+  2. **Fix your entity basics.** Consistent name and contact details, Organisation/LocalBusiness schema, a factual About page, and a verified [Google Business Profile](/blog/google-business-profile-shivamogga-local-seo).
+  3. **Build one page per question that matters.** Pricing, process, areas served, timings, eligibility. A page that answers one question precisely is easier to link than a long page that answers everything vaguely.
+  4. **Write for extraction.** A direct answer in the first two sentences, then detail, tables and steps. Headings that match how people ask.
+  5. **Measure AI visibility.** Use the [Search Console generative AI report](/blog/search-console-generative-ai-report) where available, and [track AI referrals in GA4](/blog/track-ai-traffic-chatgpt-gemini-ga4).
+
+  ## Is this a ranking update?
+
+  No. This is a change to how AI features **display links**, not a core ranking update. As of 24 October 2026, the most recent confirmed ranking change on Google's Search Status Dashboard is the [September 2026 spam update](/blog/google-september-2026-spam-update), which finished on 8 October. Forum chatter about an "October update" hasn't been confirmed by Google.
+
+  ## The bigger picture
+
+  AI answers aren't going away, and links in them will stay competitive. The businesses that keep earning clicks are the ones Google can identify clearly and trust: a real entity, consistent details, and pages that directly answer what customers ask. That's the same foundation good local SEO has always needed, now with higher stakes. More in [Generative Engine Optimisation for small businesses](/blog/generative-engine-optimization-guide-india).
+
+  ## Where we fit
+
+  We build websites that are easy for Google and AI assistants to understand: one page per service and question, structured data, a factual About page, and fast pages. Then we monitor how your business shows up in AI answers. See [SEO services](/services/seo-services) or [local SEO in Shivamogga](/shivamogga/seo-services).
+
+  Want to know how AI Mode describes your business? [Get a free launch plan](/startup-launch-package) and we'll check.
+
+  ## Sources
+
+  - [Google: AI Mode and AI Overviews updates to explore the web (15 Oct 2026)](https://blog.google/products-and-platforms/products/search/updates-ai-mode-overviews-explore-web/)
+  - [PPC Land: Google pushes links higher in AI answers as Preferred Sources use rises 7x](https://ppc.land/google-pushes-links-higher-in-ai-answers-as-preferred-sources-use-rises-7x/)
+  - [Search Engine Watch: October 2026 update rumours](https://searchenginewatch.com/google-october-2026-update-rumors/)

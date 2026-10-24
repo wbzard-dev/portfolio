@@ -1,0 +1,115 @@
+id: "how-to-change-php-version-cpanel-hostinger"
+title: "How to Change PHP Version in cPanel and Hostinger hPanel (Without Breaking Your Site)"
+seoTitle: "How to Change PHP Version in cPanel & Hostinger Safely"
+metaDescription: "Step-by-step: change your website's PHP version in cPanel MultiPHP Manager, CloudLinux Select PHP Version and Hostinger hPanel, with a backup and rollback plan."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Moving off an old PHP version is the single best thing most small business websites can do after PHP2Shell. Here's how to switch PHP versions in cPanel and Hostinger, and how to avoid the white screen of death."
+takeaways:
+  - "In cPanel, change PHP per domain in MultiPHP Manager, or in Select PHP Version on CloudLinux servers."
+  - "In Hostinger hPanel, change PHP under Advanced, PHP Configuration, for each website."
+  - "Take a full backup and test on a staging copy before switching a live site to a newer PHP version."
+  - "Old plugins, themes and custom code are the usual cause of errors after a PHP upgrade."
+  - "If the site breaks, switching back to the previous PHP version usually restores it within minutes."
+coverImage: "/images/blog/how-to-change-php-version-cpanel-hostinger.png"
+coverIcon: "SlidersHorizontal"
+category: "Websites"
+keywords: "change PHP version cPanel, Hostinger change PHP version, MultiPHP Manager, Select PHP Version cPanel, upgrade PHP version shared hosting, PHP version update WordPress, change PHP version hPanel"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  After the **PHP2Shell** fixes on 21 October 2026, many site owners discovered their website was still on **PHP 7.4, 8.0 or 8.1**, versions the PHP project no longer supports. Even if your host applied an emergency patch to those builds, the long-term fix is to move to a supported version: **PHP 8.3 or 8.4** for most sites today.
+
+  Here's how to do it on the most common hosting panels in India, safely.
+
+  ## Before you change anything
+
+  1. **Take a full backup** (files and database). Most panels have a backup tool; also keep a copy off the server.
+  2. **Note your current PHP version** so you can switch back. See [how to check your PHP version](/blog/how-to-check-php-version-website).
+  3. **Update WordPress, plugins and themes first.** Newer versions are more likely to support newer PHP.
+  4. **Use staging if you can.** Many hosts offer one-click staging. Test there first.
+  5. **Pick a quiet time** (early morning or late night) for the live switch.
+
+  ## cPanel: MultiPHP Manager
+
+  1. Log in to cPanel
+  2. Open **MultiPHP Manager** (under Software)
+  3. Tick the domain you want to change
+  4. Choose the new version (for example `ea-php83`) from the dropdown
+  5. Click **Apply**
+
+  The change usually takes effect within seconds. Each domain can have its own version.
+
+  **Also check MultiPHP INI Editor** afterwards: settings like `memory_limit`, `upload_max_filesize` and `max_execution_time` may reset to defaults on the new version.
+
+  ## cPanel on CloudLinux: Select PHP Version
+
+  Many shared hosts in India use CloudLinux. You'll see **Select PHP Version** instead of, or alongside, MultiPHP Manager:
+
+  1. Open **Select PHP Version**
+  2. Choose the new version from the dropdown and click **Set as current**
+  3. Open the **Extensions** tab and make sure needed extensions are ticked (common ones for WordPress: `mysqli`, `curl`, `gd` or `imagick`, `mbstring`, `xml`, `zip`, `intl`, `opcache`)
+  4. Check the **Options** tab for memory and upload limits
+
+  ## Hostinger hPanel
+
+  1. Log in to hPanel and open **Websites → Manage** for your site
+  2. Go to **Advanced → PHP Configuration**
+  3. Under **PHP version**, select the new version
+  4. Click **Update**
+  5. Check the **PHP extensions** and **PHP options** tabs
+
+  Hostinger has said its managed hosting has the PHP2Shell fix, and recommends **PHP 8.3 or newer** after checking theme and plugin compatibility.
+
+  ## Other hosts
+
+  - **GoDaddy cPanel hosting:** cPanel → MultiPHP Manager or Select PHP Version
+  - **SiteGround:** Site Tools → Devs → PHP Manager
+  - **Bluehost:** Websites → Settings → PHP version (or cPanel MultiPHP Manager on older accounts)
+  - **Plesk:** Websites & Domains → PHP → PHP version
+
+  Labels change often; search your host's help centre for "change PHP version" if you can't find it.
+
+  ## After switching: test these pages
+
+  - [ ] Homepage and main service pages
+  - [ ] **Contact and lead forms** (submit a test enquiry)
+  - [ ] Checkout and payment, if you sell online
+  - [ ] WordPress admin: Dashboard, Posts, Plugins, Settings
+  - [ ] Any page builder (Elementor, Divi, WPBakery): open one page in the editor
+  - [ ] Site Health (**Tools → Site Health**) for new warnings
+
+  ## If something breaks
+
+  **White screen, "critical error" or 500 error:**
+
+  1. **Switch back** to the previous PHP version in the same panel. The site should return within a minute.
+  2. Check the **error log** (cPanel → Errors, or `error_log` files in your site folders) for the plugin or theme named in the error.
+  3. **Update or replace** that plugin or theme, then try the upgrade again.
+
+  WordPress may also email the site admin with a **recovery mode** link that lets you log in and disable the faulty plugin.
+
+  **Common culprits:** abandoned plugins not updated in years, nulled (pirated) themes, old page builders, and custom code written for PHP 5 or 7.
+
+  ## Which version should you choose?
+
+  | Version | Supported until | Recommendation |
+  |---|---|---|
+  | PHP 8.2 | 31 Dec 2026 | Avoid for new upgrades; only weeks of support left |
+  | **PHP 8.3** | 31 Dec 2027 | Safe choice for most WordPress sites |
+  | **PHP 8.4** | 31 Dec 2028 | Great if your plugins support it |
+  | PHP 8.5 | 31 Dec 2029 | Newest; check plugin compatibility first |
+
+  Details: [PHP supported versions and end-of-life dates](/blog/php-supported-versions-end-of-life-dates). For a fuller WordPress process, see [upgrade WordPress to PHP 8.3 safely](/blog/upgrade-wordpress-php-version-safely).
+
+  ## Where we fit
+
+  We upgrade PHP for business websites in Bangalore and Shivamogga with backups, staging tests and fixes for any plugin or theme issues, so your site never goes down during the switch. See [website development](/services/website-development).
+
+  Stuck on an old PHP version? [Get in touch for a free check](/startup-launch-package).
+
+  ## Sources
+
+  - [Hostinger: Protections against php2shell](https://www.hostinger.com/blog/protecting-php2shell/)
+  - [Terris: How to change PHP version in cPanel and other hosts (Oct 2026)](https://terris.sg/blog/change-php-version-cpanel)

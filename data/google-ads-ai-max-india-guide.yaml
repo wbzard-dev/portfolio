@@ -1,0 +1,102 @@
+id: "google-ads-ai-max-india-guide"
+title: "Google Ads AI Max and the End of Dynamic Search Ads: What Indian Advertisers Should Do in 2026"
+seoTitle: "Google Ads AI Max in India: Replacing Dynamic Search Ads"
+metaDescription: "Google is moving Dynamic Search Ads into AI Max. What AI Max does, what Google Marketing Live 2026 brought to India and how to switch safely."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Google is folding Dynamic Search Ads and broad automation into AI Max for Search, and its 2026 India announcements push AI even further into ads. Here's what changes and how to adopt it without losing control of your budget."
+takeaways:
+  - "AI Max for Search uses Google's AI to find more relevant queries, write ad text and choose landing pages within a Search campaign."
+  - "Reports say Dynamic Search Ads and related automation are being upgraded into AI Max, with new DSA campaign creation ending in September 2026."
+  - "Google Marketing Live 2026 brought Business Agent for Leads to India in beta: an AI chat inside Search ads, trained on the advertiser's website."
+  - "AI Max works best with accurate conversion tracking, enough conversion data and a well-structured website."
+  - "Small advertisers should test AI Max on one campaign, review search terms weekly and keep strong negative keyword lists."
+coverImage: "/images/blog/google-ads-ai-max-india-guide.png"
+coverIcon: "BrainCircuit"
+category: "Digital Marketing"
+keywords: "Google Ads AI Max India, AI Max for Search, Dynamic Search Ads retirement, Google Marketing Live 2026 India, Business Agent for Leads, Google Ads AI 2026, Google Ads for small business India"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Check Google Ads Help for the latest timelines in your account.*
+
+  If you run Google Search ads, 2026 is the year automation stops being optional. Google is folding **Dynamic Search Ads (DSA)** and related features into **AI Max for Search**, and its 2026 announcements for India add AI chat directly inside ads.
+
+  Here's what AI Max is, what's changing, and how a small business in Bangalore or Shivamogga should adopt it safely.
+
+  ## What AI Max for Search does
+
+  AI Max is a set of features you switch on inside a normal Search campaign. It uses Google's AI to:
+
+  - **Expand queries:** match your ads to relevant searches beyond your exact keywords, based on your website, ads and assets
+  - **Customise text:** generate headlines and descriptions tailored to each search
+  - **Expand final URLs:** send people to the most relevant page on your site, not just the URL you chose
+  - **Report better:** show which searches, headlines and pages drove results
+
+  Google launched AI Max in India in mid-2025 and cited early Indian results, such as Cashify reporting a 15% rise in conversions and a 12% drop in acquisition costs in testing. Those are Google's examples; your results depend on your setup.
+
+  ## What's happening to Dynamic Search Ads
+
+  DSA campaigns automatically targeted searches based on your website content. According to industry reports, Google is **upgrading DSA, automatically created assets and campaign-level broad match into AI Max**, and **creation of new DSA campaigns was set to end in September 2026**.
+
+  If you run DSA today:
+
+  1. Check your account for **upgrade notices** and dates
+  2. Note current DSA performance (cost per conversion, conversion volume) as a baseline
+  3. Plan to **move that traffic into a Search campaign with AI Max** on your terms, before an automatic upgrade does it for you
+  4. Compare results for 4–6 weeks
+
+  ## What Google Marketing Live 2026 brought to India
+
+  At Google Marketing Live 2026 and its India edition, Google announced several features. The India-relevant ones:
+
+  - **Business Agent for Leads (beta in India):** an AI chatbot inside a Search ad, trained on your website, that answers questions and qualifies leads before showing a form. upGrad was named as an early tester.
+  - **Conversational ad formats** designed for AI Mode and AI Overviews
+  - **AI Performance Insights** rolling out in India, to track product visibility
+  - **YouTube BrandStack**, built for the Indian market, for creator-led campaigns
+  - **Ask Advisor**, a Gemini-powered assistant spanning Google Ads, Analytics and Merchant Center
+  - **AI Brief** and **Asset Studio** for describing your brand once and generating images, video and copy
+
+  Google also says ads from Search, Shopping, Performance Max and AI Max campaigns can be eligible to appear in **AI Overviews and AI Mode** where those ad placements are available. Availability varies by market, so check your campaign's eligibility.
+
+  For businesses in India's lead-heavy categories (education, real estate, healthcare, home services), Business Agent for Leads is the one to watch. A chatbot that answers "what are the fees?" inside the ad could improve lead quality, if it's trained on accurate website content.
+
+  ## When AI Max helps, and when it hurts
+
+  | Helps when... | Hurts when... |
+  |---|---|
+  | Conversion tracking is accurate (forms, calls, WhatsApp) | You track clicks or page views as "conversions" |
+  | Your website clearly explains each service on its own page | One vague page covers everything |
+  | You have steady conversion volume | You get only a handful of conversions a month |
+  | You review search terms weekly | You "set and forget" |
+  | Your negative keyword list is maintained | You haven't excluded *jobs, free, course, salary* etc. |
+
+  For a small Shivamogga business with low search volume, AI Max can find useful extra queries, but it can also wander into irrelevant ones. Weekly reviews are essential.
+
+  ## How to switch on AI Max safely
+
+  1. **Fix tracking first.** Forms via a thank-you page, call and WhatsApp clicks as key events. See [conversion tracking setup](/blog/ga4-conversion-tracking-setup).
+  2. **Pick one campaign** with steady results to test.
+  3. **Turn on AI Max**, and consider keeping URL expansion off at first if some pages (careers, blog) shouldn't get ad traffic; add URL exclusions.
+  4. **Add brand and location controls** where available, and keep your **negative keyword** list.
+  5. **Review search terms and generated text weekly.** Remove anything inaccurate or off-brand.
+  6. **Compare** cost per conversion and lead quality with the previous 4–6 weeks.
+  7. **Scale gradually** if it works.
+
+  Your website matters more than ever: AI Max reads it to decide which searches and pages to use. Clear service pages and a [landing page that converts](/blog/landing-page-for-ads-that-converts) directly improve results.
+
+  ## What about costs?
+
+  Automation doesn't change the basics of [Google Ads costs](/blog/google-ads-cost-bangalore-vs-shivamogga): the auction, competition in your area and your landing page still decide cost per lead. AI Max can find cheaper long-tail searches, but it can also spend faster. Set budgets you're comfortable losing during a test.
+
+  ## Where we fit
+
+  We set up and manage Google Ads for founders and local businesses with tracking, clean structure, AI features tested properly, and weekly search term reviews. See [Meta and Google Ads](/services/digital-marketing) or [Google Ads in Shivamogga](/shivamogga/google-meta-ads), and our [beginner's Google Ads guide](/blog/google-ads-shivamogga-guide).
+
+  Running DSA or thinking about AI Max? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [Google India: Google Marketing Live 2026, delivering the Gemini advantage for Indian businesses](https://blog.google/intl/en-in/products/google-companies/google-marketing-live-2026-delivering-the-gemini-advantage-for-indian-businesses/)
+  - [Social Samosa: Google rolls out AI Max, Retention Mode and creative tools for Indian advertisers](https://www.socialsamosa.com/news-2/google-ai-max-retention-mode-creative-tools-indian-advertisers-9482553)
+  - [exchange4media: Google to retire Dynamic Search Ads](https://www.exchange4media.com/digital-news/google-retires-dynamic-search-ads-will-ai-max-rewrite-funnel-154167.html)
+  - [PPC Land: Google Marketing Live 2026, every announcement](https://ppc.land/google-marketing-live-2026-every-announcement-that-actually-matters/)

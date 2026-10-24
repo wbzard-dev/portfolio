@@ -1,0 +1,97 @@
+id: "generative-engine-optimization-guide-india"
+title: "Generative Engine Optimisation (GEO): How to Get Your Business Recommended by ChatGPT, Gemini and Google AI Mode"
+seoTitle: "GEO Guide: Get Recommended by ChatGPT & Gemini (2026)"
+metaDescription: "Generative Engine Optimisation for Indian businesses: how ChatGPT, Gemini and AI Mode pick sources, and 12 steps to get your business cited."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "More customers now ask ChatGPT, Gemini or Google's AI Mode before they search or visit a site. Generative Engine Optimisation is about being the business those assistants mention. Here's a practical guide, without the hype."
+takeaways:
+  - "Generative Engine Optimisation (GEO) means making your business easy for AI assistants to find, understand, trust and cite."
+  - "AI assistants rely on content they can crawl or retrieve, plus signals of trust such as reviews, consistent listings and mentions on other sites."
+  - "Clear entity information, specific answer-first pages and structured data help AI describe your business accurately."
+  - "Allowing reputable AI crawlers in robots.txt and publishing an llms.txt file makes your content easier for AI systems to read."
+  - "GEO builds on good SEO rather than replacing it, and results should be measured with AI referral tracking and Search Console."
+coverImage: "/images/blog/generative-engine-optimization-guide-india.png"
+coverIcon: "Sparkle"
+category: "SEO"
+keywords: "generative engine optimization, GEO SEO, how to rank in ChatGPT, get recommended by ChatGPT, AI search optimization India, LLM SEO, llms.txt, answer engine optimization"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  A founder asks ChatGPT, *"Who can build an MVP and run the launch marketing for a startup in Bangalore?"* A parent in Shivamogga asks Gemini, *"Which online coding course is good for a BCA student?"* A traveller asks Google's AI Mode, *"Homestays near Jog Falls with good food and parking?"*
+
+  Each answer names a few businesses. **Generative Engine Optimisation (GEO)**, also called answer engine optimisation or LLM SEO, is the work of being one of them.
+
+  ## Why GEO matters in 2026
+
+  - **AI answers are everywhere:** Google AI Overviews and AI Mode (now in Kannada and other Indian languages), ChatGPT, Gemini, Perplexity, Copilot and Meta AI
+  - **AI ads have arrived:** [ChatGPT ads launched in India](/blog/chatgpt-ads-india-guide) in August 2026, which shows how valuable these conversations have become
+  - **Google is adding more links** to AI answers and testing an official websites section ([October 2026 update](/blog/google-ai-mode-links-update-october-2026))
+  - **AI visitors are measurable now:** Search Console reports AI impressions, and Gemini has started tagging some links ([tracking guide](/blog/track-ai-traffic-chatgpt-gemini-ga4))
+
+  ## How AI assistants choose what to say
+
+  Simplified, most assistants answer using a mix of:
+
+  1. **What they learned in training** (older, general knowledge)
+  2. **What they retrieve live**: search results, web pages, listings and reviews they can access when answering
+
+  To be recommended, your business needs to be **findable** (crawlable pages and listings), **understandable** (clear facts about who you are and what you do), and **trustworthy** (reviews, consistency, mentions on other reputable sites).
+
+  ## 12 practical GEO steps
+
+  **Foundations: be understandable**
+
+  1. **State your entity clearly.** On your homepage and About page: business name, what you do, who you serve, where, since when, and who runs it. Use the same wording everywhere.
+  2. **Add structured data.** Organization or LocalBusiness/ProfessionalService schema with name, logo, contact, address or service area and social profiles; FAQ and Article schema where relevant.
+  3. **Keep details consistent** across your website, Google Business Profile, LinkedIn, Instagram, Justdial, IndiaMART and industry directories.
+
+  **Content: be quotable**
+
+  4. **One page per service and per important question.** "Website design cost in Shivamogga", "MVP development cost in India", "MERN vs DevOps". Specific pages get cited; vague ones don't.
+  5. **Answer first.** Open each page with a direct, factual two-sentence answer, then explain.
+  6. **Use tables, steps and numbers.** Prices or price ranges, timelines, comparisons, eligibility. AI answers love structured facts.
+  7. **Add key takeaways.** A short list of standalone statements at the top of guides. Our own blog does this on every post.
+  8. **Show experience.** Real examples, local detail, named authors and dates. Generic, AI-written text without anything new is unlikely to be cited.
+
+  **Access: be readable**
+
+  9. **Allow reputable AI crawlers** in `robots.txt` (for example GPTBot and OAI-SearchBot for OpenAI, PerplexityBot, and Google-Extended for Gemini model use) unless you have a reason not to. Make sure important content is in the HTML, not only loaded by JavaScript.
+  10. **Publish an `llms.txt` file:** a plain Markdown summary of your business and key pages for AI systems. It's an emerging convention, not an official standard, but it's cheap to add. Our site generates `llms.txt` and `llms-full.txt` automatically from the same data as our pages.
+
+  **Trust: be recommendable**
+
+  11. **Earn reviews and mentions.** Google reviews that mention services, listings on reputable directories, local news, partner pages, podcasts and community posts. AI assistants weigh what *others* say about you. See [how to get Google reviews](/blog/how-to-get-more-google-reviews).
+  12. **Keep everything current.** Outdated prices, closed branches or old phone numbers lead to wrong AI answers. Review key facts quarterly.
+
+  ## Measuring GEO
+
+  - **Ask the assistants** monthly: 10 questions customers would ask; note whether you're mentioned and whether facts are right
+  - **Search Console:** generative AI report where available ([guide](/blog/search-console-generative-ai-report))
+  - **GA4:** an "AI assistants" channel for ChatGPT, Gemini, Perplexity and Copilot referrals ([guide](/blog/track-ai-traffic-chatgpt-gemini-ga4))
+  - **Enquiries:** ask new customers "how did you find us?" and add "ChatGPT/AI" as an option on your form
+
+  ## GEO myths
+
+  - **"GEO replaces SEO."** No. Most AI answers rely on the same signals that make pages rank: relevance, quality, trust. GEO is SEO with more emphasis on clarity and entity information.
+  - **"You can buy your way into ChatGPT's answers."** Ads are separate and labelled. Organic recommendations have to be earned.
+  - **"Publishing hundreds of AI-written pages will work."** It's more likely to trigger spam systems. See the [September 2026 spam update](/blog/google-september-2026-spam-update).
+  - **"llms.txt guarantees citations."** It helps AI read you; it doesn't make you recommendable.
+
+  ## GEO for local businesses vs startups
+
+  - **Local businesses** (clinics, cafés, coaching, homestays): focus on Google Business Profile, reviews and service pages. See [AI Overviews and AI Mode for local businesses](/blog/ai-overviews-ai-mode-local-business).
+  - **Startups and SaaS:** focus on comparison pages, clear pricing, documentation, case studies, and being mentioned in communities, reviews and press.
+
+  ## Where we fit
+
+  We build websites that are ready for AI search from the start: clear entity pages, structured data, answer-first content, AI crawler access, an auto-generated `llms.txt`, and tracking for AI referrals. See [SEO services](/services/seo-services), [website development](/services/website-development) and [local SEO in Shivamogga](/shivamogga/seo-services).
+
+  Want AI assistants to recommend your business? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [Google: AI Mode and AI Overviews updates (Oct 2026)](https://blog.google/products-and-platforms/products/search/updates-ai-mode-overviews-explore-web/)
+  - [llmstxt.org: the llms.txt proposal](https://llmstxt.org)
+  - [Search Engine Journal: Gemini adds UTM parameters](https://www.searchenginejournal.com/google-gemini-adds-utm-parameters-for-referral-attribution/591754/)

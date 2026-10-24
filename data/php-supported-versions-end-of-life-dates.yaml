@@ -1,0 +1,100 @@
+id: "php-supported-versions-end-of-life-dates"
+title: "PHP Supported Versions and End-of-Life Dates (2026): Which PHP Versions Are Still Safe?"
+seoTitle: "PHP End of Life Dates 2026: Which Versions Are Safe?"
+metaDescription: "Every PHP version's support and end-of-life date from 7.4 to 8.6, which got PHP2Shell fixes, and which version your website should use."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Which PHP versions still get security fixes? After PHP2Shell, this question matters more than ever. Here's the full list of supported and end-of-life PHP versions as of October 2026, and what each means for your site."
+takeaways:
+  - "As of October 2026, PHP 8.2, 8.3, 8.4 and 8.5 are supported; PHP 8.1 and older are end of life."
+  - "PHP 8.2 security support ends on 31 December 2026, PHP 8.3 on 31 December 2027, PHP 8.4 on 31 December 2028 and PHP 8.5 on 31 December 2029."
+  - "Each PHP release gets about two years of active support and two years of security fixes, ending on 31 December."
+  - "Only supported branches received official PHP2Shell releases: 8.5.12, 8.4.27, 8.3.36 and 8.2.35."
+  - "For most websites today, PHP 8.3 or 8.4 is the best balance of compatibility and remaining support."
+coverImage: "/images/blog/php-supported-versions-end-of-life-dates.png"
+coverIcon: "CalendarClock"
+category: "Websites"
+keywords: "PHP end of life dates, PHP supported versions, PHP EOL 2026, PHP 7.4 end of life, PHP 8.1 end of life, PHP 8.3 end of life, PHP 8.4 support, which PHP version should I use"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Always confirm on php.net's supported versions page.*
+
+  "Is my PHP version still safe?" is a question every website owner should be able to answer. After **PHP2Shell** ([explained](/blog/php2shell-cve-2026-109618-explained)), where only supported versions got official fixes, it's no longer an abstract one.
+
+  ## PHP support at a glance (October 2026)
+
+  | Version | Released | Active support ended / ends | Security support ends | Status today | PHP2Shell fix |
+  |---|---|---|---|---|---|
+  | PHP 7.4 | Nov 2019 | Nov 2021 | 28 Nov 2022 | **End of life** | Minimal source backport only |
+  | PHP 8.0 | Nov 2020 | Nov 2022 | 26 Nov 2023 | **End of life** | Minimal source backport only |
+  | PHP 8.1 | Nov 2021 | Nov 2023 | 31 Dec 2025 | **End of life** | Minimal source backport only |
+  | PHP 8.2 | Dec 2022 | 31 Dec 2024 | **31 Dec 2026** | Security fixes only | **8.2.35** |
+  | PHP 8.3 | Nov 2023 | 31 Dec 2025 | **31 Dec 2027** | Security fixes only | **8.3.36** |
+  | PHP 8.4 | Nov 2024 | 31 Dec 2026 | **31 Dec 2028** | Active support | **8.4.27** |
+  | PHP 8.5 | 20 Nov 2025 | 31 Dec 2027 | **31 Dec 2029** | Active support | **8.5.12** |
+  | PHP 8.6 | Expected 19 Nov 2026 | | | Release candidates | n/a |
+
+  PHP 5.x and 7.0 to 7.3 have been end of life for years and received **no** PHP2Shell fix.
+
+  ## How PHP's support policy works
+
+  Each new PHP version (released every November) gets:
+
+  - **About two years of active support:** bug fixes and security fixes
+  - **About two more years of security-only support**
+  - Support periods now **end on 31 December** of the relevant year, which makes planning easier
+
+  So a version released in November 2024 (8.4) is supported until the end of 2028.
+
+  ## Which version should your website use?
+
+  | Your situation | Recommended |
+  |---|---|
+  | Typical WordPress business site | **PHP 8.3 or 8.4** |
+  | WooCommerce store | **8.3 or 8.4**, after testing checkout and payment plugins |
+  | Laravel 13 app | **8.3+** (8.4 recommended) ([Laravel 13 requirements](/blog/laravel-13-php-requirements)) |
+  | New custom project | **8.4 or 8.5** |
+  | Old site on 7.4 / 8.0 / 8.1 | Upgrade to **8.3** at minimum, ideally 8.4 |
+  | On 8.2 | Upgrade before **31 Dec 2026** ([plan](/blog/php-8-2-end-of-life-december-2026)) |
+
+  WordPress 7.0 requires PHP 7.4 at minimum but recommends **8.3 or newer** ([WordPress 7 requirements](/blog/wordpress-7-php-requirements)).
+
+  ## Why "it still works" isn't good enough
+
+  Old PHP versions keep running. They just stop being **fixed**. PHP2Shell showed what that means:
+
+  - Supported versions: patched the same day
+  - PHP 7.4 to 8.1: only minimal source patches; you depend on your host or Linux vendor to build them
+  - PHP 7.3 and older: nothing
+  - CISA's advice for PHP 8.1 or older systems that couldn't be patched: **take them offline**
+
+  Newer versions are also **faster**, which helps page speed and SEO ([why speed matters](/blog/website-speed-core-web-vitals-small-business)).
+
+  ## "But my host says my old PHP is patched"
+
+  Some hosts and vendors (cPanel EasyApache 4, CloudLinux, Ubuntu Pro and others) **backport** security fixes to end-of-life PHP builds. That's genuinely helpful, but:
+
+  - It depends on your host continuing to do it
+  - Backports may be partial
+  - Plugins and frameworks drop support for old PHP over time, so you'll fall behind on their fixes too
+
+  Treat a backported old version as **borrowed time**, not a destination.
+
+  ## How to check and change your version
+
+  - [How to check your website's PHP version](/blog/how-to-check-php-version-website)
+  - [How to change PHP version in cPanel and Hostinger](/blog/how-to-change-php-version-cpanel-hostinger)
+  - [How to upgrade WordPress to a newer PHP version safely](/blog/upgrade-wordpress-php-version-safely)
+
+  ## Where we fit
+
+  We keep the websites we build and maintain on supported PHP versions, and upgrade older sites with staging tests so nothing breaks. See [website development](/services/website-development) or [website design in Shivamogga](/shivamogga/website-design).
+
+  Not sure where your site stands? [Get in touch for a free check](/startup-launch-package).
+
+  ## Sources
+
+  - [PHP.Watch: PHP versions](https://php.watch/versions)
+  - [Brandefense: PHP end of life, which versions still get security fixes](https://brandefense.io/blog/php-end-of-life-versions-dates/)
+  - [Tenable: php2shell FAQ (fixed versions)](https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote)
+  - [The Register: PHP 8.5 released (Nov 2025)](https://www.theregister.com/2025/11/20/php_85_lays_pipe_operator/)

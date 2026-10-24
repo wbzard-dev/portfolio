@@ -1,0 +1,120 @@
+id: "php2shell-docker-laravel-patch"
+title: "PHP2Shell for Docker and Laravel: How to Rebuild Images, Restart Workers and Verify the Fix"
+seoTitle: "PHP2Shell for Docker & Laravel: Rebuild and Verify"
+metaDescription: "Laravel apps and PHP containers are affected by PHP2Shell. Rebuild with patched php image tags, restart workers and verify each container."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Laravel, Symfony and other PHP apps are affected by PHP2Shell because the bug is in PHP itself. If you deploy with Docker, a stale cached image can leave you exposed even after you 'updated'. Here's the right way to patch."
+takeaways:
+  - "Laravel and other PHP frameworks are affected by PHP2Shell because the flaw is in the PHP runtime, not in framework code."
+  - "Official php Docker images were rebuilt for the fixed versions; pin exact tags such as php:8.4.27-fpm rather than floating tags."
+  - "Rebuild with docker compose build --pull so Docker doesn't reuse a cached, unpatched base image."
+  - "Restart long-running PHP processes too: queue workers, schedulers, Octane, FrankenPHP and RoadRunner."
+  - "Verify the running containers, not just the Dockerfile, by checking php -v inside each container."
+coverImage: "/images/blog/php2shell-docker-laravel-patch.png"
+coverIcon: "Container"
+category: "Apps & MVPs"
+keywords: "PHP2Shell Laravel, PHP2Shell Docker, php docker image update, Laravel security update October 2026, Laravel Octane PHP2Shell, FrankenPHP PHP2Shell, php 8.4.27-fpm image, Laravel Forge PHP update"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  Many startup products in Bangalore are built with **Laravel** and shipped in **Docker** containers. After the **PHP2Shell** fixes on 21 October 2026 ([background](/blog/php2shell-cve-2026-109618-explained)), teams have been asking: does this affect Laravel, and how do we patch containers properly?
+
+  ## Is Laravel affected?
+
+  **Yes.** The flaws are in the PHP engine, and they affect PHP-FPM, Apache with mod_php and FrankenPHP, which is how Laravel apps are served. Laravel's own session handling makes no difference. The same is true for **Symfony, CodeIgniter, Yii, Slim** and custom PHP apps.
+
+  Fixed PHP versions: **8.5.12, 8.4.27, 8.3.36, 8.2.35**. Laravel 13 requires PHP 8.3+ ([details](/blog/laravel-13-php-requirements)), so most current Laravel apps need **8.3.36 or later**.
+
+  ## Docker: rebuild properly
+
+  The official `php` image on Docker Hub was rebuilt for the fixed versions across variants (cli, apache, fpm, zts; Debian and Alpine).
+
+  **1. Pin an exact patched tag** in your Dockerfile:
+
+  ```dockerfile
+  FROM php:8.4.27-fpm
+  # or php:8.3.36-fpm-alpine, php:8.5.12-apache, etc.
+  ```
+
+  Floating tags like `php:8.4-fpm` will point to the patched build once published, but only if you **pull again**.
+
+  **2. Rebuild without cache reuse of the base image:**
+
+  ```bash
+  docker compose build --pull
+  docker compose up -d --force-recreate
+  ```
+
+  Without `--pull`, Docker may happily reuse the **old, cached base image**, and you'll ship an unpatched container while thinking you've updated.
+
+  **3. Verify the running container:**
+
+  ```bash
+  docker compose exec app php -v
+  ```
+
+  Check the version is a fixed one. If you install PHP from **distribution packages** inside the image (Debian, Ubuntu, RHEL bases), the version number may not change after a backported fix; check the package version instead.
+
+  **4. Rebuild everything that uses PHP:** web, queue worker, scheduler, and any sidecar images. Scan images with your registry's vulnerability scanner or tools like Trivy, Grype or Docker Scout to find stragglers.
+
+  ## Restart long-running PHP processes
+
+  Patching binaries doesn't affect processes already running. Restart:
+
+  - **PHP-FPM** and Apache
+  - **Queue workers:** `php artisan queue:restart` (Horizon: `php artisan horizon:terminate` and let Supervisor restart it)
+  - **Scheduler** containers or cron
+  - **Laravel Octane** (Swoole, RoadRunner or FrankenPHP): `php artisan octane:reload` or restart the service
+  - Any **Supervisor**-managed PHP processes
+
+  ## Laravel Forge, Vapor and Laravel Cloud
+
+  - **Forge:** Forge-provisioned servers use OS packages; update PHP from the server's PHP settings or via SSH, then restart PHP-FPM and workers
+  - **Vapor:** reports say apps on a native PHP 8.3+ runtime were **redeployed automatically**; **custom and Docker runtimes need a rebuild and redeploy**
+  - **Laravel Cloud:** check the platform's status announcements and redeploy if advised
+
+  Always confirm against the platform's official announcements.
+
+  ## Interim mitigation
+
+  If you can't rebuild immediately, set in your PHP ini (for example a file copied into `/usr/local/etc/php/conf.d/`):
+
+  ```ini
+  session.upload_progress.enabled = 0
+  ```
+
+  This blocks the confirmed session-based paths (and covers [CVE-2026-115560](/blog/cve-2026-115560-session-upload-progress)), but not every variant. Don't rely on `ini_set()` in code or `.user.ini`. **Rebuilding with a patched image is the real fix.** More mitigations: [patching on a VPS](/blog/php2shell-patch-vps-ubuntu-php-fpm).
+
+  ## CI/CD: make this automatic next time
+
+  - **Automated base-image updates:** Dependabot or Renovate can open PRs when `php` tags change
+  - **Scheduled rebuilds** (weekly) even without code changes
+  - **Image scanning** in the pipeline, failing builds on critical CVEs
+  - **Pinned, explicit versions** in Dockerfiles so you know exactly what's deployed
+
+  New to this? Our [Docker for beginners](/blog/docker-for-beginners) guide and [DevOps roadmap](/blog/devops-roadmap-for-beginners) cover the basics.
+
+  ## After patching: check for compromise
+
+  For Laravel specifically:
+
+  - Rotate **`APP_KEY`** carefully if you suspect compromise (it invalidates encrypted data and sessions; plan it), plus database passwords, API keys, mail and payment credentials in `.env`
+  - Look for unexpected files in `public/` and `storage/`
+  - Check logs for PHP processes spawning shells or making outbound connections
+
+  Full checklist: [was my website hacked through PHP2Shell?](/blog/php2shell-was-my-site-hacked)
+
+  ## Where we fit
+
+  We build and run Laravel and Node.js products for startups with pinned images, automated security rebuilds and CI/CD from day one. If your product needs a security review or a proper pipeline, we can help. See [MVP and app development](/services/app-development). Students can learn this in our [DevOps course](/courses/devops-course-shivamogga).
+
+  Need help patching your Laravel app? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [Docker (DEV Community): How to fix PHP2Shell](https://dev.to/docker/how-to-fix-php2shell-cve-2026-109618-and-cve-2026-109619-3df3)
+  - [DEV Community: Is your WordPress, Laravel or PHP site affected?](https://dev.to/arifulislamat/php2shell-is-your-wordpress-laravel-or-php-site-affected-how-to-patch-today-3jla)
+  - [IT-Connect: PHP2Shell and Docker containers](https://www.it-connect.tech/php2shell-and-docker-how-to-check-and-update-your-php-containers/)
+  - [Laravel News: Critical PHP security release](https://laravel-news.com/php-critical-security-release)

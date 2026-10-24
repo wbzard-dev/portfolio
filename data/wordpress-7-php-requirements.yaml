@@ -1,0 +1,86 @@
+id: "wordpress-7-php-requirements"
+title: "WordPress 7.0 PHP Requirements: Minimum PHP 7.4, Recommended 8.3+, and What Happens to Older Sites"
+seoTitle: "WordPress 7.0 PHP Requirements: 7.4 Minimum, 8.3+ Advised"
+metaDescription: "WordPress 7.0 requires PHP 7.4 and recommends 8.3 or newer. What that means for older sites after PHP2Shell, and how to prepare."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "WordPress 7.0 raised its minimum PHP version to 7.4, and recommends PHP 8.3 or newer. But WordPress's minimum isn't a safe version. Here's what the requirements mean for your site after PHP2Shell."
+takeaways:
+  - "WordPress 7.0 requires at least PHP 7.4, dropping support for PHP 7.2 and 7.3; sites on those versions stay on the 6.9 branch."
+  - "WordPress recommends PHP 8.3 or newer and reports support for PHP 8.0 through 8.5."
+  - "The WordPress minimum is about compatibility, not security: PHP 7.4 has been end of life since November 2022."
+  - "PHP2Shell affected every WordPress site regardless of WordPress version, because the flaw was in PHP itself."
+  - "The practical target for WordPress sites in 2026 is PHP 8.3 or 8.4 on a host that patches quickly."
+coverImage: "/images/blog/wordpress-7-php-requirements.png"
+coverIcon: "Blocks"
+category: "Websites"
+keywords: "WordPress 7.0 PHP requirements, WordPress 7 minimum PHP version, WordPress recommended PHP version 2026, WordPress PHP 7.4, WordPress PHP 8.3, WordPress 7.0 requirements hosting"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  WordPress powers a large share of small business websites in India. With **WordPress 7.0**, the project raised its minimum PHP requirement. At the same time, the **PHP2Shell** emergency ([explained](/blog/php2shell-cve-2026-109618-explained)) showed why PHP version matters more than WordPress version for security.
+
+  ## WordPress 7.0 requirements
+
+  | Requirement | WordPress 7.0 |
+  |---|---|
+  | **Minimum PHP** | **7.4** (up from 7.2.24) |
+  | **Recommended PHP** | **8.3 or newer** (some hosting guidance suggests 8.4 or 8.5 for new installs) |
+  | **PHP compatibility** | Reported support for PHP 8.0 through 8.5 |
+  | **MySQL / MariaDB** | Minimum 5.5.5; MySQL 8.0+ or a current MariaDB recommended |
+  | **HTTPS** | Recommended |
+
+  Sites running PHP **7.2 or 7.3** can't update to 7.0; they stay on the **6.9 branch**.
+
+  ## Minimum is not the same as safe
+
+  This is the key point many site owners miss:
+
+  - WordPress's **minimum** means "WordPress will run"
+  - It doesn't mean "this PHP version is secure"
+  - **PHP 7.4 has been end of life since November 2022**: no official PHP fixes
+  - For PHP2Shell, PHP 7.4 to 8.1 got only **minimal source backports**; whether your site is protected depends entirely on your host
+
+  So a site meeting WordPress 7.0's minimum (PHP 7.4) can still be **one of the most exposed** sites on the internet. All dates: [PHP supported versions](/blog/php-supported-versions-end-of-life-dates).
+
+  ## What WordPress version does PHP2Shell affect?
+
+  **All of them.** PHP2Shell is a flaw in the PHP engine. Researchers demonstrated attacks on the **latest WordPress** in its default configuration. Updating to WordPress 7.0 doesn't protect you; **updating PHP does**. See [is my WordPress site affected by PHP2Shell?](/blog/php2shell-wordpress-site-check-fix)
+
+  ## What WordPress 7.0 means for your site
+
+  **If you're on PHP 8.3+:** update to WordPress 7.0 as normal (after a backup), and keep plugins updated.
+
+  **If you're on PHP 8.0–8.2:** WordPress 7.0 works, but your PHP is end of life (8.0, 8.1) or will be soon (8.2 on **31 Dec 2026**). Plan a PHP upgrade alongside the WordPress update. See [PHP 8.2 end of life](/blog/php-8-2-end-of-life-december-2026).
+
+  **If you're on PHP 7.4:** you can run WordPress 7.0, but your PHP is four years past end of life. **Upgrade PHP first**, carefully: [upgrade WordPress to PHP 8.3 or 8.4 safely](/blog/upgrade-wordpress-php-version-safely).
+
+  **If you're on PHP 7.3 or older:** you're stuck on WordPress 6.9 and an unpatched PHP. This is urgent.
+
+  ## Before updating to WordPress 7.0
+
+  WordPress 7.0 has been described as one of the biggest core releases in years. Prepare properly:
+
+  - [ ] **Backup** files and database
+  - [ ] Check your **PHP version** ([how](/blog/how-to-check-php-version-website)) and upgrade if needed
+  - [ ] Update **plugins and themes** first
+  - [ ] Test on **staging**, especially page builders, WooCommerce and custom code
+  - [ ] Check **Site Health** after updating
+
+  ## Is WordPress still the right choice?
+
+  For many small businesses, yes: it's flexible, familiar and well supported. But PHP2Shell is a reminder that WordPress sites need **maintenance**: PHP updates, plugin updates, backups and monitoring. If nobody will do that, consider **managed WordPress hosting** or a simpler, static or custom site. We compare options in [WordPress vs Wix vs custom websites](/blog/wordpress-vs-custom-website-shivamogga) and [PHP vs Node.js for business websites](/blog/php-vs-nodejs-business-website-2026).
+
+  ## Where we fit
+
+  We build and maintain WordPress and custom sites for businesses in Bangalore and Shivamogga, with supported PHP, tested updates and backups. See [website development](/services/website-development) and [website design in Shivamogga](/shivamogga/website-design).
+
+  Ready to update safely? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [mySites.guru: WordPress 7 hosting check, PHP and MySQL](https://mysites.guru/blog/wordpress-7-technical-requirements-check/)
+  - [FyrePress: WordPress 7.0 PHP version, 7.4 minimum, 8.3 recommended](https://fyrepress.com/blog/wordpress-7-0-php-requirements-explained)
+  - [Web Aloha: WordPress 7.0 PHP requirements and compatibility](https://webaloha.co/wordpress-7-php-version-compatibility/)
+  - [ReliaQuest: PHP2Shell and default WordPress installs](https://reliaquest.com/blog/threat-spotlight-php2shell-responding-to-critical-php-vulnerabilities/)

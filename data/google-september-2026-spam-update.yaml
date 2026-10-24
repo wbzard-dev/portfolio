@@ -1,0 +1,112 @@
+id: "google-september-2026-spam-update"
+title: "Google's September 2026 Spam Update: What Happened, How to Check If You Were Hit and How to Recover"
+seoTitle: "Google September 2026 Spam Update: Check & Recover"
+metaDescription: "Google's September 2026 spam update ran from 24 September to 8 October. How to tell if your site was hit, which policies matter and how to recover."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Google's September 2026 spam update took almost 14 days to roll out, the longest spam update of the year. If your traffic dropped in that window, here's how to diagnose it and what to fix."
+takeaways:
+  - "Google's September 2026 spam update started on 24 September and finished on 8 October 2026, almost 14 days later."
+  - "It applied globally and in all languages; Google didn't say what share of searches was affected."
+  - "Spam updates target violations of Google's spam policies, such as scaled low-value content, link spam and site reputation abuse."
+  - "Compare Search Console clicks before 24 September and after 8 October to see whether a drop lines up with the update."
+  - "Recovery comes from fixing policy violations and improving the site; Google says it can take many months."
+coverImage: "/images/blog/google-september-2026-spam-update.png"
+coverIcon: "ShieldAlert"
+category: "SEO"
+keywords: "Google September 2026 spam update, Google spam update 2026, traffic drop Google update, Google spam policies, how to recover from Google spam update, Google algorithm update October 2026"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  If your website's Google traffic dropped in late September or early October 2026, you're not imagining it. Google ran a **spam update** from **24 September to 8 October 2026**, and at almost 14 days it was the longest spam update of the year. Earlier 2026 spam updates in March, June and August finished in between about 20 hours and under 3 days.
+
+  Here's what it was, how to tell if it affected you, and what to do about it.
+
+  ## What a spam update is
+
+  Google runs two broad kinds of updates:
+
+  - **Core updates** reassess how helpful and relevant pages are overall.
+  - **Spam updates** improve Google's automated systems (including SpamBrain) at detecting content and links that break its **spam policies**.
+
+  A spam update doesn't punish a site for being small or new. It demotes pages, or whole sites, that Google's systems now recognise as violating those policies.
+
+  Google said the September 2026 update applied **globally and in all languages**. It didn't say what percentage of searches was affected.
+
+  ## The spam policies most likely to matter
+
+  For small businesses and startups, these are the usual problem areas:
+
+  | Policy | What it looks like | Common in |
+  |---|---|---|
+  | **Scaled content abuse** | Hundreds of near-identical or low-value pages made to target searches, often AI-generated and unedited | "Best X in [every city]" pages, auto-generated blogs |
+  | **Link spam** | Bought links, link exchanges, spammy guest posts, private blog networks | Cheap "SEO packages" |
+  | **Site reputation abuse** | A site hosting third-party content unrelated to its purpose to exploit its rankings | Coupon or casino sections on news or education sites |
+  | **Expired domain abuse** | Buying an old domain to rank unrelated content on it | Affiliate sites |
+  | **Doorway pages** | Many pages funnelling users to one destination | City-swap location pages with no unique content |
+  | **Keyword stuffing and hidden text** | Repeating keywords unnaturally, hidden text or links | Older websites, cheap templates |
+  | **Hacked content** | Spam pages injected into a compromised site | Outdated WordPress sites |
+
+  The city-swap page problem deserves a special mention. Many agencies across India publish identical "digital marketing agency in [city]" pages for hundreds of towns. Our [Shivamogga SEO guide](/blog/shimoga-vs-shivamogga-seo) explains why genuine local pages beat those, and spam updates are one reason.
+
+  ## Step 1: Check whether you were affected
+
+  1. **Open Search Console → Performance.** Compare **25 Sept to 8 Oct** and the days after with the same length of time before 24 September.
+  2. **Look at clicks, not just positions.** A real drop shows in clicks and impressions together.
+  3. **Find which pages dropped.** Use the Pages tab. A drop on a handful of pages suggests a page-level issue; a sitewide drop suggests a sitewide pattern.
+  4. **Check Manual actions.** In Search Console, under Security and Manual actions. A manual action is different from an algorithmic demotion and comes with a message explaining it.
+  5. **Rule out other causes:** seasonality (Navratri, Dasara and Diwali shift demand), site changes, tracking breaks, server errors or a competitor improving.
+
+  Note: some site owners reported delayed Search Console data in October 2026. If the last few days look odd, wait for the data to catch up before drawing conclusions.
+
+  New to Search Console? Start with our [Search Console setup guide](/blog/google-search-console-setup-guide).
+
+  ## Step 2: Audit honestly
+
+  Go through your site and ask:
+
+  - **Did we publish lots of pages quickly** that are thin, repetitive or barely edited AI output?
+  - **Do we have location pages** that are identical apart from the city name?
+  - **Did we (or an agency) buy links**, join link exchanges or pay for "high DA backlinks"?
+  - **Do we host unrelated content** (sponsored posts, coupon pages) to make money from our rankings?
+  - **Is the site secure?** Search Google for `site:yourdomain.com` plus words like *casino*, *loan* or *viagra* to spot injected spam.
+
+  ## Step 3: Fix the problems
+
+  - **Remove or merge** thin and duplicate pages. If a page has no unique value, delete it (and redirect if it has links) or combine several into one genuinely useful page.
+  - **Rewrite location pages** with real local detail: areas served, local projects, local reviews, directions, prices. If you can't say anything specific, you probably don't need the page.
+  - **Disavow only if needed.** If you knowingly bought spammy links and can't remove them, the disavow tool exists, but Google says most sites never need it.
+  - **Clean any hack**, update plugins and themes, change passwords and request a review if there's a security notice.
+  - **Strengthen the good pages:** clear answers, evidence, photos, author details, and internal links.
+
+  ## Step 4: Be patient
+
+  Google says recovery after fixing spam issues **can take many months**, because its systems need to see the improvements over time. There's no "resubmit" button for algorithmic demotions. Keep publishing useful content and earning real local links in the meantime.
+
+  ## How to stay safe in future updates
+
+  - Publish **fewer, better pages**: two genuinely useful posts a month beat 50 thin ones
+  - **Edit and fact-check AI drafts.** Add your own experience, examples and local detail
+  - **Never buy links.** Earn them through partners, associations, local news and useful resources
+  - **Keep the site updated and secure**
+  - **Watch Google's Search Status Dashboard** so you can match traffic changes to real updates
+
+  Our [first 90 days SEO plan](/blog/seo-for-a-new-website-first-90-days) is built around these principles.
+
+  ## What about the "October 2026 update"?
+
+  As of 24 October 2026, Google hasn't confirmed any ranking update in October. Some site owners report Discover drops and ranking volatility, and some expect a core update before the end of the year. If one is announced, we'll cover it.
+
+  ## Where we fit
+
+  We audit sites for spam-policy risks (thin pages, city-swap pages, risky backlinks, hacked content), fix them and rebuild a clean SEO foundation. See [SEO services](/services/seo-services) or [local SEO in Shivamogga](/shivamogga/seo-services).
+
+  Lost traffic after the update? [Get a free launch plan](/startup-launch-package) and a quick site review.
+
+  ## Sources
+
+  - [Search Engine Land: September 2026 spam update done rolling out](https://searchengineland.com/google-september-2026-spam-update-done-rolling-out-493550)
+  - [Search Engine Roundtable: September 2026 spam update done](https://seroundtable.com/google-september-2026-spam-update-done-42235.html)
+  - [Relevant Audience: complete after 13 days 16 hours](https://www.relevantaudience.com/seo/google-september-2026-spam-update-complete/)
+  - [PPC Land: spam update ends after nearly 14 days](https://ppc.land/googles-spam-update-ends-after-nearly-14-days-violating-sites-risk-demotion/)

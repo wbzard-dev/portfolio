@@ -1,0 +1,122 @@
+id: "upgrade-wordpress-php-version-safely"
+title: "How to Upgrade WordPress to PHP 8.3 or 8.4 Safely: A Step-by-Step Checklist"
+seoTitle: "Upgrade WordPress to PHP 8.3 or 8.4 Safely (Checklist)"
+metaDescription: "Upgrade WordPress from PHP 7.4, 8.1 or 8.2 to PHP 8.3 or 8.4 safely: backups, staging, compatibility checks, testing and rollback."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Upgrading PHP is the most important security step most WordPress sites can take this year, and the one owners fear most. Done in the right order, it's low-risk. Here's the checklist we use."
+takeaways:
+  - "Upgrade PHP on a staging copy first, never directly on a live site without a backup."
+  - "Update WordPress core, plugins and themes before changing the PHP version, because newer releases support newer PHP."
+  - "Plugins and themes not updated in over a year are the most common cause of errors after a PHP upgrade."
+  - "Test lead forms, checkout, logins, the admin area and page builders after switching, and check the error log."
+  - "If something breaks, switching back to the previous PHP version usually restores the site immediately."
+coverImage: "/images/blog/upgrade-wordpress-php-version-safely.png"
+coverIcon: "ArrowUpCircle"
+category: "Websites"
+keywords: "upgrade WordPress PHP version, WordPress PHP 8.3, WordPress PHP 8.4, update PHP WordPress safely, WordPress PHP compatibility check, WordPress critical error after PHP update, PHP 7.4 to 8.3 WordPress"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  After **PHP2Shell** ([explained](/blog/php2shell-cve-2026-109618-explained)) and with **PHP 8.2's end of life on 31 December 2026** ([details](/blog/php-8-2-end-of-life-december-2026)), thousands of WordPress sites need to move to a newer PHP version. Many owners delay because they've heard horror stories about sites breaking.
+
+  Here's a checklist that keeps the risk low.
+
+  ## Which version to choose
+
+  - **PHP 8.4:** supported until end of 2028; the best target for most sites today
+  - **PHP 8.3:** supported until end of 2027; choose it if a key plugin isn't ready for 8.4
+  - **PHP 8.5:** newest; fine for well-maintained sites, but check plugins first
+
+  WordPress 7.0 recommends **PHP 8.3 or newer** ([WordPress 7 requirements](/blog/wordpress-7-php-requirements)).
+
+  ## Phase 1: Prepare (30 minutes)
+
+  - [ ] **Full backup** of files and database, stored off the server (hosting backup plus a plugin like UpdraftPlus, or your host's export)
+  - [ ] Note your **current PHP version** ([how to check](/blog/how-to-check-php-version-website))
+  - [ ] **List all plugins and themes**, with "last updated" dates
+  - [ ] Flag anything **not updated in 12+ months**, abandoned or **nulled** (pirated). These are the usual problems
+  - [ ] Check each flagged plugin's page for "Tested up to" and recent support threads mentioning PHP 8.3/8.4
+
+  ## Phase 2: Update everything else first
+
+  - [ ] Update **WordPress core**
+  - [ ] Update **all plugins and themes** (one at a time on important sites)
+  - [ ] **Delete** unused plugins and themes (deactivated plugins can still contain vulnerable code)
+  - [ ] Replace abandoned plugins with maintained alternatives
+
+  Newer plugin versions usually include PHP compatibility fixes. This step alone avoids most upgrade problems.
+
+  ## Phase 3: Test on staging
+
+  Most hosts offer one-click **staging** (Hostinger, SiteGround, many cPanel hosts). If yours doesn't, a staging plugin or a local copy works.
+
+  - [ ] Create a staging copy
+  - [ ] Change staging's PHP version to 8.4 (or 8.3). See [changing PHP in cPanel and Hostinger](/blog/how-to-change-php-version-cpanel-hostinger)
+  - [ ] Turn on **debug logging** in staging's `wp-config.php`:
+
+  ```php
+  define( 'WP_DEBUG', true );
+  define( 'WP_DEBUG_LOG', true );
+  define( 'WP_DEBUG_DISPLAY', false );
+  ```
+
+  - [ ] Browse the site and check `wp-content/debug.log`
+
+  ## Phase 4: The test checklist
+
+  - [ ] Homepage, service pages, blog posts
+  - [ ] **Contact and lead forms**: submit a test and confirm the email or CRM entry arrives
+  - [ ] **WooCommerce**: add to cart, checkout, payment gateway (Razorpay, PayU, Cashfree) in test mode, order emails
+  - [ ] **Logins**: admin, customer accounts, membership areas
+  - [ ] **Page builders**: open and save a page in Elementor, Divi or WPBakery
+  - [ ] **Search, filters, booking calendars**, and other dynamic features
+  - [ ] **Tools → Site Health**: no new critical issues
+  - [ ] Mobile view and page speed
+
+  **Fatal errors** need fixing before going live. **Deprecation notices** are warnings; note them and ask plugin developers to update, but they usually don't break the site.
+
+  ## Phase 5: Switch the live site
+
+  - [ ] Take a **fresh backup**
+  - [ ] Choose a **quiet time** (early morning)
+  - [ ] Change the PHP version on the live site
+  - [ ] Run the Phase 4 checklist again, quickly
+  - [ ] Keep an eye on the site and error logs for a few days
+
+  ## If something breaks
+
+  1. **Switch back** to the previous PHP version: the site usually recovers within a minute
+  2. Look for the plugin or theme named in the error (WordPress may email a **recovery mode** link)
+  3. Update, replace or temporarily deactivate it
+  4. Try again
+
+  If you can't access the admin area, rename the problem plugin's folder in `wp-content/plugins` via your host's file manager to disable it.
+
+  ## Common fixes
+
+  | Problem | Likely cause | Fix |
+  |---|---|---|
+  | "There has been a critical error" | Incompatible plugin or theme | Recovery mode; update or replace it |
+  | White screen | Fatal PHP error | Check `debug.log` or host error log |
+  | Page builder won't load | Outdated builder version | Update the builder and its add-ons |
+  | Forms stop sending | Old SMTP or form plugin | Update; consider a maintained SMTP plugin |
+  | Missing images or uploads | PHP extension not enabled (gd, imagick) | Enable extensions in the PHP settings |
+  | Memory errors | New version's default memory limit | Raise `memory_limit` in PHP settings |
+
+  ## Make it routine
+
+  Once you're on 8.4, upgrades get easier: the jumps between modern PHP versions are small. Plan to review your PHP version **once a year**, ideally after each November release settles. Next up: [PHP 8.6 in November 2026](/blog/php-8-6-release-date-features).
+
+  ## Where we fit
+
+  We upgrade WordPress sites for businesses in Bangalore and Shivamogga with backups, staging tests and plugin fixes, so your site stays online throughout. We also replace abandoned plugins and set up ongoing maintenance. See [website development](/services/website-development) and [WordPress vs custom websites](/blog/wordpress-vs-custom-website-shivamogga).
+
+  Want it done for you? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [WPDeveloper: PHP 8.2 dies 31 December, check your site](https://wpdeveloper.ca/blog/wordpress-php-version-end-of-life)
+  - [Web Aloha: PHP 8.2 end of life WordPress upgrade plan](https://webaloha.co/php-8-2-end-of-life-wordpress/)
+  - [Hostinger: PHP version recommendations after php2shell](https://www.hostinger.com/blog/protecting-php2shell/)

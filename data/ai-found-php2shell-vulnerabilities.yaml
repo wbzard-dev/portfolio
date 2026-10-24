@@ -1,0 +1,95 @@
+id: "ai-found-php2shell-vulnerabilities"
+title: "How AI Helped Find PHP2Shell: What AI-Discovered Vulnerabilities Mean for Every Website Owner"
+seoTitle: "How AI Found PHP2Shell and What It Means for Websites"
+metaDescription: "Researchers used AI to find and exploit PHP2Shell, decade-old PHP bugs. Why AI speeds up vulnerability discovery and how to respond."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "PHP2Shell wasn't just a big PHP bug. Researchers say AI models helped turn decade-old flaws into working exploits in days instead of months. Here's what that means for how quickly every website now needs to patch."
+takeaways:
+  - "Wiz Research reported the PHP2Shell flaws to PHP on 24 August 2026, five days after finding the first bug, and the fixes shipped on 21 October."
+  - "Wiz and Calif said they used AI models in their research, and the PHP Foundation credited Calif, OpenAI and Wiz among others."
+  - "Researchers say the bugs had existed for over a decade; AI mainly reduced the effort needed to chain them into a working exploit."
+  - "If AI speeds up finding and exploiting bugs for defenders, it does the same for attackers, so the time between disclosure and attack shrinks."
+  - "Fast patching, supported software versions, managed hosting and backups matter more than ever for small businesses."
+coverImage: "/images/blog/ai-found-php2shell-vulnerabilities.png"
+coverIcon: "BrainCircuit"
+category: "Websites"
+keywords: "AI found PHP2Shell, AI vulnerability discovery, AI cybersecurity 2026, Wiz PHP2Shell, AI hacking websites, AI security research, PHP2Shell AI"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Claims about AI's role come from the researchers' own write-ups.*
+
+  The **PHP2Shell** vulnerabilities ([explained](/blog/php2shell-cve-2026-109618-explained)) were serious on their own: two critical flaws in PHP, the language behind most of the web. But the story that has security teams talking is **how they were found**.
+
+  ## What the researchers say happened
+
+  According to **Wiz Research**, which reported the flaws:
+
+  - **19 August 2026:** the first vulnerability was discovered
+  - **20 August:** unauthenticated code execution confirmed against **Drupal**
+  - **21 August:** confirmed against **WordPress**
+  - **24 August:** reported to the PHP security team
+  - **21 September:** PHP acknowledged and began a coordinated fix
+  - **21 October:** patched releases and public disclosure
+
+  Wiz said it used its own AI tooling along with frontier AI models from major labs throughout the work: finding the bugs, developing exploits, adapting them to different PHP versions and memory layouts, building detections and validating patches. Another research firm, **Calif**, which built a public exploit chain, also said it used AI models. The PHP Foundation credited **Calif, OpenAI and Wiz**, among others.
+
+  The researchers' key claim: the bugs had existed **for over a decade**. What changed was that **AI lowered the effort** needed to turn them into a reliable exploit. Wiz said a single researcher finished in about a week work that previously would have taken a highly skilled team months. That's their own assessment, but it matches what many security researchers have been saying through 2026.
+
+  ## Why this matters beyond PHP
+
+  **1. Old code is being re-examined at machine speed.** Mature, widely used software (web servers, languages, CMSs, libraries) has millions of lines of code that humans reviewed slowly over years. AI can now search it far faster.
+
+  **2. The same tools help attackers.** Exploit attempts against PHP2Shell were seen on **17 October**, four days before disclosure, after information leaked. Once details were public, Cloudflare reported attempts rising from **tens of thousands within 45 minutes to millions** by the next morning.
+
+  **3. The patch window is shrinking.** "We'll update next month" used to be risky. Now it can be days, or hours, before mass scanning starts.
+
+  **4. More disclosures are coming.** Wiz said it believes **other untracked variants** of these bugs exist. Expect a steady stream of AI-assisted findings across popular software.
+
+  ## The good news
+
+  AI is helping **defenders** too:
+
+  - Researchers found PHP2Shell and reported it **before** it was widely abused
+  - Vendors used AI to **build detection rules** and **validate patches**
+  - Hosting companies and CDNs pushed protections within hours
+
+  The organisations that came through PHP2Shell best weren't the ones with the most security tools. They were the ones that could **update quickly**.
+
+  ## What small businesses should do differently
+
+  You don't need an AI security team. You need **speed and simplicity**:
+
+  | Do | Why |
+  |---|---|
+  | **Run supported software only** | Unsupported PHP versions (8.1 and older) got no official fix ([dates](/blog/php-supported-versions-end-of-life-dates)) |
+  | **Use managed hosting** if you don't have a sysadmin | Hosts like Hostinger and SiteGround patched within a day ([host status](/blog/php2shell-hosting-providers-patch-status)) |
+  | **Turn on automatic updates** where safe | Minor and security updates should apply without waiting for you |
+  | **Keep fewer plugins and dependencies** | Less code means fewer places for the next bug |
+  | **Put a WAF/CDN in front** | Edge rules can buy time between disclosure and patching |
+  | **Have tested backups** | If something gets through, you can restore quickly |
+  | **Know who to call** | A developer or agency who can patch the same day |
+
+  Our [website security checklist](/blog/website-security-checklist-small-business) turns this into concrete steps.
+
+  ## What developers should learn from it
+
+  - **Patch pipelines matter:** pinned versions, automated rebuilds and fast deploys ([Docker and Laravel guide](/blog/php2shell-docker-laravel-patch))
+  - **Memory safety and runtime security** aren't just C-programmer concerns; they affect every web app built on top
+  - **AI tools are now part of security work.** Learning to use them for code review, testing and threat modelling is a career skill. See [what freshers should learn in the age of AI coding](/blog/ai-coding-tools-freshers-what-to-learn-2026)
+
+  ## The bigger picture
+
+  2026 has shown AI making software faster to build, and faster to break. For businesses, the practical takeaway is simple: **choose setups that update themselves, or have someone responsible for updating them the same week.** That's the difference between a headline and an incident.
+
+  ## Where we fit
+
+  We build and maintain websites and apps for businesses in Bangalore and Shivamogga with fast-patching hosting, automated updates, backups and monitoring, so the next big vulnerability is a routine update, not an emergency. See [website development](/services/website-development) and [app development](/services/app-development).
+
+  Want your site set up to patch fast? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [Wiz: PHP2Shell, AI uncovers critical RCE vulnerabilities](https://www.wiz.io/blog/php2shell-php-rce)
+  - [Tenable: php2shell FAQ (timeline and credits)](https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote)
+  - [The Hacker News: attempt surge and follow-up advisory](https://thehackernews.com/2026/10/urgent-php-warns-of-another-unpatched.html)

@@ -1,0 +1,124 @@
+id: "php2shell-wordpress-site-check-fix"
+title: "Is My WordPress Site Affected by PHP2Shell? How to Check and Fix It in 15 Minutes"
+seoTitle: "PHP2Shell and WordPress: How to Check and Fix Your Site"
+metaDescription: "PHP2Shell affects every WordPress site until PHP is patched. How to check your PHP version in Site Health and what you or your host must do."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "WordPress powers most small business websites in India, and every one of them runs on PHP. Here's how to check, in a few minutes, whether your WordPress site is still exposed to PHP2Shell, and what to do if it is."
+takeaways:
+  - "Every WordPress site runs on PHP, so assume it is affected by PHP2Shell until PHP is updated to 8.5.12, 8.4.27, 8.3.36 or 8.2.35."
+  - "Updating WordPress core, plugins or themes, or installing a security plugin, does not fix PHP2Shell."
+  - "You can see your PHP version in WordPress under Tools, Site Health, Info, Server."
+  - "On shared hosting your host updates PHP; on a VPS you must update and restart PHP yourself."
+  - "If you are on PHP 8.1 or older, ask your host whether a patched build is installed and plan an upgrade to PHP 8.3 or newer."
+coverImage: "/images/blog/php2shell-wordpress-site-check-fix.png"
+coverIcon: "ShieldQuestion"
+category: "Websites"
+keywords: "PHP2Shell WordPress, is my WordPress site affected PHP2Shell, WordPress PHP vulnerability October 2026, WordPress PHP version check, WordPress security update PHP, Site Health PHP version"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  If you run a WordPress website for your clinic, coaching centre, shop, homestay or startup, you've probably seen alarming headlines about **PHP2Shell**. Here's the short version for WordPress owners:
+
+  - **WordPress runs on PHP.** So does every plugin and theme.
+  - PHP2Shell is a bug in **PHP itself**, not in WordPress.
+  - Researchers demonstrated attacks on a **default WordPress install**, with no vulnerable plugin needed.
+  - So **every WordPress site is in scope until PHP is updated.**
+
+  Full background: [PHP2Shell explained](/blog/php2shell-cve-2026-109618-explained).
+
+  ## Step 1: Find your PHP version (2 minutes)
+
+  In your WordPress dashboard:
+
+  1. Go to **Tools → Site Health**
+  2. Click the **Info** tab
+  3. Expand **Server**
+  4. Note the **PHP version**
+
+  Then compare:
+
+  | You see | Status |
+  |---|---|
+  | 8.5.12 or higher | Patched |
+  | 8.4.27 or higher | Patched |
+  | 8.3.36 or higher | Patched |
+  | 8.2.35 or higher | Patched (but PHP 8.2 support ends 31 Dec 2026) |
+  | Lower 8.2–8.5 numbers | **Likely not patched**, unless your host applied a backported fix (see below) |
+  | 8.1, 8.0 or 7.4 | **End of life**: ask your host whether a patched build is installed; plan an upgrade |
+  | 7.3 or older | **End of life, no fix**: upgrade urgently |
+
+  **Important:** some hosts and Linux distributions apply the fix without changing the version number. If your number looks old, check the **build date** (in hosting panels, often under PHP info) or your host's announcement. A build date of **21 October 2026 or later** is a good sign on many hosts. More ways to check: [how to check your PHP version](/blog/how-to-check-php-version-website).
+
+  ## Step 2: Check what your host has done (5 minutes)
+
+  **Shared, cloud or managed WordPress hosting:** your host controls PHP. Most large hosts patched within a day or two of 21 October. Look for an email, a status page or a support article. We track the main ones in [PHP2Shell hosting patch status](/blog/php2shell-hosting-providers-patch-status).
+
+  If you can't find anything, message support:
+
+  > "Has PHP on my hosting account been patched for CVE-2026-109618 and CVE-2026-109619 (PHP2Shell)? Which PHP version and build is my site running?"
+
+  **VPS or your own server** (DigitalOcean, AWS Lightsail, a VPS plan): **you** are responsible. Follow [patching PHP2Shell on a VPS](/blog/php2shell-patch-vps-ubuntu-php-fpm).
+
+  ## Step 3: If you're on old PHP, plan an upgrade
+
+  Many Indian small business sites still run **PHP 7.4 or 8.0** because "it works" and nobody wants to break it. PHP2Shell is the moment to fix that:
+
+  - PHP 8.1 and older get **no official releases** from PHP anymore
+  - **WordPress 7.0** requires PHP 7.4 at minimum and recommends **8.3 or newer** ([details](/blog/wordpress-7-php-requirements))
+  - **PHP 8.2** loses security support on **31 December 2026** ([what to do](/blog/php-8-2-end-of-life-december-2026))
+
+  The sensible target for most WordPress sites today is **PHP 8.3 or 8.4**. Upgrade carefully: [how to upgrade WordPress to PHP 8.3 safely](/blog/upgrade-wordpress-php-version-safely).
+
+  ## What does NOT fix PHP2Shell
+
+  - Updating WordPress core
+  - Updating plugins and themes
+  - Installing Wordfence, Sucuri or another security plugin
+  - Changing your admin password
+
+  All are good habits, but none touch the PHP engine. A **web application firewall** at the edge (for example Cloudflare, which deployed rules for known attack patterns) adds a layer of protection, but it isn't a fix.
+
+  ## Step 4: Check for signs of compromise
+
+  Exploit attempts were recorded from **17 October**, before the patch. After patching, spend 10 minutes checking:
+
+  - **Users → All Users:** any administrator accounts you don't recognise?
+  - **Files:** unknown `.php` files in `wp-content/uploads` (there should normally be none)
+  - **Site behaviour:** redirects to strange sites, spam pages in Google (`site:yourdomain.com`), new pop-ups
+  - **Hosting alerts:** malware notifications, unusual CPU usage, outgoing spam warnings
+
+  If anything looks wrong, follow [was my website hacked through PHP2Shell?](/blog/php2shell-was-my-site-hacked)
+
+  ## Step 5: Make it harder next time
+
+  - Stay on a **supported PHP version** and let your host apply updates
+  - Keep **daily off-site backups**, and test a restore once
+  - Remove **unused plugins and themes**
+  - Use **managed WordPress hosting** if no one on your team manages servers
+  - Put your site behind a **CDN with a WAF**
+  - Follow our [website security checklist for small businesses](/blog/website-security-checklist-small-business)
+
+  ## A quick decision guide
+
+  | Your situation | What to do |
+  |---|---|
+  | Managed WordPress hosting, PHP 8.2+ | Confirm host patched; check for odd users and files |
+  | Shared hosting, PHP 8.1 or older | Ask host about patched build; upgrade PHP within weeks |
+  | VPS you manage | Patch PHP now, restart workers, check logs |
+  | Don't know who hosts your site | Find out today: your developer, domain provider or invoices will tell you |
+  | Site built years ago, nobody maintains it | Get it reviewed; consider rebuilding on a maintained setup |
+
+  ## Where we fit
+
+  We build and maintain WordPress and custom websites for businesses in Bangalore and Shivamogga, on supported PHP versions with backups and updates handled. If you're not sure whether your site is patched, or it's stuck on an old PHP version, we can help you check and upgrade safely. See [website development](/services/website-development) and [WordPress vs custom websites](/blog/wordpress-vs-custom-website-shivamogga).
+
+  Not sure if your WordPress site is safe? [Get in touch for a free check](/startup-launch-package).
+
+  ## Sources
+
+  - [Wordify: PHP critical security release, what it means for your WordPress site](https://wordify.com/blog/php-security-vulnerability-wordpress-october-2026/)
+  - [ReliaQuest: Responding to PHP2Shell](https://reliaquest.com/blog/threat-spotlight-php2shell-responding-to-critical-php-vulnerabilities/)
+  - [Hostinger: Protections against php2shell](https://www.hostinger.com/blog/protecting-php2shell/)
+  - [CISA alert (21 Oct 2026)](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching)

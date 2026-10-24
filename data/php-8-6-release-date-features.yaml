@@ -1,0 +1,98 @@
+id: "php-8-6-release-date-features"
+title: "PHP 8.6 Release Date and New Features: Partial Function Application, Readonly Defaults and More"
+seoTitle: "PHP 8.6 Release Date (19 Nov 2026) and New Features"
+metaDescription: "PHP 8.6 is scheduled for 19 November 2026. The main new features, what changed since PHP 8.5's pipe operator, and when websites and businesses should upgrade."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "PHP 8.6 is due on 19 November 2026, a month after the PHP2Shell emergency. Here's what's new, how it builds on PHP 8.5, and a sensible timeline for upgrading business websites and apps."
+takeaways:
+  - "PHP 8.6 is scheduled for general availability on 19 November 2026, after a feature freeze on 22 September and several release candidates."
+  - "Headline features include partial function application, default values for readonly properties, a Duration type for elapsed time and a native polling API."
+  - "PHP 8.5, released on 20 November 2025, introduced the pipe operator, a built-in URI extension, clone with and array_first and array_last."
+  - "Most business websites should wait a few months after release, until plugins, frameworks and hosts support PHP 8.6."
+  - "Moving off PHP 8.2 and older matters far more right now than adopting PHP 8.6 on day one."
+coverImage: "/images/blog/php-8-6-release-date-features.png"
+coverIcon: "Rocket"
+category: "Websites"
+keywords: "PHP 8.6 release date, PHP 8.6 features, PHP 8.6 new features, partial function application PHP, PHP 8.5 vs 8.6, PHP 8.5 pipe operator, what's new in PHP 8.6"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Release dates are targets until PHP announces general availability.*
+
+  PHP releases a new version every November. **PHP 8.6** is scheduled for **19 November 2026**. It arrives in an unusual month: the PHP world has just been through the **PHP2Shell** emergency ([explained](/blog/php2shell-cve-2026-109618-explained)), and many sites are still running versions that are about to lose support.
+
+  Here's what's in PHP 8.6, and what it means for developers and businesses.
+
+  ## The release timeline
+
+  - **22 September 2026:** feature freeze
+  - **October–November:** release candidates (RC4 listed for 5 November)
+  - **19 November 2026:** planned general availability
+
+  As with every release, PHP 8.6 should get about **two years of active support and two years of security fixes**.
+
+  ## New in PHP 8.6
+
+  **Partial function application.** You can call a function with some arguments left open, and PHP returns a closure waiting for the rest. It pairs naturally with PHP 8.5's pipe operator for readable data transformations.
+
+  **Readonly property defaults.** Readonly properties can now have default values, useful for fixed metadata in classes and value objects.
+
+  **A `Duration` type.** A new time duration type (reported as `Time\Duration`) represents elapsed time with nanosecond precision, cleaner than juggling integers and floats.
+
+  **A native polling API.** A new API for waiting on multiple I/O streams, helpful for async and event-driven code.
+
+  **Smaller additions and deprecations.** Reports mention a `clamp()` function, parameter doc comments and a set of deprecations. Check the official release notes and the upgrade guide before moving code.
+
+  Some blogs publish performance numbers from beta builds. Treat those as early and unconfirmed until official benchmarks and real-world reports appear.
+
+  ## Quick recap: what PHP 8.5 added (November 2025)
+
+  If you're jumping from 8.2 or 8.3, you'll get PHP 8.5's features too:
+
+  - **Pipe operator (`|>`):** chain function calls left to right instead of nesting them
+  - **Built-in URI extension:** standards-compliant URL parsing (RFC 3986 and WHATWG), safer than `parse_url()` for strict cases
+  - **`clone with`:** change properties while cloning, great for readonly classes
+  - **`array_first()` and `array_last()`**
+  - **`#[\NoDiscard]`:** warn when a return value is ignored
+  - **Fatal error backtraces** for easier debugging
+  - Deprecation of the backtick shell operator
+
+  ## Should your website upgrade to PHP 8.6?
+
+  **Not on release day**, for most businesses.
+
+  | You are | When to move to 8.6 |
+  |---|---|
+  | WordPress business site | After your host offers it **and** your plugins and theme support it, typically a few months after release |
+  | WooCommerce store | After WooCommerce and your payment and shipping plugins confirm support |
+  | Laravel or Symfony app | When the framework and your dependencies support it; test in CI |
+  | New custom project starting in 2027 | Good candidate to start on 8.6 |
+
+  **What matters more right now:**
+
+  - Get off **PHP 8.1 and older** (end of life)
+  - Get off **PHP 8.2** before **31 December 2026** ([plan](/blog/php-8-2-end-of-life-december-2026))
+  - Move to **8.3 or 8.4** as a stable, well-supported base ([all dates](/blog/php-supported-versions-end-of-life-dates))
+
+  ## For developers: how to prepare
+
+  - Run your test suite against **PHP 8.6 RC builds** in CI (official `php` Docker images publish RC tags)
+  - Fix **deprecation notices** from 8.4 and 8.5 first
+  - Check `composer.json` constraints for libraries that pin `<8.6`
+  - Learn the **pipe operator** and **partial application** together. They change how idiomatic PHP will look
+
+  If you're a student weighing PHP against JavaScript, see [is PHP still worth learning in 2026?](/blog/is-php-still-worth-learning-2026)
+
+  ## Where we fit
+
+  We build and maintain PHP and JavaScript websites and apps for businesses and startups, and upgrade them to new PHP versions when the ecosystem is ready, not before. See [website development](/services/website-development) and [app development](/services/app-development).
+
+  Planning a PHP upgrade? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [Laravel News: What's new in PHP 8.6](https://laravel-news.com/php-8-6)
+  - [PHP.Watch: PHP versions and release schedule](https://php.watch/versions)
+  - [Benjamin Crozat: PHP 8.6 release date and features](https://benjamincrozat.com/php-86)
+  - [The Register: PHP 8.5 lays down pipe operator (Nov 2025)](https://www.theregister.com/2025/11/20/php_85_lays_pipe_operator/)
+  - [stitcher.io: What's new in PHP 8.5](https://stitcher.io/blog/new-in-php-85)

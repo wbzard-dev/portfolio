@@ -1,0 +1,121 @@
+id: "php-8-2-end-of-life-december-2026"
+title: "PHP 8.2 End of Life on 31 December 2026: What It Means and How to Upgrade in Time"
+seoTitle: "PHP 8.2 End of Life (31 Dec 2026): What to Do Now"
+metaDescription: "PHP 8.2 loses security support on 31 December 2026. What end of life means, which version to move to and a simple upgrade plan."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "PHP 8.2 has about ten weeks of security support left. After 31 December 2026, the next PHP2Shell-style bug won't be fixed for it. Here's what that means and how to upgrade calmly before the deadline."
+takeaways:
+  - "PHP 8.2 security support ends on 31 December 2026; PHP 8.2.35 from 21 October 2026 may be one of its last releases."
+  - "After end of life, the PHP project publishes no more fixes for that branch, even for critical vulnerabilities."
+  - "PHP2Shell showed that critical PHP bugs can appear suddenly, and unsupported versions get no official fix."
+  - "Upgrade to PHP 8.4 (supported until end of 2028) or 8.3 (until end of 2027) after testing plugins, themes and custom code."
+  - "Running unsupported software can also fail security and compliance scans, such as PCI ASV scans for payment sites."
+coverImage: "/images/blog/php-8-2-end-of-life-december-2026.png"
+coverIcon: "CalendarX"
+category: "Websites"
+keywords: "PHP 8.2 end of life, PHP 8.2 EOL December 2026, PHP 8.2 security support, upgrade PHP 8.2 to 8.3, PHP 8.2 to 8.4, PHP end of life 2026, WordPress PHP 8.2"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Verify dates on php.net's supported versions page.*
+
+  If your website runs **PHP 8.2**, mark **31 December 2026** in your calendar. That's when PHP 8.2 reaches **end of life (EOL)**: the PHP project stops releasing security fixes for it.
+
+  The timing matters more than usual. On 21 October 2026, PHP released emergency fixes for the critical **PHP2Shell** flaws ([explained](/blog/php2shell-cve-2026-109618-explained)). PHP 8.2 got a fix (**8.2.35**). The next time something like this happens, after 31 December, **it won't**.
+
+  ## What "end of life" means
+
+  PHP versions follow a fixed lifecycle:
+
+  | Phase | What you get |
+  |---|---|
+  | **Active support** (about 2 years) | Bug fixes and security fixes |
+  | **Security support** (about 2 more years) | Security fixes only |
+  | **End of life** | Nothing from the PHP project |
+
+  PHP 8.2's active support ended on **31 December 2024**; it has been on security fixes only since then. From **1 January 2027**, it gets nothing.
+
+  Your site won't stop working on 1 January. It just becomes **increasingly risky**: any new vulnerability stays open unless your host or Linux vendor backports a fix themselves.
+
+  ## Why PHP2Shell makes this urgent
+
+  PHP2Shell showed how this plays out:
+
+  - Critical flaws were found in code dating back to **PHP 5.4**
+  - Supported branches (8.2 to 8.5) got **official releases** the same day
+  - PHP 7.4 to 8.1 got only **minimal source backports**; 5.4 to 7.3 got **nothing**
+  - CISA advised taking PHP 8.1-or-older systems **offline** until patched or upgraded
+
+  If you're on PHP 8.2 when the next critical bug lands in 2027, you'll be in the same position as PHP 8.1 sites this month.
+
+  ## Which version to upgrade to
+
+  | Target | Supported until | Best for |
+  |---|---|---|
+  | PHP 8.3 | 31 Dec 2027 | Older plugins or code that isn't ready for 8.4; buys one more year |
+  | **PHP 8.4** | **31 Dec 2028** | **Most sites**: good compatibility, three years of support |
+  | PHP 8.5 | 31 Dec 2029 | Newer codebases; check plugin and library support |
+  | PHP 8.6 | Expected release 19 Nov 2026 | Wait a few months after release for ecosystem support ([what's new](/blog/php-8-6-release-date-features)) |
+
+  For most WordPress sites, **8.4** is a sensible target, with **8.3** as a fallback if a critical plugin isn't ready. Upgrading straight from 8.2 to 8.4 is usually fine; test as below.
+
+  All dates: [PHP supported versions and end-of-life dates](/blog/php-supported-versions-end-of-life-dates).
+
+  ## What usually breaks when moving from 8.2
+
+  The jump from 8.2 to 8.3 or 8.4 is much smaller than from 7.x to 8.x. Common issues:
+
+  - **Deprecation notices** (for example implicitly nullable parameter types, deprecated in 8.4) filling logs. Usually not fatal, but fix them
+  - **Old plugins or themes** that haven't been updated in years
+  - **Libraries** pinned to old versions in custom apps (`composer.json` constraints)
+  - **Nulled or pirated themes and plugins**: replace them anyway; they're a security risk
+
+  ## A simple upgrade plan (before December)
+
+  **Weeks 1–2: inventory**
+
+  - List every site and which PHP version it uses ([how to check](/blog/how-to-check-php-version-website))
+  - List plugins, themes and custom code; note anything not updated in 12+ months
+
+  **Weeks 3–4: test**
+
+  - Create a **staging copy**
+  - Switch staging to PHP 8.4 (or 8.3)
+  - Test forms, checkout, logins, admin pages, page builder editing
+  - Check error logs and Site Health
+
+  **Weeks 5–6: fix and switch**
+
+  - Update or replace problem plugins; fix custom code
+  - **Back up** and switch production during a quiet time
+  - Monitor for a week; keep the rollback option ready
+
+  Step-by-step guides: [WordPress PHP upgrade](/blog/upgrade-wordpress-php-version-safely) and [changing PHP in cPanel and Hostinger](/blog/how-to-change-php-version-cpanel-hostinger).
+
+  ## Compliance and business reasons
+
+  - **Payment security scans:** unsupported software is one of the findings that can automatically fail a **PCI ASV scan**, important if you take card payments on your own server
+  - **Client and partner audits** increasingly ask which software versions you run
+  - **India's DPDP Rules** expect reasonable security safeguards for personal data ([checklist](/blog/dpdp-act-compliance-small-business-website)); knowingly running unsupported software is hard to defend
+
+  ## What if you can't upgrade in time?
+
+  - Ask your host whether they offer **extended security builds** (some, like CloudLinux and Ubuntu Pro, backport fixes)
+  - Put the site behind a **WAF**
+  - Reduce exposure: remove unused plugins, restrict admin access
+  - Set a firm upgrade date in Q1 2027
+
+  These are stopgaps, not solutions.
+
+  ## Where we fit
+
+  We upgrade business websites in Bangalore and Shivamogga to supported PHP versions with staging tests, plugin fixes and zero-downtime switches, and keep them updated after. See [website development](/services/website-development).
+
+  On PHP 8.2 or older? [Get in touch for a free check](/startup-launch-package) before the deadline.
+
+  ## Sources
+
+  - [Brandefense: PHP end of life, which versions still get security fixes](https://brandefense.io/blog/php-end-of-life-versions-dates/)
+  - [DEV Community: PHP 8.2 end of life, upgrade before 31 December 2026](https://dev.to/senthil_kr/php-82-end-of-life-upgrade-before-31-december-2026-43eo)
+  - [Apixon: PHP 8.2 EOL and ASV scans](https://apixon.com/blog/php-8-2-end-of-life-asv-scan)
+  - [Tenable: php2shell FAQ](https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote)

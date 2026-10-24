@@ -1,0 +1,87 @@
+id: "search-console-generative-ai-report"
+title: "Search Console's Generative AI Report: How to See Your AI Overviews and AI Mode Impressions"
+seoTitle: "Search Console AI Report: Track AI Overviews & AI Mode"
+metaDescription: "Search Console now reports impressions in AI Overviews, AI Mode and Discover AI features. What the report shows, its limits and how to use it."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "For two years, businesses couldn't see how often they appeared in Google's AI answers. Search Console's generative AI performance report changes that. Here's how to read it and act on it."
+takeaways:
+  - "Google introduced generative AI performance reports in Search Console in June 2026, starting with a subset of sites."
+  - "The report shows impressions in AI Overviews, AI Mode and generative AI features in Discover, filterable by page, country, device and date."
+  - "Reports indicate the AI report focuses on impressions; clicks, CTR, position and queries are not broken out the same way as the main report."
+  - "AI feature data is also included in the overall Performance report."
+  - "Use it to find which pages Google already trusts for AI answers, then strengthen and link to them."
+coverImage: "/images/blog/search-console-generative-ai-report.png"
+coverIcon: "ChartColumn"
+category: "SEO"
+keywords: "Search Console generative AI report, AI Overviews impressions Search Console, AI Mode Search Console, track AI Overviews traffic, Search Console AI performance report, AI search visibility"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Availability varies by property; if you don't see the report yet, it may not have reached your account.*
+
+  Ask any website owner how they appear in Google's AI Overviews and you'd usually get a shrug. The data simply wasn't available: AI impressions were mixed into the normal Performance report with no way to separate them.
+
+  In **June 2026**, Google introduced **generative AI performance reports** in Search Console. Here's what they show and how to use them.
+
+  ## What the report covers
+
+  According to Google's announcement and early coverage, the report gives dedicated views of your site's appearances in:
+
+  - **AI Overviews** (the AI summaries above normal results)
+  - **AI Mode** (Google's conversational search)
+  - **Generative AI features in Discover**
+
+  You can view the data by **page, country, device and date**, at hourly, daily, weekly or monthly granularity. The same data also remains part of the **overall Performance report**.
+
+  ## What it doesn't show (yet)
+
+  Early guides report that the AI-specific view is built around **impressions**. Click-through rate, average position and query-level breakdowns aren't provided in the same way as the standard Search results report. That limits what you can conclude: you'll know a page is being *shown* in AI answers, not exactly which questions triggered it.
+
+  ## Rollout: who has it?
+
+  Google said it was starting with a **subset of sites**. Some coverage described an initial rollout to UK sites, and a later guide claimed worldwide availability from late August 2026. We couldn't confirm that date in Google's own documentation, so check your property: if you see the report, use it; if not, the techniques below still work using the main report and GA4.
+
+  Google has also added controls that let site owners limit how their content appears in AI features. For almost every small business, **staying visible** is the better choice: AI answers increasingly shape which business people call.
+
+  ## How to read the report
+
+  **1. Find your "AI-trusted" pages.** Sort pages by AI impressions. These are pages Google already considers good sources for AI answers. Usually they're specific guides, pricing pages or clear service pages.
+
+  **2. Compare with normal search.** A page with strong AI impressions but weak clicks in the main report may be answering the question fully on Google. Add a reason to click: a calculator, a detailed price table, a booking option, photos, a downloadable checklist.
+
+  **3. Look at countries and devices.** For a Shivamogga or Bangalore business, India and mobile should dominate. If impressions mostly come from elsewhere, your content may be too generic.
+
+  **4. Watch trends after changes.** When you improve a page, check whether its AI impressions rise over the following weeks. Note Google's [October 2026 links update](/blog/google-ai-mode-links-update-october-2026), which may increase visible links in AI answers.
+
+  ## Turning AI impressions into enquiries
+
+  - **Answer first, then detail.** Pages that open with a direct answer are easier for AI to cite.
+  - **Use tables and steps.** Costs, timelines, comparisons, eligibility.
+  - **Keep facts current.** Prices, timings and policies that are out of date get your business described wrongly.
+  - **Make the next step obvious.** Call, WhatsApp and form buttons on every page that gets AI visibility.
+  - **Track the visit.** AI Mode and AI Overviews clicks usually arrive as Google organic traffic. AI assistants like ChatGPT and Gemini need separate tracking: see [how to track AI traffic in GA4](/blog/track-ai-traffic-chatgpt-gemini-ga4).
+
+  ## A monthly 20-minute routine
+
+  1. Open the generative AI report (if available) and note the top 10 pages by AI impressions
+  2. Compare them with clicks and enquiries for the same pages
+  3. Pick one page to improve: clearer answer, newer data, stronger call to action
+  4. Pick one important page that has *no* AI impressions and make it more specific
+  5. Re-check next month
+
+  Combine this with our [Search Console setup guide](/blog/google-search-console-setup-guide) and [first 90 days SEO plan](/blog/seo-for-a-new-website-first-90-days).
+
+  ## What this tells us about SEO in 2026
+
+  Being found on Google now has two layers: the classic blue links and the AI answers above them. The report confirms what we see in practice: the pages that appear in AI answers are the specific, well-structured, trustworthy ones. The fundamentals haven't changed; the reward for doing them well has grown.
+
+  ## Where we fit
+
+  We set up Search Console, GA4 and AI-referral tracking for every site we build, and use the AI report to decide which pages to improve each month. See [SEO services](/services/seo-services) and [Generative Engine Optimisation for small businesses](/blog/generative-engine-optimization-guide-india).
+
+  Want to see how often your business appears in AI answers? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [Google Search Central: Introducing Search generative AI performance reports in Search Console (June 2026)](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports)
+  - [Neil Patel: Google Search Console now tracks AI search](https://neilpatel.com/blog/gsc-ai-search-data-generative-ai-report/)

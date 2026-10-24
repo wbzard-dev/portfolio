@@ -1,0 +1,113 @@
+id: "php2shell-was-my-site-hacked"
+title: "Was My Website Hacked Through PHP2Shell? Signs to Check and What to Do Next"
+seoTitle: "Was My Site Hacked via PHP2Shell? Signs and Next Steps"
+metaDescription: "Patching PHP2Shell doesn't undo an earlier break-in. Signs your website may be compromised, what to check and what to do next."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Attackers started probing PHP servers before the PHP2Shell fix was public. Patching closes the door, but doesn't tell you whether someone already got in. Here's how small businesses can check, and what to do if something looks wrong."
+takeaways:
+  - "Exploit attempts against PHP2Shell were seen from 17 October 2026, four days before the patch, so sites patched later should be checked."
+  - "Common warning signs are unknown PHP files, new admin users, strange redirects, spam pages in Google and web processes starting shells."
+  - "Patching does not undo data already stolen, so rotate database passwords, API keys and other secrets if you suspect compromise."
+  - "Being exposed is not the same as being hacked; confirmed successful compromises have been limited so far."
+  - "If you find signs of compromise, isolate the site, preserve logs, restore from a clean backup and patch before going live."
+coverImage: "/images/blog/php2shell-was-my-site-hacked.png"
+coverIcon: "SearchAlert"
+category: "Websites"
+keywords: "was my website hacked, PHP2Shell indicators of compromise, website hacked signs, check WordPress hacked, web shell detection, PHP2Shell IOC, hacked website what to do India"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. This is a practical guide for small businesses, not a full incident response process. For serious incidents, involve a security professional.*
+
+  You've patched PHP, or your host has. Good. But **PHP2Shell** exploit attempts were recorded from **17 October 2026**, four days before the fix was public, and scanning surged into the millions after disclosure. So the sensible next question is: **did anyone get in before the patch?**
+
+  First, some reassurance: **being exposed is not the same as being hacked.** Researchers have said a reliable exploit is harder to build than first feared, and confirmed successful compromises have been limited. Hostinger, for example, reported no increase in malware on its managed hosting. Still, a quick check is worth it.
+
+  Background: [PHP2Shell explained](/blog/php2shell-cve-2026-109618-explained).
+
+  ## Quick checks anyone can do (15 minutes)
+
+  **On the website**
+
+  - [ ] Does the site **redirect** to strange pages, especially on mobile or from Google?
+  - [ ] Any **new pop-ups, ads or links** you didn't add?
+  - [ ] Search Google for `site:yourdomain.com` plus words like *casino, loan, viagra, betting*. Spam pages mean trouble
+  - [ ] Any warnings in **Google Search Console** under Security issues? ([Search Console guide](/blog/google-search-console-setup-guide))
+
+  **In WordPress (if you use it)**
+
+  - [ ] **Users → All Users:** any administrators you don't recognise?
+  - [ ] **Plugins:** anything installed that you didn't install?
+  - [ ] In your hosting **File Manager**, look in `wp-content/uploads` for `.php` files. Normally there shouldn't be any
+
+  **In your hosting panel**
+
+  - [ ] Malware or security **alerts** from your host
+  - [ ] **Unusual CPU, bandwidth or email** usage (sites used for spam or crypto mining)
+  - [ ] **Cron jobs** you didn't create
+  - [ ] **FTP or SSH accounts** you don't recognise
+
+  ## Deeper checks (for developers and server admins)
+
+  Security vendors have shared behavioural signs rather than a single universal indicator:
+
+  **Processes and network**
+
+  - PHP-FPM, Apache or web server processes **starting shells or tools**: `sh`, `bash`, `python`, `perl`, `curl`, `wget`, `nc`, or on Windows `cmd.exe`, `powershell.exe`, `certutil.exe`
+  - Reconnaissance commands like `id`, `whoami`, `uname` run by the web user
+  - **Outbound connections** from web processes to unfamiliar IPs
+
+  **Files**
+
+  - New or recently modified `.php` files in web roots and upload directories (for example `find /var/www -name '*.php' -newermt '2026-10-15'`)
+  - Unknown SSH keys in `~/.ssh/authorized_keys`, new system users, new cron entries
+
+  **Logs**
+
+  - **Multipart POST requests** to URLs that don't normally accept uploads
+  - Requests containing the **`PHP_SESSION_UPLOAD_PROGRESS`** field
+  - **Unusually long or encoded `PHPSESSID`** values, even on sites that don't use sessions
+  - Bursts of **HTTP 500 errors** from one client, memory-limit fatal errors after POSTs, and PHP workers crashing (SIGSEGV, SIGABRT)
+
+  Many access logs don't record request bodies, so you may need WAF or application logs. One security vendor published a specific attacker staging IP and ports; check current vendor advisories (Sophos, Huntress, Wiz, CISA's SIGMA rules) for up-to-date indicators.
+
+  **Caveat:** a single error doesn't prove an attack, and a clean log doesn't prove safety.
+
+  ## If you find signs of compromise
+
+  1. **Don't panic, and don't just delete files.** You'll lose evidence and may miss backdoors
+  2. **Take the site offline** or put up a maintenance page if it's actively harming visitors
+  3. **Preserve logs** (web server, PHP, hosting) and take a server snapshot
+  4. **Patch PHP** if not done ([VPS guide](/blog/php2shell-patch-vps-ubuntu-php-fpm))
+  5. **Restore from a clean backup** taken before the compromise, ideally before 17 October 2026
+  6. **Rotate every secret** the web server could read: database passwords, admin passwords, API keys, payment and email credentials, `wp-config.php` salts, Laravel `.env` values. Patching does not undo what was already read
+  7. **Update everything:** WordPress core, plugins, themes, and remove unused ones
+  8. **Request a review** in Search Console if Google flagged the site
+  9. **Tell affected people** if personal data may have leaked. Under India's DPDP Rules, which are phasing in, breach reporting duties apply; see [DPDP compliance for small businesses](/blog/dpdp-act-compliance-small-business-website). For significant incidents, consider reporting to **CERT-In** ([India's PHP2Shell advisory](/blog/cert-in-php2shell-advisory-india))
+
+  ## If you don't have a clean backup
+
+  This is the hardest situation. A professional clean-up (removing web shells and backdoors, checking the database for injected content) is usually needed. Often, rebuilding the site on fresh hosting and moving only verified content is safer.
+
+  ## Prevent the next one
+
+  - Stay on **supported PHP versions** ([dates](/blog/php-supported-versions-end-of-life-dates))
+  - **Daily off-site backups**, with a tested restore
+  - **WAF** in front of the site
+  - **Least-privilege** database users and file permissions
+  - **Monitoring and alerts** for file changes and unusual processes
+  - Our [website security checklist](/blog/website-security-checklist-small-business)
+
+  ## Where we fit
+
+  We help businesses in Bangalore and Shivamogga check, clean up and rebuild websites after security incidents, and set up backups and monitoring so the next one is easy to recover from. See [website development](/services/website-development).
+
+  Think your site might be compromised? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [Brandefense: PHP2Shell fixed versions and checks](https://brandefense.io/blog/php2shell-php-rce-cve-2026-109618-109619/)
+  - [Sophos advisory: PHP2Shell](https://www.sophos.com/en-us/security-advisories/sophos-sa-20261021-php2shell)
+  - [Sygnia: php2shell advisory](https://www.sygnia.co/threat-reports-and-advisories/php2shell-two-critical-php-vulnerabilities-expose-web-servers-to-remote-code-execution/)
+  - [SOCRadar: PHP2Shell affected versions and fixes](https://socradar.io/blog/php2shell-cve-2026-109618-cve-2026-109619/)
+  - [CISA alert with SIGMA rules](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching)

@@ -1,0 +1,101 @@
+id: "what-is-mcp-model-context-protocol"
+title: "What Is MCP (Model Context Protocol)? Why Marketers and Developers Keep Hearing About It in 2026"
+seoTitle: "What Is MCP (Model Context Protocol)? Explained Simply"
+metaDescription: "MCP lets AI assistants connect to tools and data, from code editors to Meta's Ads MCP server. What it is, how it works and why it matters."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "MCP has gone from a developer term to something ad platforms now announce. Here's what the Model Context Protocol is, in plain language, and why it matters for both marketers and developers."
+takeaways:
+  - "The Model Context Protocol (MCP) is an open standard that lets AI assistants connect to external tools, apps and data in a consistent way."
+  - "An MCP server exposes actions and data, such as reading a database or creating a draft campaign, which an AI assistant can use with permission."
+  - "MCP was introduced by Anthropic in late 2024 and has since been adopted widely across AI tools and platforms."
+  - "In October 2026 Meta expanded its Ads MCP server so external AI tools can work with campaigns, with approvals and drafts in Ads Manager."
+  - "For businesses, MCP means AI can act inside your tools, so permissions, approvals and audit trails matter."
+coverImage: "/images/blog/what-is-mcp-model-context-protocol.png"
+coverIcon: "Plug"
+category: "Apps & MVPs"
+keywords: "what is MCP, Model Context Protocol explained, MCP server, MCP for marketers, Meta Ads MCP, AI agents tools, MCP for developers, agentic AI 2026"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  A year ago, "MCP" was mostly a term developers used. In October 2026, **Meta** talked about its **Ads MCP server** at Advertising Week, letting external AI tools work with ad campaigns. Code editors, design tools, CRMs and analytics platforms now ship MCP support too.
+
+  If you're a founder, marketer or developer, here's what MCP is and why it's suddenly everywhere.
+
+  ## MCP in one sentence
+
+  The **Model Context Protocol (MCP)** is an **open standard that lets AI assistants connect to tools and data**: your files, databases, apps and services, in a consistent, permissioned way.
+
+  **Analogy:** USB-C for AI. Before USB-C, every device needed its own cable. Before MCP, every AI tool needed custom integrations for every app. MCP gives them one common plug.
+
+  ## How it works
+
+  There are three parts:
+
+  | Part | What it is | Example |
+  |---|---|---|
+  | **Host / client** | The AI app you use | An AI chat app, a coding assistant, an agent |
+  | **MCP server** | A connector that exposes tools and data from a service | A server for your database, GitHub, Google Drive, or an ad platform |
+  | **Tools and resources** | Specific actions and data the server offers | "Search orders", "Create draft campaign", "Read analytics report" |
+
+  When you ask the assistant something like *"Summarise last week's ad performance and draft a new campaign for our Diwali offer"*, it can call the relevant MCP tools, **with your permission**, instead of you copying data back and forth.
+
+  MCP was introduced by **Anthropic** in **November 2024** as an open protocol, and has since been adopted widely across the AI industry.
+
+  ## Why marketers are hearing about it
+
+  At Advertising Week on **6 October 2026**, Meta discussed its **Ads MCP server**, which lets external AI tools work with Meta ad campaigns. Work staged by an AI agent lands as a **draft** in Ads Manager, with approval controls. Availability was described as limited to selected large advertisers and agencies at first. See [Meta's October 2026 AI ad updates](/blog/meta-ads-ai-updates-october-2026).
+
+  In practice, MCP-style integrations let marketers:
+
+  - Ask an assistant to **pull reports** across ad accounts and analytics
+  - **Draft campaigns** and creative for human review
+  - **Monitor** spend and performance and get alerts
+  - Connect **CRM, ads and analytics** data for better decisions
+
+  The key phrase is *for human review*. Letting AI change live budgets without approval is a risk no small business should take.
+
+  ## Why developers are hearing about it
+
+  For developers, MCP is now a practical skill:
+
+  - **Coding assistants** use MCP to read issues, query databases, run tests and access documentation
+  - Companies build **MCP servers for their own products** so customers' AI tools can use them
+  - **Internal tools:** an MCP server over your company's data lets staff ask questions in plain language
+
+  A basic MCP server is a small program (Node.js and Python SDKs are common) that defines tools with names, descriptions and input schemas, and returns results. If you can build a REST API, you can learn to build an MCP server. It's a strong portfolio project for 2026; see [what freshers should learn in the age of AI coding](/blog/ai-coding-tools-freshers-what-to-learn-2026).
+
+  ## What it means for small businesses and startups
+
+  **1. Your tools will increasingly "talk" to AI.** Expect ad platforms, CRMs, accounting software and e-commerce platforms to offer MCP or similar connectors.
+
+  **2. Permissions matter more than ever.** If an AI assistant can act in your ad account or store, decide:
+
+  - **Who** can connect AI tools to business accounts
+  - **What** they can do (read only, draft only, or act)
+  - **Which approvals** are required before changes go live
+  - **How** you'll audit what changed
+
+  **3. Data protection applies.** Connecting customer data to AI tools is processing personal data. India's DPDP obligations are phasing in; see [DPDP compliance for small businesses](/blog/dpdp-act-compliance-small-business-website).
+
+  **4. Startups can build on it.** If your product has an API, an MCP server can make it usable inside customers' AI assistants, a potential distribution advantage. It also fits the shift towards AI agents that research and buy, covered in [UPI AI agent payments](/blog/upi-ai-agent-payments-india).
+
+  ## Risks to keep in mind
+
+  - **Over-permissioned connections:** give AI tools the minimum access they need
+  - **Untrusted servers:** only install MCP servers from sources you trust; a malicious server can misuse data or instructions
+  - **Prompt injection:** content an AI reads (emails, web pages, documents) can contain instructions meant to mislead it; keep human approval for important actions
+  - **Silent mistakes:** AI can be confidently wrong, so review drafts before publishing or spending
+
+  ## Where we fit
+
+  We build web apps and MVPs for founders, including AI features and integrations, with sensible permissions and human approval built in. We also help marketing teams use new AI tools without losing control of budgets or data. See [MVP and app development](/services/app-development) and [no-code vs custom MVPs](/blog/no-code-vs-custom-mvp).
+
+  Thinking about AI features or an MCP server for your product? [Get a free scoping call](/startup-launch-package).
+
+  ## Sources
+
+  - [Anthropic: Introducing the Model Context Protocol (Nov 2024)](https://www.anthropic.com/news/model-context-protocol)
+  - [Relevant Audience: Meta's Advertising Week 2026 ad tools](https://www.relevantaudience.com/meta/meta-advertising-week-new-york-2026-ad-tools/)
+  - [MediaPost: Meta unveils enhanced AI business assistant](https://www.mediapost.com/publications/article/418580/)

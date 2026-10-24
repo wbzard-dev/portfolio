@@ -1,0 +1,115 @@
+id: "website-security-checklist-small-business"
+title: "Website Security Checklist for Small Businesses: 20 Steps After PHP2Shell"
+seoTitle: "Website Security Checklist for Small Businesses (2026)"
+metaDescription: "A 20-point website security checklist for small businesses in India: hosting, PHP updates, backups, WAF, passwords and incident plans."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "PHP2Shell showed how quickly a single vulnerability can put millions of websites at risk. You don't need a security team to protect a small business site, just these 20 basics done consistently."
+takeaways:
+  - "Know who hosts your website, who maintains it and who can patch it the same day a critical vulnerability is announced."
+  - "Stay on supported software: PHP 8.3 or newer, current WordPress core, and maintained plugins and themes."
+  - "Keep automatic daily off-site backups and test a restore at least once."
+  - "Use a CDN or web application firewall, strong unique passwords and two-factor authentication for every admin account."
+  - "Write a one-page incident plan covering who to call, how to take the site offline and how to restore it."
+coverImage: "/images/blog/website-security-checklist-small-business.png"
+coverIcon: "LockKeyhole"
+category: "Websites"
+keywords: "website security checklist, small business website security, WordPress security checklist, how to secure website India, website backup and security, website security after PHP2Shell"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  When the **PHP2Shell** fixes landed on 21 October 2026 ([explained](/blog/php2shell-cve-2026-109618-explained)), attack attempts surged from tens of thousands to millions within hours. Businesses on well-run hosting barely noticed. Businesses whose sites nobody maintained had a stressful week.
+
+  Here are 20 practical steps, grouped so you can work through them in an afternoon.
+
+  ## Ownership and responsibility
+
+  **1. Know who hosts your website.** Name, plan type (shared, managed, VPS) and login. Check your invoices or ask your developer.
+
+  **2. Know who maintains it.** A named person or company who can **patch the same day** when something like PHP2Shell happens.
+
+  **3. Own your accounts.** Domain, hosting, website admin, Google and Meta accounts should be **in your business's name**, not a freelancer's. See [domain, hosting and business email explained](/blog/domain-hosting-business-email-guide-shivamogga).
+
+  ## Software versions
+
+  **4. Run a supported PHP version** (8.3 or newer recommended). PHP 8.2 ends on 31 Dec 2026. [Check yours](/blog/how-to-check-php-version-website) and see [all PHP end-of-life dates](/blog/php-supported-versions-end-of-life-dates).
+
+  **5. Keep WordPress core updated** (or your CMS or framework). Turn on automatic minor and security updates.
+
+  **6. Keep plugins and themes updated**, and **delete** unused ones.
+
+  **7. Remove abandoned and nulled software.** Plugins not updated in a year or more, and pirated "free premium" themes, are a leading cause of hacked sites.
+
+  ## Hosting and infrastructure
+
+  **8. Choose hosting that patches fast** and communicates clearly. See [what hosts did for PHP2Shell](/blog/php2shell-hosting-providers-patch-status).
+
+  **9. Use a CDN or WAF** (for example Cloudflare). Edge rules can block known attacks while patches roll out.
+
+  **10. Use HTTPS everywhere**, with automatic certificate renewal.
+
+  **11. If you run a VPS, automate security updates** and document how to restart PHP and web services ([VPS patching guide](/blog/php2shell-patch-vps-ubuntu-php-fpm)).
+
+  ## Access and accounts
+
+  **12. Strong, unique passwords** for every admin, hosting and email account, stored in a password manager.
+
+  **13. Two-factor authentication** on hosting, domain registrar, website admin, email, Google and Meta accounts.
+
+  **14. Least privilege.** Give staff and agencies only the access they need, and remove access when people leave or projects end.
+
+  **15. Protect the admin area.** Limit login attempts; consider restricting `/wp-admin` or your admin URL by IP if your team works from fixed locations.
+
+  ## Backups and recovery
+
+  **16. Automatic daily backups**, stored **off the server** (not only on the same hosting account).
+
+  **17. Test a restore** at least once, and after any major change. A backup you can't restore isn't a backup.
+
+  ## Monitoring
+
+  **18. Uptime monitoring** with alerts to your phone or email (free tools exist).
+
+  **19. Watch for warning signs:** Google Search Console security issues ([setup](/blog/google-search-console-setup-guide)), hosting malware alerts, unexpected admin users, spam pages in Google. See [signs your site was hacked](/blog/php2shell-was-my-site-hacked).
+
+  ## Planning
+
+  **20. Write a one-page incident plan:**
+
+  - Who decides and who acts (names and phone numbers)
+  - How to put up a **maintenance page** or take the site offline
+  - Where backups are and how to **restore** them
+  - Which passwords and keys to **rotate**
+  - Who to inform: customers, your host, and where required **CERT-In** ([CERT-In's PHP2Shell advisory and reporting](/blog/cert-in-php2shell-advisory-india)) and data protection obligations under the **DPDP Rules** ([checklist](/blog/dpdp-act-compliance-small-business-website))
+
+  ## Don't forget forms and customer data
+
+  Your lead forms collect names, phone numbers and emails. Protect them:
+
+  - Send form data to a **trusted service or CRM**, not just an inbox anyone can access
+  - Use **spam protection** (honeypots, CAPTCHA where needed)
+  - Only collect what you need, with **clear consent** (required under the DPDP Rules)
+  - Limit who can export customer lists
+
+  ## A quick self-score
+
+  Give yourself one point for each step done:
+
+  | Score | What it means |
+  |---|---|
+  | 17–20 | Well protected. Keep it routine |
+  | 11–16 | Decent, with gaps. Fix the missing items this month |
+  | 0–10 | At risk. Start with steps 1, 2, 4, 16 and 13 this week |
+
+  ## Where we fit
+
+  We build websites for businesses in Bangalore and Shivamogga with security built in: supported software, fast-patching hosting, CDN and WAF, backups, monitoring and accounts in your name. We can also review an existing site against this checklist. See [website development](/services/website-development), [website design in Shivamogga](/shivamogga/website-design) and [why websites don't get enquiries](/blog/website-not-getting-enquiries-shivamogga).
+
+  Want a quick security review of your site? [Get in touch](/startup-launch-package).
+
+  ## Sources
+
+  - [CISA: Critical vulnerabilities in PHP require immediate patching](https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching)
+  - [The Hacker News: attempt surge after PHP2Shell disclosure](https://thehackernews.com/2026/10/urgent-php-warns-of-another-unpatched.html)
+  - [Hostinger: Protections against php2shell](https://www.hostinger.com/blog/protecting-php2shell/)

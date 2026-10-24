@@ -1,0 +1,113 @@
+id: "php2shell-hosting-providers-patch-status"
+title: "Has My Web Host Patched PHP2Shell? Status for Hostinger, GoDaddy, cPanel, CloudLinux and Others"
+seoTitle: "PHP2Shell Hosting Patch Status: Hostinger, GoDaddy & More"
+metaDescription: "Which web hosts have patched PHP2Shell? What Hostinger, GoDaddy, SiteGround, cPanel and CloudLinux said, and what to ask your own host."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "If your website is on shared or managed hosting, your host is responsible for patching PHP2Shell. Here's what the major hosts popular in India have announced, and how to confirm your own site is covered."
+takeaways:
+  - "On shared and managed hosting, the host updates PHP; on a VPS or dedicated server, the customer usually must patch PHP themselves."
+  - "Hostinger says it patched all non-VPS hosting servers by 22 October 2026 and disabled session upload progress as an extra measure."
+  - "GoDaddy said Managed WordPress hosting was patched first, with Web Hosting following once vendor packages arrived; VPS customers must update PHP themselves."
+  - "cPanel shipped fixed PHP packages in EasyApache 4, including backports for 7.4, 8.0 and 8.1, and CloudLinux released fixes for older branches on most platforms."
+  - "Always confirm with your own host, because patch status can differ by plan, server and PHP version."
+coverImage: "/images/blog/php2shell-hosting-providers-patch-status.png"
+coverIcon: "Server"
+category: "Websites"
+keywords: "PHP2Shell Hostinger, PHP2Shell GoDaddy, PHP2Shell cPanel, CloudLinux PHP2Shell, web hosting PHP patch status, is my host patched PHP2Shell, shared hosting PHP vulnerability India"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. Host status changes quickly; always check your host's own status page or support team before relying on this.*
+
+  When PHP released emergency fixes for **PHP2Shell** on 21 October 2026 ([what it is](/blog/php2shell-cve-2026-109618-explained)), the question for most small businesses wasn't "how do I patch PHP?" but **"has my host done it?"**
+
+  Here's what the major hosts used by Indian businesses have said, and how to check your own site.
+
+  ## Who is responsible for patching?
+
+  | Hosting type | Who updates PHP | Your job |
+  |---|---|---|
+  | **Shared hosting** (cPanel, hPanel) | The host | Confirm, check version, upgrade from EOL PHP |
+  | **Managed WordPress hosting** | The host | Confirm and check for compromise |
+  | **Cloud hosting with a managed panel** | Usually the host | Confirm with support |
+  | **VPS / dedicated server** | **You** | Patch PHP, restart workers ([guide](/blog/php2shell-patch-vps-ubuntu-php-fpm)) |
+  | **Containers / PaaS** | You (rebuild) or the platform | Rebuild images ([guide](/blog/php2shell-docker-laravel-patch)) |
+
+  ## What major hosts have announced
+
+  **Hostinger** (very popular with Indian small businesses)
+
+  - 21 Oct: blocked known exploit attempts with firewall rules and **disabled `session.upload_progress`** on LiteSpeed, PHP Selector, cPanel PHP-FPM and phpMyAdmin
+  - 22 Oct (06:44 UTC): finished rolling out patched PHP across the platform and emailed customers
+  - 23 Oct: said non-VPS plans were already protected against the follow-up CVE-2026-115560
+  - **VPS customers must update PHP themselves**
+  - Customers can confirm by checking that the **PHP build date is 21 October 2026 or later**
+  - Reported no increase in malware or unusual activity on managed hosting
+
+  **GoDaddy**
+
+  - Patched PHP on **Managed Hosting for WordPress** first
+  - Said Web Hosting and Windows Hosting were waiting on vendor packages; one report quotes GoDaddy saying Web Hosting was patched on 22 October
+  - **VPS customers must update PHP themselves**
+
+  **SiteGround**
+
+  - Moved early with protections ahead of the release and says the fixes are applied across all its servers
+
+  **InMotion Hosting**
+
+  - Disabled the PHP setting the known exploit uses across managed servers ahead of the patch; advises customers to run PHP 8.2 or newer
+
+  **cPanel (EasyApache 4)**, the software behind many Indian shared hosts
+
+  - Released fixed PHP packages, with **backports for 7.4, 8.0 and 8.1**. Hosts using cPanel still need to install the updates on their servers
+
+  **CloudLinux** (alt-php / PHP Selector)
+
+  - Says 7.4 and 8.0 are fixed on most platforms and 8.1 on some, with a status page for the rest
+  - One report warned that security metadata wasn't published at first, so `yum --security` updates might not pick these packages up. Server admins should update the packages explicitly
+
+  Smaller Indian resellers and local hosting companies often run cPanel or CloudLinux, so they depend on applying these vendor updates. **Ask them directly.**
+
+  ## How to confirm your own site
+
+  1. **Check your PHP version and build date** ([how](/blog/how-to-check-php-version-website)). A build date on or after 21 October 2026 is a good sign on many hosts
+  2. **Look for your host's announcement**: email, blog, status page or knowledge base
+  3. **Message support** with this:
+
+  > "Is PHP on my account patched for CVE-2026-109618, CVE-2026-109619 (PHP2Shell) and the CVE-2026-115560 mitigation? Which PHP version and build is my site using, and is my plan managed or self-managed?"
+
+  4. **If you're on PHP 8.1 or older**, ask whether a patched build is installed, and plan an [upgrade to PHP 8.3 or 8.4](/blog/how-to-change-php-version-cpanel-hostinger)
+
+  ## Red flags in a host's answer
+
+  - "PHP2Shell doesn't affect us": every PHP web server is affected unless patched
+  - "Update your WordPress plugins": that doesn't fix a PHP engine bug
+  - No answer after 48 hours
+  - "We're still on PHP 7.x and can't upgrade"
+
+  If you get these, it may be time to move hosts. Moving a small business site usually takes a day with proper planning.
+
+  ## What to look for in a host after PHP2Shell
+
+  - **Fast, public security communication** (status pages, emails)
+  - **Supported PHP versions** available (8.3, 8.4, 8.5), and old ones clearly marked end of life
+  - **Automatic daily backups** with easy restore
+  - **WAF and malware scanning** included
+  - **Staging environments** to test upgrades
+  - **Data centres in India** or nearby for speed
+
+  See also our [website security checklist for small businesses](/blog/website-security-checklist-small-business).
+
+  ## Where we fit
+
+  We help businesses in Bangalore and Shivamogga choose hosting, migrate sites safely and keep PHP, backups and security up to date. See [website development](/services/website-development) and [domain, hosting and business email explained](/blog/domain-hosting-business-email-guide-shivamogga).
+
+  Not sure what your host has done? [Get in touch for a free check](/startup-launch-package).
+
+  ## Sources
+
+  - [Hostinger: Protections against php2shell](https://www.hostinger.com/blog/protecting-php2shell/)
+  - [ActiveSet: PHP2Shell host patch status tracker](https://www.activeset.co/blog/php2shell-host-status)
+  - [SiteGround: Protecting customers ahead of critical PHP release](https://www.siteground.com/blog/critical-php-vulnerabilities-october-2026)
+  - [InMotion Hosting: PHP critical security release](https://www.inmotionhosting.com/support/news/php-critical-security-release-october-2026/)

@@ -1,0 +1,120 @@
+id: "dpdp-act-compliance-small-business-website"
+title: "DPDP Rules for Small Businesses: What Your Website, Lead Forms and WhatsApp Marketing Must Do Before May 2027"
+seoTitle: "DPDP Act Compliance for Small Business Websites (2026)"
+metaDescription: "India's DPDP Rules apply from May 2027. A small business checklist for lead form consent, privacy notices, WhatsApp marketing and data breaches."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "India's data protection rules are no longer a future problem. Consent manager rules start on 13 November 2026 and most obligations apply from 13 May 2027. Here's what a small business with a website and lead forms actually needs to do."
+takeaways:
+  - "The Digital Personal Data Protection (DPDP) Rules were notified on 13 November 2025 and phase in over 18 months."
+  - "Consent manager provisions become operational around 13 November 2026; most obligations on businesses apply from around 13 May 2027."
+  - "Any business collecting names, phone numbers or emails through forms, WhatsApp or ads is a data fiduciary under the Act."
+  - "You need a clear notice, specific consent, a way to withdraw consent, reasonable security and a process to handle requests and breaches."
+  - "Penalties can reach up to ₹250 crore for serious failures, so start with a simple data map and fix lead forms first."
+coverImage: "/images/blog/dpdp-act-compliance-small-business-website.png"
+coverIcon: "ShieldCheck"
+category: "Websites"
+keywords: "DPDP Act compliance small business, DPDP Rules 2025, DPDP compliance checklist, privacy policy India website, consent lead form India, DPDP deadline May 2027, data protection India small business"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026. This is a practical overview, not legal advice. For your specific situation, speak to a lawyer or a compliance professional.*
+
+  If your website has an enquiry form, your shop collects phone numbers for WhatsApp offers, or you upload customer lists to Meta for ads, India's **Digital Personal Data Protection (DPDP) Act** applies to you. Not just to banks and big tech.
+
+  The rules that make the Act enforceable were notified in **November 2025** and are phasing in now. Here's what that means in plain language, with a checklist for small businesses and startups in Bangalore and Shivamogga.
+
+  ## The timeline
+
+  | Date | What happens |
+  |---|---|
+  | **13 Nov 2025** | DPDP Rules notified; Data Protection Board provisions begin |
+  | **~13 Nov 2026** | **Consent manager** framework becomes operational (registered platforms that help people manage consent) |
+  | **~13 May 2027** | **Most obligations on businesses apply:** notices, consent, security safeguards, breach reporting, rights of individuals |
+
+  Some sources give the 14th instead of the 13th for these milestones. Either way, the message is the same: **you have roughly six months** to get the basics in place.
+
+  ## Who this applies to
+
+  Under the Act, a **data fiduciary** is anyone who decides why and how personal data is processed. If you collect any of these, you're one:
+
+  - Names, phone numbers and emails from **website forms**
+  - Customer contacts for **WhatsApp broadcasts** or SMS offers
+  - **Patient, student or customer records**
+  - Lists uploaded to **Meta or Google** for ads
+  - Data from **Pixels and analytics** linked to individuals
+
+  Size doesn't exempt you, though some obligations are heavier for "significant data fiduciaries" (large or high-risk processors).
+
+  ## What the law asks of a small business
+
+  **1. A clear notice.** Before collecting data, tell people what you collect, why, and how they can withdraw consent or complain. In plain language, and available in English or the languages listed in the Constitution's Eighth Schedule (which includes Kannada) where relevant.
+
+  **2. Consent that is free, specific and informed.** Pre-ticked boxes and "by using this site you agree to everything" won't do. Consent should be for a stated purpose, such as "to contact you about your enquiry".
+
+  **3. Easy withdrawal.** Withdrawing consent should be as easy as giving it: an unsubscribe link, a "STOP" reply on WhatsApp, an email address that's actually monitored.
+
+  **4. Use data only for the stated purpose.** Collected for an enquiry? Don't add it to a marketing list without separate consent.
+
+  **5. Reasonable security.** Access controls, encryption where sensible, no spreadsheets of customer data on personal phones shared over WhatsApp.
+
+  **6. Breach reporting.** If personal data is leaked, you must inform affected people and the Data Protection Board. Compliance guides say the detailed report to the Board is due within **72 hours**.
+
+  **7. Handle requests.** People can ask to access, correct or erase their data, and you need a contact for grievances. Guides cite a **90-day** window to resolve grievances.
+
+  **8. Delete data you no longer need.** Keep it only as long as the purpose requires, unless the law requires otherwise.
+
+  **9. Children's data.** Processing data of people under 18 generally needs verifiable parental consent. Important for **coaching centres, schools and preschools**.
+
+  ## Your website and lead form checklist
+
+  - [ ] **Consent checkbox** on every lead form, unticked by default, with a specific purpose: *"I agree to be contacted by [Business] by phone, WhatsApp or email about my enquiry."*
+  - [ ] **Link to a privacy policy** next to the checkbox
+  - [ ] **Separate opt-in** for marketing messages, if you send offers
+  - [ ] **Privacy policy updated** to explain what you collect, why, who you share it with (form tools, CRMs, ad platforms), how long you keep it and how to contact you
+  - [ ] **Cookie and tracking notice** if you use analytics, Meta Pixel or Google Ads tags, with a way to decline non-essential tracking
+  - [ ] **Form tools reviewed:** where does form data go (Formspree, Google Forms, CRM)? Is access limited?
+  - [ ] **Grievance contact:** a named email or person on the privacy page
+
+  Our own enquiry form uses exactly this pattern: a required consent checkbox with a specific purpose and a link to our [privacy policy](/privacy-policy).
+
+  ## WhatsApp and SMS marketing checklist
+
+  - [ ] Only message people who **opted in** to receive offers
+  - [ ] Every broadcast includes an easy way to **stop** messages
+  - [ ] Keep a record of **when and how** each person opted in
+  - [ ] Don't share customer lists between businesses
+  - [ ] If you use [WhatsApp Business AI](/blog/whatsapp-business-ai-india-guide), avoid collecting sensitive details (health, finances) in chat unless necessary
+
+  ## Ads and analytics checklist
+
+  - [ ] Only upload customer lists to Meta or Google if people consented to that use
+  - [ ] Review what your **Pixel and Conversions API** send; avoid sending unnecessary personal data
+  - [ ] Note ad platforms as data recipients in your privacy policy
+  - [ ] Set **data retention** in GA4 and your CRM
+
+  For tracking basics, see [conversion tracking setup](/blog/ga4-conversion-tracking-setup).
+
+  ## Penalties
+
+  Penalties under the Act go up to **₹250 crore** for failing to take reasonable security safeguards, with other caps for other breaches. The Data Protection Board considers factors such as the nature and seriousness of the breach and steps taken to mitigate it. For a small business, the bigger risk is often reputational: customers in a city like Shivamogga talk.
+
+  ## A simple 6-week plan
+
+  - **Week 1:** list every place you collect personal data (forms, WhatsApp, billing software, spreadsheets, ads)
+  - **Week 2:** update lead forms with proper consent and a privacy link
+  - **Week 3:** rewrite the privacy policy in plain language; add a grievance contact
+  - **Week 4:** clean up WhatsApp lists; add opt-out to broadcasts
+  - **Week 5:** restrict access to customer data; remove old exports from personal devices
+  - **Week 6:** write a one-page breach plan: who decides, who informs customers and the Board
+
+  ## Where we fit
+
+  We build websites and lead forms with consent, privacy pages and tracking set up responsibly from day one, and we can update existing sites. We're not lawyers, so for policy wording we recommend a legal review. See [website development](/services/website-development) and [how to hire a website developer](/blog/how-to-hire-a-website-developer-questions).
+
+  Want your forms and tracking reviewed before May 2027? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [Legal500: DPDP Act and Rules 2025, the 2026 compliance milestones](https://www.legal500.com/intelligence/india/privacy/dpdp-act-and-rules-2025-the-2026-compliance-milestones-businesses-cant-afford-to-miss)
+  - [India Briefing: DPDP compliance 2027 timeline and checklist](https://www.india-briefing.com/news/india-dpdp-compliance-gdpr-comparison-45702.html/)
+  - [Consently: DPDP Rules 2025 implementation timeline](https://www.consently.in/blog/dpdp-rules-2025-implementation-timeline-india)

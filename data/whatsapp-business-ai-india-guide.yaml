@@ -1,0 +1,107 @@
+id: "whatsapp-business-ai-india-guide"
+title: "WhatsApp Business AI in India: How to Set Up the AI Assistant That Answers Customers for You"
+seoTitle: "WhatsApp Business AI India: Setup Guide for Shops"
+metaDescription: "Meta's Business AI on the WhatsApp Business app answers customers, captures leads and books appointments in Indian languages. How to set it up."
+date: "2026-10-24"
+author: "Vivek"
+excerpt: "Small businesses in India can now switch on an AI assistant inside the WhatsApp Business app that replies to customers 24/7, in their language. Here's how to set it up so it helps rather than embarrasses you."
+takeaways:
+  - "Meta launched Business AI for eligible small businesses using the WhatsApp Business app in India in May 2026."
+  - "It answers questions, recommends products, shares profile and catalogue details, captures leads and books appointments."
+  - "It works in Indian languages, and the owner can take over any chat, change its behaviour or turn it off."
+  - "You turn it on from the Tools tab in the WhatsApp Business app under 'Your Business AI'."
+  - "The AI is only as good as your profile and catalogue, so fill in prices, timings, policies and FAQs first."
+coverImage: "/images/blog/whatsapp-business-ai-india-guide.png"
+coverIcon: "BotMessageSquare"
+category: "Digital Marketing"
+keywords: "WhatsApp Business AI India, WhatsApp AI assistant for business, WhatsApp Business AI setup, WhatsApp chatbot small business, Meta Business AI WhatsApp, WhatsApp auto reply AI Kannada"
+locations: ["bangalore", "shivamogga"]
+content: |
+  *Updated 24 October 2026.*
+
+  Every small business owner in India knows the 11 pm WhatsApp: "Price?", "Open tomorrow?", "Do you deliver to Vinoba Nagar?" Reply late and the customer has already messaged a competitor.
+
+  In **May 2026**, Meta launched **Business AI** on the **WhatsApp Business app** for eligible small businesses in India: an AI assistant that replies on your behalf, around the clock, in Indian languages. Here's how it works and how to set it up properly.
+
+  ## What Business AI does
+
+  According to Meta, Business AI can:
+
+  - **Answer customer questions** at any time of day
+  - **Recommend products** from your catalogue
+  - **Share details** from your business profile (timings, address, website)
+  - **Capture leads** (name, requirement, contact)
+  - **Book appointments**
+  - Help **close sales**
+
+  You stay in control: you can **take over any chat**, adjust how the AI behaves, or **turn it off**. Meta has also said in-chat **UPI payments** through Business AI are coming "soon", but as of its announcement that wasn't live yet.
+
+  It works in **India's native languages**, which matters for Shivamogga businesses whose customers write in Kannada or mix Kannada and English.
+
+  ## Who can use it
+
+  Meta says it's for **eligible small and medium businesses in India using the WhatsApp Business app**. It hasn't published the full eligibility criteria. If you don't see the option, check that your app is updated and your business profile is complete.
+
+  This is different from the **WhatsApp Business Platform (API)**, which uses third-party providers and is built for larger teams. See [WhatsApp Business app vs API](/blog/whatsapp-business-app-vs-api).
+
+  ## Step-by-step setup
+
+  1. **Update the WhatsApp Business app** to the latest version
+  2. Open the **Tools** tab
+  3. Tap **"Your Business AI"**
+  4. Follow the **guided setup**: Meta uses your profile, catalogue and settings to train the assistant
+  5. Review how it answers sample questions and adjust its instructions
+  6. Decide **when** it should reply (all the time, only after hours, or only when you're busy)
+
+  ## Prepare your information first
+
+  The AI answers from what you give it. Before switching it on, complete:
+
+  - **Business profile:** category, description, address, hours, website, email
+  - **Catalogue:** products or services with **prices** (or price ranges), photos and short descriptions
+  - **Policies:** delivery areas, delivery charges, returns, cancellations, booking rules, payment methods
+  - **Common questions:** write out 15–20 FAQs your team answers every week
+  - **Quick replies:** for things you want worded exactly (directions, fees, offers)
+
+  If the catalogue is empty or outdated, the AI will either say "I don't know" or, worse, give a vague answer that loses the sale.
+
+  ## Good uses by business type
+
+  | Business | What the AI can handle |
+  |---|---|
+  | **Clinic or physiotherapy** | Timings, doctor availability, consultation fees, appointment booking |
+  | **Coaching centre** | Course details, batch timings, fees, demo class booking |
+  | **Salon** | Service menu and prices, booking slots |
+  | **Restaurant or bakery** | Menu, cake customisation options, pre-orders, delivery areas |
+  | **Retail shop** | Product availability, prices, store location |
+  | **Homestay** | Room types, rates, availability enquiries, directions |
+
+  Avoid letting it make promises about medical advice, legal matters, custom quotes or refunds. Set those up so the AI collects details and hands over to you.
+
+  ## Rules for using AI well
+
+  - **Review chats daily** for the first two weeks and correct its instructions
+  - **Tell customers it's an assistant** when it matters; honesty builds trust
+  - **Hand over fast** for complaints, complex orders and high-value enquiries
+  - **Keep prices current**: wrong prices are worse than no reply
+  - **Respect privacy**: only collect what you need, and be careful with health or financial details. India's DPDP rules are phasing in; see [DPDP compliance for small businesses](/blog/dpdp-act-compliance-small-business-website)
+
+  ## Connect it to the rest of your marketing
+
+  - Run **click-to-WhatsApp ads** on Facebook and Instagram, with Business AI ready to reply instantly. See [Meta lead ads guide](/blog/meta-lead-ads-guide-small-business)
+  - Add a **WhatsApp button** to your website and track clicks ([how](/blog/ga4-conversion-tracking-setup))
+  - Add WhatsApp to your **Google Business Profile** where available
+  - Use the AI to collect a lead's requirement, then follow up personally
+
+  Speed is the biggest reason WhatsApp leads convert. Business AI's main value is that **no enquiry waits until morning**.
+
+  ## Where we fit
+
+  We set up WhatsApp as a proper sales channel: profile and catalogue, FAQs written in your customers' language, Business AI instructions, click-to-WhatsApp ads and website tracking. For businesses that outgrow the app, we help move to the API. See [digital marketing](/services/digital-marketing) and [Instagram and WhatsApp marketing for Shivamogga shops](/blog/instagram-whatsapp-marketing-shivamogga).
+
+  Want WhatsApp to answer customers while you sleep? [Get a free launch plan](/startup-launch-package).
+
+  ## Sources
+
+  - [Meta: Introducing Business AI on WhatsApp for small businesses in India (May 2026)](https://about.fb.com/news/2026/05/introducing-business-ai-on-whatsapp-for-small-businesses-in-india/)
+  - [Infobip: WhatsApp news and updates 2026](https://www.infobip.com/blog/whatsapp-news-and-updates)
