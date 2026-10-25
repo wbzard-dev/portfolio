@@ -1,0 +1,74 @@
+id: "new-business-online-setup-first-week"
+title: "Your First Week Online: 10 Accounts Every New Business Should Set Up"
+seoTitle: "How to Set Up Your New Business Online: 10 Accounts"
+metaDescription: "Just started a business? The 10 online accounts to set up in your first week, from Google Business Profile and WhatsApp to Search Console, and who owns them."
+date: "2026-10-25"
+author: "Vivek"
+excerpt: "A new business needs a handful of online accounts set up properly from day one. Here are the ten that matter, in order, and how to keep ownership in your hands."
+takeaways:
+  - "Set up your domain, business email, Google Business Profile and WhatsApp Business in the first few days."
+  - "Create every account with a business email you own, never a developer's or employee's personal email."
+  - "Add Google Search Console and Google Analytics as soon as your website is live, so you can see where customers come from."
+  - "Create a Meta Business portfolio to own your Facebook page, Instagram account and ad account together."
+  - "Keep a single access sheet listing every account, its login email and who has admin access."
+coverImage: "/images/blog/new-business-online-setup-first-week.png"
+coverIcon: "ListChecks"
+category: "Startups"
+keywords: "how to set up business online, new business online checklist, business accounts to create, Google Business Profile setup, WhatsApp Business setup, Meta Business Suite setup"
+locations: ["bangalore", "shivamogga"]
+content: |
+  You've registered the business, opened the bank account and maybe even printed visiting cards. Now comes the part that confuses most new founders: going online. Which accounts do you actually need? In what order? And who should create them, you or the developer?
+
+  Getting this right in the first week saves months of trouble later. Many businesses we meet can't edit their Google listing, can't access their Instagram ad account or don't own their own domain, simply because someone else set things up in a hurry. This checklist lists the ten accounts every new Indian business should set up, why each matters, and the one rule that keeps them all under your control.
+
+  ## The one rule: own everything from day one
+
+  Before creating any account, create a **business email address** that you control. Use it as the owner email for every account below. If a developer, agency or employee helps, add them as a user or admin, but never let them be the only owner.
+
+  Keep an **access sheet**: a simple document listing each account, its login email, who has access and when it renews. It takes ten minutes to make and can save your business when someone leaves. If you're already locked out of something, read [how to recover access from a developer](/blog/recover-domain-website-access-from-developer).
+
+  ## Days 1 and 2: Your foundation
+
+  **1. Domain name.** Buy a .in or .com domain in your own or your company's name. Turn on auto-renew so it never expires by accident.
+
+  **2. Business email.** Set up email on your domain, such as hello@yourbrand.in, through Google Workspace, Zoho Mail or your hosting provider. It looks professional and becomes the owner of every other account.
+
+  **3. WhatsApp Business.** Install the WhatsApp Business app on a dedicated number. Add your business name, description, hours, address, catalogue and quick replies. For most Indian customers, this is where conversations happen. Our [WhatsApp Business app vs API guide](/blog/whatsapp-business-app-vs-api) explains when to upgrade.
+
+  ## Days 3 and 4: Get found on Google
+
+  **4. Google Business Profile.** This puts you on Google Search and Maps. Choose the right category, add your phone, hours, service area and real photos, then complete verification. It's the most valuable free listing for any local business. See the [full profile checklist](/blog/google-business-profile-shivamogga-local-seo).
+
+  **5. Google Search Console.** Once your website is live, add it to Search Console. It tells you whether Google has indexed your pages and which searches you appear for. Here's the [setup guide](/blog/google-search-console-setup-guide).
+
+  **6. Google Analytics 4.** Install GA4 on your website to see visitors, sources and actions. Set up events for calls, WhatsApp clicks and form submissions from the start, as shown in our [GA4 conversion tracking guide](/blog/ga4-conversion-tracking-setup).
+
+  ## Days 5 and 6: Social media and ads
+
+  **7. Meta Business portfolio.** Create a business portfolio in Meta Business Suite using your business email. It holds your Facebook page, Instagram account and ad account together, and lets you add team members without sharing passwords.
+
+  **8. Instagram professional account.** Convert Instagram to a business or creator account and connect it to the portfolio. Add your category, contact buttons and website link in the bio.
+
+  **9. LinkedIn company page.** Essential for B2B businesses, startups that will hire, and anyone selling to companies. Even consumer businesses benefit from a basic page for credibility.
+
+  ## Day 7: Payments and listings
+
+  **10. UPI and payment links.** Set up a business UPI QR code and payment links so customers can pay instantly over WhatsApp or at the counter. If you sell online, set up a payment gateway on your website.
+
+  As you set up each account, use exactly the same **business name, address, phone number and website** everywhere. Write them down once and copy-paste them, so there are no small differences in spelling or number format. Turn on **two-factor authentication** for your email, Google and Meta accounts; it takes a minute and blocks most hacking attempts. Finally, add a trusted second person as a backup admin, so the business isn't locked out if your phone is lost.
+
+  After these ten, add yourself to the listing sites that matter for your category, such as JustDial, Practo, Zomato or IndiaMART. Our guide to [business listing sites in India](/blog/business-listing-sites-india) shows which ones are worth the time.
+
+  ## Mistakes to avoid in week one
+
+  - **Using a personal Gmail** as the owner of business accounts.
+  - **Letting a freelancer create** your Google profile or ad account under their own login.
+  - **Using different business names** or phone numbers on different platforms, which confuses Google and customers.
+  - **Skipping analytics** and later having no idea which channel brings enquiries.
+  - **Creating accounts and leaving them empty**, which looks worse than not having them.
+
+  ## A strong first week sets up the next year
+
+  These ten accounts take about a week of evenings to set up properly, and they form the base of everything you'll do online: ads, SEO, social media and customer service. Set them up under your own business email, fill each one completely, and keep your access sheet up to date. You'll avoid the most common and expensive problems small businesses face later.
+
+  Want it done for you, correctly and in your name? Account setup is included in our [Startup Launch Package](/startup-launch-package).

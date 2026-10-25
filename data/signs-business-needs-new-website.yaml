@@ -1,0 +1,84 @@
+id: "signs-business-needs-new-website"
+title: "7 Signs Your Business Needs a New Website (and When a Fix Is Enough)"
+seoTitle: "7 Signs Your Business Needs a New Website in 2026"
+metaDescription: "Old website not bringing enquiries? Seven clear signs it's time to rebuild, from slow speed to poor mobile layout and no access, plus when a fix is enough."
+date: "2026-10-25"
+author: "Vivek"
+excerpt: "An outdated website quietly costs a business enquiries every day. Here are seven signs it's time for a new website, and how to tell whether a fix would be enough."
+takeaways:
+  - "If your website is slow or hard to use on a phone, most visitors will leave before contacting you."
+  - "Not being able to edit your own website, or not owning the domain, is a strong reason to rebuild."
+  - "Outdated PHP, WordPress or plugins create security risks that can get a site hacked or blacklisted."
+  - "A website that doesn't explain what you do, where and for whom is losing customers to competitors."
+  - "Fix rather than rebuild when the site is fast, secure and editable, and only the content needs work."
+coverImage: "/images/blog/signs-business-needs-new-website.png"
+coverIcon: "RefreshCw"
+category: "Websites"
+keywords: "when to redesign website, signs you need a new website, website redesign India, old website problems, website rebuild small business, website redesign Bangalore, website redesign Shivamogga"
+locations: ["bangalore", "shivamogga"]
+content: |
+  Many businesses in India had a website built years ago, paid for it once, and haven't touched it since. It still loads, so it feels fine. But customers have changed how they browse, Google has changed how it ranks, and competitors have improved their sites. An outdated website doesn't fail loudly. It quietly loses enquiries every single day.
+
+  Rebuilding isn't always the answer, though. Sometimes a few changes to content and contact buttons make a big difference for a fraction of the cost. This guide covers seven clear signs that your business needs a new website, how to check each one in a few minutes, and when a smaller fix is enough. It's written for owners of small and growing businesses in Bangalore, Shivamogga and across India.
+
+  ## Speed and usability problems
+
+  ### Sign 1: It's slow on mobile
+
+  Most of your visitors are on phones, often on patchy mobile data. If your website takes more than a few seconds to load, many of them leave before seeing anything.
+
+  *How to check:* Run your site through Google's **PageSpeed Insights** and look at the mobile score and Core Web Vitals. Our [website speed guide](/blog/website-speed-core-web-vitals-small-business) explains what the numbers mean. Heavy themes, cheap hosting and large images are common causes. If the platform itself is slow, a rebuild is usually cheaper than endless patches.
+
+  ### Sign 2: It's hard to use on a phone
+
+  Tiny text, buttons too close together, menus that don't open, and forms you can't fill on a phone all drive customers away.
+
+  *How to check:* Open your site on your own phone and try to find a price and contact you in under 30 seconds. Then ask a friend to try. If either of you struggles, customers are struggling too.
+
+  ## Control and ownership problems
+
+  ### Sign 3: You can't update it yourself
+
+  If changing a phone number or adding a photo means calling a developer and waiting a week, your website will always be out of date.
+
+  A modern website should let you, or someone on your team, edit text, prices, photos and blog posts easily. If yours doesn't, that alone is a good reason to rebuild.
+
+  ### Sign 4: You don't own it
+
+  Many owners discover their domain is registered in a developer's name, the hosting is on the developer's account, or the website is locked inside a builder they can't leave. This is a serious risk to your business.
+
+  If you can recover ownership, do that first; see [recovering your domain and website from a developer](/blog/recover-domain-website-access-from-developer). If you can't, a new site on a domain you own is the safer long-term choice.
+
+  ## Security, content and results problems
+
+  ### Sign 5: It's running outdated software
+
+  Old versions of PHP, WordPress, themes and plugins are a leading cause of hacked small business websites. Hacked sites can be flagged by browsers, lose rankings and send visitors to spam.
+
+  *How to check:* Ask your developer or hosting provider which PHP and WordPress versions you're on. See [PHP supported versions and end-of-life dates](/blog/php-supported-versions-end-of-life-dates) and our [website security checklist](/blog/website-security-checklist-small-business). If updating breaks the site, it's usually time to rebuild.
+
+  ### Sign 6: It doesn't explain what you do
+
+  A home page that says "Welcome to our website" or "Quality since 1998" doesn't tell visitors what you sell, where, or why they should choose you. It also gives Google nothing to rank.
+
+  *How to check:* Show your home page to someone for five seconds, then ask what your business does and where. If they can't answer, the content needs work.
+
+  ### Sign 7: It brings no enquiries
+
+  The real test of a business website is whether it brings calls, WhatsApp messages and form submissions. If you can't remember the last enquiry from your website, or you have no way of measuring it, something is wrong. Our article on [why websites don't get enquiries](/blog/website-not-getting-enquiries-shivamogga) lists the ten most common causes.
+
+  ## Rebuild or fix: how to decide
+
+  **Fix** the existing site if it's reasonably fast, secure, mobile-friendly and editable, and the main problems are weak content, missing service pages or hidden contact buttons.
+
+  **Rebuild** if it's slow because of the platform, you can't edit it, you don't own it, or it runs software that can't be safely updated. In those cases, patching usually costs more over time than starting fresh. Compare options in [WordPress vs custom websites](/blog/wordpress-vs-custom-website-shivamogga).
+
+  If you rebuild, keep the same domain and set up **redirects** from old page addresses to new ones so you don't lose any existing Google rankings.
+
+  Before the new site goes live, save a list of your current pages and check which ones get traffic in Search Console. Make sure each of those has a matching page or redirect on the new site. Also keep the same business name, phone number and address so your Google profile and listings still match. Done carefully, a rebuild should improve your rankings within a few months, not reset them.
+
+  ## Don't let an old website cost you customers
+
+  An outdated website rarely breaks in an obvious way. It just quietly loses visitors to faster, clearer competitors. If your site is slow, hard to use on a phone, impossible to edit, not in your name or running old software, it's time to act. Check these seven signs this week, decide whether a fix or a rebuild makes more sense, and protect your rankings during the change.
+
+  Want an honest opinion first? [Request a free website review](/startup-launch-package) or see our [website development service](/services/website-development).

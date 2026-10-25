@@ -1,0 +1,72 @@
+id: "business-not-showing-on-google"
+title: "Why Your Business Isn't Showing Up on Google, and How to Fix It"
+seoTitle: "Business Not Showing on Google? 9 Reasons and Fixes"
+metaDescription: "Can't find your business on Google Search or Maps? The 9 most common reasons, from unverified profiles to wrong categories and unindexed sites, with fixes."
+date: "2026-10-25"
+author: "Vivek"
+excerpt: "You search for your own business and it doesn't appear, or competitors show up first. Here are the nine most common reasons and how small businesses can fix each one."
+takeaways:
+  - "Check separately whether you're missing from Google Maps, from regular search results, or from both, because the causes differ."
+  - "An unverified, suspended or incomplete Google Business Profile is the most common reason for not appearing on Maps."
+  - "A wrong primary category can hide your business from the searches customers actually make."
+  - "Use Google Search Console to check whether your website pages are indexed at all."
+  - "Reviews, consistent business details and pages that mention your service and city help you rank above competitors."
+coverImage: "/images/blog/business-not-showing-on-google.png"
+coverIcon: "SearchX"
+category: "SEO"
+keywords: "business not showing on google, business not on google maps, google business profile not showing, website not on google, why can't I find my business on google, local SEO fix Bangalore Shivamogga"
+locations: ["bangalore", "shivamogga"]
+content: |
+  You type your business name into Google and nothing appears. Or you search "dentist near me" while standing outside your own clinic, and three competitors show up instead. For a small business, not appearing on Google feels like having a shop with no signboard.
+
+  The good news is that it almost always has a fixable cause. The first step is working out *where* you're missing, because Google Maps and regular search results work differently. A business can rank well on Maps and have no website in search, or the other way round. This guide covers the nine most common reasons Indian small businesses don't show up on Google, grouped by where the problem is, with a practical fix for each.
+
+  ## First, find out where you're missing
+
+  Run three quick searches on your phone, ideally in a private browser tab:
+
+  1. Your **exact business name** and city.
+  2. Your **service plus "near me"** while at your location.
+  3. Your **service plus area**, such as "physiotherapy Vinobanagar" or "interior designer Whitefield".
+
+  If you don't appear for your exact name, the issue is usually basic setup. If you appear for your name but not for services, it's a ranking problem. Note whether results are missing from the **map section**, the **regular results**, or both.
+
+  ## Reasons you're not on Google Maps
+
+  **1. Your Google Business Profile isn't verified.** Unverified profiles may not show publicly. Log in at business.google.com and check the status. If verification is pending, follow the method Google offers, often a short video of your premises.
+
+  **2. Your profile is suspended or restricted.** This can happen after changing the name, adding keywords to the business name, or using a virtual office address. Fix the issue and request reinstatement through Google's support form.
+
+  **3. Your primary category is wrong.** If you chose "Business consultant" but customers search for "tax consultant", you may not appear. Pick the most specific primary category and add relevant secondary ones.
+
+  **4. Your profile is incomplete.** Missing hours, few photos and no description give Google less confidence. Our [profile checklist](/blog/google-business-profile-shivamogga-local-seo) covers every field.
+
+  ## Reasons your website isn't in search results
+
+  **5. Google hasn't indexed your website.** New sites, and sites with technical errors, may not be indexed at all. Add your website to [Google Search Console](/blog/google-search-console-setup-guide), submit your sitemap and check the Pages report.
+
+  **6. Your website is blocking Google.** Some sites are accidentally left with "noindex" or a blocking robots.txt from development. Search Console's URL inspection tool shows if this is happening. Ask your developer to fix it immediately.
+
+  **7. Your pages don't mention what you do and where.** A home page titled "Welcome" with no service or city name gives Google nothing to match. Each important service needs its own page with the service and location in the title and heading. Our [SEO plan for a new website](/blog/seo-for-a-new-website-first-90-days) explains how.
+
+  ## Reasons competitors rank above you
+
+  **8. They have more and better reviews.** Review count, rating and recent reviews all influence local rankings and which business people click. A steady flow of genuine reviews is one of the strongest local signals. Use our [review guide](/blog/how-to-get-more-google-reviews).
+
+  **9. Your details are inconsistent.** Different names, phone numbers or addresses across your website, Google, JustDial and social media reduce Google's trust. Make them identical everywhere. See [business listing sites in India](/blog/business-listing-sites-india).
+
+  Distance also matters. Google tends to show businesses closer to the searcher, so you may rank well nearby and not across the city. That's normal, and location pages and ads can help reach further.
+
+  Two smaller issues are worth checking too. **Duplicate profiles**, often created years ago by a previous owner or by Google itself, split your reviews and confuse rankings; ask Google to merge or remove them. And if you recently **moved or changed your name**, update the profile, website and listings together, then give Google a few weeks to settle before making more changes.
+
+  ## How long fixes take to work
+
+  Fixing profile details and categories can change Maps results within days to a few weeks. Indexing a new website usually takes from a few days to several weeks after submitting it in Search Console. Ranking above established competitors for competitive searches takes longer, often a few months of steady reviews, content and improvements.
+
+  If you need customers while SEO builds up, a small Google Ads campaign can put you at the top immediately. See [Google Ads costs in Bangalore vs Shivamogga](/blog/google-ads-cost-bangalore-vs-shivamogga).
+
+  ## Get visible step by step
+
+  Not showing on Google is frustrating, but it's rarely permanent. Start by checking where you're missing, then fix verification and categories on your Google profile, get your website indexed in Search Console, and give each service its own page. Add reviews and consistent details, and you'll steadily move up for the searches your customers make.
+
+  Want us to find the exact reason for your business? Request a free visibility check through our [SEO services](/services/seo-services) or [send us your details](/startup-launch-package).
