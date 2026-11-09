@@ -1,0 +1,90 @@
+id: "meta-ads-clicks-but-no-leads"
+title: "Meta Ads Getting Clicks but No Leads? How to Fix Instagram and Facebook Ads"
+seoTitle: "Meta Ads Getting Clicks but No Leads? 9 Fixes"
+metaDescription: "Instagram and Facebook ads bringing clicks, likes or junk leads but no customers? 9 causes, from the wrong objective to weak creatives, and how to fix each."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Your Meta ads are getting clicks, likes and maybe a few form fills, but no real customers. Here are the nine most common causes and the fixes we apply in Meta ad account audits."
+takeaways:
+  - "Meta ads optimise for whatever objective you choose, so a Traffic or Engagement campaign will find clickers, not buyers."
+  - "Use the Leads or Sales objective with the Meta Pixel and Conversions API installed so Meta can find people likely to enquire."
+  - "Instant forms with higher intent settings and a qualifying question reduce junk leads."
+  - "In 2026, creative is the main targeting lever on Meta, so test several distinct ad concepts rather than many audience variations."
+  - "Leads contacted within five to ten minutes are far more likely to convert than leads contacted the next day."
+coverImage: "/images/blog/meta-ads-clicks-but-no-leads.png"
+coverIcon: "Target"
+category: "Digital Marketing"
+keywords: "meta ads not getting leads, facebook ads clicks but no leads, instagram ads not working, junk leads facebook, meta ads audit, facebook ads agency bangalore, instagram ads shivamogga"
+locations: ["bangalore", "shivamogga"]
+content: |
+  Meta ads (Instagram and Facebook) are often the fastest way for a new business to reach customers in India. They're also the easiest place to waste money, because a campaign can look busy, with clicks, likes and reach, while bringing no customers.
+
+  Here are the nine problems we find most often, and how to fix them.
+
+  ## 1. You chose the wrong campaign objective
+
+  Meta finds exactly what you ask for. **Traffic** finds people who click. **Engagement** finds people who like. Neither finds buyers.
+
+  **Fix:** use the **Leads** objective (instant forms, WhatsApp or website) or **Sales** for e-commerce. If you've been using the Boost button, read [boost vs Ads Manager](/blog/instagram-boost-post-vs-ads-manager).
+
+  ## 2. The Pixel isn't tracking enquiries
+
+  If Meta can't see who submitted a form or started a WhatsApp chat on your site, it can't find more people like them.
+
+  **Fix:** install the Meta Pixel, set up Lead events and add the Conversions API if possible. Test with Events Manager.
+
+  ## 3. Instant forms are too easy
+
+  One-tap forms with pre-filled details bring many leads, but many people don't remember filling them.
+
+  **Fix:** choose the **Higher intent** form type, add one qualifying question (budget, location or timeline), and add a short intro explaining what happens next. Our [Meta lead ads guide](/blog/meta-lead-ads-guide-small-business) covers set-up.
+
+  ## 4. The creative attracts the wrong people
+
+  A giveaway, a meme or a vague "Contact us" post attracts attention, not intent.
+
+  **Fix:** show the product or service, the price or starting price, who it's for and a clear call to action. In 2026, Meta's AI uses the creative to decide who sees it, so the creative is your targeting. See [Meta's latest AI ad updates](/blog/meta-ads-ai-updates-october-2026).
+
+  ## 5. You're testing too little creative
+
+  One image running for six weeks will fatigue.
+
+  **Fix:** run three to five genuinely different concepts: a testimonial, a before-and-after, a founder video, an offer, a "how it works" reel. Keep the winners, replace the rest every few weeks.
+
+  ## 6. The location is too wide or too narrow
+
+  A Shivamogga service business targeting all of Karnataka wastes budget. A Bangalore D2C brand targeting 2 km around one pin code limits Meta's learning.
+
+  **Fix:** match the location to where you can actually serve or deliver.
+
+  ## 7. Budget is too small to exit learning
+
+  Meta needs around 50 conversion events a week per ad set to optimise well. Spreading ₹500 a day over six ad sets prevents this.
+
+  **Fix:** consolidate into fewer ad sets with more budget each.
+
+  ## 8. The landing page breaks the promise
+
+  If the ad says "₹999 first session" and the page doesn't mention it, people leave.
+
+  **Fix:** match headline, offer and visuals between ad and page. [Landing pages that convert](/blog/landing-page-for-ads-that-converts).
+
+  ## 9. Leads aren't followed up fast
+
+  A lead contacted in five minutes is far more likely to convert than one contacted tomorrow.
+
+  **Fix:** connect forms to WhatsApp or email alerts and reply immediately. Our [lead follow-up system](/blog/lead-follow-up-system-small-business) shows how.
+
+  ## A quick self-check
+
+  - Objective is Leads or Sales? ✔
+  - Pixel tracking enquiries? ✔
+  - Three or more distinct creatives? ✔
+  - Landing page matches the ad? ✔
+  - Every lead contacted within an hour? ✔
+
+  If you can tick all five and results are still poor, it's time to look at the offer itself.
+
+  ## Get a free Meta ads review
+
+  We'll review your Ads Manager, Pixel and lead flow, and give you a short list of changes. [Book a free 30-minute call](https://cal.com/vivek-g-ts38ii/30min) or [request a free ads review](/startup-launch-package). In Shivamogga, see our [Google and Meta ads service](/shivamogga/google-meta-ads).

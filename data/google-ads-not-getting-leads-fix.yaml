@@ -1,0 +1,90 @@
+id: "google-ads-not-getting-leads-fix"
+title: "Google Ads Not Getting Leads? 10 Reasons and How to Fix Them"
+seoTitle: "Google Ads Not Getting Leads? 10 Fixes for Small Business"
+metaDescription: "Spending on Google Ads but getting no calls or enquiries? The 10 most common causes, from broad match and wrong locations to missing conversion tracking."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Clicks but no calls is the most common Google Ads complaint from small businesses. Here are the ten causes we find most often in ad account audits, and how to fix each one."
+takeaways:
+  - "The most common reason Google Ads get clicks but no leads is irrelevant search terms caused by broad match keywords without negative keywords."
+  - "Check the Search terms report weekly to see exactly what people typed before clicking your ad."
+  - "Location settings should target people in your area, not people merely interested in it."
+  - "Without conversion tracking, Google's automated bidding optimises for clicks rather than enquiries."
+  - "A dedicated landing page with a phone button and short form usually converts better than sending ads to a home page."
+coverImage: "/images/blog/google-ads-not-getting-leads-fix.png"
+coverIcon: "MousePointerClick"
+category: "Digital Marketing"
+keywords: "google ads not getting leads, google ads clicks but no calls, google ads not working small business, google ads audit, google ads wasting money, google ads bangalore agency, google ads shivamogga"
+locations: ["bangalore", "shivamogga"]
+content: |
+  You've set up Google Ads, money is being spent, clicks are coming in, and the phone isn't ringing. This is the single most common situation we see when a business asks us to look at their ad account.
+
+  The good news is that the causes are usually the same handful of settings. Here are the ten we find most often, in order of how much money they waste.
+
+  ## 1. Your ads are showing for the wrong searches
+
+  Open **Insights and reports > Search terms**. This shows what people actually typed. If a physiotherapy clinic sees "physiotherapy course fees" or "physiotherapist salary", that's wasted money.
+
+  **Fix:** add irrelevant words as negative keywords (jobs, salary, course, free, DIY), and use phrase or exact match for your main keywords until you have conversion data.
+
+  ## 2. You're targeting people "interested in" your location
+
+  By default, Google can show ads to people anywhere who show interest in your city. A Shivamogga shop might be paying for clicks from Delhi.
+
+  **Fix:** in location options, choose **"Presence: people in or regularly in your targeted locations"**. Tighten the radius to where you actually serve.
+
+  ## 3. There's no conversion tracking
+
+  Without it, Google's smart bidding optimises for clicks, not enquiries, and you can't tell which keywords work.
+
+  **Fix:** track calls, form submissions and WhatsApp clicks as conversions. See our [GA4 conversion tracking guide](/blog/ga4-conversion-tracking-setup).
+
+  ## 4. Ads go to your home page
+
+  A home page has too many distractions. People who searched for "root canal cost Jayanagar" want that answer and a way to book.
+
+  **Fix:** send each ad group to a [focused landing page](/blog/landing-page-for-ads-that-converts) with the service, price guide, reviews, a call button and a short form.
+
+  ## 5. Your site is slow on mobile
+
+  Most clicks come from phones. If the page takes more than three seconds to load, many people leave.
+
+  **Fix:** test with PageSpeed Insights and fix the biggest issues. [Core Web Vitals for small businesses](/blog/website-speed-core-web-vitals-small-business).
+
+  ## 6. Display or Search Partners are on
+
+  New Search campaigns often include the Display Network and Search Partners by default, which bring cheaper but much lower-quality clicks.
+
+  **Fix:** turn both off for search campaigns until your core results are profitable.
+
+  ## 7. Your ads run when you can't answer
+
+  Calls at 11 pm that nobody answers are lost leads.
+
+  **Fix:** set an ad schedule matching your working hours, or make sure someone handles calls and WhatsApp out of hours.
+
+  ## 8. The budget is spread too thin
+
+  ₹10,000 a month across 40 keywords and five services means no ad group gets enough data.
+
+  **Fix:** start with your one or two most profitable services and concentrate budget there.
+
+  ## 9. Your offer isn't clear
+
+  Ads that say "Best quality service, contact us" don't give a reason to click or call.
+
+  **Fix:** include a specific benefit, price or proof point: "Same-day AC repair in Shivamogga. 4.8★ from 200+ customers."
+
+  ## 10. Leads come in, but nobody follows up
+
+  Sometimes the ads are working and the leads are being lost. Forms land in an unchecked inbox, or calls are returned the next day.
+
+  **Fix:** reply within an hour. A [simple lead follow-up system](/blog/lead-follow-up-system-small-business) often doubles results without changing the ads.
+
+  ## How long to give Google Ads
+
+  After fixes, give a campaign two to four weeks of steady budget before judging it. If you're new to the platform, read our [Google Ads guide for Shivamogga businesses](/blog/google-ads-shivamogga-guide) and the [cost comparison for Bangalore vs Shivamogga](/blog/google-ads-cost-bangalore-vs-shivamogga).
+
+  ## Get a free Google Ads audit
+
+  Share view access to your account and we'll check all ten points, show you where money is leaking and what to change first. [Book a free 30-minute call](https://cal.com/vivek-g-ts38ii/30min) or [request a free ads audit](/startup-launch-package). See our [Meta and Google Ads service](/services/digital-marketing) for how we manage campaigns.

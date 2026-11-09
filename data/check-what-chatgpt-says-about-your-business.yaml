@@ -1,0 +1,85 @@
+id: "check-what-chatgpt-says-about-your-business"
+title: "What Does ChatGPT Say About Your Business? A 20-Minute AI Visibility Audit"
+seoTitle: "What Does ChatGPT Say About Your Business? Free Audit"
+metaDescription: "A step-by-step AI visibility audit for small businesses: the 12 prompts to test in ChatGPT, Gemini and Perplexity, how to score results and fix wrong answers."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Customers now ask ChatGPT and Gemini which business to choose. Here's a 20-minute audit to find out whether AI assistants mention you, what they get wrong, and what to fix first."
+takeaways:
+  - "You can audit your AI visibility in about 20 minutes by asking ChatGPT, Gemini and Perplexity the same 12 questions your customers would ask."
+  - "Test three kinds of prompt: your brand name, your category plus city, and specific buying questions."
+  - "AI assistants usually get facts wrong when your website, Google Business Profile and listings disagree with each other."
+  - "Businesses that appear in AI answers tend to have clear service pages, reviews, an About page with plain facts and mentions on other trusted sites."
+  - "Repeat the audit every month and track AI referral traffic in GA4 to see whether changes are working."
+coverImage: "/images/blog/check-what-chatgpt-says-about-your-business.png"
+coverIcon: "BotMessageSquare"
+category: "SEO"
+keywords: "what does chatgpt say about my business, ai visibility audit, check ai search visibility, is my business on chatgpt, llm visibility, ai brand mentions, appear in chatgpt answers bangalore, ai search audit small business"
+locations: ["bangalore", "shivamogga"]
+content: |
+  A growing number of customers skip Google and ask an AI assistant directly: "Which is the best physiotherapy clinic in Shivamogga?" or "Recommend a web development agency for startups in Bangalore." If the answer doesn't include you, you never get the chance to compete.
+
+  The good news: you can check where you stand in about 20 minutes, without any paid tools. This audit is the same one we run at the start of every client's [SEO and AI visibility work](/services/seo-services).
+
+  ## Step 1: Pick three assistants
+
+  Use **ChatGPT**, **Google Gemini** (or Google's AI Mode) and **Perplexity**. They use different sources, so results differ. Use a logged-out or private session where possible, so past chats don't skew answers.
+
+  ## Step 2: Ask 12 questions
+
+  Replace the brackets with your details.
+
+  **Brand questions (do they know you?)**
+
+  1. What is [business name] in [city]?
+  2. Is [business name] good? What do reviews say?
+  3. What services does [business name] offer and how much do they cost?
+  4. How do I contact [business name]?
+
+  **Category questions (do they recommend you?)**
+
+  5. Best [your service] in [city].
+  6. Best [your service] in [your area, e.g. Indiranagar or Vinobanagar].
+  7. Affordable [your service] near [landmark or area].
+  8. [Your service] for [your ideal customer, e.g. startups, families, students] in [city].
+
+  **Buying questions (do they cite you as an expert?)**
+
+  9. How much does [your service] cost in [city]?
+  10. How do I choose a [your service provider]?
+  11. [The question customers most often ask you on the phone.]
+  12. [Your service] vs [the alternative customers compare you with].
+
+  ## Step 3: Score each answer
+
+  Use a simple sheet with one row per question and one column per assistant:
+
+  - **2 points:** you're named and described correctly.
+  - **1 point:** you're named but facts are wrong or outdated.
+  - **0 points:** you're not mentioned.
+
+  Also note **which competitors appear** and **which websites are cited** as sources. Those sources are where you need to be.
+
+  ## Step 4: Fix the most common problems
+
+  **AI doesn't know you exist.** Usually your website lacks plain, factual information. Add an About page that states what you do, where, for whom and since when, in simple sentences. Make sure your site allows AI crawlers in robots.txt.
+
+  **AI gets your facts wrong.** Your details disagree across the web. Make your name, address, phone, hours and services identical on your website, [Google Business Profile](/blog/google-business-profile-shivamogga-local-seo) and [listing sites](/blog/business-listing-sites-india).
+
+  **AI recommends competitors, not you.** Look at the sources it cited. Typically they're review sites, local directories, "best of" articles, or competitors' detailed service pages. Get listed, earn reviews, and create one page per service and location.
+
+  **AI never cites you for buying questions.** Publish answer-first articles on the exact questions from step 2, starting with a direct answer in the first two sentences. Cost guides and comparisons are cited often.
+
+  For the full method, read our [Generative Engine Optimisation guide](/blog/generative-engine-optimization-guide-india).
+
+  ## Step 5: Measure and repeat
+
+  - Track visits from chatgpt.com, gemini.google.com and perplexity.ai in GA4. Our [AI traffic tracking guide](/blog/track-ai-traffic-chatgpt-gemini-ga4) shows how.
+  - Check Search Console for growth in question-style searches.
+  - Re-run the 12 prompts monthly and compare scores.
+
+  AI answers change as sources update, so most businesses see movement over weeks to months, not days.
+
+  ## Want us to run the audit for you?
+
+  We'll run this audit across all three assistants, compare you with your top competitors and give you a prioritised fix list for your website, Google profile and content. [Book a free 30-minute call](https://cal.com/vivek-g-ts38ii/30min) and we'll walk you through your results, or [request a free AI visibility check](/startup-launch-package).

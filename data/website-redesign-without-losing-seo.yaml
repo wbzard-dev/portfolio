@@ -1,0 +1,67 @@
+id: "website-redesign-without-losing-seo"
+title: "How to Redesign Your Website Without Losing Google Rankings"
+seoTitle: "Website Redesign Without Losing SEO: 12-Step Checklist"
+metaDescription: "Redesigning your website? A 12-step checklist to keep Google rankings and enquiries: URL mapping, 301 redirects, Search Console and launch checks."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "A new website can quietly wipe out years of Google rankings if URLs, titles and redirects aren't handled. Here's the checklist we use to redesign sites without losing traffic."
+takeaways:
+  - "Most traffic lost in a website redesign comes from changed URLs without 301 redirects to the matching new pages."
+  - "Before redesigning, export your top pages from Google Search Console and map every one to a new URL."
+  - "Keep the titles, headings and content that already rank, and improve them rather than deleting them."
+  - "After launch, submit the new sitemap and monitor Search Console's Pages report daily for two weeks."
+  - "A short, temporary dip after a redesign is normal, but a drop lasting more than four to six weeks usually means redirects or indexing are broken."
+coverImage: "/images/blog/website-redesign-without-losing-seo.png"
+coverIcon: "RefreshCw"
+category: "Websites"
+keywords: "website redesign seo, redesign website without losing rankings, website migration checklist, 301 redirects new website, lost traffic after new website, website redesign bangalore, website redesign shivamogga"
+locations: ["bangalore", "shivamogga"]
+content: |
+  A redesign should bring more enquiries, not fewer. Yet many businesses launch a beautiful new site and watch Google traffic drop by half within a month. Almost always, the cause is technical and preventable.
+
+  Here's the 12-step checklist we follow on every redesign and platform move, whether from WordPress to a custom build, from Wix to WordPress, or just to a fresh design.
+
+  ## Before the redesign
+
+  **1. Export what's working.** In Google Search Console, go to **Performance > Pages** and export the last 12 months. Also export **Queries**. These are the pages and searches you must protect.
+
+  **2. Crawl the old site.** Use a free crawler such as Screaming Frog (up to 500 URLs) to list every URL, title and meta description.
+
+  **3. Map every old URL to a new one.** Make a sheet: old URL in one column, new URL in the next. Every page that gets traffic or has links needs a match.
+
+  **4. Keep content that ranks.** If an old service page ranks for "interior designer Whitefield", keep its main heading, topic and key paragraphs. Improve it; don't replace it with three lines of copy.
+
+  **5. Keep the same domain if you can.** Changing domain at the same time as redesigning doubles the risk. If you must, do it in a separate step.
+
+  ## Building the new site
+
+  **6. Block the staging site.** The development version should be password-protected or set to noindex, so Google doesn't index a duplicate.
+
+  **7. Carry over titles and meta descriptions,** updated where needed, for every important page.
+
+  **8. Keep structured data,** such as LocalBusiness, FAQ and breadcrumb schema.
+
+  **9. Check speed and mobile.** A redesign is the best time to fix [Core Web Vitals](/blog/website-speed-core-web-vitals-small-business).
+
+  ## Launch day
+
+  **10. Set up 301 redirects** from every old URL to its new match, using your sheet from step 3. Don't send everything to the home page; that's treated like a missing page.
+
+  **11. Remove noindex and update robots.txt.** The most common launch mistake is forgetting to remove the staging block. Test with Search Console's URL Inspection tool.
+
+  **12. Submit the new sitemap** in Search Console and check that analytics, Meta Pixel and conversion tracking still fire. See our [Search Console setup guide](/blog/google-search-console-setup-guide).
+
+  ## The first six weeks after launch
+
+  - Check **Search Console > Pages** for spikes in "Not found (404)" errors and fix them with redirects.
+  - Compare clicks and impressions week by week with the same period before launch.
+  - Update the website link on your Google Business Profile, Instagram bio and listings if any URLs changed.
+  - Watch enquiries, not just traffic.
+
+  A small dip for one to three weeks is normal while Google re-crawls. If traffic is still down after four to six weeks, something is broken: usually missing redirects, accidental noindex or deleted content.
+
+  ## Already lost rankings after a redesign?
+
+  It's usually recoverable if you act quickly. Find the old URLs (the Wayback Machine at archive.org and old Search Console data help), add redirects and restore missing content.
+
+  If you're planning a redesign, or your traffic dropped after one, [book a free 30-minute call](https://cal.com/vivek-g-ts38ii/30min). We'll check your redirects and Search Console data with you. You can also read the [signs your business needs a new website](/blog/signs-business-needs-new-website) or see our [website development service](/services/website-development).
