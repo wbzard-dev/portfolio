@@ -1,0 +1,106 @@
+id: "kubernetes-for-beginners"
+title: "Kubernetes for Beginners: What It Is, Why It Exists and How to Start"
+seoTitle: "Kubernetes for Beginners: Explained Simply (2026)"
+metaDescription: "Kubernetes explained simply for freshers: why it exists, pods, deployments, services, practising locally with kind or minikube, what to learn first."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Kubernetes appears in almost every DevOps job listing, but most explanations assume you already know it. Here's a plain-English introduction with the core concepts and a first hands-on exercise."
+takeaways:
+  - "Kubernetes is a system that runs and manages containers across many machines, restarting failed ones and scaling them automatically."
+  - "The core Kubernetes objects to learn first are pods, deployments, services, config maps and secrets."
+  - "Learn Docker before Kubernetes, because Kubernetes runs the containers that Docker builds."
+  - "You can practise Kubernetes for free on your own laptop with tools like kind or minikube."
+  - "Freshers are expected to understand Kubernetes basics and explain them, not to manage large production clusters."
+coverImage: "/images/blog/kubernetes-for-beginners.png"
+coverIcon: "Ship"
+category: "Careers"
+keywords: "kubernetes for beginners, what is kubernetes, kubernetes explained simply, kubernetes tutorial, learn kubernetes 2026, kubernetes course shivamogga, k8s for freshers"
+locations: ["shivamogga"]
+content: |
+  Kubernetes (often written **K8s**) can seem intimidating, mostly because people explain it with jargon. Here's what it actually does, and how to start learning it.
+
+  ## The problem Kubernetes solves
+
+  With [Docker](/blog/docker-for-beginners), you can package an app into a container. Running one container on one server is easy. But real apps need:
+
+  - Many copies of the app to handle traffic.
+  - Automatic restarts when something crashes.
+  - Updates without downtime.
+  - Spreading containers across several servers.
+
+  Doing that by hand is painful. **Kubernetes does it for you.** You describe what you want ("run 3 copies of my API"), and Kubernetes keeps reality matching that description.
+
+  ## The core concepts
+
+  **Cluster:** a group of machines (nodes) managed by Kubernetes.
+
+  **Pod:** the smallest unit. Usually one container, with its own IP address.
+
+  **Deployment:** says how many pods to run and which image to use. Handles rolling updates and restarts.
+
+  **Service:** gives a stable address to a group of pods, so other apps can reach them even as pods come and go.
+
+  **ConfigMap and Secret:** configuration and sensitive values (like database passwords) kept outside your code.
+
+  **Ingress:** routes outside traffic (like `api.example.com`) to the right service.
+
+  **Namespace:** a way to separate environments or teams inside one cluster.
+
+  ## A first deployment
+
+  Install `kubectl` and a local cluster tool like **kind** or **minikube**. Then create `app.yaml`:
+
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: hello
+  spec:
+    replicas: 3
+    selector:
+      matchLabels: { app: hello }
+    template:
+      metadata:
+        labels: { app: hello }
+      spec:
+        containers:
+          - name: hello
+            image: nginx
+            ports: [{ containerPort: 80 }]
+  ```
+
+  Apply it and check:
+
+  ```bash
+  kubectl apply -f app.yaml
+  kubectl get pods
+  kubectl delete pod <one-pod-name>
+  kubectl get pods
+  ```
+
+  Delete a pod and watch Kubernetes immediately create a replacement. That's the core idea in action.
+
+  ## What to learn, in order
+
+  1. Linux, networking and [Docker](/blog/docker-for-beginners) first.
+  2. Pods, deployments and services with `kubectl`.
+  3. ConfigMaps, Secrets and environment variables.
+  4. Scaling and rolling updates.
+  5. Ingress and exposing apps.
+  6. Helm charts for packaging.
+  7. Managed Kubernetes on the cloud (EKS on AWS, GKE, AKS).
+
+  ## Do freshers need Kubernetes?
+
+  Many DevOps job listings mention it, but for freshers interviewers mostly check that you understand the concepts and have deployed something small. Deep cluster administration comes with experience. See the [DevOps roadmap](/blog/devops-roadmap-for-beginners) and [DevOps interview questions](/blog/devops-interview-questions-freshers).
+
+  ## Common beginner mistakes
+
+  - Starting Kubernetes before understanding Docker.
+  - Putting passwords directly in YAML files.
+  - Creating pods directly instead of deployments.
+  - Running expensive cloud clusters for practice when a local cluster works fine.
+
+  ## Learn Kubernetes in context
+
+  Our live online [DevOps course](/courses/devops-course-shivamogga) builds up from Linux and Docker to CI/CD, AWS, Terraform and Kubernetes basics, so each tool makes sense when you reach it. 30 days, part-time, ₹5,000, from anywhere in Shivamogga or Karnataka. [Register for the next batch](/courses/devops-course-shivamogga#enroll).

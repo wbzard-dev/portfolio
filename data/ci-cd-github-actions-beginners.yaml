@@ -1,0 +1,94 @@
+id: "ci-cd-github-actions-beginners"
+title: "CI/CD for Beginners: Build Your First Pipeline With GitHub Actions"
+seoTitle: "CI/CD for Beginners: First Pipeline With GitHub Actions"
+metaDescription: "What CI/CD means, why every company uses it, and a step-by-step first GitHub Actions pipeline that installs, tests, builds and deploys a Node.js or React app."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "CI/CD is how modern teams ship code safely many times a day. Here's what it means in plain English, and a simple GitHub Actions pipeline you can add to your own project today."
+takeaways:
+  - "Continuous integration (CI) automatically builds and tests code every time it is pushed to a shared repository."
+  - "Continuous delivery or deployment (CD) automatically prepares or releases tested code to servers."
+  - "GitHub Actions is a free, beginner-friendly CI/CD tool built into GitHub, configured with YAML files in .github/workflows."
+  - "Secrets such as API keys and server passwords should be stored in GitHub encrypted secrets, never in the code."
+  - "A working CI/CD pipeline on a personal project is a strong resume point for both full stack and DevOps freshers."
+coverImage: "/images/blog/ci-cd-github-actions-beginners.png"
+coverIcon: "GitPullRequest"
+category: "Careers"
+keywords: "ci cd for beginners, github actions tutorial, what is ci cd, ci cd pipeline example, github actions node js, devops course shivamogga, continuous integration explained"
+locations: ["shivamogga"]
+content: |
+  In a team without CI/CD, someone runs tests on their laptop (sometimes), builds the app by hand and copies files to a server. Mistakes slip through, and releases are stressful. CI/CD automates all of that.
+
+  ## What CI/CD means
+
+  **Continuous Integration (CI):** every time code is pushed, a server automatically installs dependencies, runs tests and builds the app. If anything fails, the team knows immediately.
+
+  **Continuous Delivery / Deployment (CD):** after CI passes, the app is automatically packaged and released to a server, either after a button click (delivery) or fully automatically (deployment).
+
+  ## Why it matters for your career
+
+  Almost every software company uses CI/CD. For freshers, a pipeline on your own project shows you understand how real teams work, which is a skill many candidates lack. It's relevant whether you're aiming for [full stack](/blog/how-to-become-full-stack-developer-2026) or [DevOps](/blog/devops-roadmap-for-beginners) roles.
+
+  ## GitHub Actions in 60 seconds
+
+  GitHub Actions runs workflows defined in YAML files inside `.github/workflows/` in your repository. It's free for public repositories and includes free minutes for private ones.
+
+  - **Workflow:** the whole automated process.
+  - **Trigger (`on`):** what starts it, such as a push or pull request.
+  - **Job:** a group of steps running on a fresh machine.
+  - **Step:** a single command or reusable action.
+
+  ## Your first pipeline
+
+  Create `.github/workflows/ci.yml` in a Node.js or React project:
+
+  ```yaml
+  name: CI
+  on:
+    push:
+      branches: [main]
+    pull_request:
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-node@v4
+          with:
+            node-version: 20
+            cache: npm
+        - run: npm ci
+        - run: npm test --if-present
+        - run: npm run build --if-present
+  ```
+
+  Push it, then open the **Actions** tab on GitHub. You'll see your pipeline run. Break a test on purpose and watch it fail. That's CI working.
+
+  ## Adding deployment
+
+  Once CI works, add a deploy job that runs only after tests pass:
+
+  - **Frontend:** deploy to Vercel, Netlify, Cloudflare Pages or AWS S3.
+  - **Backend:** build a Docker image, push it to a registry, then SSH into your server or update a cloud service.
+  - **Secrets:** add keys in **Settings → Secrets and variables → Actions** and use them as `${{ secrets.MY_KEY }}`.
+
+  Use `needs: build` so deploy waits for tests, and limit deployment to the `main` branch.
+
+  ## Good habits
+
+  - Keep pipelines fast; cache dependencies.
+  - Run tests and linting on every pull request.
+  - Never print secrets in logs.
+  - Add a status badge to your README; recruiters notice.
+
+  ## Common beginner mistakes
+
+  - Wrong YAML indentation (YAML is strict).
+  - Using `npm install` instead of `npm ci` in pipelines.
+  - Hard-coding passwords in the workflow file.
+  - Deploying from every branch.
+
+  ## Build real pipelines with us
+
+  Our live online [DevOps course](/courses/devops-course-shivamogga) covers automated tests and builds, build-and-deploy pipelines, secrets and environments with GitHub Actions, then deploys a full-stack app to AWS. 30 days, part-time, ₹5,000. Want to build the app first? Start with the [MERN Stack course](/courses/mern-stack-course-shivamogga). [Register for the next DevOps batch](/courses/devops-course-shivamogga#enroll).

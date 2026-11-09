@@ -1,0 +1,94 @@
+id: "react-roadmap-for-beginners"
+title: "React Roadmap for Beginners: What to Learn, in What Order (2026)"
+seoTitle: "React Roadmap for Beginners 2026: What to Learn First"
+metaDescription: "A beginner React roadmap for 2026: the JavaScript you need first, core concepts, hooks, routing, forms, data fetching and projects for each stage."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "React is the most in-demand frontend skill in Indian job listings, but beginners often learn it in the wrong order. Here's a clear roadmap from JavaScript basics to job-ready React."
+takeaways:
+  - "Learn modern JavaScript first, especially arrays, objects, arrow functions, destructuring, modules and async/await, before starting React."
+  - "The core React concepts to master are components, props, state, events, conditional rendering and lists."
+  - "useState and useEffect cover most beginner needs; learn other hooks when a project needs them."
+  - "After the basics, learn React Router, forms, fetching data from APIs and a simple global state approach."
+  - "Build one project at each stage rather than watching tutorials end to end."
+coverImage: "/images/blog/react-roadmap-for-beginners.png"
+coverIcon: "Atom"
+category: "Careers"
+keywords: "react roadmap, react roadmap for beginners, learn react 2026, react course shivamogga, react js for freshers, what to learn before react, react hooks beginners"
+locations: ["shivamogga"]
+content: |
+  React is used by startups and large companies alike, and it appears in more Indian frontend and full stack job listings than any other library. Here's the order we teach it in, so you don't waste weeks on things that don't matter yet.
+
+  ## Stage 0: JavaScript you need first
+
+  Most React confusion is actually JavaScript confusion. Before React, be comfortable with:
+
+  - `let`, `const`, arrow functions
+  - Arrays: `map`, `filter`, `find`, `reduce`
+  - Objects, destructuring and the spread operator (`...`)
+  - Template literals
+  - Modules: `import` and `export`
+  - Promises, `async`/`await` and `fetch`
+
+  If `const { name } = user` and `items.map(i => i.price)` look natural, you're ready.
+
+  ## Stage 1: Core React (2 weeks)
+
+  - **Components:** functions that return JSX.
+  - **Props:** passing data into components.
+  - **State with `useState`:** data that changes.
+  - **Events:** clicks, input changes, form submits.
+  - **Conditional rendering** and **lists with keys**.
+
+  ```jsx
+  function Counter() {
+    const [count, setCount] = useState(0);
+    return <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>;
+  }
+  ```
+
+  **Project:** a product listing page with a search filter and a cart counter.
+
+  ## Stage 2: Effects and data (1–2 weeks)
+
+  - `useEffect` for fetching data and side effects.
+  - Loading and error states.
+  - Calling a real API with `fetch` or axios.
+
+  **Project:** a movie or news app using a free public API.
+
+  ## Stage 3: Real app structure (2 weeks)
+
+  - **React Router:** multiple pages, URL parameters, protected routes.
+  - **Forms:** controlled inputs, validation, a library like React Hook Form.
+  - **Sharing state:** lifting state up, then Context for things like the logged-in user.
+  - **Styling:** CSS modules or Tailwind CSS.
+
+  **Project:** a multi-page app with login, a dashboard and a form.
+
+  ## Stage 4: Connect to your own backend
+
+  This is where React becomes full stack. Build your own API with [Node.js and Express](/blog/nodejs-express-rest-api-beginners), store data in MongoDB, and call it from React. Handle authentication with tokens and protected routes.
+
+  ## Stage 5: Job-ready extras
+
+  - `useMemo`, `useCallback` and `React.memo` for performance, and when *not* to use them.
+  - Custom hooks to reuse logic.
+  - A state library such as Redux Toolkit or Zustand, which many companies use.
+  - Basic testing with React Testing Library.
+  - Next.js basics, because many companies build with it.
+
+  ## Common beginner mistakes
+
+  - Watching a 12-hour course without building anything.
+  - Learning Redux before understanding `useState`.
+  - Copying AI-generated code you can't explain. Interviewers will ask.
+  - Ignoring JavaScript fundamentals.
+
+  ## Interview questions to prepare
+
+  What is the virtual DOM? Props vs state? Why do lists need keys? What does the `useEffect` dependency array do? How do you prevent unnecessary re-renders? See more in our [MERN stack interview questions](/blog/mern-stack-interview-questions-freshers).
+
+  ## Learn React with projects
+
+  React is the core of our live online [MERN Stack course](/courses/mern-stack-course-shivamogga): 45 days, part-time, with React fundamentals, advanced patterns and three deployed full-stack projects, for ₹5,000. Built for students in Shivamogga and across Karnataka. [Register your interest](/courses/mern-stack-course-shivamogga#enroll).

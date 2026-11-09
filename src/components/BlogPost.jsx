@@ -197,7 +197,24 @@ const BlogPost = () => {
                         </button>
                     </div>
 
-                    {/* Conversion box — blog readers are often founders mid-decision */}
+                    {/* Conversion box — student (Careers) posts pitch the courses, everything else pitches the agency */}
+                    {post.category === "Careers" ? (
+                    <div style={{ marginTop: "3rem", background: "var(--bg-dark)", color: "#fff", borderRadius: "var(--radius-lg)", padding: "clamp(1.75rem, 4vw, 2.5rem)" }}>
+                        <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.875rem" }}>
+                            {site.name} Courses
+                        </p>
+                        <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.75rem)", lineHeight: 1.2, marginBottom: "0.75rem" }}>
+                            Want to learn this with real projects?
+                        </h2>
+                        <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.5rem", maxWidth: "520px" }}>
+                            Live online MERN Stack and DevOps courses for students and freshers in Shivamogga and Karnataka: deployed projects, mock interviews and resume help. ₹5,000 per course.
+                        </p>
+                        <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
+                            <Link to="/courses/mern-stack-course-shivamogga#enroll" className="btn-primary-dark">MERN Stack Course</Link>
+                            <Link to="/courses/devops-course-shivamogga#enroll" className="btn-outline-dark">DevOps Course</Link>
+                        </div>
+                    </div>
+                    ) : (
                     <div style={{ marginTop: "3rem", background: "var(--bg-dark)", color: "#fff", borderRadius: "var(--radius-lg)", padding: "clamp(1.75rem, 4vw, 2.5rem)" }}>
                         <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.875rem" }}>
                             {site.name}
@@ -215,6 +232,7 @@ const BlogPost = () => {
                             </button>
                         </div>
                     </div>
+                    )}
 
                     {related.length > 0 && (
                         <div style={{ marginTop: "3rem" }}>

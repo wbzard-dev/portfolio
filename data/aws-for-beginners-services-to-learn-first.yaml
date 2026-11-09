@@ -1,0 +1,100 @@
+id: "aws-for-beginners-services-to-learn-first"
+title: "AWS for Beginners: The 8 Services to Learn First (and What to Skip)"
+seoTitle: "AWS for Beginners: 8 Services to Learn First (2026)"
+metaDescription: "AWS has 200+ services; beginners need a few. What IAM, EC2, S3, VPC, RDS, Route 53, CloudWatch and Lambda do, and how to practise on the free tier."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "AWS can feel overwhelming with over 200 services. Here are the eight that beginners and freshers should learn first, what each one does in plain English, and how to practise without a surprise bill."
+takeaways:
+  - "Beginners should start AWS with IAM, EC2, S3 and VPC, which underpin almost every real deployment."
+  - "RDS, Route 53, CloudWatch and Lambda are the next most useful services for developers and DevOps freshers."
+  - "Set a billing alert and use free-tier eligible services before you start practising, to avoid unexpected charges."
+  - "Deploying one real application on AWS teaches more than memorising service descriptions."
+  - "An AWS certification such as Cloud Practitioner helps, but hands-on projects matter more in interviews."
+coverImage: "/images/blog/aws-for-beginners-services-to-learn-first.png"
+coverIcon: "Cloud"
+category: "Careers"
+keywords: "aws for beginners, aws services to learn first, learn aws 2026, aws course shivamogga, cloud computing for beginners, aws free tier practice, aws devops fresher"
+locations: ["shivamogga"]
+content: |
+  Open the AWS console for the first time and you'll see a list of more than 200 services. The good news: most developers use only a handful regularly. Learn these eight first.
+
+  ## 1. IAM (Identity and Access Management)
+
+  **What it does:** controls who can do what in your AWS account.
+
+  **Learn:** users, groups, roles, policies and the principle of least privilege. Never use your root account for daily work. Turn on MFA on day one.
+
+  ## 2. EC2 (Elastic Compute Cloud)
+
+  **What it does:** virtual servers you can rent by the hour.
+
+  **Learn:** launch an instance, choose an instance type, connect over SSH, install Node.js or Nginx, and understand security groups (the firewall).
+
+  ## 3. S3 (Simple Storage Service)
+
+  **What it does:** stores files of any size: images, backups, logs and static websites.
+
+  **Learn:** buckets, objects, permissions, and hosting a static React build on S3.
+
+  ## 4. VPC (Virtual Private Cloud)
+
+  **What it does:** your private network inside AWS.
+
+  **Learn:** subnets (public and private), route tables, internet gateways and security groups. This is often the hardest concept for beginners, and the most asked in interviews.
+
+  ## 5. RDS (Relational Database Service)
+
+  **What it does:** managed databases like MySQL and PostgreSQL, with backups handled for you.
+
+  **Learn:** create a database, connect from an EC2 app, keep it in a private subnet.
+
+  ## 6. Route 53
+
+  **What it does:** DNS. Connects your domain name to your servers.
+
+  **Learn:** hosted zones, A and CNAME records, pointing a domain to your app.
+
+  ## 7. CloudWatch
+
+  **What it does:** metrics, logs and alarms.
+
+  **Learn:** view CPU usage, read application logs, set an alarm.
+
+  ## 8. Lambda
+
+  **What it does:** runs code without managing servers; you pay per request.
+
+  **Learn:** write a small function triggered by an API Gateway request or an S3 upload.
+
+  ## What to skip for now
+
+  SageMaker, Redshift, Kinesis, EMR and most specialised services can wait until a job needs them. Container services like ECS and EKS come after you're comfortable with [Docker](/blog/docker-for-beginners) and [Kubernetes basics](/blog/kubernetes-for-beginners).
+
+  ## Practise without a surprise bill
+
+  1. Create a **billing alarm** (for example, alert at $5) before anything else.
+  2. Use **free-tier eligible** instance types and services.
+  3. **Stop or terminate** instances when you're done practising.
+  4. Delete unused Elastic IPs, load balancers and NAT gateways; they cost money even when idle.
+
+  ## A practice project
+
+  Deploy a full-stack app the way companies do:
+
+  - React frontend on S3 (or a CDN).
+  - Node.js API on EC2 behind Nginx with HTTPS.
+  - Database on RDS or MongoDB Atlas.
+  - Domain on Route 53.
+  - Automatic deployment with [GitHub Actions](/blog/ci-cd-github-actions-beginners).
+  - Logs and alarms in CloudWatch.
+
+  Put this on your resume and you'll have plenty to talk about in interviews. See [DevOps interview questions](/blog/devops-interview-questions-freshers).
+
+  ## Is AWS certification worth it?
+
+  The **AWS Certified Cloud Practitioner** or **Solutions Architect – Associate** helps your resume get noticed, but interviewers will still ask what you've built. Do a project first, then certify.
+
+  ## Learn AWS hands-on
+
+  Our live online [DevOps course](/courses/devops-course-shivamogga) covers AWS fundamentals (EC2, S3, IAM, VPC), Nginx, domains and HTTPS, and ends with a full-stack app deployed on AWS with CI/CD. We use free-tier eligible services and set billing alerts together. 30 days, part-time, ₹5,000. [Register your interest](/courses/devops-course-shivamogga#enroll).

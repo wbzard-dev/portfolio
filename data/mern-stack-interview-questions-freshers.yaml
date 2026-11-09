@@ -1,0 +1,86 @@
+id: "mern-stack-interview-questions-freshers"
+title: "40 MERN Stack Interview Questions for Freshers (With Short Answers)"
+seoTitle: "40 MERN Stack Interview Questions for Freshers (2026)"
+metaDescription: "Common MERN stack interview questions for freshers in 2026, with short answers: JavaScript, React, Node.js, Express, MongoDB, APIs, authentication and projects."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Preparing for your first full stack interview? Here are 40 MERN stack questions that come up again and again for freshers, grouped by topic, with short answers to guide your preparation."
+takeaways:
+  - "MERN stack interviews for freshers usually cover JavaScript fundamentals, React, Node.js and Express, MongoDB, APIs and your own projects."
+  - "JavaScript questions on closures, the event loop, promises and this are among the most common."
+  - "Interviewers often ask you to explain how a request flows from the React frontend to the database and back."
+  - "Being able to explain your own deployed project in depth often matters more than memorised answers."
+  - "Practise answering out loud, because explaining clearly is part of what is being tested."
+coverImage: "/images/blog/mern-stack-interview-questions-freshers.png"
+coverIcon: "MessagesSquare"
+category: "Careers"
+keywords: "mern stack interview questions, mern interview questions for freshers, react interview questions freshers, node js interview questions, mongodb interview questions, full stack developer interview questions india"
+locations: ["shivamogga"]
+content: |
+  These are the questions we see most often in fresher interviews for MERN and full stack roles. Use the short answers as a starting point, then practise explaining each one in your own words with an example.
+
+  ## JavaScript (1–10)
+
+  1. **`let` vs `const` vs `var`?** `var` is function-scoped and hoisted; `let` and `const` are block-scoped; `const` can't be reassigned.
+  2. **What is a closure?** A function that remembers variables from the scope where it was created.
+  3. **`==` vs `===`?** `==` converts types before comparing; `===` doesn't. Use `===`.
+  4. **What is the event loop?** It lets JavaScript handle async work on a single thread by running callbacks from queues when the call stack is empty.
+  5. **Promise vs async/await?** Same thing underneath; async/await is cleaner syntax for promises.
+  6. **What is `this`?** It depends on how a function is called; arrow functions take `this` from the surrounding scope.
+  7. **`map` vs `forEach`?** `map` returns a new array; `forEach` returns nothing.
+  8. **What is hoisting?** Declarations are moved to the top of their scope before code runs.
+  9. **Spread vs rest?** Spread expands (`[...arr]`); rest collects (`function f(...args)`).
+  10. **Debounce?** Delay a function until input stops, for example search-as-you-type.
+
+  ## React (11–20)
+
+  11. **What is the virtual DOM?** An in-memory UI representation React compares to update only what changed.
+  12. **Props vs state?** Props come from the parent and are read-only; state is managed inside the component.
+  13. **Why keys in lists?** So React can track which items changed, were added or removed.
+  14. **What does `useEffect` do?** Runs side effects after render; the dependency array controls when.
+  15. **Controlled vs uncontrolled inputs?** Controlled inputs get their value from state; uncontrolled ones from the DOM.
+  16. **What is lifting state up?** Moving shared state to the nearest common parent.
+  17. **Context vs Redux?** Context shares values without prop drilling; Redux adds a structured store for complex state.
+  18. **How to prevent unnecessary re-renders?** `React.memo`, `useMemo`, `useCallback` and better state placement.
+  19. **What is a custom hook?** A function starting with `use` that reuses stateful logic.
+  20. **How do protected routes work?** Check auth state and redirect if the user isn't logged in.
+
+  ## Node.js and Express (21–28)
+
+  21. **What is Node.js?** A runtime that runs JavaScript outside the browser, on a server.
+  22. **Why is Node good for APIs?** Non-blocking I/O handles many requests efficiently.
+  23. **What is middleware?** A function that runs between the request and response, such as auth checks or logging.
+  24. **What is REST?** An API style using URLs and HTTP methods (GET, POST, PUT, DELETE). See our [Express API guide](/blog/nodejs-express-rest-api-beginners).
+  25. **Common status codes?** 200, 201, 400, 401, 403, 404, 500.
+  26. **What is CORS?** A browser security rule; the server must allow requests from other origins.
+  27. **How do you store secrets?** Environment variables, never in code or GitHub.
+  28. **`require` vs `import`?** CommonJS vs ES modules.
+
+  ## MongoDB (29–34)
+
+  29. **What is MongoDB?** A document database storing JSON-like documents.
+  30. **What is Mongoose?** A library that adds schemas, validation and models on top of MongoDB.
+  31. **Embedding vs referencing?** Embed data read together; reference large or shared data.
+  32. **What is an index?** A structure that makes queries faster at the cost of extra storage and slower writes.
+  33. **What is the aggregation pipeline?** A sequence of stages to filter, group and transform data.
+  34. **SQL vs NoSQL?** Read our [MongoDB vs MySQL comparison](/blog/mongodb-vs-mysql-beginners).
+
+  ## Authentication, deployment and projects (35–40)
+
+  35. **How do you store passwords?** Hashed with bcrypt, never plain text.
+  36. **What is JWT?** A signed token proving who the user is, sent with each request.
+  37. **How did you deploy your project?** Explain frontend hosting, backend hosting, database and environment variables. See [deploy a MERN app for free](/blog/deploy-mern-app-free).
+  38. **Walk me through your project's architecture.** Frontend → API → database, and why you made each choice.
+  39. **What was the hardest bug you fixed?** Have a real story ready.
+  40. **What would you improve?** Shows you think beyond "it works".
+
+  ## How to prepare
+
+  - Revise one topic a day and answer out loud.
+  - Know your own projects deeply. That's where most follow-up questions come from.
+  - Do mock interviews with someone who will push back.
+  - Polish your [resume](/blog/software-developer-resume-freshers) so interviewers ask about your strengths.
+
+  ## Practise with mock interviews
+
+  Our live online [MERN Stack course](/courses/mern-stack-course-shivamogga) includes technical interview prep and 2 mock interviews, plus resume and LinkedIn help, alongside three deployed projects. 45 days, part-time, ₹5,000. [Register for the next batch](/courses/mern-stack-course-shivamogga#enroll).

@@ -1,0 +1,97 @@
+id: "build-ecommerce-website-mern-project"
+title: "How to Build an E-Commerce Website With the MERN Stack (Project Guide)"
+seoTitle: "Build an E-Commerce Website With MERN Stack (Guide)"
+metaDescription: "Build a full e-commerce website as a MERN stack project: product catalogue, search, cart, checkout with Razorpay test mode, orders, admin panel and deployment."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "An e-commerce site is a classic full stack project because it touches every layer: products, search, carts, payments, orders and admin tools. Here's how to plan and build one with MongoDB, Express, React and Node.js."
+takeaways:
+  - "A MERN e-commerce project should include a product catalogue, search and filters, cart, checkout, orders and an admin panel."
+  - "Prices and stock must always be checked on the server, never trusted from the browser."
+  - "Razorpay's test mode lets students build a realistic Indian payment flow without real money."
+  - "Payment confirmation should be verified on the server using the payment signature or webhooks."
+  - "Building for a real local business, even as a demo, makes an e-commerce project stand out from generic clones."
+coverImage: "/images/blog/build-ecommerce-website-mern-project.png"
+coverIcon: "ShoppingCart"
+category: "Careers"
+keywords: "ecommerce website mern stack, mern ecommerce project, build online store react node, razorpay integration node, full stack ecommerce project, mern project for resume"
+locations: ["shivamogga"]
+content: |
+  Every developer builds an e-commerce project at some point, so how do you make yours stand out? Build it properly: secure checkout, real payment flow, admin tools and a live deployment. Here's the plan.
+
+  ## Features
+
+  **Customer side:**
+
+  - Home page with featured products and categories
+  - Product listing with search, filters (category, price) and sorting
+  - Product page with images, description, stock status
+  - Cart and wishlist
+  - Address and checkout
+  - Payments (Razorpay test mode)
+  - Order history and order details
+
+  **Admin side:**
+
+  - Add, edit and delete products with images
+  - Manage stock
+  - View and update orders (paid → shipped → delivered)
+  - Simple sales summary
+
+  ## Data models
+
+  ```js
+  Product: { name, slug, description, price, mrp, images[], category, stock, isActive }
+  User:    { name, email, passwordHash, role: "customer" | "admin", addresses[] }
+  Cart:    { user: UserId, items: [{ product: ProductId, qty }] }
+  Order:   { user, items: [{ product, name, price, qty }], address, subtotal, shipping, total,
+             payment: { razorpayOrderId, razorpayPaymentId, status },
+             status: "pending" | "paid" | "shipped" | "delivered" | "cancelled" }
+  ```
+
+  ## The checkout flow (the part interviewers care about)
+
+  1. The customer clicks **Pay**.
+  2. Your server **recalculates the total** from the database prices and current stock. Never trust prices sent by the browser.
+  3. The server creates a Razorpay order and returns its ID.
+  4. The React app opens the Razorpay checkout.
+  5. After payment, the server **verifies the signature** using your secret key.
+  6. Only then is the order marked as paid and stock reduced.
+
+  For production systems, Razorpay webhooks confirm payments even if the user closes the browser. Use **test mode keys** for your project.
+
+  ## Security basics
+
+  - Hash passwords with bcrypt.
+  - Protect admin routes on the **server**, not just by hiding buttons.
+  - Validate all input.
+  - Keep API keys in environment variables.
+  - Rate-limit login routes.
+
+  ## Make it stand out
+
+  - **Build it for a real-style business.** For example, a demo store for a Shivamogga areca products seller or a local clothing shop, with realistic products and Kannada labels. It's far more memorable than another generic clone.
+  - **Performance:** paginate products, compress images, add indexes on `category` and `slug`.
+  - **SEO:** readable product URLs and page titles. Real businesses need this.
+  - **Testing:** add a few tests for the checkout logic.
+  - **Deployment:** live link and demo admin login. See [deploy a MERN app for free](/blog/deploy-mern-app-free).
+
+  ## Build it in stages
+
+  1. Products API and admin product management.
+  2. Product listing, search and filters in React.
+  3. Auth, cart and addresses.
+  4. Orders and Razorpay test payments.
+  5. Order management, polish and deployment.
+
+  ## How real businesses differ
+
+  Many small businesses use Shopify or WooCommerce rather than a custom build. Understanding why is useful in interviews. See our comparison of [Shopify vs WooCommerce vs custom](/blog/shopify-vs-woocommerce-vs-custom-d2c-india).
+
+  ## More project ideas
+
+  Pair this with a [real-time chat app](/blog/build-chat-app-like-whatsapp-mern) or a [food delivery app](/blog/build-food-delivery-app-like-swiggy-mern), or browse [final-year project ideas](/blog/final-year-project-ideas-cse-bca-2026).
+
+  ## Build and deploy with us
+
+  Our live online [MERN Stack course](/courses/mern-stack-course-shivamogga) covers React, Node.js, Express, MongoDB, authentication and deployment through three full-stack projects, with reviews and mock interviews. 45 days, part-time, ₹5,000. [Register for the next batch](/courses/mern-stack-course-shivamogga#enroll).

@@ -1,0 +1,99 @@
+id: "deploy-mern-app-free"
+title: "How to Deploy a MERN Stack App for Free (Step by Step, 2026)"
+seoTitle: "How to Deploy a MERN Stack App for Free (2026 Guide)"
+metaDescription: "Deploy a MERN project free in 2026: React on Vercel or Netlify, Express API on Render, MongoDB Atlas, environment variables and CORS fixes."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "A project on localhost doesn't get you hired; a live link does. Here's how to deploy a MERN app for free, step by step, and fix the errors almost everyone hits the first time."
+takeaways:
+  - "A MERN app is usually deployed in three parts: the React frontend, the Node.js and Express API, and the MongoDB database."
+  - "Free options in 2026 include Vercel, Netlify or Cloudflare Pages for React, Render or similar platforms for the API, and MongoDB Atlas's free cluster for the database."
+  - "Environment variables must be set on the hosting platform, because .env files should never be committed to GitHub."
+  - "CORS errors and wrong API URLs are the most common problems after deploying a MERN app."
+  - "A live link on your resume and GitHub README lets recruiters try your project in seconds."
+coverImage: "/images/blog/deploy-mern-app-free.png"
+coverIcon: "Rocket"
+category: "Careers"
+keywords: "deploy mern app free, how to deploy mern stack project, deploy react and node app, mongodb atlas free, render deploy node, vercel react deploy, mern deployment"
+locations: ["shivamogga"]
+content: |
+  Recruiters rarely clone your repository and run `npm install`. They click a link. If your project only runs on localhost, most of its value is lost. Here's how to put a MERN app online at no cost.
+
+  Free tiers change over time, so check each platform's current limits. The steps stay the same.
+
+  ## The three parts
+
+  | Part | What it is | Free options |
+  |---|---|---|
+  | Frontend | React build (static files) | Vercel, Netlify, Cloudflare Pages |
+  | Backend | Node.js + Express API | Render, Railway (trial), Koyeb |
+  | Database | MongoDB | MongoDB Atlas free cluster |
+
+  ## Step 1: Prepare your code
+
+  - Separate folders: `client/` (React) and `server/` (Express), or two repositories.
+  - In the server, read config from environment variables:
+
+  ```js
+  const PORT = process.env.PORT || 5000;
+  mongoose.connect(process.env.MONGODB_URI);
+  ```
+
+  - In React (Vite), read the API URL from an environment variable: `import.meta.env.VITE_API_URL`.
+  - Add `.env` to `.gitignore`. Check that no passwords are in your GitHub history.
+
+  ## Step 2: Database on MongoDB Atlas
+
+  1. Create a free cluster on MongoDB Atlas.
+  2. Create a database user with a strong password.
+  3. Under Network Access, allow connections (for practice, `0.0.0.0/0`; restrict it for real apps).
+  4. Copy the connection string. This becomes `MONGODB_URI`.
+
+  ## Step 3: Backend on Render
+
+  1. Push the server code to GitHub.
+  2. Create a new **Web Service** on Render and connect the repository.
+  3. Build command: `npm install`. Start command: `node index.js` (or `npm start`).
+  4. Add environment variables: `MONGODB_URI`, `JWT_SECRET`, `CLIENT_URL`.
+  5. Deploy, then test `https://your-api.onrender.com/api/health`.
+
+  Free web services may sleep when idle, so the first request can be slow. Mention this in your README.
+
+  ## Step 4: Frontend on Vercel or Netlify
+
+  1. Import the client repository or folder.
+  2. Build command: `npm run build`. Output folder: `dist` (Vite) or `build` (Create React App).
+  3. Add `VITE_API_URL=https://your-api.onrender.com`.
+  4. Deploy and open your live URL.
+
+  For React Router apps, add a rewrite so refreshing `/dashboard` doesn't show a 404 (Netlify `_redirects`: `/* /index.html 200`; Vercel handles Vite SPAs with a rewrite in `vercel.json`).
+
+  ## Step 5: Fix CORS
+
+  Your API must allow requests from your frontend's domain:
+
+  ```js
+  const cors = require("cors");
+  app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+  ```
+
+  ## Common errors and fixes
+
+  - **"Network Error" / CORS error:** wrong `origin` or API URL. Check both environment variables.
+  - **Requests going to localhost:** the frontend was built before `VITE_API_URL` was set. Redeploy.
+  - **MongoDB connection timeout:** Atlas network access not allowed, or wrong password in the URI.
+  - **404 on refresh:** missing SPA rewrite.
+  - **Cookies not working:** cross-site cookies need `secure: true` and `sameSite: "none"`, or use token headers.
+
+  ## Make it recruiter-ready
+
+  - Add the live link at the top of your GitHub README, with screenshots.
+  - Add a demo login so recruiters don't have to sign up.
+  - Add a custom domain if you have one.
+  - Set up [CI/CD with GitHub Actions](/blog/ci-cd-github-actions-beginners) so every push redeploys.
+
+  Need project ideas worth deploying? See [MERN final-year project ideas](/blog/final-year-project-ideas-cse-bca-2026).
+
+  ## Deploy three projects with us
+
+  In our live online [MERN Stack course](/courses/mern-stack-course-shivamogga), every one of your three projects is deployed live, including environment variables, builds and hosting for both frontend and backend. 45 days, part-time, ₹5,000. For deeper deployment on AWS with Docker and CI/CD, see the [DevOps course](/courses/devops-course-shivamogga). [Register for the next MERN batch](/courses/mern-stack-course-shivamogga#enroll).

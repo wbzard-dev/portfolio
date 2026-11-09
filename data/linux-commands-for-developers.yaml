@@ -1,0 +1,112 @@
+id: "linux-commands-for-developers"
+title: "50 Linux Commands Every Developer Should Know (With Examples)"
+seoTitle: "50 Linux Commands Every Developer Should Know"
+metaDescription: "50 Linux commands developers and DevOps freshers use daily, with examples: files, permissions, processes, networking, logs, SSH and packages."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Most servers run Linux, and every developer eventually needs to work on one. Here are 50 practical commands, grouped by task, with examples you'll actually use when deploying and debugging apps."
+takeaways:
+  - "Most web servers and cloud machines run Linux, so command-line skills are essential for both developers and DevOps engineers."
+  - "The most-used commands cover navigating files, viewing logs, managing permissions, checking processes and networking."
+  - "tail -f, grep and journalctl are among the most useful commands for debugging applications on a server."
+  - "Understanding file permissions and sudo prevents many deployment errors."
+  - "You can practise Linux for free using WSL on Windows, a virtual machine or a free-tier cloud server."
+coverImage: "/images/blog/linux-commands-for-developers.png"
+coverIcon: "Terminal"
+category: "Careers"
+keywords: "linux commands for developers, basic linux commands, linux commands with examples, linux for devops beginners, linux interview questions freshers, learn linux command line"
+locations: ["shivamogga"]
+content: |
+  When your app runs on a server, there's no desktop, no mouse and no File Explorer. There's a terminal. These are the commands we use every week while deploying and debugging apps.
+
+  **Practise free:** on Windows, install WSL (Windows Subsystem for Linux). On Mac, the terminal is similar. Or use a free-tier cloud server.
+
+  ## Navigating and files (1–14)
+
+  1. `pwd` — show current folder
+  2. `ls -la` — list files, including hidden ones, with details
+  3. `cd /var/www` — change folder (`cd ..` to go up, `cd ~` for home)
+  4. `mkdir -p app/logs` — create folders
+  5. `touch notes.txt` — create an empty file
+  6. `cp file.txt backup.txt` — copy (`cp -r` for folders)
+  7. `mv old.txt new.txt` — move or rename
+  8. `rm file.txt` — delete (`rm -r folder` for folders; be careful)
+  9. `cat file.txt` — print a file
+  10. `less big.log` — scroll through a large file
+  11. `head -n 20 file` / `tail -n 50 file` — first or last lines
+  12. `tail -f app.log` — follow a log live. One of the most useful commands you'll learn.
+  13. `nano file` or `vim file` — edit a file
+  14. `find . -name "*.js"` — find files
+
+  ## Searching (15–18)
+
+  15. `grep "error" app.log` — find lines containing text
+  16. `grep -rn "PORT" .` — search recursively with line numbers
+  17. `wc -l file` — count lines
+  18. `command | grep text` — filter any command's output
+
+  ## Permissions and users (19–24)
+
+  19. `chmod +x deploy.sh` — make a script executable
+  20. `chmod 644 file` — owner read/write, others read
+  21. `chown www-data:www-data -R /var/www` — change owner
+  22. `sudo command` — run as administrator
+  23. `whoami` — current user
+  24. `adduser deploy` — create a user
+
+  ## Processes and system (25–33)
+
+  25. `ps aux | grep node` — find running processes
+  26. `top` or `htop` — live CPU and memory usage
+  27. `kill 1234` / `kill -9 1234` — stop a process
+  28. `df -h` — disk space. Full disks break many apps.
+  29. `du -sh *` — size of each folder
+  30. `free -h` — memory usage
+  31. `uptime` — load and how long the server has been running
+  32. `systemctl status nginx` — check a service (`start`, `stop`, `restart`)
+  33. `journalctl -u nginx -f` — follow a service's logs
+
+  ## Networking (34–41)
+
+  34. `ping google.com` — check connectivity
+  35. `curl -I https://example.com` — check a URL's response headers
+  36. `curl localhost:5000/api/health` — test your API from the server
+  37. `ss -tulpn` — which ports are listening
+  38. `ip a` — IP addresses
+  39. `dig example.com` — DNS lookup
+  40. `ssh user@server-ip` — connect to a server
+  41. `scp file user@server:/path` — copy a file to a server
+
+  ## Packages and archives (42–46)
+
+  42. `sudo apt update && sudo apt upgrade` — update packages (Ubuntu/Debian)
+  43. `sudo apt install nginx` — install software
+  44. `tar -czf backup.tar.gz folder/` — compress
+  45. `tar -xzf backup.tar.gz` — extract
+  46. `wget URL` — download a file
+
+  ## Shell productivity (47–50)
+
+  47. `history` — previous commands (`Ctrl + R` to search them)
+  48. `command > out.txt` / `>>` — save or append output to a file
+  49. `export PORT=5000` — set an environment variable
+  50. `alias ll="ls -la"` — create shortcuts
+
+  ## A real debugging sequence
+
+  Your Node.js API on a server stopped responding. Typical checks:
+
+  ```bash
+  systemctl status myapp       # is it running?
+  journalctl -u myapp -n 100   # recent logs
+  df -h                        # disk full?
+  free -h                      # out of memory?
+  ss -tulpn | grep 5000        # is the port listening?
+  curl localhost:5000/health   # does it respond locally?
+  ```
+
+  This exact kind of scenario comes up in [DevOps interviews](/blog/devops-interview-questions-freshers).
+
+  ## Learn Linux the practical way
+
+  Linux and networking are the first module of our live online [DevOps course](/courses/devops-course-shivamogga): command line, permissions, processes, shell scripting, DNS, HTTP and SSL, before moving on to Docker, CI/CD, AWS and Kubernetes. 30 days, part-time, ₹5,000. [Register your interest](/courses/devops-course-shivamogga#enroll).

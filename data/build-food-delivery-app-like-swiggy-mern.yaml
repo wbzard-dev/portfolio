@@ -1,0 +1,101 @@
+id: "build-food-delivery-app-like-swiggy-mern"
+title: "How to Build a Food Delivery App Like Swiggy or Zomato With the MERN Stack"
+seoTitle: "Build a Food Delivery App Like Swiggy With MERN Stack"
+metaDescription: "How a Swiggy-style food delivery app works and how to build one with MERN: features, data models, APIs, order status, payments, deployment."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "A food delivery app is one of the best portfolio projects for a full stack fresher. Here's how apps like Swiggy and Zomato work behind the scenes, and how to build a smaller version with MongoDB, Express, React and Node.js."
+takeaways:
+  - "A food delivery app has three types of users: customers, restaurants and delivery partners, plus an admin."
+  - "The core data models are users, restaurants, menu items, carts and orders, with an order status that moves through stages."
+  - "A strong student version includes restaurant listing, search, cart, checkout, order tracking and a restaurant dashboard."
+  - "Real-time order status can be added with Socket.IO, and test payments with Razorpay's test mode."
+  - "Building a smaller version of a familiar app makes your project easy for interviewers to understand and ask about."
+coverImage: "/images/blog/build-food-delivery-app-like-swiggy-mern.png"
+coverIcon: "Bike"
+category: "Careers"
+keywords: "food delivery app project mern, swiggy clone mern, zomato clone project, mern stack project ideas, food ordering app react node, full stack project for resume, mern project for freshers"
+locations: ["shivamogga"]
+content: |
+  Everyone knows how Swiggy and Zomato work from the outside: search, add to cart, pay, track. That makes a food delivery app a great portfolio project. Interviewers immediately understand it, and it covers almost every full stack skill.
+
+  *Swiggy and Zomato are trademarks of their owners. This guide is about building your own learning project inspired by how such apps work; don't copy their name, logo or design.*
+
+  ## How these apps work, simply
+
+  There are four kinds of users:
+
+  - **Customers** browse restaurants, order and track delivery.
+  - **Restaurants** manage menus and accept or prepare orders.
+  - **Delivery partners** pick up and deliver orders.
+  - **Admins** manage everything.
+
+  Behind them sits an API and a database that keeps everyone's view in sync, and services for payments, maps and notifications.
+
+  ## Features for your version
+
+  **Must have:**
+
+  - Sign up and login (customer and restaurant roles)
+  - Restaurant list with search and filters (cuisine, veg only, rating)
+  - Restaurant page with menu
+  - Cart (add, remove, quantity)
+  - Checkout and order placement
+  - Order history and order status
+  - Restaurant dashboard: manage menu, accept orders, update status
+
+  **Nice to have:**
+
+  - Live order status with Socket.IO
+  - Razorpay test-mode payments
+  - Image uploads for dishes (Cloudinary or S3)
+  - Delivery partner role
+  - Ratings and reviews
+
+  ## Data models (MongoDB)
+
+  ```js
+  User:       { name, email, passwordHash, role: "customer" | "restaurant" | "admin", addresses[] }
+  Restaurant: { owner: UserId, name, cuisines[], area, isOpen, rating }
+  MenuItem:   { restaurant: RestaurantId, name, price, isVeg, image, available }
+  Order:      { customer: UserId, restaurant: RestaurantId,
+                items: [{ menuItem, name, price, qty }], total,
+                status: "placed" | "accepted" | "preparing" | "out_for_delivery" | "delivered" | "cancelled",
+                paymentStatus, createdAt }
+  ```
+
+  Notice that orders **copy** item names and prices. If a restaurant changes a price tomorrow, old orders must still show what the customer paid. That's the kind of design decision interviewers love to ask about.
+
+  ## Key API routes
+
+  | Method | Route | Purpose |
+  |---|---|---|
+  | POST | /api/auth/register, /login | Accounts |
+  | GET | /api/restaurants?search=&veg= | Browse |
+  | GET | /api/restaurants/:id/menu | Menu |
+  | POST | /api/orders | Place order |
+  | GET | /api/orders/mine | Customer's orders |
+  | PATCH | /api/orders/:id/status | Restaurant updates status |
+
+  New to APIs? Start with [Node.js and Express for beginners](/blog/nodejs-express-rest-api-beginners).
+
+  ## Build it in stages
+
+  1. **Week 1:** auth, restaurant and menu models, seed data.
+  2. **Week 2:** React pages for listing, menu and cart (cart state with Context or Redux Toolkit).
+  3. **Week 3:** orders API, checkout and order history.
+  4. **Week 4:** restaurant dashboard and status updates; add Socket.IO for live updates.
+  5. **Week 5:** test payments, polish and [deploy it](/blog/deploy-mern-app-free).
+
+  ## Interview questions this project prepares you for
+
+  - How do you stop a customer from changing an order total in the browser? (Recalculate the price on the server.)
+  - How does the restaurant see new orders instantly? (WebSockets or polling.)
+  - How would you find restaurants near a user? (MongoDB geospatial queries.)
+  - What happens if payment succeeds but your server crashes? (Payment webhooks and idempotency.)
+
+  More in [MERN interview questions](/blog/mern-stack-interview-questions-freshers).
+
+  ## Build projects like this with guidance
+
+  In our live online [MERN Stack course](/courses/mern-stack-course-shivamogga), you build and deploy three full-stack projects with reviews and feedback, plus interview prep and mock interviews. 45 days, part-time, ₹5,000, from anywhere in Shivamogga or Karnataka. [Register for the next batch](/courses/mern-stack-course-shivamogga#enroll).

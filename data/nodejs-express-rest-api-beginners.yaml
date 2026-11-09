@@ -1,0 +1,99 @@
+id: "nodejs-express-rest-api-beginners"
+title: "Node.js and Express for Beginners: Build Your First REST API"
+seoTitle: "Node.js & Express for Beginners: Build a REST API"
+metaDescription: "A beginner's guide to Node.js and Express: what they are, how a REST API works, and a step-by-step first API with routes, JSON, MongoDB and error handling."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Backend development feels mysterious until you build your first API. Here's a plain-English introduction to Node.js and Express, with a simple REST API you can build in an evening."
+takeaways:
+  - "Node.js lets you run JavaScript on a server, so frontend developers can build backends without learning a new language."
+  - "Express is a small framework on top of Node.js that makes it easy to define routes and handle requests."
+  - "A REST API uses HTTP methods such as GET, POST, PUT and DELETE to read and change data at specific URLs."
+  - "Real APIs also need validation, error handling, environment variables and authentication."
+  - "Building APIs is the backbone of the MERN stack and a core skill tested in full stack interviews."
+coverImage: "/images/blog/nodejs-express-rest-api-beginners.png"
+coverIcon: "Server"
+category: "Careers"
+keywords: "nodejs for beginners, express js tutorial, build rest api node, node js course shivamogga, backend development for beginners, rest api explained, mern backend"
+locations: ["shivamogga"]
+content: |
+  Every app you use, from Swiggy to your college portal, has a backend: a server that stores data, checks logins and answers requests from the app. Node.js and Express are the most popular way for JavaScript developers to build one.
+
+  ## What is Node.js?
+
+  JavaScript originally ran only in browsers. **Node.js** lets it run on a server or your laptop. That means the same language powers your frontend (React) and backend, which is why the [MERN stack](/blog/what-is-mern-stack) is so popular with freshers.
+
+  ## What is Express?
+
+  **Express** is a lightweight framework for Node.js. It makes it easy to say "when someone requests this URL, run this code".
+
+  ## What is a REST API?
+
+  An API is how your frontend talks to your backend. A **REST** API uses URLs and HTTP methods:
+
+  | Method | URL | Meaning |
+  |---|---|---|
+  | GET | /api/courses | List all courses |
+  | GET | /api/courses/42 | Get one course |
+  | POST | /api/courses | Create a course |
+  | PUT | /api/courses/42 | Update a course |
+  | DELETE | /api/courses/42 | Delete a course |
+
+  Data is usually sent and received as **JSON**.
+
+  ## Build your first API
+
+  Create a folder and install Express:
+
+  ```bash
+  npm init -y
+  npm install express
+  ```
+
+  Create `index.js`:
+
+  ```js
+  const express = require("express");
+  const app = express();
+  app.use(express.json());
+
+  let courses = [{ id: 1, name: "MERN Stack" }, { id: 2, name: "DevOps" }];
+
+  app.get("/api/courses", (req, res) => res.json(courses));
+
+  app.post("/api/courses", (req, res) => {
+    if (!req.body.name) return res.status(400).json({ error: "name is required" });
+    const course = { id: courses.length + 1, name: req.body.name };
+    courses.push(course);
+    res.status(201).json(course);
+  });
+
+  app.listen(5000, () => console.log("API running on port 5000"));
+  ```
+
+  Run `node index.js`, then open `http://localhost:5000/api/courses` in your browser. Use Postman or Thunder Client in VS Code to test the POST route.
+
+  ## Next steps to make it real
+
+  1. **Use a database.** Replace the array with MongoDB using Mongoose. Data then survives restarts. See [MongoDB vs MySQL](/blog/mongodb-vs-mysql-beginners).
+  2. **Organise code.** Split into routes, controllers and models folders.
+  3. **Validate input.** Never trust what the client sends. Libraries like Zod or Joi help.
+  4. **Handle errors.** Add an error-handling middleware and return clear status codes.
+  5. **Environment variables.** Keep database passwords in a `.env` file, never in GitHub.
+  6. **Authentication.** Hash passwords with bcrypt and issue JWT tokens on login.
+  7. **Deploy it.** Put your API online. [How to deploy a MERN app for free](/blog/deploy-mern-app-free).
+
+  ## Status codes to know
+
+  200 OK, 201 Created, 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Server Error. Interviewers love asking about these.
+
+  ## Common beginner mistakes
+
+  - Forgetting `app.use(express.json())`, so `req.body` is undefined.
+  - Committing `.env` files with passwords.
+  - Returning 200 for every response, even errors.
+  - Not handling the case where a database call fails.
+
+  ## Build real backends with us
+
+  In our live online [MERN Stack course](/courses/mern-stack-course-shivamogga), you'll build REST APIs with Express and MongoDB, add authentication and deploy them, as part of three full-stack projects. 45 days, part-time, ₹5,000, from anywhere in Shivamogga or Karnataka. [Register for the next batch](/courses/mern-stack-course-shivamogga#enroll).

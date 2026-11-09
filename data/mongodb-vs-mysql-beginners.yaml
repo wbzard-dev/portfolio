@@ -1,0 +1,81 @@
+id: "mongodb-vs-mysql-beginners"
+title: "MongoDB vs MySQL: Which Database Should Beginners Learn First?"
+seoTitle: "MongoDB vs MySQL: Which Should Beginners Learn First?"
+metaDescription: "MongoDB vs MySQL explained for students: how documents and tables differ, when each is used, which appears more in Indian job listings and which to learn first."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Students often get stuck choosing between MongoDB and MySQL. Here's a simple comparison of how they work, where each is used, and which one makes sense to learn first for your goals."
+takeaways:
+  - "MySQL is a relational database that stores data in tables with fixed columns and uses SQL to query it."
+  - "MongoDB is a document database that stores flexible JSON-like documents, which fits naturally with JavaScript."
+  - "If you're learning the MERN stack, start with MongoDB, then learn SQL basics because most interviews and companies still use it."
+  - "Relational databases are preferred where data has strict relationships and transactions, such as banking and billing."
+  - "Learning data modelling matters more than which database you start with."
+coverImage: "/images/blog/mongodb-vs-mysql-beginners.png"
+coverIcon: "Database"
+category: "Careers"
+keywords: "mongodb vs mysql, mongodb vs sql for beginners, which database to learn first, mongodb tutorial beginners, sql vs nosql, database for mern stack"
+locations: ["shivamogga"]
+content: |
+  "Should I learn MongoDB or SQL?" is one of the most common questions from students starting web development. The short answer: learn one well, then learn enough of the other to be comfortable. Here's how to decide which comes first.
+
+  ## How they store data
+
+  **MySQL (relational)** stores data in tables, like a spreadsheet with strict columns:
+
+  | id | name | city |
+  |---|---|---|
+  | 1 | Asha | Shivamogga |
+  | 2 | Rahul | Bangalore |
+
+  Orders would be in a separate table, linked by `user_id`. You use **SQL** to query: `SELECT * FROM users WHERE city = 'Shivamogga';`
+
+  **MongoDB (document)** stores JSON-like documents in collections:
+
+  ```json
+  { "_id": 1, "name": "Asha", "city": "Shivamogga",
+    "orders": [{ "item": "Notebook", "price": 120 }] }
+  ```
+
+  Related data can live inside the same document, and documents in one collection don't all need the same fields.
+
+  ## Side-by-side comparison
+
+  | | MySQL | MongoDB |
+  |---|---|---|
+  | Data model | Tables, rows, columns | Collections, documents |
+  | Schema | Fixed, defined upfront | Flexible |
+  | Query language | SQL | JavaScript-like queries |
+  | Relationships | Joins, foreign keys | Embedding or references |
+  | Transactions | Strong, mature | Supported, less commonly needed |
+  | Common with | PHP, Java, Python, many enterprises | Node.js, MERN stack, startups |
+
+  ## When companies choose each
+
+  **Relational (MySQL, PostgreSQL)** is chosen where data relationships are strict and correctness is critical: banking, billing, inventory, ERP systems, and most traditional enterprise software.
+
+  **MongoDB** is common in startups and apps where data structures change often: content apps, catalogues, user profiles, real-time features and quick MVPs.
+
+  Many real companies use both.
+
+  ## Which should you learn first?
+
+  - **Learning the MERN stack?** Start with **MongoDB**. It fits JavaScript naturally, and you'll build projects faster. Then learn SQL basics.
+  - **Targeting service companies or campus placements?** Learn **SQL** early. SQL questions are common in aptitude and technical rounds.
+  - **Interested in data analysis or backend with Java/Python?** Start with **SQL**, specifically PostgreSQL or MySQL.
+
+  Whatever you choose, SQL basics (SELECT, WHERE, JOIN, GROUP BY) are worth knowing for nearly every developer job.
+
+  ## What actually matters: data modelling
+
+  Interviewers care less about which database you used and more about whether you can design data well:
+
+  - What collections or tables does a food delivery app need?
+  - Should orders be embedded in users or stored separately?
+  - What fields need indexes for fast search?
+
+  Practise this with a real project, such as a [food delivery app](/blog/build-food-delivery-app-like-swiggy-mern) or an [e-commerce site](/blog/build-ecommerce-website-mern-project).
+
+  ## Learn MongoDB with real projects
+
+  Our live online [MERN Stack course](/courses/mern-stack-course-shivamogga) covers MongoDB data modelling with Mongoose, REST APIs and authentication, all inside three deployed projects. 45 days, part-time, ₹5,000. [Register your interest](/courses/mern-stack-course-shivamogga#enroll).

@@ -1,0 +1,93 @@
+id: "devops-interview-questions-freshers"
+title: "35 DevOps Interview Questions for Freshers (With Short Answers)"
+seoTitle: "35 DevOps Interview Questions for Freshers (2026)"
+metaDescription: "DevOps interview questions for freshers in 2026 with short answers: Linux, Git, Docker, CI/CD, AWS, Kubernetes, Terraform, monitoring and scenario questions."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "DevOps interviews test whether you can actually ship and run software. Here are 35 common questions for freshers, grouped by topic, with short answers and tips on how to prepare."
+takeaways:
+  - "DevOps interviews for freshers usually cover Linux, networking, Git, Docker, CI/CD, a cloud platform such as AWS and Kubernetes basics."
+  - "Scenario questions, such as what you would check if a website goes down, are common and test practical thinking."
+  - "Hands-on projects, like deploying an app with a CI/CD pipeline on AWS, are the strongest proof of DevOps skills for a fresher."
+  - "You don't need to know every tool, but you must explain why each tool exists and what problem it solves."
+  - "Linux and networking fundamentals are tested in almost every DevOps interview."
+coverImage: "/images/blog/devops-interview-questions-freshers.png"
+coverIcon: "Workflow"
+category: "Careers"
+keywords: "devops interview questions, devops interview questions for freshers, docker interview questions, kubernetes interview questions freshers, aws devops interview questions, ci cd interview questions"
+locations: ["shivamogga"]
+content: |
+  DevOps interviews are different from coding interviews. You'll be asked how things work, how you'd fix them and what you've actually deployed. These are the questions freshers face most often.
+
+  ## Linux and networking (1–8)
+
+  1. **How do you check running processes?** `ps aux`, `top` or `htop`.
+  2. **How do you check disk and memory?** `df -h` for disk, `free -h` for memory.
+  3. **What does `chmod 755` mean?** Owner can read, write, execute; group and others can read and execute.
+  4. **How do you find which process uses a port?** `ss -tulpn` or `lsof -i :80`.
+  5. **What happens when you type a URL in a browser?** DNS lookup, TCP connection, TLS handshake, HTTP request, server response, rendering.
+  6. **TCP vs UDP?** TCP is reliable and ordered; UDP is faster without delivery guarantees.
+  7. **What is DNS?** It translates domain names to IP addresses.
+  8. **HTTP vs HTTPS?** HTTPS encrypts traffic with TLS.
+
+  More commands in [Linux commands every developer should know](/blog/linux-commands-for-developers).
+
+  ## Git (9–12)
+
+  9. **`git merge` vs `git rebase`?** Merge keeps history with a merge commit; rebase rewrites commits onto a new base for linear history.
+  10. **What is a pull request?** A request to merge changes, usually with code review.
+  11. **How do you undo the last commit?** `git reset --soft HEAD~1` to keep changes, or `git revert` for a shared branch.
+  12. **What is a merge conflict?** When two changes touch the same lines; resolve manually.
+
+  ## Docker (13–18)
+
+  13. **What is Docker?** A tool to package an app with its dependencies into a container that runs the same everywhere.
+  14. **Image vs container?** An image is the blueprint; a container is a running instance.
+  15. **Container vs virtual machine?** Containers share the host OS kernel and are lighter; VMs include a full OS.
+  16. **What is a Dockerfile?** Instructions to build an image.
+  17. **What is Docker Compose?** A tool to run multi-container apps from one YAML file.
+  18. **How do you keep data when a container restarts?** Volumes.
+
+  Start with our [Docker for beginners guide](/blog/docker-for-beginners).
+
+  ## CI/CD (19–23)
+
+  19. **What is CI/CD?** Continuous integration automatically builds and tests code; continuous delivery/deployment ships it automatically.
+  20. **What tools have you used?** GitHub Actions, Jenkins or GitLab CI. See [CI/CD with GitHub Actions](/blog/ci-cd-github-actions-beginners).
+  21. **What stages are in a typical pipeline?** Install, lint, test, build, push image, deploy.
+  22. **How do you store secrets in a pipeline?** In the CI tool's encrypted secrets, never in code.
+  23. **Blue-green vs rolling deployment?** Blue-green switches traffic between two environments; rolling replaces instances gradually.
+
+  ## AWS and cloud (24–28)
+
+  24. **What is EC2?** Virtual servers in AWS.
+  25. **What is S3?** Object storage for files, backups and static websites.
+  26. **What is IAM?** Users, roles and permissions; follow least privilege.
+  27. **What is a VPC?** Your private network in AWS, with subnets and security rules.
+  28. **Security group vs NACL?** Security groups are stateful and attached to instances; NACLs are stateless and apply to subnets.
+
+  See [AWS services beginners should learn first](/blog/aws-for-beginners-services-to-learn-first).
+
+  ## Kubernetes, IaC and monitoring (29–32)
+
+  29. **What is Kubernetes?** A system to run and manage containers across many machines.
+  30. **Pod vs Deployment vs Service?** A pod runs containers; a deployment manages pod replicas; a service gives pods a stable network address. See [Kubernetes for beginners](/blog/kubernetes-for-beginners).
+  31. **What is Terraform?** Infrastructure as code: define cloud resources in files and create them repeatably.
+  32. **Why monitoring?** To detect issues before users do, using metrics, logs and alerts (Prometheus, Grafana, CloudWatch).
+
+  ## Scenario questions (33–35)
+
+  33. **The website is down. What do you check?** DNS, server status, disk space, application logs, recent deployments, database connectivity.
+  34. **A deployment broke production. What do you do?** Roll back first, then investigate.
+  35. **Walk me through a project you deployed.** Have one ready, end to end.
+
+  ## How to prepare
+
+  - Practise on a real Linux machine or cloud server.
+  - Build one end-to-end project: app → Docker → CI/CD → AWS.
+  - Explain *why* each tool exists, not just what it is.
+  - Follow our [DevOps roadmap](/blog/devops-roadmap-for-beginners).
+
+  ## Prepare with real deployments
+
+  Our live online [DevOps course](/courses/devops-course-shivamogga) covers Linux, Git, Docker, GitHub Actions, AWS, Terraform and Kubernetes, ending with a capstone: a full-stack app deployed with CI/CD on AWS, plus interview prep and a mock interview. 30 days, part-time, ₹5,000. [Register for the next batch](/courses/devops-course-shivamogga#enroll).

@@ -1,0 +1,89 @@
+id: "software-developer-resume-freshers"
+title: "Software Developer Resume for Freshers: Format, Examples and ATS Tips (2026)"
+seoTitle: "Software Developer Resume for Freshers: ATS Tips 2026"
+metaDescription: "Write a fresher software developer resume that passes ATS and gets interviews: one-page format, project bullet examples, skills and mistakes."
+date: "2026-11-09"
+author: "Vivek"
+excerpt: "Most fresher resumes look the same: a list of languages and a college project nobody can open. Here's a simple, ATS-friendly format with example bullets that make recruiters want to call you."
+takeaways:
+  - "A fresher software developer resume should be one page, in a simple single-column format that applicant tracking systems can read."
+  - "Projects are the most important section for freshers and should appear above certifications and hobbies."
+  - "Each project bullet should say what you built, with which technologies, and a measurable or specific result."
+  - "Include live project links and a GitHub profile, because recruiters often check them before calling."
+  - "Tailor the skills and keywords to each job description, but only list skills you can discuss in an interview."
+coverImage: "/images/blog/software-developer-resume-freshers.png"
+coverIcon: "FileText"
+category: "Careers"
+keywords: "software developer resume for freshers, fresher resume format it, ats friendly resume freshers, full stack developer resume fresher, resume projects section example, resume tips india freshers"
+locations: ["shivamogga"]
+content: |
+  Recruiters often spend well under a minute on a first look at a resume, and many companies filter resumes with an ATS (applicant tracking system) before a human sees them. Your resume needs to pass the software and then convince a person quickly.
+
+  ## The format
+
+  - **One page.** Freshers don't need two.
+  - **Single column**, standard fonts, no tables, icons or skill-level bars. ATS software can misread fancy designs.
+  - **PDF**, named `Firstname-Lastname-Resume.pdf`.
+  - **Section order:** header → summary (optional) → skills → projects → experience/internships → education → certifications.
+
+  ## Header
+
+  Name, phone, professional email, city (e.g. "Shivamogga, Karnataka"), and links to **GitHub**, **LinkedIn** and **portfolio**. Make the links clickable.
+
+  ## Skills
+
+  Group them; don't list 30 items:
+
+  - **Languages:** JavaScript, TypeScript, Python, SQL
+  - **Frontend:** React, HTML, CSS, Tailwind
+  - **Backend:** Node.js, Express, REST APIs, JWT
+  - **Database:** MongoDB, MySQL
+  - **Tools:** Git, GitHub Actions, Docker, Postman, AWS (EC2, S3)
+
+  Only list what you can discuss for five minutes in an interview.
+
+  ## Projects: the most important section
+
+  For each project: **name, tech stack, live link, GitHub link**, then 2–3 bullets.
+
+  **Weak:**
+  > Made a food delivery website using MERN stack.
+
+  **Strong:**
+  > **FoodDash** — React, Node.js, Express, MongoDB, Socket.IO · [Live] · [GitHub]
+  > - Built a food ordering app with customer and restaurant dashboards, cart, checkout and order history.
+  > - Added real-time order status updates with Socket.IO and Razorpay test-mode payments verified on the server.
+  > - Deployed frontend on Vercel and API on Render with CI via GitHub Actions; 25 classmates tested it.
+
+  The formula: **action verb + what you built + technology + a specific detail or result.**
+
+  Need ideas? See [portfolio projects that get you hired](/blog/developer-portfolio-projects-get-hired) and [final-year project ideas](/blog/final-year-project-ideas-cse-bca-2026).
+
+  ## Experience and internships
+
+  Include internships, freelance work, college tech club roles and open-source contributions. Use the same bullet formula. Built a website for a local shop? That counts. See [freelancing from Shivamogga](/blog/freelancing-from-shivamogga).
+
+  ## Education
+
+  Degree, college, year and CGPA (if it's good, or if the company asks). No need for 10th marks unless asked.
+
+  ## Tailor for each job
+
+  Read the job description and mirror its keywords where honest. If it says "REST APIs" and "MongoDB", make sure those exact words appear in your skills and project bullets. This alone helps you pass ATS filters.
+
+  ## Common mistakes
+
+  - Photo, date of birth, father's name, marital status (not needed).
+  - "Objective: to work in a reputed organisation…"
+  - Listing every technology from YouTube tutorials.
+  - Projects without links.
+  - Spelling mistakes in technology names ("Mongo DB", "Node Js", "Reactjs").
+  - Two pages of course certificates.
+
+  ## Match LinkedIn and GitHub
+
+  Recruiters check both. Use the same headline ("Full Stack Developer | MERN | React, Node.js"), pin your best repositories, and write READMEs with screenshots and live links.
+
+  ## Get your resume reviewed
+
+  Both our live online courses include ATS-friendly resume and LinkedIn help, plus mock interviews, alongside deployed projects that give your resume something real to show. [MERN Stack course](/courses/mern-stack-course-shivamogga) (45 days) or [DevOps course](/courses/devops-course-shivamogga) (30 days), ₹5,000 each. [Register your interest](/courses/mern-stack-course-shivamogga#enroll).
