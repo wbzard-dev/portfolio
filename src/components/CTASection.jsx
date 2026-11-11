@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
 import FormCTA from "./FormCTA";
-import { site, whatsappUrl } from "../config/site";
+import { site, whatsappUrl, telHref } from "../config/site";
 
 const fadeUp = (delay = 0) => ({
     initial:    { opacity: 0, y: 20 },
@@ -43,8 +43,14 @@ const CTASection = ({
                 </motion.div>
                 <motion.p {...fadeUp(0.26)} style={{ marginTop: "1.25rem", fontSize: "0.85rem", color: "rgba(255,255,255,0.4)" }}>
                     Prefer to talk?{" "}
+                    {telHref && (
+                        <>
+                            <a href={telHref} style={{ color: "#93B4F8", fontWeight: 600 }}>Call {site.phone}</a>
+                            {" "}or{" "}
+                        </>
+                    )}
                     <button data-cal-link={site.calLink} style={{ background: "none", border: "none", padding: 0, color: "#93B4F8", fontWeight: 600, cursor: "pointer", fontSize: "inherit", fontFamily: "inherit" }}>
-                        Book a free 30-minute call
+                        book a free 30-minute call
                     </button>
                 </motion.p>
             </div>

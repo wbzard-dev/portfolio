@@ -1,6 +1,6 @@
 id: "laravel-13-php-requirements"
 title: "Laravel 13 PHP Requirements and Upgrade Guide: PHP 8.3 Minimum, What's New and PHP2Shell Patching"
-seoTitle: "Laravel 13 PHP Requirements: PHP 8.3+ and Upgrade Tips"
+seoTitle: "Laravel 13 PHP Version: Requires PHP 8.3+ (Upgrade Guide)"
 metaDescription: "Laravel 13 requires PHP 8.3 or newer. Key new features, how to upgrade from Laravel 11 or 12, and the PHP2Shell versions you need."
 date: "2026-10-24"
 author: "Vivek"

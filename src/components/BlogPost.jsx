@@ -8,6 +8,7 @@ import SEO from "./SEO";
 import { posts, getPost, formatDate, coverSrc } from "../data/posts";
 import { site } from "../config/site";
 import FormCTA from "./FormCTA";
+import CallButton from "./CallButton";
 
 // Internal links inside markdown should use client-side routing; external ones open in a new tab.
 const MarkdownLink = ({ href = "", children }) =>
@@ -38,6 +39,7 @@ const BlogPost = () => {
     ].slice(0, 3);
     const wordCount   = post.content.split(/\s+/).filter(Boolean).length;
     const readMinutes = Math.max(1, Math.round(wordCount / 220));
+    const isShivamogga = post.locations.includes("shivamogga");
     const places      = post.locations.map(l => ({ bangalore: "Bengaluru", shivamogga: "Shivamogga" }[l])).filter(Boolean);
 
     return (
@@ -220,16 +222,28 @@ const BlogPost = () => {
                             {site.name}
                         </p>
                         <h2 style={{ fontSize: "clamp(1.3rem, 3vw, 1.75rem)", lineHeight: 1.2, marginBottom: "0.75rem" }}>
-                            Want this done for your business?
+                            {isShivamogga ? "Running a business in Shivamogga?" : "Want this done for your business?"}
                         </h2>
                         <p style={{ fontSize: "0.95rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: "1.5rem", maxWidth: "520px" }}>
-                            We help founders in Bangalore and Shivamogga launch with a website, social media, SEO and ads that work together. Tell us about your business and get a free launch plan.
+                            {isShivamogga ? (
+                                <>
+                                    We're a{" "}
+                                    <Link to="/locations/shivamogga" style={{ color: "#93B4F8", fontWeight: 600 }}>digital marketing agency in Shivamogga (Shimoga)</Link>
+                                    {" "}for new and growing businesses: websites, Google Maps and SEO, Instagram and local ads. Call us or get a free launch plan.
+                                </>
+                            ) : (
+                                "We help founders in Bangalore and Shivamogga launch with a website, social media, SEO and ads that work together. Tell us about your business and get a free launch plan."
+                            )}
                         </p>
                         <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
                             <FormCTA location="blog-post" className="btn-primary-dark" />
-                            <button className="btn-outline-dark" data-cal-link={site.calLink}>
-                                Book a Free Call
-                            </button>
+                            {isShivamogga ? (
+                                <CallButton className="btn-outline-dark" showNumber />
+                            ) : (
+                                <button className="btn-outline-dark" data-cal-link={site.calLink}>
+                                    Book a Free Call
+                                </button>
+                            )}
                         </div>
                     </div>
                     )}

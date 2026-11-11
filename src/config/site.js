@@ -46,5 +46,8 @@ export const site = {
     formPath: "/startup-launch-package#get-started",
 };
 
-export const whatsappUrl = (text = "Hi Wbzard Labs, I'd like to talk about launching my business online.") =>
+// tel: link for one-tap calling ("+91 96066 19285" → "tel:+919606619285"); null when no phone is set.
+export const telHref = site.phone ? `tel:${site.phone.replace(/[^\d+]/g, "")}` : null;
+
+export const whatsappUrl =(text = "Hi Wbzard Labs, I'd like to talk about launching my business online.") =>
     site.whatsapp ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}` : null;

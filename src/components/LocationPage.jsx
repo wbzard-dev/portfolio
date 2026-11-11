@@ -7,6 +7,7 @@ import FAQList from "./FAQList";
 import { faqSchema } from "../lib/schema";
 import CTASection from "./CTASection";
 import FormCTA from "./FormCTA";
+import CallButton from "./CallButton";
 import { locations, locationList } from "../data/locations";
 import { serviceList } from "../data/services";
 import { shivamoggaServiceList } from "../data/shivamogga";
@@ -66,6 +67,7 @@ const LocationPage = () => {
                     </motion.p>
                     <motion.div {...fadeUp(0.28)} style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
                         <FormCTA location="location-hero" />
+                        <CallButton showNumber />
                         <button className="btn-secondary" data-cal-link={site.calLink}>
                             Book a Free Call
                         </button>
@@ -164,6 +166,13 @@ const LocationPage = () => {
                             </motion.div>
                         ))}
                     </div>
+                    {/* Local-only services that have no general /services page (e.g. logo design) */}
+                    {city === "shivamogga" && shivamoggaServiceList.filter(x => !x.service).map(x => (
+                        <p key={x.slug} style={{ marginTop: "1.5rem", fontSize: "0.95rem", color: "var(--text-muted)" }}>
+                            Also in Shivamogga:{" "}
+                            <Link to={x.href} style={{ color: "var(--accent)", fontWeight: 600 }}>{x.label} in Shimoga →</Link>
+                        </p>
+                    ))}
                 </div>
             </section>
 

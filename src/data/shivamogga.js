@@ -4,10 +4,12 @@ export const shivamoggaServices = {
     "website-design": {
         service:   "website-development",
         label:     "Website Design",
-        seoTitle:  "Website Design in Shivamogga (Shimoga) — Fast, SEO-Ready Business Websites",
-        seoDesc:   "Website design and development in Shivamogga (Shimoga) for shops, clinics, schools, homestays and startups. Mobile-first, SEO-ready, WhatsApp-connected websites. Get a free plan and fixed quote.",
-        keywords:  "website design Shivamogga, website design Shimoga, website development Shivamogga, web design company Shimoga, website designers in Shivamogga, ecommerce website Shivamogga",
-        h1:        "Website design in Shivamogga that brings customers.",
+        // Search Console shows "website designer in shimoga", "web design company in shimoga",
+        // "website design and development shimoga": people search the old spelling for this service.
+        seoTitle:  "Website Design Company in Shimoga (Shivamogga) | Web Designers",
+        seoDesc:   "Website designers in Shimoga (Shivamogga) for shops, clinics, schools, homestays and startups. Mobile-first, SEO-ready, WhatsApp-connected websites at a fixed quote. Call +91 96066 19285.",
+        keywords:  "website design Shimoga, website designer in Shimoga, web design company in Shimoga, website design and development Shimoga, website design Shivamogga, website development Shivamogga, website designers in Shivamogga",
+        h1:        "Website design in Shimoga that brings customers.",
         intro:     "Most businesses in Shivamogga still rely on word of mouth, a Justdial listing or a Facebook page. A fast, well-built website puts you ahead of almost every competitor in your category, and it's what people check before they call, visit or book.",
         whyTitle:  "Why a website matters more in Shivamogga than you'd think.",
         why: [
@@ -39,6 +41,7 @@ export const shivamoggaServices = {
         costTitle: "How much does a website cost in Shivamogga?",
         cost: "It depends on what the site needs to do. A simple 4–6 page business website costs far less than an e-commerce store or a booking system. Published 2026 guides put basic Indian business sites from roughly ₹5,000–₹50,000 and agency-built e-commerce stores from ₹1.5 lakh upwards. We give a fixed, itemised quote after a free conversation, with no surprises later.",
         faqs: [
+            { q: "Are you a web design company in Shimoga?", a: "Yes. We design and develop websites for businesses in Shimoga (Shivamogga), Bhadravati, Sagar and the rest of the district, and handle the domain, hosting, Google Business Profile and SEO so the site actually brings enquiries." },
             { q: "Do you design websites for small businesses in Shivamogga?", a: "Yes. Most of our Shivamogga work is for small and new businesses: shops, clinics, coaching centres, homestays and startups. We keep it simple, fast and focused on enquiries." },
             { q: "How long does it take to build a website in Shivamogga?", a: "A focused business website is typically live in two to four weeks, depending mainly on how quickly content and photos are ready." },
             { q: "Can you make my website appear on Google in Shivamogga?", a: "Yes. Every site includes on-page SEO for Shivamogga and Shimoga searches, Search Console setup and Google Business Profile optimisation. For competitive categories, our SEO service takes it further." },
@@ -47,12 +50,59 @@ export const shivamoggaServices = {
         ],
     },
 
+    // Added Nov 2026: "logo designer in shimoga" already ranked ~17 in Search Console with no page targeting it.
+    "logo-design": {
+        service:   null,   // no general /services page for branding yet
+        label:     "Logo Design",
+        seoTitle:  "Logo Designer in Shimoga (Shivamogga) — Logo & Brand Kit Design",
+        seoDesc:   "Logo design in Shimoga (Shivamogga) for new shops, clinics, cafés, startups and local brands. Original logos with a brand kit for signage, Instagram and WhatsApp. Call +91 96066 19285.",
+        keywords:  "logo designer in Shimoga, logo design Shimoga, logo designer Shivamogga, logo design Shivamogga, branding Shimoga, brand identity Shivamogga, business logo design Shimoga",
+        h1:        "Logo design in Shimoga for new businesses.",
+        intro:     "Your logo goes on your shop board, Google profile, Instagram, WhatsApp, bills and packaging, often before a customer has met you. We design original logos for new businesses in Shimoga (Shivamogga) that stay clear on a phone screen and on a signboard, and hand them over with a simple brand kit so everything looks consistent from day one.",
+        whyTitle:  "What a good logo has to do in Shivamogga.",
+        why: [
+            { title: "Work small, on a phone", desc: "Most customers first see your logo as a tiny circle on Google Maps, Instagram or WhatsApp. If it isn't readable at that size, it isn't working." },
+            { title: "Work big, on a signboard", desc: "The same logo has to look sharp on a flex board on B.H. Road or a shop front in Gandhi Bazaar. We supply vector files that print cleanly at any size." },
+            { title: "Look local but not generic", desc: "Many Shivamogga businesses use similar template logos. An original mark makes you easier to remember and harder to confuse with a competitor." },
+            { title: "Fit Kannada and English", desc: "If your name appears in Kannada too, we design both versions to sit together properly instead of adding the Kannada text as an afterthought." },
+        ],
+        includesTitle: "What you get with your logo.",
+        includes: [
+            "A short brief call about your business, customers and style",
+            "Original logo concepts (no templates or stock icons)",
+            "Revisions on the chosen direction",
+            "Primary logo plus horizontal, stacked and icon-only versions",
+            "Colour, black and white-on-dark versions",
+            "Print-ready vector files (SVG, PDF) and web files (PNG)",
+            "Profile pictures sized for Google, Instagram, Facebook and WhatsApp",
+            "A one-page brand kit: colours, fonts and how to use the logo",
+        ],
+        whoTitle: "Who we design logos for in Shivamogga.",
+        who: [
+            "New shops, boutiques and showrooms opening in Shivamogga",
+            "Cafés, restaurants, bakeries and cloud kitchens",
+            "Clinics, dental practices and diagnostic centres",
+            "Coaching centres, schools and training institutes",
+            "Homestays and travel businesses in the Malnad region",
+            "Startups and D2C brands launching from Shivamogga",
+        ],
+        costTitle: "How much does logo design cost in Shimoga?",
+        cost: "It depends on how much you need: a logo on its own costs less than a logo with a full brand kit, signage layouts and social media templates. We'll ask a few questions about your business and give you a fixed quote before any work starts. If you're also building a website or launching on Instagram, we can do the logo as part of that so everything matches.",
+        faqs: [
+            { q: "Are you a logo designer in Shimoga?", a: "Yes. We design logos and brand kits for new and existing businesses in Shimoga (Shivamogga), Bhadravati, Sagar and nearby towns, and work over calls and WhatsApp so it's quick to give feedback." },
+            { q: "How long does logo design take?", a: "Usually one to two weeks from the brief to final files, depending mainly on how quickly feedback comes back on the concepts." },
+            { q: "Will I own the logo?", a: "Yes. Once the project is paid, the logo and all source files are yours to use anywhere: signboards, packaging, uniforms, website and social media." },
+            { q: "Can you design my logo in Kannada?", a: "Yes. We can design a Kannada version, an English version, or a combined logo that uses both scripts together." },
+            { q: "Can you also make my website and social media match the logo?", a: "Yes. That's the main reason to do it with us: your logo, website, Google Business Profile and Instagram are designed as one brand, so customers recognise you everywhere." },
+        ],
+    },
+
     "seo-services": {
         service:   "seo-services",
         label:     "SEO Services",
-        seoTitle:  "SEO Services in Shivamogga (Shimoga) — Rank on Google Search & Maps",
+        seoTitle:  "SEO Company in Shimoga (Shivamogga) — Rank on Google Search & Maps",
         seoDesc:   "Local SEO services in Shivamogga (Shimoga): Google Business Profile optimisation, 'near me' rankings, website SEO and Kannada keywords. Get found by customers searching in Shivamogga, Bhadravati and Sagar.",
-        keywords:  "SEO services Shivamogga, SEO company Shimoga, local SEO Shivamogga, Google Maps ranking Shivamogga, SEO agency Shimoga, Google business profile Shivamogga",
+        keywords:  "SEO Shimoga, SEO services Shivamogga, SEO company Shimoga, local SEO Shivamogga, Google Maps ranking Shivamogga, SEO agency Shimoga, Google business profile Shivamogga",
         h1:        "SEO services in Shivamogga. Get found first.",
         intro:     "When someone searches 'best dentist in Shimoga' or 'coaching classes near me', three businesses appear on the map and a handful on page one. Local SEO decides who those are. In Shivamogga, very few businesses compete seriously, so a well-run SEO effort can take you to the top faster than in big cities.",
         whyTitle:  "Why SEO works especially well in Shivamogga.",

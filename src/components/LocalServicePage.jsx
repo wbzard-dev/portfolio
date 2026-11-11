@@ -6,6 +6,7 @@ import SEO from "./SEO";
 import FAQList from "./FAQList";
 import CTASection from "./CTASection";
 import FormCTA from "./FormCTA";
+import CallButton from "./CallButton";
 import NotFound from "./NotFound";
 import { faqSchema } from "../lib/schema";
 import { shivamoggaServices, shivamoggaServiceList } from "../data/shivamogga";
@@ -71,6 +72,7 @@ const LocalServicePage = () => {
                     </motion.p>
                     <motion.div {...fadeUp(0.28)} style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
                         <FormCTA location={`shivamogga-${service}`} />
+                        <CallButton showNumber />
                         <button className="btn-secondary" data-cal-link={site.calLink}>Book a Free Call</button>
                     </motion.div>
                 </div>

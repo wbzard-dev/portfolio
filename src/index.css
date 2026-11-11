@@ -270,10 +270,11 @@ section {
         backdrop-filter: blur(12px);
         border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .mobile-cta-wa {
+    .mobile-cta-wa, .mobile-cta-call {
         display: inline-flex; align-items: center; justify-content: center;
         width: 52px; flex-shrink: 0;
         border-radius: var(--radius-md);
         background: #25D366; color: #fff;
     }
+    .mobile-cta-call { background: #fff; color: #0F0F0F; }
 }

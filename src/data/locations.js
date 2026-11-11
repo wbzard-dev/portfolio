@@ -35,11 +35,13 @@ export const locations = {
     shivamogga: {
         city:        "Shivamogga",
         altName:     "Shimoga",
-        seoTitle:    "Website Development & Digital Marketing in Shivamogga (Shimoga) for New Businesses",
-        seoDesc:     "Website design, SEO, Google Business Profile, social media marketing and Meta & Google Ads for startups and new businesses in Shivamogga (Shimoga), Bhadravati and Sagar.",
-        keywords:    "digital marketing agency Shivamogga, website development Shivamogga, website design Shimoga, SEO services Shivamogga, social media marketing Shimoga, Google business profile Shivamogga, digital marketing Shimoga",
-        headline:    "Take your Shivamogga business online.",
-        subheadline: "Shivamogga is growing: a new airport, better connectivity with Bangalore and a new generation of local founders. We help new businesses in Shivamogga and the Malnad region get found on Google, build a following and turn it into customers.",
+        // Targets the buyer searches already ranking on page 2 in Search Console (Nov 2026):
+        // "digital marketing agency/company/services in shivamogga", "digital marketing shimoga".
+        seoTitle:    "Digital Marketing Agency in Shivamogga (Shimoga)",
+        seoDesc:     "Digital marketing agency in Shivamogga (Shimoga) for new and local businesses: websites, Google Maps & SEO, Instagram and Google/Meta ads. Call +91 96066 19285 for a free plan.",
+        keywords:    "digital marketing agency Shivamogga, digital marketing company Shivamogga, digital marketing services Shivamogga, digital marketing Shimoga, website design Shimoga, SEO Shimoga, social media marketing Shimoga, Google business profile Shivamogga",
+        headline:    "Digital marketing agency in Shivamogga.",
+        subheadline: "We're a digital marketing company for new and growing businesses in Shivamogga (Shimoga), Bhadravati and Sagar. Websites, Google Maps and SEO, Instagram and local ads, run as one plan so you get calls and walk-ins, not just likes.",
         contextHeadline: "Why now is the right time in Shivamogga.",
         context: [
             { title: "Less competition in search", desc: "Most Shivamogga businesses still have no website, an unclaimed Google Business Profile, or a dormant Instagram page. A new business that does the basics well can reach the top of local searches far faster than in Bangalore." },
@@ -57,6 +59,8 @@ export const locations = {
             "Young founders starting D2C, tech or service businesses from Shivamogga",
         ],
         faqs: [
+            { q: "What does a digital marketing agency in Shivamogga do?", a: "We get local customers to find you and contact you. That means a fast website, a complete Google Business Profile with reviews so you show up on Google Maps, SEO for Shivamogga and Shimoga searches, a steady Instagram presence, and Google or Meta ads when you want enquiries quickly." },
+            { q: "How do I choose the best digital marketing company in Shivamogga?", a: "Ask to see results for businesses like yours, insist that your website, ad accounts and Google profile are registered in your name, and ask how they will measure calls and enquiries, not just followers. Our checklist on choosing a digital marketing agency in Shivamogga covers the questions to ask." },
             { q: "Do you provide website design in Shivamogga?", a: "Yes. We design and build websites for businesses in Shivamogga, Bhadravati, Sagar and nearby towns: fast, mobile-friendly, SEO-ready and connected to WhatsApp so customers can reach you instantly." },
             { q: "Is digital marketing worth it for a small business in Shivamogga?", a: "Yes. Because fewer local businesses invest in it, a well-set-up Google Business Profile, a simple website and consistent Instagram presence can make a new business the obvious choice in its category, often with a small budget." },
             { q: "Do you create content in Kannada?", a: "Yes. For many Shivamogga businesses, Kannada or bilingual posts and ads perform better locally. We plan the language mix based on your customers." },
