@@ -6,9 +6,17 @@ import remarkGfm from "remark-gfm";
 import { Calendar, User, Clock, ArrowLeft, ArrowRight, Share2 } from "lucide-react";
 import SEO from "./SEO";
 import { posts, getPost, formatDate, coverSrc } from "../data/posts";
-import { site } from "../config/site";
+import { site, whatsappUrl } from "../config/site";
 import FormCTA from "./FormCTA";
 import CallButton from "./CallButton";
+
+// Splits the article at the H2 nearest its middle so a lead box can sit inside it (most readers never reach the end).
+const splitAtMiddle = (content) => {
+    const sections = content.split(/\n(?=## )/);
+    if (sections.length < 4) return [content, ""];
+    const mid = Math.ceil(sections.length / 2);
+    return [sections.slice(0, mid).join("\n"), sections.slice(mid).join("\n")];
+};
 
 // Internal links inside markdown should use client-side routing; external ones open in a new tab.
 const MarkdownLink = ({ href = "", children }) =>
@@ -40,6 +48,9 @@ const BlogPost = () => {
     const wordCount   = post.content.split(/\s+/).filter(Boolean).length;
     const readMinutes = Math.max(1, Math.round(wordCount / 220));
     const isShivamogga = post.locations.includes("shivamogga");
+    const isCareers   = post.category === "Careers";
+    const [firstHalf, secondHalf] = isCareers ? [post.content, ""] : splitAtMiddle(post.content);
+    const waLink      = whatsappUrl(`Hi Wbzard Labs, I read "${post.title}" and would like a free launch plan for my business.`);
     const places      = post.locations.map(l => ({ bangalore: "Bengaluru", shivamogga: "Shivamogga" }[l])).filter(Boolean);
 
     return (
@@ -166,9 +177,34 @@ const BlogPost = () => {
                     )}
                     <div className="blog-content">
                         <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: MarkdownLink }}>
-                            {post.content}
+                            {firstHalf}
                         </ReactMarkdown>
                     </div>
+
+                    {/* Mid-article lead box: same offer as the end box, placed where readers still are */}
+                    {secondHalf && (
+                        <aside aria-label="Free launch plan" style={{ border: "1px solid var(--border)", borderLeft: "4px solid var(--accent)", background: "var(--bg-surface)", borderRadius: "var(--radius-md)", padding: "clamp(1.25rem, 3vw, 1.6rem)", margin: "0.5rem 0 2.5rem" }}>
+                            <p style={{ fontWeight: 700, fontSize: "1.05rem", marginBottom: "0.4rem", color: "var(--text)" }}>
+                                {isShivamogga ? "Starting or growing a business in Shivamogga?" : "Planning a launch? Get a free plan for your business."}
+                            </p>
+                            <p style={{ fontSize: "0.92rem", color: "var(--text-muted)", lineHeight: 1.6, marginBottom: "1rem" }}>
+                                Tell us what you sell and where. We'll come back with what to set up first (website, Google Maps, Instagram, ads) and what it costs. No obligation.
+                            </p>
+                            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+                                <FormCTA location="blog-inline" className="btn-primary" />
+                                {waLink && (
+                                    <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-secondary">WhatsApp us</a>
+                                )}
+                            </div>
+                        </aside>
+                    )}
+                    {secondHalf && (
+                        <div className="blog-content">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: MarkdownLink }}>
+                                {secondHalf}
+                            </ReactMarkdown>
+                        </div>
+                    )}
 
                     {/* Footer */}
                     <div style={{
@@ -200,7 +236,7 @@ const BlogPost = () => {
                     </div>
 
                     {/* Conversion box — student (Careers) posts pitch the courses, everything else pitches the agency */}
-                    {post.category === "Careers" ? (
+                    {isCareers ? (
                     <div style={{ marginTop: "3rem", background: "var(--bg-dark)", color: "#fff", borderRadius: "var(--radius-lg)", padding: "clamp(1.75rem, 4vw, 2.5rem)" }}>
                         <p style={{ fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "0.875rem" }}>
                             {site.name} Courses
